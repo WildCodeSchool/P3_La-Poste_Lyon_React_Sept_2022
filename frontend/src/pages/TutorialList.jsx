@@ -1,3 +1,5 @@
+/* eslint-disable */
+/* disable for nested ternary expression */
 import React from "react";
 import { useParams } from "react-router-dom";
 
