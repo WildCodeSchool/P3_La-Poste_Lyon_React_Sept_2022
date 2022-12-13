@@ -1,5 +1,6 @@
 /* eslint-disable */
 /* disable for nested ternary expression */
+import AccessButton from "@components/AccessButton";
 import PreviousButton from "@components/PreviousButton";
 import React from "react";
 import { useParams, Link } from "react-router-dom";
@@ -28,11 +29,34 @@ function TutorialList() {
       description:
         "Vous retrouverez dans cette liste différents tutoriels pour comprendre le système de connexion",
       tutoriels: [
-        { id: "1", title: "Qu'est-ce que la wifi" },
-        { id: "2", title: "Le réseau" },
-        { id: "3", title: "Paramétrer votre connexion" },
-        { id: "4", title: "Les réseaux publics" },
-        { id: "5", title: "Les réseaux privés" },
+        {
+          id: "1",
+          title: "Qu'est-ce que la wifi",
+          shortDescription:
+            "Vous entendez parler de wifi mais ne savez pas à quoi ça correspond ?",
+        },
+        {
+          id: "2",
+          title: "Le réseau",
+          shortDescription:
+            "Découvrez ce qu'est le réseau à travers ce tutoriel",
+        },
+        {
+          id: "3",
+          title: "Paramétrer votre connexion",
+          shortDescription:
+            "Vous souhaitez vous connectez ? On vous aide à paramétrer !",
+        },
+        {
+          id: "4",
+          title: "Les réseaux publics",
+          shortDescription: "Un réseau public, qu'est-ce que c'est?",
+        },
+        {
+          id: "5",
+          title: "Les réseaux privés",
+          shortDescription: "Et les réseaux privés alors ?",
+        },
       ],
     },
     {
@@ -213,7 +237,7 @@ function TutorialList() {
       </Link>
       <article className="bg-white w-3/5 p-2 border rounded-2xl shadow-lg  grid overflow-hidden grid-cols-1 grid-rows-2 md:grid-cols-2 md:grid-rows-2 m-auto justify-center">
         {/* category name */}
-        <h2 className="text-lg text-center p-6">
+        <h2 className="text-2xl text-center p-6">
           {categoryList[0].categoryName}
         </h2>
         <img
@@ -232,13 +256,18 @@ function TutorialList() {
             }`}
           />
         </div>
-        <p className="hidden  md:block md:box md:row-start-1 md:row-end-4 md:col-start-2 m-auto p-5">
+        <p className="text-xl hidden  md:block md:box md:row-start-1 md:row-end-4 md:col-start-2 m-auto p-5">
           {categoryList[0].description}
         </p>
       </article>
-      <ul>
+      <ul className="w-3/5 grid grid-cols-1 md:grid-cols-3 m-auto ">
         {categoryList[0].tutoriels.map((tutorial) => (
-          <li key={tutorial.id}>{tutorial.title}</li>
+          <li className="border text-center" key={tutorial.id}>
+            <h2 className="text-xl">{tutorial.title}</h2>
+            <p>{tutorial.shortDescription}</p>
+            <AccessButton />
+            {/* devra envoyer au tutoriel précis */}
+          </li>
         ))}
       </ul>
     </section>
