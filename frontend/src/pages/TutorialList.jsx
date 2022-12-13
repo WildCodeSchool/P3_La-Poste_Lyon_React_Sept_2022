@@ -201,37 +201,40 @@ function TutorialList() {
     },
   ];
 
-  const { id } = useParams();
+  const params = useParams();
+
+  console.log(params);
 
   return (
     <section className="m-6">
       <article className="bg-white w-3/5  border rounded-2xl shadow-lg  grid overflow-hidden grid-cols-1 grid-rows-2 md:grid-cols-2 md:grid-rows-2 m-auto justify-center">
         {/* category name */}
         <h2 className="text-lg text-center flex justify-center items-center box">
-          {categoryList[id].categoryName}
+          {categoryList[0].categoryName}
+          {categoryList[0].id}
         </h2>
         <img
-          src={categoryList[id].imgUrl}
-          alt={categoryList[id].categoryName}
+          src={categoryList[0].imgUrl}
+          alt={categoryList[0].categoryName}
           className="h-24 justify-self-center box"
         />
         <div className="box mt-3 mb-1 w-full h-4 bg-gray-300 rounded-full dark:bg-gray-300 shadow-inner">
           <div
-            className={`h-4 bg-grey-500 rounded-full ${
-              categoryList[id].progression === "start"
-                ? "dark:bg-[#FFC100] w-1/2"
-                : categoryList[id].progression === "complete"
-                ? "dark:bg-[#04DDB4] w-100"
+            className={`h-4 rounded-full w-1/2 ${
+              categoryList[0].progression === "start"
+                ? "bg-[#FFC100] w-1/2"
+                : categoryList[0].progression === "complete"
+                ? "bg-[#04DDB4] w-100"
                 : ""
             }`}
           />
         </div>
         <p className="hidden  md:block md:box md:row-start-1 md:row-end-4 md:col-start-2">
-          {categoryList[id].description}
+          {categoryList[0].description}
         </p>
       </article>
       <ul>
-        {categoryList[id].tutoriels.map((tutorial) => (
+        {categoryList[0].tutoriels.map((tutorial) => (
           <li key={tutorial.id}>{tutorial.title}</li>
         ))}
       </ul>
