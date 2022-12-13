@@ -2,6 +2,7 @@
 /* disable for nested ternary expression */
 import React from "react";
 import { Link } from "react-router-dom";
+import PreviousButton from "@components/PreviousButton";
 
 /* CategoryList Img */
 import connected from "../assets/tutorial-category-img/connected.svg";
@@ -179,6 +180,10 @@ function TutorialCategory() {
 
   return (
     <section className="m-6 flex flex-col items-center">
+      <Link to="/">
+        {/* Link to dashboard */}
+        <PreviousButton />
+      </Link>
       <h1 className="m-6 text-xl md:text-3xl">Catégories de tutoriels</h1>
       <ul className="vw-3/5 grid grid-cols-1 md:grid-cols-4 place-content-center	">
         {categoryList?.map((category) => (
