@@ -31,6 +31,32 @@ function DashboardUser() {
           </button>
         </div>
       </div>
+      <div className="flex flex-wrap">
+        <div className="max-w-sm rounded overflow-hidden shadow-lg">
+          <div className="px-6 py-4">
+            <div className="text-center rounded bg-blue-800 px-3">
+              <h1 className="font-bold text-xl mb-2">Mon historique</h1>
+            </div>
+            <p className="text-gray-700 text-base">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Voluptatibus quia, nulla! Maiores et perferendis eaque,
+              exercitationem praesentium nihil.
+            </p>
+          </div>
+        </div>
+        <div className="max-w-sm rounded overflow-hidden shadow-lg">
+          <div className="px-6 py-4">
+            <div className="text-center rounded bg-blue-800 px-3">
+              <h1 className="font-bold text-xl mb-2">Mes tutoriels</h1>
+            </div>
+            <p className="text-gray-700 text-base">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+              Voluptatibus quia, nulla! Maiores et perferendis eaque,
+              exercitationem praesentium nihil.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
