@@ -27,11 +27,11 @@ function TutorialList() {
       description:
         "Vous retrouverez dans cette liste différents tutoriels pour comprendre le système de connexion",
       tutoriels: [
-        { title: "Qu'est-ce que la wifi" },
-        { title: "Le réseau" },
-        { title: "Paramétrer votre connexion" },
-        { title: "Les réseaux publics" },
-        { title: "Les réseaux privés" },
+        { id: "1", title: "Qu'est-ce que la wifi" },
+        { id: "2", title: "Le réseau" },
+        { id: "3", title: "Paramétrer votre connexion" },
+        { id: "4", title: "Les réseaux publics" },
+        { id: "5", title: "Les réseaux privés" },
       ],
     },
     {
@@ -42,11 +42,11 @@ function TutorialList() {
       description:
         "Vous retrouverez dans cette liste différents tutoriels pour comprendre le système de connexion",
       tutoriels: [
-        { title: "Qu'est-ce que la wifi" },
-        { title: "Le réseau" },
-        { title: "Paramétrer votre connexion" },
-        { title: "Les réseaux publics" },
-        { title: "Les réseaux privés" },
+        { id: "1", title: "Qu'est-ce que la wifi" },
+        { id: "2", title: "Le réseau" },
+        { id: "3", title: "Paramétrer votre connexion" },
+        { id: "4", title: "Les réseaux publics" },
+        { id: "5", title: "Les réseaux privés" },
       ],
     },
     {
@@ -57,11 +57,11 @@ function TutorialList() {
       description:
         "Vous retrouverez dans cette liste différents tutoriels pour comprendre le système de connexion",
       tutoriels: [
-        { title: "Qu'est-ce que la wifi" },
-        { title: "Le réseau" },
-        { title: "Paramétrer votre connexion" },
-        { title: "Les réseaux publics" },
-        { title: "Les réseaux privés" },
+        { id: "1", title: "Qu'est-ce que la wifi" },
+        { id: "2", title: "Le réseau" },
+        { id: "3", title: "Paramétrer votre connexion" },
+        { id: "4", title: "Les réseaux publics" },
+        { id: "5", title: "Les réseaux privés" },
       ],
     },
     {
@@ -72,11 +72,11 @@ function TutorialList() {
       description:
         "Vous retrouverez dans cette liste différents tutoriels pour comprendre le système de connexion",
       tutoriels: [
-        { title: "Qu'est-ce que la wifi" },
-        { title: "Le réseau" },
-        { title: "Paramétrer votre connexion" },
-        { title: "Les réseaux publics" },
-        { title: "Les réseaux privés" },
+        { id: "1", title: "Qu'est-ce que la wifi" },
+        { id: "2", title: "Le réseau" },
+        { id: "3", title: "Paramétrer votre connexion" },
+        { id: "4", title: "Les réseaux publics" },
+        { id: "5", title: "Les réseaux privés" },
       ],
     },
     {
@@ -87,11 +87,11 @@ function TutorialList() {
       description:
         "Vous retrouverez dans cette liste différents tutoriels pour comprendre le système de connexion",
       tutoriels: [
-        { title: "Qu'est-ce que la wifi" },
-        { title: "Le réseau" },
-        { title: "Paramétrer votre connexion" },
-        { title: "Les réseaux publics" },
-        { title: "Les réseaux privés" },
+        { id: "1", title: "Qu'est-ce que la wifi" },
+        { id: "2", title: "Le réseau" },
+        { id: "3", title: "Paramétrer votre connexion" },
+        { id: "4", title: "Les réseaux publics" },
+        { id: "5", title: "Les réseaux privés" },
       ],
     },
     {
@@ -102,11 +102,11 @@ function TutorialList() {
       description:
         "Vous retrouverez dans cette liste différents tutoriels pour comprendre le système de connexion",
       tutoriels: [
-        { title: "Qu'est-ce que la wifi" },
-        { title: "Le réseau" },
-        { title: "Paramétrer votre connexion" },
-        { title: "Les réseaux publics" },
-        { title: "Les réseaux privés" },
+        { id: "1", title: "Qu'est-ce que la wifi" },
+        { id: "2", title: "Le réseau" },
+        { id: "3", title: "Paramétrer votre connexion" },
+        { id: "4", title: "Les réseaux publics" },
+        { id: "5", title: "Les réseaux privés" },
       ],
     },
     {
@@ -117,11 +117,11 @@ function TutorialList() {
       description:
         "Vous retrouverez dans cette liste différents tutoriels pour comprendre le système de connexion",
       tutoriels: [
-        { title: "Qu'est-ce que la wifi" },
-        { title: "Le réseau" },
-        { title: "Paramétrer votre connexion" },
-        { title: "Les réseaux publics" },
-        { title: "Les réseaux privés" },
+        { id: "1", title: "Qu'est-ce que la wifi" },
+        { id: "2", title: "Le réseau" },
+        { id: "3", title: "Paramétrer votre connexion" },
+        { id: "4", title: "Les réseaux publics" },
+        { id: "5", title: "Les réseaux privés" },
       ],
     },
     {
@@ -132,11 +132,11 @@ function TutorialList() {
       description:
         "Vous retrouverez dans cette liste différents tutoriels pour comprendre le système de connexion",
       tutoriels: [
-        { title: "Qu'est-ce que la wifi" },
-        { title: "Le réseau" },
-        { title: "Paramétrer votre connexion" },
-        { title: "Les réseaux publics" },
-        { title: "Les réseaux privés" },
+        { id: "1", title: "Qu'est-ce que la wifi" },
+        { id: "2", title: "Le réseau" },
+        { id: "3", title: "Paramétrer votre connexion" },
+        { id: "4", title: "Les réseaux publics" },
+        { id: "5", title: "Les réseaux privés" },
       ],
     },
     {
@@ -147,11 +147,11 @@ function TutorialList() {
       description:
         "Vous retrouverez dans cette liste différents tutoriels pour comprendre le système de connexion",
       tutoriels: [
-        { title: "Qu'est-ce que la wifi" },
-        { title: "Le réseau" },
-        { title: "Paramétrer votre connexion" },
-        { title: "Les réseaux publics" },
-        { title: "Les réseaux privés" },
+        { id: "1", title: "Qu'est-ce que la wifi" },
+        { id: "2", title: "Le réseau" },
+        { id: "3", title: "Paramétrer votre connexion" },
+        { id: "4", title: "Les réseaux publics" },
+        { id: "5", title: "Les réseaux privés" },
       ],
     },
     {
@@ -162,11 +162,11 @@ function TutorialList() {
       description:
         "Vous retrouverez dans cette liste différents tutoriels pour comprendre le système de connexion",
       tutoriels: [
-        { title: "Qu'est-ce que la wifi" },
-        { title: "Le réseau" },
-        { title: "Paramétrer votre connexion" },
-        { title: "Les réseaux publics" },
-        { title: "Les réseaux privés" },
+        { id: "1", title: "Qu'est-ce que la wifi" },
+        { id: "2", title: "Le réseau" },
+        { id: "3", title: "Paramétrer votre connexion" },
+        { id: "4", title: "Les réseaux publics" },
+        { id: "5", title: "Les réseaux privés" },
       ],
     },
     {
@@ -177,11 +177,11 @@ function TutorialList() {
       description:
         "Vous retrouverez dans cette liste différents tutoriels pour comprendre le système de connexion",
       tutoriels: [
-        { title: "Qu'est-ce que la wifi" },
-        { title: "Le réseau" },
-        { title: "Paramétrer votre connexion" },
-        { title: "Les réseaux publics" },
-        { title: "Les réseaux privés" },
+        { id: "1", title: "Qu'est-ce que la wifi" },
+        { id: "2", title: "Le réseau" },
+        { id: "3", title: "Paramétrer votre connexion" },
+        { id: "4", title: "Les réseaux publics" },
+        { id: "5", title: "Les réseaux privés" },
       ],
     },
     {
@@ -192,11 +192,11 @@ function TutorialList() {
       description:
         "Vous retrouverez dans cette liste différents tutoriels pour comprendre le système de connexion",
       tutoriels: [
-        { title: "Qu'est-ce que la wifi" },
-        { title: "Le réseau" },
-        { title: "Paramétrer votre connexion" },
-        { title: "Les réseaux publics" },
-        { title: "Les réseaux privés" },
+        { id: "1", title: "Qu'est-ce que la wifi" },
+        { id: "2", title: "Le réseau" },
+        { id: "3", title: "Paramétrer votre connexion" },
+        { id: "4", title: "Les réseaux publics" },
+        { id: "5", title: "Les réseaux privés" },
       ],
     },
   ];
@@ -232,7 +232,7 @@ function TutorialList() {
       </article>
       <ul>
         {categoryList[id].tutoriels.map((tutorial) => (
-          <li>{tutorial.title}</li>
+          <li key={tutorial.id}>{tutorial.title}</li>
         ))}
       </ul>
     </section>

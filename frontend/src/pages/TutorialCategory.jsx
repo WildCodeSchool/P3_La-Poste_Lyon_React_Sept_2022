@@ -182,11 +182,8 @@ function TutorialCategory() {
       <h1 className="m-6 text-xl md:text-3xl">Catégories de tutoriels</h1>
       <ul className="vw-3/5 grid grid-cols-1 md:grid-cols-4 place-content-center	">
         {categoryList?.map((category) => (
-          <Link to={`/categories/${category.id}/tutorials`}>
-            <li
-              className="bg-white flex justify-center border rounded-2xl shadow-lg m-3 p-3 flex-col"
-              key={category.categoryName}
-            >
+          <Link key={category.id} to={`/categories/${category.id}/tutorials`}>
+            <li className="bg-white flex justify-center border rounded-2xl shadow-lg m-3 p-3 flex-col">
               <h2 className="text-lg text-center m-1">
                 {category.categoryName}
               </h2>
@@ -202,7 +199,7 @@ function TutorialCategory() {
                       ? "dark:bg-[#FFC100] w-1/2"
                       : category.progression === "complete"
                       ? "dark:bg-[#04DDB4] w-100"
-                      : ""
+                      : null
                   }`}
                 />
               </div>
