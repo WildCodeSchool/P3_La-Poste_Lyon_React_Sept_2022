@@ -1,5 +1,11 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import profil from "../assets/profil.png";
+import categories from "../assets/categories.png";
+import tutoriels from "../assets/tutoriels.png";
+// import jeux from "../assets/jeux.png";
+import recompenses from "../assets/recompenses.png";
+// import parcours from "../assets/parcours.png";
 
 function NavigationBar() {
   const [open, setOpen] = useState(false);
@@ -8,7 +14,7 @@ function NavigationBar() {
   };
   return (
     <div>
-      <nav className="relative flex bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-900">
+      <nav className="relative flex bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded white:bg-gray-900 drop-shadow">
         <div className="container flex flex-wrap items-center justify-end mx-auto">
           <button
             onClick={handleOpen}
@@ -41,88 +47,135 @@ function NavigationBar() {
             }
             id="navbar-default"
           >
-            <ul className="flex flex-end p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              <li>
+            <ul className="block p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+              {/* Empty NavLink because it is necessary to have all the other well placed (otherwise the first tab is shifted) */}
+              <li className="flex flex-wrap">
                 <NavLink
                   to="/"
                   className={
                     open === true
-                      ? "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                      : "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:hidden"
+                      ? "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white"
+                      : "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white md:hidden"
+                  }
+                  aria-current="page"
+                />
+              </li>
+              <li className="flex flex-wrap">
+                <img
+                  className={open === true ? "h-12" : "hidden"}
+                  src={profil}
+                  alt="myprofile"
+                />
+                <NavLink
+                  to="/"
+                  className={
+                    open === true
+                      ? "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white"
+                      : "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white md:hidden"
                   }
                   aria-current="page"
                 >
                   Maison
                 </NavLink>
               </li>
-              <li>
+              <li className="flex flex-wrap">
+                <img
+                  className={open === true ? "h-12" : "hidden"}
+                  src={profil}
+                  alt="myprofile"
+                />
                 <NavLink
                   to="/profil"
                   className={
                     open === true
-                      ? "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                      : "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:hidden"
+                      ? "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white"
+                      : "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white md:hidden"
                   }
                   aria-current="page"
                 >
                   Mon Profil
                 </NavLink>
               </li>
-              {/* <li>
+              <li className="flex flex-wrap">
+                <img
+                  className={open === true ? "h-12" : "hidden"}
+                  src={categories}
+                  alt="categories"
+                />
                 <NavLink
-                  href="/categories"
+                  to="/categories"
                   className={
                     open === true
-                      ? "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                      : "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:hidden"
+                      ? "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white"
+                      : "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white md:hidden"
                   }
                 >
                   Catégories
                 </NavLink>
               </li>
-              <li>
+              <li className="flex flex-wrap">
+                <img
+                  className={open === true ? "h-12" : "hidden"}
+                  src={tutoriels}
+                  alt="tutoriels"
+                />
                 <NavLink
-                  href="/tutoriels"
+                  to="/tutoriels"
                   className={
                     open === true
-                      ? "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                      : "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:hidden"
+                      ? "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white"
+                      : "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white md:hidden"
                   }
                 >
                   Tutoriels
                 </NavLink>
               </li>
-              <li>
+              {/* <li className="flex flex-wrap">
+                <img
+                  className={open === true ? "h-12" : "hidden"}
+                  src={jeux}
+                  alt="jeux"
+                />
                 <NavLink
-                  href="/jeux"
+                  to="/jeux"
                   className={
                     open === true
-                      ? "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                      : "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:hidden"
+                      ? "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white"
+                      : "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white md:hidden"
                   }
                 >
                   Jeux
                 </NavLink>
-              </li>
-              <li>
+              </li> */}
+              <li className="flex flex-wrap">
+                <img
+                  className={open === true ? "h-12" : "hidden"}
+                  src={recompenses}
+                  alt="recompenses"
+                />
                 <NavLink
-                  href="#"
+                  to="/recompense"
                   className={
                     open === true
-                      ? "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                      : "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:hidden"
+                      ? "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white"
+                      : "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white md:hidden"
                   }
                 >
                   Récompenses
                 </NavLink>
               </li>
-              <li>
+              {/* <li className="flex flex-wrap">
+                <img
+                  className={open === true ? "h-12" : "hidden"}
+                  src={parcours}
+                  alt="parcours"
+                />
                 <NavLink
-                  href="#"
+                  to="/parcours"
                   className={
                     open === true
-                      ? "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
-                      : "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:hidden"
+                      ? "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white"
+                      : "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white md:hidden"
                   }
                 >
                   Mon parcours
