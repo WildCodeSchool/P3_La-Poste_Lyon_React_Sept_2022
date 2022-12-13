@@ -6,6 +6,7 @@ import tutoriels from "../assets/tutoriels.png";
 // import jeux from "../assets/jeux.png";
 import recompenses from "../assets/recompenses.png";
 // import parcours from "../assets/parcours.png";
+import logo from "../assets/Logo.png";
 
 function NavigationBar() {
   const [open, setOpen] = useState(false);
@@ -15,7 +16,8 @@ function NavigationBar() {
   return (
     <div>
       <nav className="flex bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded white:bg-gray-900 drop-shadow">
-        <div className="container flex flex-wrap items-center justify-end mx-auto">
+        <div className="container flex flex-wrap items-center justify-between mx-auto">
+          <img className="h-14" src={logo} alt="logo" />
           <div
             className={
               open === true
@@ -181,6 +183,11 @@ function NavigationBar() {
                   Mon parcours
                 </NavLink>
               </li> */}
+              <li className="text-white">
+                <button className={open === true ? "" : "hidden"} type="button">
+                  Me déconnecter
+                </button>
+              </li>
             </ul>
           </div>
         </div>
