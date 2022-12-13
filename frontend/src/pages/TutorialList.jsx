@@ -235,9 +235,12 @@ function TutorialList() {
       <Link to="/categories" className="m-6">
         <PreviousButton />
       </Link>
-      <article className="bg-white w-3/5 p-2 border rounded-2xl shadow-lg  grid overflow-hidden grid-cols-1 grid-rows-2 md:grid-cols-2 md:grid-rows-2 m-auto justify-center">
+      <article
+        className="bg-white w-3/5 p-2 border rounded-2xl shadow-lg  grid overflow-hidden 
+      grid-cols-1 grid-rows-2 md:grid-cols-2 md:grid-rows-3 m-auto justify-center"
+      >
         {/* category name */}
-        <h2 className="text-2xl text-center p-6">
+        <h2 className="text-2xl text-center p-6 row-start-1 row-end-1 md:col-start-1 md:col-end-3">
           {categoryList[0].categoryName}
         </h2>
         <img
@@ -245,7 +248,11 @@ function TutorialList() {
           alt={categoryList[0].categoryName}
           className="h-24 md:h-28 justify-self-center box"
         />
-        <div className="box mt-3 mb-1 justify-self-center w-full md:w-2/3 h-4 bg-gray-300 rounded-full dark:bg-gray-300 shadow-inner">
+        <div
+          className="
+        row-start-3 row-end-3 md:col-start-1 md:col-end-3
+        box mt-6 mb-1 justify-self-center w-full md:w-2/3 h-4 bg-gray-300 rounded-full dark:bg-gray-300 shadow-inner"
+        >
           <div
             className={`h-4 rounded-full w-1/2 ${
               categoryList[0].progression === "start"
@@ -260,11 +267,18 @@ function TutorialList() {
           {categoryList[0].description}
         </p>
       </article>
-      <ul className="w-3/5 grid grid-cols-1 md:grid-cols-3 m-auto ">
+      <ul className="w-3/5 grid grid-cols-1 md:grid-cols-2  m-auto ">
         {categoryList[0].tutoriels.map((tutorial) => (
-          <li className="border text-center" key={tutorial.id}>
-            <h2 className="text-xl">{tutorial.title}</h2>
-            <p>{tutorial.shortDescription}</p>
+          <li
+            className=" my-3 md:m-6 border shadow-xl rounded-lg text-center"
+            key={tutorial.id}
+          >
+            <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
+              {tutorial.title}
+            </h2>
+            <p className="p-3 h-26 flex justify-center items-center">
+              {tutorial.shortDescription}
+            </p>
             <AccessButton />
             {/* devra envoyer au tutoriel précis */}
           </li>
