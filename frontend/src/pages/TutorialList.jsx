@@ -276,9 +276,9 @@ function TutorialList() {
             <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
               {tutorial.title}
             </h2>
-            <p className="p-3 h-26 flex justify-center items-center">
+            <p className="p-3 flex justify-center items-center h-24">
               {tutorial.shortDescription}
-            </p>
+            </p>{" "}
             <AccessButton />
             {/* devra envoyer au tutoriel précis */}
           </li>
