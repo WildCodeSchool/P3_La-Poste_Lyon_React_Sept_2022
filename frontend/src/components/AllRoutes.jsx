@@ -17,6 +17,8 @@ function AllRoutes() {
         <Route path="/recompense" element={<Reward />} />
         {/* <Route path="/jeux" element={<Games />} /> */}
         {/* <Route path="/parcours" element={<Parcours />} /> */}
+        <Route path="/categories" element={<TutorialCategory />} />
+        <Route path="/categories/:id/tutorials" element={<TutorialList />} />
       </Routes>
     </Router>
   );
