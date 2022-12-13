@@ -1,7 +1,8 @@
 /* eslint-disable */
 /* disable for nested ternary expression */
+import PreviousButton from "@components/PreviousButton";
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 /* CategoryList Img */
 import connected from "../assets/tutorial-category-img/connected.svg";
@@ -207,6 +208,9 @@ function TutorialList() {
 
   return (
     <section className="m-6">
+      <Link to="/categories" className="m-6">
+        <PreviousButton />
+      </Link>
       <article className="bg-white w-3/5  border rounded-2xl shadow-lg  grid overflow-hidden grid-cols-1 grid-rows-2 md:grid-cols-2 md:grid-rows-2 m-auto justify-center">
         {/* category name */}
         <h2 className="text-lg text-center flex justify-center items-center box">
