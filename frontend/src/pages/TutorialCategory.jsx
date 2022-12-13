@@ -192,28 +192,17 @@ function TutorialCategory() {
                 alt={category.categoryName}
                 className="h-24"
               />
-              <div className="mb-4 w-full h-4 bg-gray-200 rounded-full dark:bg-gray-700">
+              <div className="mt-6 mb-4 w-full h-4 bg-gray-200 rounded-full dark:bg-gray-700">
                 <div
-                  className={`h-4 rounded-full w-1/2 ${
+                  className={`h-4 rounded-full  ${
                     category.progression === "start"
                       ? "bg-[#FFC100] w-1/2"
                       : category.progression === "complete"
                       ? "bg-[#04DDB4] w-100"
-                      : ""
+                      : "w-100"
                   }`}
                 ></div>
               </div>
-              {/*  <div className="mt-3 mb-1 w-full h-4 bg-gray-300 rounded-full dark:bg-gray-300 shadow-inner">
-                <div
-                  className={`h-4 rounded-full ${
-                    category.progression === "start"
-                      ? "bg-[#FFC100] w-1/2"
-                      : category.progression === "complete"
-                      ? "bg-[#04DDB4] w-100"
-                      : null
-                  }`}
-                /> 
-              </div>*/}
             </li>{" "}
           </Link>
         ))}
