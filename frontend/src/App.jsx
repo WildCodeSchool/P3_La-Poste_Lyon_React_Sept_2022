@@ -1,10 +1,17 @@
+import Footer from "./components/Footer";
 import "./App.css";
 import "./index.css";
+import Home from "./pages/Home";
 
 function App() {
   return (
-    <div className="App">
-      <p>test</p>
+    <div>
+      <div>
+        <Home />
+      </div>
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 }
