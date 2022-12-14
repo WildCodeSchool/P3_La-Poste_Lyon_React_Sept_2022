@@ -6,6 +6,8 @@ import forgotpass from "../assets/forgotpass.svg";
 
 function AuthentificationPage() {
   return (
+    // Je créée la page d'authentification avec des éléments simples : un H1, deux input décorés de petites icônes, une image pour la version mobile
+    // et une autre qui apparaît en version Desktop, et enfin un bouton pour valider la connexion.
     <div className=" flex flex-col items-center justify-center  ">
       <h1 className=" items-center content-center justify-center text-3xl mb-20 mt-12">
         CONNECTEZ-VOUS
