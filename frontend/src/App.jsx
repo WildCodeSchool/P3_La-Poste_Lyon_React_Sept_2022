@@ -1,12 +1,12 @@
-import AllRoutes from "./components/AllRoutes";
 import "./App.css";
 import "./index.css";
+import DashboardAdmin from "./components/DashboardAdmin";
 
 function App() {
   return (
-    <AllRoutes>
-      <div className="App" />
-    </AllRoutes>
+    <div>
+      <DashboardAdmin />
+    </div>
   );
 }
 
