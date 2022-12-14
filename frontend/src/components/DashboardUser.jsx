@@ -52,10 +52,12 @@ function DashboardUser() {
               <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
                 Badges obtenus
               </h2>
-              <img src={badge1} alt="badge1" />
-              <img src={badge2} alt="badge2" />
-              <img src={badge3} alt="badge3" />
-              <img src={badge4} alt="badge4" />
+              <div className="flex flex-wrap justify-around">
+                <img src={badge1} alt="badge1" />
+                <img src={badge2} alt="badge2" />
+                <img src={badge3} alt="badge3" />
+                <img src={badge4} alt="badge4" />
+              </div>
               <AccessButton />
             </li>
           </Link>

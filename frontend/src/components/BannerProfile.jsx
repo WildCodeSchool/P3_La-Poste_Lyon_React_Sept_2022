@@ -21,14 +21,14 @@ function BannerProfile() {
             alt="userImage"
           />
         </div>
-        <div>
+        <div className="my-5">
           <h2>Enfant FindBug</h2>
           <div className="flex flex-wrap">
             <img className="w-5" src={medaille} alt="userImage" />
             <h2>Débutant</h2>
           </div>
         </div>
-        <div>
+        <div className="my-5">
           <Link to="/">
             <img className="mt-5 mr-5 h-5" src={parametres} alt="parametres" />
           </Link>
