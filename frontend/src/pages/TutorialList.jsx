@@ -1,12 +1,11 @@
-/* eslint-disable */
-/* disable for nested ternary expression */
 import AccessButton from "@components/AccessButton";
 import PreviousButton from "@components/PreviousButton";
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+/* useParams is disable for the moment because we are not fetching */
+import { /* useParams */ Link } from "react-router-dom";
 import NavigationBar from "../components/NavigationBar";
 
-/* CategoryList Img */
+/* I import category list img but only to display the fake list, it will be deleted when we'll import our DB */
 import connected from "../assets/tutorial-category-img/connected.svg";
 import currentlife from "../assets/tutorial-category-img/currentlife.svg";
 import desktop from "../assets/tutorial-category-img/desktop.svg";
@@ -21,6 +20,7 @@ import security from "../assets/tutorial-category-img/security.svg";
 import usephone from "../assets/tutorial-category-img/usephone.svg";
 
 function TutorialList() {
+  /* Making a fake category list to display category "cards" */
   const categoryList = [
     {
       id: "1",
@@ -227,9 +227,10 @@ function TutorialList() {
     },
   ];
 
-  const params = useParams();
-
-  console.log(params);
+  /* Using params to recover the tutorial category ID - It will be used to fetch the associate tutorial list */
+  /* For the moment useParams isn't use,  */
+  /*   const { id } = useParams();
+   */
 
   return (
     <>
@@ -242,7 +243,7 @@ function TutorialList() {
           className="bg-white w-3/5 p-2 border rounded-2xl shadow-lg  grid overflow-hidden 
       grid-cols-1 grid-rows-2 md:grid-cols-2 md:grid-rows-3 m-auto justify-center"
         >
-          {/* category name */}
+          {/* Display the card of the category */}
           <h2 className="text-2xl text-center p-6 row-start-1 row-end-1 md:col-start-1 md:col-end-3">
             {categoryList[0].categoryName}
           </h2>
@@ -256,20 +257,32 @@ function TutorialList() {
         row-start-3 row-end-3 md:col-start-1 md:col-end-3
         box mt-6 mb-1 justify-self-center w-full md:w-2/3 h-4 bg-gray-300 rounded-full dark:bg-gray-300 shadow-inner"
           >
+            {/* We used ternary to display the good tailwind class.This define the color of the progression bar - 3 states : start, complete, unstart by default */}
             <div
-              className={`h-4 rounded-full w-1/2 ${
+              className={`h-4 rounded-full  ${
                 categoryList[0].progression === "start"
                   ? "bg-[#FFC100] w-1/2"
                   : categoryList[0].progression === "complete"
                   ? "bg-[#04DDB4] w-100"
-                  : ""
+                  : "w-100"
               }`}
             />
+
+            {/*  categoryList[0].progression === "start"
+                ? "bg-[#FFC100] w-1/2"
+                : categoryList[0].progression === "complete"
+                ? "bg-[#04DDB4] w-100"
+                : ""
+            }`} */}
           </div>
+
+          {/* The category description is only display for middle screens */}
           <p className="text-xl hidden  md:block md:box md:row-start-1 md:row-end-4 md:col-start-2 m-auto p-5">
             {categoryList[0].description}
           </p>
         </article>
+
+        {/* Here we will map the categoryList array to display every tutorials */}
         <ul className="w-3/5 grid grid-cols-1 md:grid-cols-2  m-auto ">
           {categoryList[0].tutoriels.map((tutorial) => (
             <li
@@ -283,7 +296,7 @@ function TutorialList() {
                 {tutorial.shortDescription}
               </p>{" "}
               <AccessButton />
-              {/* devra envoyer au tutoriel précis */}
+              {/* This button in the future will link to the associate tutorial */}
             </li>
           ))}
         </ul>
