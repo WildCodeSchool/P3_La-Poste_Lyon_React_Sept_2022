@@ -8,7 +8,7 @@ function BannerProfile() {
   return (
     <div className="w-full h-full">
       <div className="mt-4 flex justify-center">
-        <h1 className="text-center rounded-3xl bg-[#003DA5] px-3 text-white">
+        <h1 className="text-bold text-xl md:text-2xltext-center rounded-3xl bg-[#003DA5] px-3 text-white">
           Mon tableau de bord
         </h1>
       </div>
