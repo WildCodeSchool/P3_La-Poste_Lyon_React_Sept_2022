@@ -16,7 +16,7 @@ function DashboardUser() {
       <ul className="grid overflow-hidden grid-cols-1 grid-rows-4 gap-9 md:grid md:overflow-hidden md:grid-cols-2 md:grid-rows-2 md:gap-6">
         {/* <li> elements are contained in <Link> to redirect the user to the corresponding page */}
         <div className="">
-          <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center h-80">
+          <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center h-1/2">
             <h2 className="text-xl md:text-2xl text-white font-bold p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
               Mon historique
             </h2>
@@ -28,7 +28,7 @@ function DashboardUser() {
             </Link>
           </li>
           {/* Should send the user on the page of all the tutorials he already did */}
-          <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center h-80">
+          <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center h-1/2">
             <h2 className="text-xl md:text-2xl text-white font-bold p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
               Mes tutoriels
             </h2>
@@ -42,17 +42,20 @@ function DashboardUser() {
         </div>
         <div className="">
           {/* Should send the user on the page of HIS tutorials that he already began and not all the tutorials */}
-          <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center h-80">
+          <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center h-1/2">
             <h2 className="text-xl md:text-2xl text-white font-bold p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
               Tutoriels en cours
             </h2>
+            <p className="text-gray-700 text-base">Nom du tutoriel en cours</p>
+            <p className="text-gray-700 text-base">Nom du tutoriel en cours</p>
+            <p className="text-gray-700 text-base">Nom du tutoriel en cours</p>
             <p className="text-gray-700 text-base">Nom du tutoriel en cours</p>
             <Link to="/tutoriels">
               <AccessButton />
             </Link>
           </li>
           {/* Should send the user on the badges page */}
-          <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center h-80">
+          <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center h-1/2">
             <h2 className="text-xl md:text-2xl text-white font-bold p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
               Badges obtenus
             </h2>
@@ -62,7 +65,7 @@ function DashboardUser() {
               <img src={badge3} alt="badge3" />
               <img src={badge4} alt="badge4" />
             </div>
-            <Link to="/tutoriels">
+            <Link to="/tutoriels" className="">
               <AccessButton />
             </Link>
           </li>
