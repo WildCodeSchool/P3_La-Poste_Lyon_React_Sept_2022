@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import profil from "../assets/profil.png";
 import categories from "../assets/categories.png";
 import tutoriels from "../assets/tutoriels.png";
@@ -17,7 +17,9 @@ function NavigationBar() {
     <div>
       <nav className="flex bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded white:bg-gray-900 drop-shadow">
         <div className="container flex flex-wrap items-center justify-between mx-auto">
-          <img className="h-14" src={logo} alt="logo" />
+          <Link to="/">
+            <img className="h-14" src={logo} alt="logo" />
+          </Link>
           <div
             className={
               open === true

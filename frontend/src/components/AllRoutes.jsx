@@ -5,6 +5,7 @@ import Dashboard from "../pages/Dashboard";
 import TutorialCategory from "../pages/TutorialCategory";
 import TutorialList from "../pages/TutorialList";
 import Reward from "../pages/Reward";
+import Historic from "../pages/Historic";
 
 function AllRoutes() {
   return (
@@ -19,6 +20,7 @@ function AllRoutes() {
         {/* <Route path="/parcours" element={<Parcours />} /> */}
         <Route path="/categories" element={<TutorialCategory />} />
         <Route path="/categories/:id/tutorials" element={<TutorialList />} />
+        <Route path="/historique" element={<Historic />} />
       </Routes>
     </Router>
   );
