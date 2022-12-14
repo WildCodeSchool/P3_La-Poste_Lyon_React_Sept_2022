@@ -266,13 +266,6 @@ function TutorialList() {
               return "";
             }}`}
           />
-
-          {/*  categoryList[0].progression === "start"
-                ? "bg-[#FFC100] w-1/2"
-                : categoryList[0].progression === "complete"
-                ? "bg-[#04DDB4] w-100"
-                : ""
-            }`} */}
         </div>
 
         {/* The category description is only display for middle screens */}
