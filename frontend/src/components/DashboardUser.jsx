@@ -1,86 +1,55 @@
 import React from "react";
-import User from "../assets/User.png";
-import medaille from "../assets/medaille.png";
-import parametres from "../assets/parametres.png";
+// import { Link } from "react-router-dom";
+import Historique from "../assets/Historique.png";
+import Mestutos from "../assets/Mestutos.png";
+import badge1 from "../assets/badge1.png";
+import badge2 from "../assets/badge2.png";
+import badge3 from "../assets/badge3.png";
+import badge4 from "../assets/badge4.png";
+import AccessButton from "./AccessButton";
+import BannerProfile from "./BannerProfile";
 
 function DashboardUser() {
   return (
     <div className="">
-      <div className="mt-4 flex justify-center">
-        <h1 className="text-center rounded-3xl bg-blue-800 px-3">
-          Mon tableau de bord
-        </h1>
-      </div>
-      <div className="py-2" />
-      <div className="flex bg-yellow-500 justify-between rounded-xl">
-        <img
-          className="border-black w-400 h-400 rounded-3xl"
-          src={User}
-          alt="userImage"
-        />
-        <div>
-          <h2>Enfant FindBug</h2>
-          <div className="flex flex-wrap">
-            <img className="w-5" src={medaille} alt="userImage" />
-            <h2>Débutant</h2>
-          </div>
+      <BannerProfile />
+      <ul>
+        <div className="flex flex-wrap justify-around">
+          <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center">
+            <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
+              Mon historique
+            </h2>
+            <img src={Historique} alt="historique" />
+            <AccessButton />
+          </li>
+          <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center">
+            <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
+              Tutoriels en cours
+            </h2>
+            <p className="text-gray-700 text-base">Nom du tutoriel en cours</p>
+            <AccessButton />
+          </li>
         </div>
-        <div>
-          <button type="button">
-            <img className="mt-5 mr-5 h-5" src={parametres} alt="parametres" />
-          </button>
+        <div className="flex flex-wrap justify-around">
+          <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center">
+            <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
+              Mes tutoriels
+            </h2>
+            <img src={Mestutos} alt="mestutos" />
+            <AccessButton />
+          </li>
+          <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center">
+            <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
+              Badges obtenus
+            </h2>
+            <img src={badge1} alt="badge1" />
+            <img src={badge2} alt="badge2" />
+            <img src={badge3} alt="badge3" />
+            <img src={badge4} alt="badge4" />
+            <AccessButton />
+          </li>
         </div>
-      </div>
-      <div className="flex flex-wrap justify-around">
-        <div className="max-w-sm rounded overflow-hidden shadow-lg">
-          <div className="px-6 py-4">
-            <div className="text-center rounded bg-blue-800 px-3">
-              <h1 className="font-bold text-xl mb-2">Mon historique</h1>
-            </div>
-            <p className="text-gray-700 text-base">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Voluptatibus quia, nulla! Maiores et perferendis eaque,
-              exercitationem praesentium nihil.
-            </p>
-          </div>
-        </div>
-        <div className="max-w-sm rounded overflow-hidden shadow-lg">
-          <div className="px-6 py-4">
-            <div className="text-center rounded bg-blue-800 px-3">
-              <h1 className="font-bold text-xl mb-2">Mes tutoriels</h1>
-            </div>
-            <p className="text-gray-700 text-base">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Voluptatibus quia, nulla! Maiores et perferendis eaque,
-              exercitationem praesentium nihil.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div className="flex justify-center max-w-sm rounded overflow-hidden shadow-lg">
-        <div className="px-6 py-4">
-          <div className="text-center rounded bg-blue-800 px-3">
-            <h1 className="font-bold text-xl mb-2">Tutoriels en cours</h1>
-          </div>
-          <p className="text-gray-700 text-base">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque,
-            exercitationem praesentium nihil.
-          </p>
-        </div>
-      </div>
-      <div className="max-w-sm rounded overflow-hidden shadow-lg">
-        <div className="px-6 py-4">
-          <div className="text-center rounded bg-blue-800 px-3">
-            <h1 className="font-bold text-xl mb-2">Badges obtenus</h1>
-          </div>
-          <p className="text-gray-700 text-base">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque,
-            exercitationem praesentium nihil.
-          </p>
-        </div>
-      </div>
+      </ul>
     </div>
   );
 }
