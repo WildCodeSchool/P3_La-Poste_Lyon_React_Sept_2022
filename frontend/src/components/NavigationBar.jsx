@@ -33,13 +33,13 @@ function NavigationBar() {
               onClick={handleOpen}
               data-collapse-toggle="navbar-default"
               type="button"
-              className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400"
+              className="inline-flex w-10 h-10 md:w-16 mb:h-16 items-center p-2 ml-3 text-sm text-gray-500 rounded-lg hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400"
               aria-controls="navbar-default"
               aria-expanded="false"
+              style={{ paddingLeft: "-32px" }}
             >
-              <span className="sr-only">Open main menu</span>
               <svg
-                className="absolute md:top-14 z-30 flex items-center cursor-pointer w-6 h-6"
+                className="flex items-center cursor-pointer w-12 h-12"
                 aria-hidden="true"
                 fill="currentColor"
                 viewBox="0 0 20 20"
@@ -52,7 +52,13 @@ function NavigationBar() {
                 />
               </svg>
             </button>
-            <ul className="block border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+            <ul
+              className={
+                open === true
+                  ? "block h-96 w-96 no-underline border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+                  : "hidden w-full md:block md:w-auto"
+              }
+            >
               {/* Empty NavLink because it is necessary to have all the other well placed (otherwise the first tab is shifted) */}
               <li className="flex flex-wrap">
                 <NavLink
