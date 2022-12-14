@@ -2,20 +2,20 @@ import React from "react";
 
 function RegisterFourthStep() {
   return (
-    <div className="">
-      <div className="shadow-2xl flex justify-center items-center flex-col text-center p-0 h-screen">
-        <div className="flex justify-center font-bold">
+    <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center flex-col text-center shadow-2xl h-screen">
+        <div className="flex justify-center font-bold pb-4">
           <h1>FELICITATIONS </h1>
         </div>
-        <div className="flex justify-center font-bold">
+        <div className="flex justify-center font-bold pb-4">
           <h2>TU AS CRÉÉ TON COMPTE </h2>
         </div>
         <section className="flex justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             data-name="Layer 1"
-            width="297.12845"
-            height="482.02689"
+            width="457.12845"
+            height="352.02689"
             viewBox="0 0 297.12845 482.02689"
             xlink="http://www.w3.org/1999/xlink"
           >
@@ -147,7 +147,7 @@ function RegisterFourthStep() {
           </svg>
         </section>
         <section className="text-center">
-          <h2>TU AS OBTENU LE BADGE :</h2>
+          <h2 className="py-4">TU AS OBTENU LE BADGE :</h2>
           <h3>CREATION DE COMPTE</h3>
         </section>
       </div>
