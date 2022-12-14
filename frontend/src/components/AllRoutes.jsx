@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Settings from "@pages/Settings";
 import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
 import TutorialCategory from "../pages/TutorialCategory";
@@ -21,6 +22,7 @@ function AllRoutes() {
         <Route path="/categories" element={<TutorialCategory />} />
         <Route path="/categories/:id/tutorials" element={<TutorialList />} />
         <Route path="/historique" element={<Historic />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </Router>
   );

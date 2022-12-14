@@ -9,6 +9,7 @@ import recompenses from "../assets/recompenses.png";
 import logo from "../assets/Logo.png";
 
 function NavigationBar() {
+  // useState used to open and close the burger menu
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
@@ -134,7 +135,8 @@ function NavigationBar() {
                   Tutoriels
                 </NavLink>
               </li>
-              {/* <li className="flex flex-wrap">
+              {/* Usable but not ready for use
+              <li className="flex flex-wrap">
                 <img
                   className={open === true ? "h-12" : "hidden"}
                   src={jeux}
@@ -168,7 +170,8 @@ function NavigationBar() {
                   Récompenses
                 </NavLink>
               </li>
-              {/* <li className="flex flex-wrap">
+              {/* Usable but not ready for use
+              <li className="flex flex-wrap">
                 <img
                   className={open === true ? "h-12" : "hidden"}
                   src={parcours}

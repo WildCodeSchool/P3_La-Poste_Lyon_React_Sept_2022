@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PreviousButton from "@components/PreviousButton";
+import BannerProfile from "@components/BannerProfile";
 import NavigationBar from "../components/NavigationBar";
 
 /* I import category list img but only to display the fake list, it will be deleted when we'll import our DB */
@@ -181,6 +182,7 @@ function TutorialCategory() {
   return (
     <>
       <NavigationBar />
+      <BannerProfile />
       <section className="m-6 flex flex-col items-center">
         <Link to="/">
           {/* This button will link to the Dashboard */}

@@ -13,7 +13,7 @@ function DashboardUser() {
   return (
     <div className="">
       <BannerProfile />
-      <ul>
+      <ul className="grid overflow-hidden grid-cols-2 grid-rows-2 gap-6">
         {/* <li> elements are contained in <Link> to redirect the user to the corresponding page */}
         <div className="flex flex-wrap justify-around">
           <Link to="/historique">
@@ -25,6 +25,7 @@ function DashboardUser() {
               <AccessButton />
             </li>
           </Link>
+          {/* Should send the user on the page of HIS tutorials that he already began and not all the tutorials */}
           <Link to="/tutoriels">
             <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center">
               <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
@@ -38,6 +39,7 @@ function DashboardUser() {
           </Link>
         </div>
         <div className="flex flex-wrap justify-around">
+          {/* Should send the user on the page of all the tutorials he already did */}
           <Link to="/tutoriels">
             <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center">
               <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
@@ -47,6 +49,7 @@ function DashboardUser() {
               <AccessButton />
             </li>
           </Link>
+          {/* Should send the user on the badges page */}
           <Link to="/tutoriels">
             <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center">
               <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">

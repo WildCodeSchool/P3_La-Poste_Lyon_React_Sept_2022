@@ -8,7 +8,9 @@ function App() {
   return (
     <AllRoutes>
       <NavigationBar />
-      <Footer />
+      <div>
+        <Footer />
+      </div>
     </AllRoutes>
   );
 }

@@ -15,11 +15,13 @@ function BannerProfile() {
       <div className="py-2" />
       <div className="flex bg-[#FFC928] justify-between rounded-xl">
         <div className="rounded-full w-100 h-100 my-5">
-          <img
-            className="border-black border-2 rounded-full w-20 h-20"
-            src={User}
-            alt="userImage"
-          />
+          <Link to="/profil">
+            <img
+              className="border-black rounded-full w-20 h-20"
+              src={User}
+              alt="userImage"
+            />
+          </Link>
         </div>
         <div className="my-5">
           <h2>Enfant FindBug</h2>
@@ -28,9 +30,10 @@ function BannerProfile() {
             <h2>Débutant</h2>
           </div>
         </div>
-        <div className="my-5">
-          <Link to="/">
-            <img className="mt-5 mr-5 h-5" src={parametres} alt="parametres" />
+        <div className="my-2">
+          {/* Should send the user on the road parameters not the home page */}
+          <Link to="/settings">
+            <img className="mr-2 h-10" src={parametres} alt="parametres" />
           </Link>
         </div>
       </div>
