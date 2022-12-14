@@ -1,12 +1,12 @@
-import AuthentificationPage from "@pages/AuthentificationPage";
+import AllRoutes from "./components/AllRoutes";
 import "./App.css";
 import "./index.css";
 
 function App() {
   return (
-    <div>
-      <AuthentificationPage />
-    </div>
+    <AllRoutes>
+      <div className="App" />
+    </AllRoutes>
   );
 }
 
