@@ -16,54 +16,52 @@ function DashboardUser() {
       <ul className="grid overflow-hidden grid-cols-2 grid-rows-2 gap-6">
         {/* <li> elements are contained in <Link> to redirect the user to the corresponding page */}
         <div className="flex flex-wrap justify-around">
-          <Link to="/historique">
-            <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center">
-              <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
-                Mon historique
-              </h2>
-              <img src={Historique} alt="historique" />
+          <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center">
+            <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
+              Mon historique
+            </h2>
+            <img src={Historique} alt="historique" />
+            <Link to="/historique">
               <AccessButton />
-            </li>
-          </Link>
+            </Link>
+          </li>
           {/* Should send the user on the page of HIS tutorials that he already began and not all the tutorials */}
-          <Link to="/tutoriels">
-            <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center">
-              <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
-                Tutoriels en cours
-              </h2>
-              <p className="text-gray-700 text-base">
-                Nom du tutoriel en cours
-              </p>
+          <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center">
+            <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
+              Tutoriels en cours
+            </h2>
+            <p className="text-gray-700 text-base">Nom du tutoriel en cours</p>
+            <Link to="/tutoriels">
               <AccessButton />
-            </li>
-          </Link>
+            </Link>
+          </li>
         </div>
         <div className="flex flex-wrap justify-around">
           {/* Should send the user on the page of all the tutorials he already did */}
-          <Link to="/tutoriels">
-            <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center">
-              <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
-                Mes tutoriels
-              </h2>
-              <img src={Mestutos} alt="mestutos" />
+          <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center">
+            <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
+              Mes tutoriels
+            </h2>
+            <img src={Mestutos} alt="mestutos" />
+            <Link to="/tutoriels">
               <AccessButton />
-            </li>
-          </Link>
+            </Link>
+          </li>
           {/* Should send the user on the badges page */}
-          <Link to="/tutoriels">
-            <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center">
-              <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
-                Badges obtenus
-              </h2>
-              <div className="flex flex-wrap justify-around">
-                <img src={badge1} alt="badge1" />
-                <img src={badge2} alt="badge2" />
-                <img src={badge3} alt="badge3" />
-                <img src={badge4} alt="badge4" />
-              </div>
+          <li className=" my-3 md:m-6 border shadow-xl rounded-lg text-center">
+            <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
+              Badges obtenus
+            </h2>
+            <div className="flex flex-wrap justify-around">
+              <img src={badge1} alt="badge1" />
+              <img src={badge2} alt="badge2" />
+              <img src={badge3} alt="badge3" />
+              <img src={badge4} alt="badge4" />
+            </div>
+            <Link to="/tutoriels">
               <AccessButton />
-            </li>
-          </Link>
+            </Link>
+          </li>
         </div>
       </ul>
     </div>

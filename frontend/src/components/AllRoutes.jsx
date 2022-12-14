@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Settings from "@pages/Settings";
+import Settings from "../pages/Settings";
 import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
 import TutorialCategory from "../pages/TutorialCategory";
