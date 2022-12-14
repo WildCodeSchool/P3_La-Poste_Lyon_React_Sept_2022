@@ -1,7 +1,7 @@
 import AccessButton from "@components/AccessButton";
 import PreviousButton from "@components/PreviousButton";
 import React from "react";
-/* useParams is disable for the moment because we are not fetching our DB */
+/* useParams is disable for the moment because we are not fetching */
 import { /* useParams */ Link } from "react-router-dom";
 
 /* I import category list img but only to display the fake list, it will be deleted when we'll import our DB */
@@ -256,16 +256,21 @@ function TutorialList() {
         >
           {/* We used ternary to display the good tailwind class.This define the color of the progression bar - 3 states : start, complete, unstart by default */}
           <div
-            className={`h-4 rounded-full w-1/2 ${() => {
-              if (categoryList[0].progression === "start") {
-                return "bg-[#FFC100] w-1/2";
-              }
-              if (categoryList[0].progression === "complete") {
-                return "bg-[#04DDB4] w-100";
-              }
-              return "";
-            }}`}
+            className={`h-4 rounded-full  ${
+              categoryList[0].progression === "start"
+                ? "bg-[#FFC100] w-1/2"
+                : categoryList[0].progression === "complete"
+                ? "bg-[#04DDB4] w-100"
+                : "w-100"
+            }`}
           />
+
+          {/*  categoryList[0].progression === "start"
+                ? "bg-[#FFC100] w-1/2"
+                : categoryList[0].progression === "complete"
+                ? "bg-[#04DDB4] w-100"
+                : ""
+            }`} */}
         </div>
 
         {/* The category description is only display for middle screens */}
