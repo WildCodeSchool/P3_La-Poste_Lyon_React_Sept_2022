@@ -1,11 +1,13 @@
 import "./App.css";
 import "./index.css";
-import DashboardAdmin from "./components/DashboardAdmin";
+import AllRoutes from "./components/AllRoutes";
 
 function App() {
   return (
     <div>
-      <DashboardAdmin />
+      <AllRoutes>
+        <h1>hello</h1>
+      </AllRoutes>
     </div>
   );
 }
