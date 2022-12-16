@@ -6,7 +6,7 @@ export default function Home() {
     <div className="Home">
       <NavigationBar />
       <div className="flex min-h-screen text-xl lg:text-2xl items-center justify-center">
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center pb-60">
           <img
             className="block sm:hidden "
             src="./src/assets/media/téléphoneprojet.png"
