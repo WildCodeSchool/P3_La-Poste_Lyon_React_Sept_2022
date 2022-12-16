@@ -62,7 +62,7 @@ function NavigationBar() {
         </div>
       </div>
 
-      <div>
+      <div className="relative z-10">
         <div
           className={`flex-1 justify-self-center md:block md:pb-0 md:mt-0 ${
             open
