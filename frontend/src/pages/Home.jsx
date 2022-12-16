@@ -1,3 +1,9 @@
+import Historic from "./Historic";
+
 export default function Home() {
-  return <header className="App-header" />;
+  return (
+    <div>
+      <Historic />
+    </div>
+  );
 }

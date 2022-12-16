@@ -1,8 +1,8 @@
-import AccessButton from "@components/AccessButton";
-import PreviousButton from "@components/PreviousButton";
 import React from "react";
-/* useParams is disable for the moment because we are not fetching */
 import { /* useParams */ Link } from "react-router-dom";
+import AccessButton from "../components/AccessButton";
+import PreviousButton from "../components/PreviousButton";
+/* useParams is disable for the moment because we are not fetching */
 
 /* I import category list img but only to display the fake list, it will be deleted when we'll import our DB */
 import connected from "../assets/tutorial-category-img/connected.svg";

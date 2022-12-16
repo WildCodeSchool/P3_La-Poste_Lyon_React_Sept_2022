@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import PreviousButton from "@components/PreviousButton";
+import PreviousButton from "../components/PreviousButton";
 
 /* I import category list img but only to display the fake list, it will be deleted when we'll import our DB */
 import connected from "../assets/tutorial-category-img/connected.svg";
