@@ -2,199 +2,160 @@ import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import profil from "../assets/profil.png";
 import categories from "../assets/categories.png";
-import tutoriels from "../assets/tutoriels.png";
-// import jeux from "../assets/jeux.png";
+import jeux from "../assets/jeux.png";
 import recompenses from "../assets/recompenses.png";
-// import parcours from "../assets/parcours.png";
+import parcours from "../assets/parcours.png";
 import logo from "../assets/Logo.png";
 
 function NavigationBar() {
   // useState used to open and close the burger menu
   const [open, setOpen] = useState(false);
-  const handleOpen = () => {
-    setOpen(!open);
-  };
+
   return (
-    <nav className="flex bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded white:bg-gray-900 drop-shadow">
-      <div className="container flex flex-wrap items-center justify-between mx-auto">
-        <Link to="/">
-          <img className="h-14" src={logo} alt="logo" />
+    <nav className="navbar ">
+      <div className="justify-between mx-autol md:items-center shadow-lg flex h-20 relative z-10">
+        <Link to="/profil" className="flex items-center">
+          <img src={logo} alt="Ligne Bleue" className="h-14 w-14" />
+          <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white" />
         </Link>
-        <div
-          className={
-            open === true
-              ? "absolute top-0 right-0 fixed w-full md:block md:w-auto"
-              : "hidden w-full md:block md:w-auto"
-          }
-          id="navbar-default"
-        >
+
+        {/*  */}
+        <div className="block">
           <button
-            onClick={handleOpen}
-            data-collapse-toggle="navbar-default"
             type="button"
-            className="inline-flex w-10 h-10 md:w-16 mb:h-16 items-center p-2 ml-3 text-sm text-gray-500 rounded-lg hover:bg-gray-100 dark:text-gray-400"
-            aria-controls="navbar-default"
-            aria-expanded="false"
-            style={{ paddingLeft: "-32px" }}
+            className="p-2 text-black rounded-md outline-none"
+            onClick={() => setOpen(!open)}
           >
-            <svg
-              className="flex items-center cursor-pointer w-12 h-12"
-              aria-hidden="true"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                clipRule="evenodd"
-              />
-            </svg>
+            {open ? (
+              <svg
+                onClick={() => setOpen(!open)}
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="#333"
+                className="w-12 h-12"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="#333"
+                className="w-12 h-12"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
+              </svg>
+            )}
           </button>
+        </div>
+      </div>
+
+      <div>
+        <div
+          className={`flex-1 justify-self-center md:block md:pb-0 md:mt-0 ${
+            open
+              ? "block absolute  shadow-lg  top-20   right-0 bg-white w-screen md:w-96  h-screen z-0 "
+              : "hidden"
+          }`}
+        >
           <ul
             className={
-              open === true
-                ? "block h-96 w-96 no-underline border border-gray-100 rounded-lg bg-gray-50 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
-                : "hidden w-full md:block md:w-auto"
+              open
+                ? " flex flex-col items-end space-y-4 m-3 text-xl "
+                : "hidden"
             }
           >
-            {/* Empty NavLink because it is necessary to have all the other well placed (otherwise the first tab is shifted) */}
-            <li className="flex flex-wrap">
-              <NavLink
-                to="/"
-                className={
-                  open === true
-                    ? "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white"
-                    : "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white md:hidden"
-                }
-                aria-current="page"
-              />
-            </li>
-            <li className="flex flex-wrap">
-              <img
-                className={open === true ? "h-12" : "hidden"}
-                src={profil}
-                alt="myprofile"
-              />
-              <NavLink
-                to="/"
-                className={
-                  open === true
-                    ? "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white"
-                    : "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white md:hidden"
-                }
-                aria-current="page"
-              >
-                Maison
-              </NavLink>
-            </li>
-            <li className="flex flex-wrap">
-              <img
-                className={open === true ? "h-12" : "hidden"}
-                src={profil}
-                alt="myprofile"
-              />
+            {/* Profil  */}
+            <li className="text-[#333]  text-right pr-3 flex   w-full md:justify-start ">
               <NavLink
                 to="/profil"
-                className={
-                  open === true
-                    ? "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white"
-                    : "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white md:hidden"
-                }
-                aria-current="page"
+                className="flex    justify-end items-center"
               >
-                Mon Profil
+                <img src={profil} className="h-20 w-20 mx-6" alt="Mon profil" />
+                <h3>Mon Espace</h3>
               </NavLink>
             </li>
-            <li className="flex flex-wrap">
-              <img
-                className={open === true ? "h-12" : "hidden"}
-                src={categories}
-                alt="categories"
-              />
+
+            {/* Categories */}
+            <li className="text-[#333] text-right pr-3 flex   w-full  md:justify-start">
               <NavLink
                 to="/categories"
-                className={
-                  open === true
-                    ? "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white"
-                    : "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white md:hidden"
-                }
+                className="flex  justify-end  items-center"
               >
-                Catégories
-              </NavLink>
-            </li>
-            <li className="flex flex-wrap">
-              <img
-                className={open === true ? "h-12" : "hidden"}
-                src={tutoriels}
-                alt="tutoriels"
-              />
-              <NavLink
-                to="/tutoriels"
-                className={
-                  open === true
-                    ? "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white"
-                    : "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white md:hidden"
-                }
-              >
-                Tutoriels
-              </NavLink>
-            </li>
-            {/* Usable but not ready for use
-              <li className="flex flex-wrap">
                 <img
-                  className={open === true ? "h-12" : "hidden"}
+                  src={categories}
+                  className="h-20 w-20 mx-6"
+                  alt="Catégories de tutoriels"
+                />
+                <h3>Catégories de tutoriels</h3>
+              </NavLink>
+            </li>
+
+            {/* Games  */}
+            <li className="text-[#333] grayscale  text-right pr-3 flex  w-full  md:justify-start ">
+              <NavLink to="/jeux" className="flex  items-center">
+                <img
                   src={jeux}
-                  alt="jeux"
+                  className="h-20 w-20 mx-6"
+                  alt="Catégories de tutoriels"
                 />
-                <NavLink
-                  to="/jeux"
-                  className={
-                    open === true
-                      ? "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white"
-                      : "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white md:hidden"
-                  }
-                >
-                  Jeux
-                </NavLink>
-              </li> */}
-            <li className="flex flex-wrap">
-              <img
-                className={open === true ? "h-12" : "hidden"}
-                src={recompenses}
-                alt="recompenses"
-              />
-              <NavLink
-                to="/recompense"
-                className={
-                  open === true
-                    ? "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white"
-                    : "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white md:hidden"
-                }
-              >
-                Récompenses
+                <h3>Mes jeux</h3>
               </NavLink>
             </li>
-            {/* Usable but not ready for use
-              <li className="flex flex-wrap">
+
+            {/* Journey  */}
+            <li className="text-[#333]  text-right pr-3 flex  w-full md:justify-start">
+              <NavLink to="/parcours" className="flex  items-center">
                 <img
-                  className={open === true ? "h-12" : "hidden"}
                   src={parcours}
-                  alt="parcours"
+                  className="h-20 w-20 mx-6"
+                  alt="Catégories de tutoriels"
                 />
-                <NavLink
-                  to="/parcours"
-                  className={
-                    open === true
-                      ? "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white"
-                      : "block py-2 pl-3 pr-4 text-white rounded md:bg-transparent md:text-black-700 md:p-0 dark:text-white md:hidden"
-                  }
-                >
-                  Mon parcours
-                </NavLink>
-              </li> */}
-            <li className="text-white">
-              <button className={open === true ? "" : "hidden"} type="button">
+                <h3>Mon Parcours</h3>
+              </NavLink>
+            </li>
+
+            {/* Rewards */}
+            <li className="text-[#333]  text-right pr-3 flex   w-full  md:justify-start">
+              <NavLink to="/recompenses" className="flex    items-center">
+                <img
+                  src={recompenses}
+                  className="h-20 w-20 mx-6"
+                  alt="Catégories de tutoriels"
+                />
+                <h3>Mes récompenses</h3>
+              </NavLink>
+            </li>
+
+            {/* Historic */}
+            <li className="text-[#333] grayscale  text-right pr-3 flex  w-full  md:justify-start ">
+              <NavLink to="/historique" className="flex  items-center">
+                <img
+                  src={parcours}
+                  className="h-20 w-20 mx-6"
+                  alt="Catégories de tutoriels"
+                />
+                <h3 className="">Mon historique</h3>
+              </NavLink>
+            </li>
+
+            <li className="text-right pr-3 flex  w-full justify-center ">
+              <button
+                type="button"
+                className="text-xl underline text-[#003DA5]"
+              >
                 Me déconnecter
               </button>
             </li>
