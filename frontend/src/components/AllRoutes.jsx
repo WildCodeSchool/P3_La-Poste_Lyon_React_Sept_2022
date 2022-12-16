@@ -7,6 +7,7 @@ import TutorialCategory from "../pages/TutorialCategory";
 import TutorialList from "../pages/TutorialList";
 import Reward from "../pages/Reward";
 import Historic from "../pages/Historic";
+import UserCourse from "../pages/UserCourse";
 
 function AllRoutes() {
   return (
@@ -17,7 +18,7 @@ function AllRoutes() {
         <Route path="/categories" element={<TutorialCategory />} />
         <Route path="/recompenses" element={<Reward />} />
         {/* <Route path="/jeux" element={<Games />} /> */}
-        {/* <Route path="/parcours" element={<Parcours />} /> */}
+        <Route path="/parcours" element={<UserCourse />} />
         <Route path="/categories" element={<TutorialCategory />} />
         <Route path="/categories/:id/tutorials" element={<TutorialList />} />
         <Route path="/historique" element={<Historic />} />

@@ -12,7 +12,7 @@ function NavigationBar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="navbar ">
+    <nav className="navbar">
       <div className="justify-between mx-autol md:items-center shadow-lg flex h-20 relative z-10">
         <Link to="/profil" className="flex items-center">
           <img src={logo} alt="Ligne Bleue" className="h-14 w-14" />
@@ -62,7 +62,7 @@ function NavigationBar() {
         </div>
       </div>
 
-      <div>
+      <div className="z-10">
         <div
           className={`flex-1 justify-self-center md:block md:pb-0 md:mt-0 ${
             open
