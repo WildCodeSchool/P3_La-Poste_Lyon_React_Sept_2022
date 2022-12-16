@@ -1,14 +1,13 @@
 import React from "react";
 import NavigationBar from "../components/NavigationBar";
-import DashboardUser from "../components/DashboardUser";
 
-function Dashboard() {
+function Settings() {
   return (
     <div>
       <NavigationBar />
-      <DashboardUser />
+      Settings
     </div>
   );
 }
 
-export default Dashboard;
+export default Settings;
