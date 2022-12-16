@@ -13,7 +13,7 @@ function BannerProfile() {
         </h1>
       </div>
       <div className="py-2" />
-      <div className="flex bg-[#FFC928] justify-between rounded-xl">
+      <div className="flex bg-[#FFC928] justify-between rounded-xl w-full">
         <div className="flex flex-wrap">
           <div className="rounded-full w-100 h-100 my-5">
             <Link to="/profil">
