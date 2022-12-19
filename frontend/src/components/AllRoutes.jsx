@@ -10,6 +10,7 @@ import Historic from "../pages/Historic";
 import RegisterPage from "../pages/RegisterPage";
 import UserCourse from "../pages/UserCourse";
 import AuthentificationPage from "../pages/AuthentificationPage";
+
 function AllRoutes() {
   return (
     <Router>
