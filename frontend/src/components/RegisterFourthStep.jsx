@@ -2,13 +2,10 @@ import React from "react";
 
 function RegisterFourthStep() {
   return (
-    <div className="flex justify-center items-center">
-      <div className="flex justify-center items-center flex-col text-center shadow-2xl h-screen">
-        <div className="flex justify-center font-bold pb-4">
-          <h1>FELICITATIONS </h1>
-        </div>
-        <div className="flex justify-center font-bold pb-4">
-          <h2>TU AS CRÉÉ TON COMPTE </h2>
+    <div className="flex justify-center flex-col items-center h-screen w-screen my-22 py-22">
+      <div className="md:shadow-2xl md:border md:border-grey-50 py-4 h-fit">
+        <div className="flex justify-center font-bold pt-10">
+          <h1 id="RegisterFourthStep">FELICITATIONS, TU AS CRÉÉ TON COMPTE</h1>
         </div>
         <section className="flex justify-center">
           <svg
@@ -147,8 +144,24 @@ function RegisterFourthStep() {
           </svg>
         </section>
         <section className="text-center">
-          <h2 className="py-4">TU AS OBTENU LE BADGE :</h2>
-          <h3>CREATION DE COMPTE</h3>
+          <h2 className="py-4">TU AS OBTENU LE BADGE : CREATION DE COMPTE</h2>
+          {/* Button to go to the dashboard when account is created */}
+          <button type="button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              className="w-10 h-10"
+              strokeWidth="3"
+              stroke="#003DA5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M13.5 4.5L21 12m0 0l-7.5 7.5M 21 12H3"
+              />
+            </svg>
+          </button>
         </section>
       </div>
     </div>

@@ -1,7 +1,13 @@
 import React from "react";
+import NavigationBar from "../components/NavigationBar";
 
 function Reward() {
-  return <div>Reward</div>;
+  return (
+    <div>
+      <NavigationBar />
+      Reward
+    </div>
+  );
 }
 
 export default Reward;
