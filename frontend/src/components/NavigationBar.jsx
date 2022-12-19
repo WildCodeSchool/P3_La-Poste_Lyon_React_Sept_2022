@@ -66,7 +66,7 @@ function NavigationBar() {
         <div
           className={`flex-1 justify-self-center md:block md:pb-0 md:mt-0 ${
             open
-              ? "block absolute  shadow-lg  top-20   right-0 bg-white w-screen md:w-96  h-screen z-0 "
+              ? "block absolute shadow-lg top-20 right-0 bg-white w-screen md:w-96 h-screen z-0 "
               : "hidden"
           }`}
         >
@@ -79,10 +79,7 @@ function NavigationBar() {
           >
             {/* Profil  */}
             <li className="text-[#333]  text-right pr-3 flex   w-full md:justify-start ">
-              <NavLink
-                to="/profil"
-                className="flex    justify-end items-center"
-              >
+              <NavLink to="/profil" className="flex justify-end items-center">
                 <img src={profil} className="h-20 w-20 mx-6" alt="Mon profil" />
                 <h3>Mon Espace</h3>
               </NavLink>
