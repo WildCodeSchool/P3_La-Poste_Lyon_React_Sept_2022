@@ -24,7 +24,7 @@ export default function Home() {
           <div className="flex w-5/6 justify-center items-center">
             <button
               type="button"
-              className="border-2 bg-[#003DA5] text-white w-5/6 md:w-2/6 h-24 rounded-lg"
+              className="border-2 border-blue-500/20 bg-[#003DA5] text-white w-5/6 shadow-lg md:w-2/6 h-24 rounded-lg"
             >
               <h1>Déjà inscrit?</h1>
               <h1>Me connecter</h1>
@@ -38,9 +38,6 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <h1 className="w-full animate-[wiggle 1s ease-in-out infinite]">
-          hello
-        </h1>
       </div>
       <Footer />
     </div>
