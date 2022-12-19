@@ -196,7 +196,7 @@ function TutorialCreation() {
         {/* This button will link to the Dashboard */}
         <PreviousButton />
       </Link>
-      <h1 className="m-6 text-xl md:text-3xl">Création de tutoriels</h1>
+      <h1 className="m-6 text-xl md:text-3xl">Création de tutoriel</h1>
 
       {/* Tutorial title creation */}
       <label
