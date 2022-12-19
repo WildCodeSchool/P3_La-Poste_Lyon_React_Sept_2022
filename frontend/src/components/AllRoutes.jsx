@@ -9,7 +9,7 @@ import Reward from "../pages/Reward";
 import Historic from "../pages/Historic";
 import RegisterPage from "../pages/RegisterPage";
 import UserCourse from "../pages/UserCourse";
-
+import AuthentificationPage from "../pages/AuthentificationPage";
 function AllRoutes() {
   return (
     <Router>
@@ -25,6 +25,10 @@ function AllRoutes() {
         <Route path="/historique" element={<Historic />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/registered" element={<RegisterPage />} />
+        <Route
+          path="/authentificationpage"
+          element={<AuthentificationPage />}
+        />
       </Routes>
     </Router>
   );

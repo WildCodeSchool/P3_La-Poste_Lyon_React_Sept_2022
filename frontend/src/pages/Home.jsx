@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import NavigationBar from "../components/NavigationBar";
 
@@ -21,21 +22,28 @@ export default function Home() {
             src="./src/assets/media/ordinateurconection.png"
             alt="ordinateur"
           />
-          <div className="flex w-5/6 justify-center items-center">
-            <button
-              type="button"
-              className="border-1 border-blue/20 bg-[#003DA5] text-white w-5/6 shadow-lg md:w-2/6 h-24 rounded-lg"
+          <div className="flex w-full">
+            <Link
+              to="/authentificationpage"
+              className="w-full flex justify-end"
             >
-              <h1>Déjà inscrit?</h1>
-              <h1>Me connecter</h1>
-            </button>
-            <button
-              type="button"
-              className="border-3 text-[#003DA5] shadow-lg underline underline-offset-4 w-5/6 md:w-2/6 h-24 rounded-lg"
-            >
-              <h1>Nouvel utilsateur?</h1>
-              <h1>Créer un compte</h1>
-            </button>
+              <button
+                type="button"
+                className="border-2 border-blue-500/20 bg-[#003DA5] text-white w-5/6 shadow-lg md:w-3/6 h-24 rounded-lg"
+              >
+                <h1>Déjà inscrit?</h1>
+                <h1>Me connecter</h1>
+              </button>
+            </Link>
+            <Link to="/authentificationpage" className="w-full">
+              <button
+                type="button"
+                className="border-2 text-[#003DA5] shadow-lg underline underline-offset-4 w-5/6 md:w-3/6 h-24 rounded-lg"
+              >
+                <h1>Nouvel utilsateur?</h1>
+                <h1>Créer un compte</h1>
+              </button>
+            </Link>
           </div>
         </div>
       </div>
