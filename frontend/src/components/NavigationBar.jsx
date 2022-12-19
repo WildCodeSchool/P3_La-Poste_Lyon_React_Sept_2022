@@ -113,7 +113,7 @@ function NavigationBar() {
             </li>
 
             {/* Journey  */}
-            <li className="text-[#333]  text-right pr-3 flex  w-full md:justify-start">
+            <li className="text-[#333] grayscale text-right pr-3 flex  w-full md:justify-start">
               <NavLink to="/parcours" className="flex  items-center">
                 <img
                   src={parcours}
@@ -137,7 +137,7 @@ function NavigationBar() {
             </li>
 
             {/* Historic */}
-            <li className="text-[#333] grayscale  text-right pr-3 flex  w-full  md:justify-start ">
+            <li className="text-[#333] text-right pr-3 flex  w-full  md:justify-start ">
               <NavLink to="/historique" className="flex  items-center">
                 <img
                   src={parcours}
