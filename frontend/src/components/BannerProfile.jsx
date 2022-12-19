@@ -11,7 +11,7 @@ function BannerProfile() {
       <MyDash />
       <div className="py-2" />
       <div className="flex bg-[#FFC928] w-full justify-between drop-shadow-2xl">
-        <div className="flex justify-around flex-wrap mx-10">
+        <div className="flex justify-around flex-wrap md:mx-10">
           <div className="flex flex-wrap">
             <div className="rounded-full w-100 h-100 my-5">
               <Link to="/profil">
@@ -31,7 +31,7 @@ function BannerProfile() {
             </div>
           </div>
         </div>
-        <div className="my-2  justify-end">
+        <div className="my-2 justify-end">
           {/* Will send the user on the road parameters not the home page */}
           <Link to="/settings">
             <img className="mr-2 h-10" src={parametres} alt="parametres" />
