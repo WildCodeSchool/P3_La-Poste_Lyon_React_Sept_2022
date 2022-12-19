@@ -8,6 +8,7 @@ import TutorialList from "../pages/TutorialList";
 import Reward from "../pages/Reward";
 import Historic from "../pages/Historic";
 import UserCourse from "../pages/UserCourse";
+import AuthentificationPage from "../pages/AuthentificationPage";
 
 function AllRoutes() {
   return (
@@ -23,6 +24,7 @@ function AllRoutes() {
         <Route path="/categories/:id/tutorials" element={<TutorialList />} />
         <Route path="/historique" element={<Historic />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/authentification" element={<AuthentificationPage />} />
       </Routes>
     </Router>
   );

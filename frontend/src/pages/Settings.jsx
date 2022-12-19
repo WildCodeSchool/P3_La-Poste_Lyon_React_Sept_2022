@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import NavigationBar from "../components/NavigationBar";
-import pencil from "../assets/pencil1.png";
-import check from "../assets/check.png";
-import upload from "../assets/uploadIcon.png";
+import pencil from "../assets/pencil1.svg";
+import check from "../assets/check.svg";
+import upload from "../assets/uploadIcon.svg";
+import PreviousButton from "../components/PreviousButton";
 
 // Banner to implement to this page,with a previous icon to add on the banner.
 
@@ -19,14 +20,21 @@ function Settings() {
   return (
     <div>
       <NavigationBar />
-      <div>
+
+      <div className="mt-4 flex justify-center">
+        <h1 className="flex justify-center items-center text-bold text-xl text-white rounded-3xl shadow-lg bg-[#003DA5] w-2/3 h-10 md:text-2xl text-center md:w-1/4 md:h-14 md:text-center">
+          Modifier mes informations
+        </h1>
+        <div className="mt-12 items-center">
+          <PreviousButton />
+        </div>
         {image && (
           <div className="w-64 h-64 rounded-full overflow-hidden mx-auto mt-6">
             <img src={URL.createObjectURL(image)} alt="Uploaded" />
           </div>
         )}
       </div>
-      <ul className="flex-col">
+      <ul className="flex-col mt-12">
         <li className=" mx-10 md:mx-96 mb-16 my-3 md:m-6 border shadow-xl rounded-lg text-center">
           {" "}
           <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-10 flex justify-start items-center">
@@ -97,7 +105,11 @@ function Settings() {
                 htmlFor="image-upload"
                 className="border rounded-full ml-5 p-2 "
               >
-                <img src={upload} alt="Upload Icon" className="w-6 h-6 mr-2" />
+                <img
+                  src={upload}
+                  alt="Upload Icon"
+                  className="absolute mr-2 w-6 h-6"
+                />
               </label>
               <input
                 type="file"
