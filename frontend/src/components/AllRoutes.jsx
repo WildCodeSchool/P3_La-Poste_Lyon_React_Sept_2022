@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import TutorialCreation from "@pages/TutorialCreation";
+import TutorialCreation from "../pages/TutorialCreation";
 import Settings from "../pages/Settings";
 import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
@@ -9,12 +9,14 @@ import TutorialList from "../pages/TutorialList";
 import Reward from "../pages/Reward";
 import Historic from "../pages/Historic";
 import UserCourse from "../pages/UserCourse";
+import RegisterPage from "../pages/RegisterPage";
 
 function AllRoutes() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/registerPage" element={<RegisterPage />} />
         <Route path="/profil" element={<Dashboard />} />
         <Route path="/categories" element={<TutorialCategory />} />
         <Route path="/recompenses" element={<Reward />} />
