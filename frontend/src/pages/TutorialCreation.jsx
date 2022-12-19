@@ -281,7 +281,7 @@ function TutorialCreation() {
           {/* Show button */}
           <button
             type="button"
-            className="bg-[#003DA5] text-white m-1 py-1 px-1 rounded-lg shadow-lg md:h-10 md:w-36 md:text-lg"
+            className="bg-[#003DA5] text-white m-1 py-1 px-1 rounded-lg shadow-lg h-10 w-36 md:text-lg"
             data-modal-toggle="extralarge-modal"
             onClick={() => setShowModal(true)}
           >
@@ -289,13 +289,15 @@ function TutorialCreation() {
           </button>
 
           {/* Validate button -> This button need to send to the DB all selected values */}
-          <button
-            type="button"
-            onClick={SubmitForm}
-            className="bg-[#003DA5] text-white m-1 py-1 px-1 rounded-lg shadow-lg md:h-10 md:w-36 md:text-lg"
-          >
-            Valider
-          </button>
+          <Link to="/profil">
+            <button
+              type="button"
+              onClick={SubmitForm}
+              className="bg-[#003DA5] text-white m-1 py-1 px-1 rounded-lg shadow-lg h-10 w-36 md:text-lg"
+            >
+              Valider
+            </button>
+          </Link>
         </article>
       </form>
 
