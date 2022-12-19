@@ -6,6 +6,7 @@ import jeux from "../assets/jeux.png";
 import recompenses from "../assets/recompenses.png";
 import parcours from "../assets/parcours.png";
 import logo from "../assets/Logo.png";
+import historic from "../assets/Historique.png";
 
 function NavigationBar() {
   // useState used to open and close the burger menu
@@ -140,7 +141,7 @@ function NavigationBar() {
             <li className="text-[#333] text-right pr-3 flex  w-full  md:justify-start ">
               <NavLink to="/historique" className="flex  items-center">
                 <img
-                  src={parcours}
+                  src={historic}
                   className="h-20 w-20 mx-6"
                   alt="Catégories de tutoriels"
                 />
