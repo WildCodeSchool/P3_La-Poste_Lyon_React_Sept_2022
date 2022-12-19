@@ -162,6 +162,12 @@ function TutorialCreation() {
     },
   ];
 
+  const SubmitForm = () => {
+    /*  
+    We will display it with the DB 
+    console.log(confirmTitle, selected, value); */
+  };
+
   /* Make change about the title */
   const [title, setTitle] = useState("Titre du tutoriel");
   const [confirmTitle, setConfirmTitle] = useState("");
@@ -171,6 +177,12 @@ function TutorialCreation() {
   };
   const handleConfirmTitle = () => {
     setConfirmTitle(title);
+  };
+
+  /* Select  -- display selected with db -- category  and set it */
+  const [/* selected */ setSelected] = useState("");
+  const handleSelectChange = (event) => {
+    setSelected(event.target.value);
   };
 
   /* Rich editor text value */
@@ -199,25 +211,25 @@ function TutorialCreation() {
       <h1 className="m-6 text-xl md:text-3xl">Création de tutoriel</h1>
 
       {/* Tutorial title creation */}
-      <label
-        htmlFor="title"
-        className=" mt-6 text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-10  w-full md:w-3/5 flex justify-start items-center"
-      >
-        {confirmTitle === "" ? "Titre du tutoriel" : confirmTitle}
-      </label>
 
-      <form className=" mb-6 md:w-3/5 w-full  flex justify-end items-center relative">
+      <form className=" mb-6 md:w-3/5 w-full  flex-col justify-end items-center relative">
         {" "}
+        <label
+          htmlFor="title"
+          className=" mt-6 text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-10  w-full flex justify-start items-center"
+        >
+          {confirmTitle === "" ? "Titre du tutoriel" : confirmTitle}
+        </label>
         <input
           type="text"
           id="title"
           name="title"
           onChange={(event) => setTitle(event.target.value)}
           placeholder="Insérez un titre"
-          className=" border-gray-400  p-4 w-full h-10 bg-gray-200"
+          className=" border-gray-400  mb-5 p-4 w-full h-10 bg-gray-200"
         />
         <button
-          className="h-10  bg-gray-200 p-2"
+          className=" p-2 absolute right-5"
           type="submit"
           onClick={handleConfirmTitle}
         >
@@ -236,18 +248,17 @@ function TutorialCreation() {
             />
           </svg>
         </button>
-      </form>
-
-      {/* Tutorial category creation */}
-      <label
-        htmlFor="tutorial-category"
-        className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-10  w-full  md:w-3/5 flex justify-start items-center"
-      >
-        Catégorie du tutoriel
-      </label>
-
-      <form className=" mb-6 md:w-3/5 w-full  flex justify-end items-center relative">
-        <select id="tutorial-category" className="w-full h-10 bg-gray-200 px-3">
+        <label
+          htmlFor="tutorial-category"
+          className="text-xl mt-6 text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-10  w-full   flex justify-start items-center"
+        >
+          Catégorie du tutoriel
+        </label>
+        <select
+          id="tutorial-category"
+          className="w-full h-10 bg-gray-200 px-3 mb-6"
+          onChange={handleSelectChange}
+        >
           <option selected>Choisissez une catégorie</option>
           {/* map every category to make a list of options */}
           {categoryList?.map((category) => (
@@ -256,36 +267,37 @@ function TutorialCreation() {
             </option>
           ))}
         </select>
+        {/* Tutorial category creation */}
+        <article className=" mt-6 w-full " style={{ height: "45vh" }}>
+          <ReactQuill
+            theme="snow"
+            value={value}
+            onChange={setValue}
+            modules={modules}
+            style={{ height: "30vh" }}
+          />
+        </article>
+        <article className="flex justify-between">
+          {/* Show button */}
+          <button
+            type="button"
+            className="bg-[#003DA5] text-white m-1 py-1 px-1 rounded-lg shadow-lg md:h-10 md:w-36 md:text-lg"
+            data-modal-toggle="extralarge-modal"
+            onClick={() => setShowModal(true)}
+          >
+            Aperçu
+          </button>
+
+          {/* Validate button -> This button need to send to the DB all selected values */}
+          <button
+            type="button"
+            onClick={SubmitForm}
+            className="bg-[#003DA5] text-white m-1 py-1 px-1 rounded-lg shadow-lg md:h-10 md:w-36 md:text-lg"
+          >
+            Valider
+          </button>
+        </article>
       </form>
-
-      <article className="  w-full  md:w-3/5" style={{ height: "45vh" }}>
-        <ReactQuill
-          theme="snow"
-          value={value}
-          onChange={setValue}
-          modules={modules}
-          style={{ height: "30vh" }}
-        />
-      </article>
-      <article className="flex w-screen justify-evenly">
-        {/* Show button */}
-        <button
-          type="button"
-          className="bg-[#003DA5] text-white m-1 py-1 px-1 rounded-lg shadow-lg md:h-10 md:w-36 md:text-lg"
-          data-modal-toggle="extralarge-modal"
-          onClick={() => setShowModal(true)}
-        >
-          Aperçu
-        </button>
-
-        {/* Validate button -> This button need to send to the DB all selected values */}
-        <button
-          type="button"
-          className="bg-[#003DA5] text-white m-1 py-1 px-1 rounded-lg shadow-lg md:h-10 md:w-36 md:text-lg"
-        >
-          Valider
-        </button>
-      </article>
 
       {/* Modal for the preview button */}
 
@@ -297,7 +309,26 @@ function TutorialCreation() {
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/* header */}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                  <h3 className="text-3xl font-semibold">Aperçu</h3>
+                  <div className="flex w-full justify-between">
+                    {" "}
+                    <h3 className="text-3xl font-semibold">Aperçu</h3>
+                    <button type="button" onClick={() => setShowModal(false)}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.8}
+                        stroke="currentColor"
+                        className="w-8 h-8"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                  </div>
                   <button
                     type="button"
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
@@ -309,7 +340,7 @@ function TutorialCreation() {
                   </button>
                 </div>
                 {/* body */}
-                <div className="relative w-screen p-6 flex-auto">
+                <div className="relative  p-6 flex-auto">
                   <ReactQuill value={value} readOnly theme="bubble" />
                 </div>
                 {/* footer */}
