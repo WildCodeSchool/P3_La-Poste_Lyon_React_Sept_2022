@@ -13,26 +13,28 @@ function BannerProfile() {
         </h1>
       </div>
       <div className="py-2" />
-      <div className="flex bg-[#FFC928] justify-between w-full">
-        <div className="flex flex-wrap">
-          <div className="rounded-full w-100 h-100 my-5">
-            <Link to="/profil">
-              <img
-                className="border-black rounded-full w-20 h-20"
-                src={User}
-                alt="userImage"
-              />
-            </Link>
+      <div className="flex bg-[#FFC928] w-full justify-between">
+        <div className="flex justify-around flex-wrap mx-10">
+          <div className="flex flex-wrap">
+            <div className="rounded-full w-100 h-100 my-5">
+              <Link to="/profil">
+                <img
+                  className="border-black rounded-full w-20 h-20"
+                  src={User}
+                  alt="userImage"
+                />
+              </Link>
+            </div>
           </div>
-          <div className="my-5">
+          <div className="my-5 md:flex md:flex-wrap md:items-center">
             <h2 className="text-2xl">Enfant FindBug</h2>
             <div className="flex flex-wrap">
-              <img className="w-5" src={medaille} alt="userImage" />
+              <img className="h-5" src={medaille} alt="userImage" />
               <h2 className="text-2xl">Débutant</h2>
             </div>
           </div>
         </div>
-        <div className="my-2">
+        <div className="my-2  justify-end">
           {/* Will send the user on the road parameters not the home page */}
           <Link to="/settings">
             <img className="mr-2 h-10" src={parametres} alt="parametres" />
