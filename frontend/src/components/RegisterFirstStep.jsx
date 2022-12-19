@@ -1,8 +1,8 @@
-import React from "react";
+import React, { forwardRef } from "react";
 
 function RegisterFirstStep() {
   return (
-    <div className="flex justify-evenly flex-col items-center h-screen">
+    <div className="flex justify-center items-center flex-col h-screen">
       <div className="shadow-2xl border border-grey-50 py-10">
         <div className="flex justify-center pb-10 pt-20">
           <h1 className="font-bold text-3xl text-center bg-yellow-400 rounded-xl w-4/5">
@@ -58,4 +58,4 @@ function RegisterFirstStep() {
   );
 }
 
-export default RegisterFirstStep;
+export default forwardRef(RegisterFirstStep);

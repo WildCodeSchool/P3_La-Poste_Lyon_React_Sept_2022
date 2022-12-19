@@ -1,8 +1,9 @@
 import "./App.css";
 import "./index.css";
+import RegisterPage from "./pages/RegisterPage";
 
 function App() {
-  return <>test</>;
+  return <RegisterPage />;
 }
 
 export default App;
