@@ -1,18 +1,17 @@
+import AllRoutes from "./components/AllRoutes";
+import Footer from "./components/Footer";
 import "./App.css";
 import "./index.css";
-import RegisterFirstStep from "./components/RegisterFirstStep";
-import RegisterSecondStep from "./components/RegisterSecondStep";
-import RegisterThirdStep from "./components/RegisterThirdStep";
-import RegisterFourthStep from "./components/RegisterFourthStep";
+import NavigationBar from "./components/NavigationBar";
 
 function App() {
   return (
-    <>
-      <RegisterFirstStep />
-      <RegisterSecondStep />
-      <RegisterThirdStep />
-      <RegisterFourthStep />
-    </>
+    <AllRoutes>
+      <NavigationBar />
+      <div>
+        <Footer />
+      </div>
+    </AllRoutes>
   );
 }
 
