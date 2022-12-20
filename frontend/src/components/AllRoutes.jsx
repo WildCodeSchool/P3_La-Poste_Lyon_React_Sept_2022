@@ -16,7 +16,6 @@ function AllRoutes() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/registerPage" element={<RegisterPage />} />
         <Route path="/profil" element={<Dashboard />} />
         <Route path="/categories" element={<TutorialCategory />} />
         <Route path="/recompenses" element={<Reward />} />
@@ -27,6 +26,7 @@ function AllRoutes() {
         <Route path="/historique" element={<Historic />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/creation" element={<TutorialCreation />} />
+        <Route path="/registerPage" element={<RegisterPage />} />
       </Routes>
     </Router>
   );

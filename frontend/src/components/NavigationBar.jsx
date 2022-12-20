@@ -6,6 +6,7 @@ import jeux from "../assets/jeux.png";
 import recompenses from "../assets/recompenses.png";
 import parcours from "../assets/parcours.png";
 import logo from "../assets/Logo.png";
+import historic from "../assets/Historique.png";
 
 function NavigationBar() {
   // useState used to open and close the burger menu
@@ -62,11 +63,11 @@ function NavigationBar() {
         </div>
       </div>
 
-      <div className="z-10">
+      <div className="relative z-10">
         <div
           className={`flex-1 justify-self-center md:block md:pb-0 md:mt-0 ${
             open
-              ? "block absolute  shadow-lg  top-20   right-0 bg-white w-screen md:w-96  h-screen z-0 "
+              ? "block absolute shadow-lg top-20 right-0 bg-white w-screen md:w-96 h-screen z-0 "
               : "hidden"
           }`}
         >
@@ -79,10 +80,7 @@ function NavigationBar() {
           >
             {/* Profil  */}
             <li className="text-[#333]  text-right pr-3 flex   w-full md:justify-start ">
-              <NavLink
-                to="/profil"
-                className="flex    justify-end items-center"
-              >
+              <NavLink to="/profil" className="flex justify-end items-center">
                 <img src={profil} className="h-20 w-20 mx-6" alt="Mon profil" />
                 <h3>Mon Espace</h3>
               </NavLink>
@@ -116,7 +114,7 @@ function NavigationBar() {
             </li>
 
             {/* Journey  */}
-            <li className="text-[#333]  text-right pr-3 flex  w-full md:justify-start">
+            <li className="text-[#333] grayscale text-right pr-3 flex  w-full md:justify-start">
               <NavLink to="/parcours" className="flex  items-center">
                 <img
                   src={parcours}
@@ -140,10 +138,10 @@ function NavigationBar() {
             </li>
 
             {/* Historic */}
-            <li className="text-[#333] grayscale  text-right pr-3 flex  w-full  md:justify-start ">
+            <li className="text-[#333] text-right pr-3 flex  w-full  md:justify-start ">
               <NavLink to="/historique" className="flex  items-center">
                 <img
-                  src={parcours}
+                  src={historic}
                   className="h-20 w-20 mx-6"
                   alt="Catégories de tutoriels"
                 />
