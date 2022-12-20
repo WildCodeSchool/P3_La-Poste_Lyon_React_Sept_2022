@@ -31,76 +31,76 @@ function UserCourse() {
             <img src={step1} alt="Step1" />
           </span>
         </div>
-        <div className="flex justify-center">
+        <div className=" ml-14 grayscale">
           <span>
-            <img className="h-16" src={wellDone} alt="welldone" />
+            <img className="h-28" src={wellDone} alt="welldone" />
           </span>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center grayscale">
           <span>
             <img src={step2} alt="Step2" />
           </span>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center grayscale">
           <span>
             <img
-              className="h-16 justify-center"
+              className="h-28 justify-end"
               src={onlineWishes}
               alt="onlineWishes"
             />
           </span>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center grayscale">
           <span>
             <img src={step3} alt="Step3" />
           </span>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center grayscale">
           <span>
             <img src={step4} alt="Step4" />
           </span>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center grayscale">
           <span>
             <img className="h-16" src={blooming} alt="blooming" />
           </span>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center grayscale">
           <span>
             <img src={step5} alt="Step5" />
           </span>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center grayscale">
           <span>
             <img className="h-16" src={completed} alt="welldone" />
           </span>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center grayscale">
           <span>
             <img src={step6} alt="Step6" />
           </span>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center grayscale">
           <span>
             <img src={step7} alt="Step7" />
           </span>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center grayscale">
           <span>
             <img className="h-16" src={highFive} alt="highFive" />
           </span>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center grayscale">
           <span>
             <img src={step8} alt="Step8" />
           </span>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center grayscale">
           <span>
             <img src={step9} alt="Step9" />
           </span>
         </div>
-        <div className="flex justify-center">
+        <div className="flex justify-center grayscale">
           <span>
             <img className="h-16" src={awards} alt="awards" />
           </span>
