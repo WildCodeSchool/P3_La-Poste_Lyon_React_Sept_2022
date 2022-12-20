@@ -17,14 +17,13 @@ function AllRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/registerPage" element={<RegisterPage />} />
-        <Route path="/profil" element={<Dashboard />} />
-        <Route path="/categories" element={<TutorialCategory />} />
-        <Route path="/recompenses" element={<Reward />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/reward" element={<Reward />} />
         {/* <Route path="/jeux" element={<Games />} /> */}
-        <Route path="/parcours" element={<UserCourse />} />
+        <Route path="/journey" element={<UserCourse />} />
         <Route path="/categories" element={<TutorialCategory />} />
         <Route path="/categories/:id/tutorials" element={<TutorialList />} />
-        <Route path="/historique" element={<Historic />} />
+        <Route path="/history" element={<Historic />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/creation" element={<TutorialCreation />} />
       </Routes>

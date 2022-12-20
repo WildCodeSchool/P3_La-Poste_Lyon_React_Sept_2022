@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function RegisterFourthStep() {
   return (
@@ -146,22 +147,29 @@ function RegisterFourthStep() {
         <section className="text-center">
           <h2 className="py-4">TU AS OBTENU LE BADGE : CREATION DE COMPTE</h2>
           {/* Button to go to the dashboard when account is created */}
-          <button type="button">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              className="w-10 h-10"
-              strokeWidth="3"
-              stroke="#003DA5"
+          <Link to="/dashboard">
+            <button
+              type="button"
+              onClick={() => {
+                window.scrollTo({ top: 0, left: 0 });
+              }}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M13.5 4.5L21 12m0 0l-7.5 7.5M 21 12H3"
-              />
-            </svg>
-          </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                className="w-10 h-10"
+                strokeWidth="3"
+                stroke="#003DA5"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M13.5 4.5L21 12m0 0l-7.5 7.5M 21 12H3"
+                />
+              </svg>
+            </button>
+          </Link>
         </section>
       </div>
     </div>
