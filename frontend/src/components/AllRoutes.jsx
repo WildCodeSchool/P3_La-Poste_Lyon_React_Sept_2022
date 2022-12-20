@@ -10,12 +10,14 @@ import TutorialList from "../pages/TutorialList";
 import Reward from "../pages/Reward";
 import Historic from "../pages/Historic";
 import UserCourse from "../pages/UserCourse";
+import RegisterPage from "../pages/RegisterPage";
 
 function AllRoutes() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/registerPage" element={<RegisterPage />} />
         <Route path="/profil" element={<Dashboard />} />
         <Route path="/categories" element={<TutorialCategory />} />
         <Route path="/recompenses" element={<Reward />} />

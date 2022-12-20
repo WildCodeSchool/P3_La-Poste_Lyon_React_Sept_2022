@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import PreviousButton from "../components/PreviousButton";
-import "react-quill/dist/quill.snow.css";
 
 function TutorialCreation() {
   /* Using array before include DB */
