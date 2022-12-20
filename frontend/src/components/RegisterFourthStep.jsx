@@ -6,9 +6,9 @@ function RegisterFourthStep() {
     <div className="flex justify-center flex-col items-center h-screen w-screen my-22 py-22">
       <div className="md:shadow-2xl md:border md:border-grey-50 py-4 h-fit">
         <div className="flex justify-center font-bold pt-10">
-          <h1>FELICITATIONS, TU AS CRÉÉ TON COMPTE</h1>
+          <h1 id="RegisterFourthStep">FELICITATIONS, TU AS CRÉÉ TON COMPTE</h1>
         </div>
-        <section className="flex justify-center mt-4" id="RegisterFourthStep">
+        <section className="flex justify-center mt-4">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             data-name="Layer 1"

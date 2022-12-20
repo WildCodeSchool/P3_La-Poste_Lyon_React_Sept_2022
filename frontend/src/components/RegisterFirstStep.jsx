@@ -49,7 +49,7 @@ function RegisterFirstStep() {
           </div>
           <div className="flex justify-center items-center pt-10">
             <div className="w-screen max-w-md h-content max-h-xl">
-              <form className="rounded px-8 pt-6 pb-8 mb-4">
+              <form className="rounded px-8 pt-6 pb-8">
                 <div className="mb-4">
                   <label
                     className="block text-gray-700 text-sm font-bold mb-2 pb-3"
