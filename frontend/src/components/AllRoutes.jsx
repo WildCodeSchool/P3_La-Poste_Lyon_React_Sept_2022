@@ -26,7 +26,7 @@ function AllRoutes() {
         <Route path="/historique" element={<Historic />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/creation" element={<TutorialCreation />} />
-        <Route path="/registered" element={<RegisterPage />} />
+        <Route path="/registerPage" element={<RegisterPage />} />
       </Routes>
     </Router>
   );
