@@ -1,8 +1,13 @@
+// import React, { useRef } from "react";
 import React from "react";
-import DashboardAdmin from "../components/DashboardAdmin";
+import RegisterFirstStep from "../components/RegisterFirstStep";
 
 function RegisterPage() {
-  return <DashboardAdmin />;
+  return (
+    <div className="h-screen mt-0">
+      <RegisterFirstStep />
+    </div>
+  );
 }
 
 export default RegisterPage;

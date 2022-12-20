@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import TutorialCreation from "../pages/TutorialCreation";
 import Settings from "../pages/Settings";
 import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
@@ -7,8 +8,8 @@ import TutorialCategory from "../pages/TutorialCategory";
 import TutorialList from "../pages/TutorialList";
 import Reward from "../pages/Reward";
 import Historic from "../pages/Historic";
-import RegisterPage from "../pages/RegisterPage";
 import UserCourse from "../pages/UserCourse";
+import RegisterPage from "../pages/RegisterPage";
 
 function AllRoutes() {
   return (
@@ -24,6 +25,7 @@ function AllRoutes() {
         <Route path="/categories/:id/tutorials" element={<TutorialList />} />
         <Route path="/historique" element={<Historic />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/creation" element={<TutorialCreation />} />
         <Route path="/registered" element={<RegisterPage />} />
       </Routes>
     </Router>
