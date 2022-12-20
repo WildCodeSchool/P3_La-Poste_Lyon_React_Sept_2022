@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import TutorialCreation from "@pages/TutorialCreation";
+import SearchUsers from "@pages/SearchUsers";
 import Settings from "../pages/Settings";
 import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
@@ -25,6 +26,7 @@ function AllRoutes() {
         <Route path="/historique" element={<Historic />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/creation" element={<TutorialCreation />} />
+        <Route path="/gestion" element={<SearchUsers />} />
       </Routes>
     </Router>
   );
