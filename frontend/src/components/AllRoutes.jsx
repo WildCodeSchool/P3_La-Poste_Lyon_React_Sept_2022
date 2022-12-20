@@ -10,22 +10,25 @@ import Reward from "../pages/Reward";
 import Historic from "../pages/Historic";
 import UserCourse from "../pages/UserCourse";
 import RegisterPage from "../pages/RegisterPage";
+import AuthentificationPage from "../pages/AuthentificationPage";
 
 function AllRoutes() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/registerPage" element={<RegisterPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/categories" element={<TutorialCategory />} />
         <Route path="/reward" element={<Reward />} />
-        {/* <Route path="/jeux" element={<Games />} /> */}
-        <Route path="/journey" element={<UserCourse />} />
+        <Route path="/authentification" element={<AuthentificationPage />} />
+        {/* // <Route path="/games" element={<Games />} /> */}
+        <Route path="/course" element={<UserCourse />} />
         <Route path="/categories" element={<TutorialCategory />} />
         <Route path="/categories/:id/tutorials" element={<TutorialList />} />
         <Route path="/history" element={<Historic />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/creation" element={<TutorialCreation />} />
+        <Route path="/registerPage" element={<RegisterPage />} />
       </Routes>
     </Router>
   );

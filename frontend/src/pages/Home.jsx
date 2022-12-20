@@ -1,11 +1,16 @@
+import { Link } from "react-router-dom";
+import Footer from "../components/Footer";
 import NavigationBar from "../components/NavigationBar";
 
 export default function Home() {
   return (
     <div className="Home">
       <NavigationBar />
-      <div className="flex min-h-screen text-xl lg:text-2xl items-center justify-center">
-        <div className="flex flex-col items-center justify-center">
+
+      <div className="flex min-h-screen text-xl md:text-2xl items-center justify-center">
+        {/* man div opening */}
+        <div className="flex flex-col items-center justify-center pb-60">
+          {/* switching image by hidden property */}
           <img
             className="block sm:hidden "
             src="./src/assets/media/téléphoneprojet.png"
@@ -20,21 +25,26 @@ export default function Home() {
           <div className="flex w-5/6 justify-center items-center">
             <button
               type="button"
-              className="border-2 bg-blue-800 text-white w-5/6 lg:w-2/6 h-24 rounded-lg"
+              className="border-2 border-blue-500/20 bg-[#003DA5] text-white w-5/6 shadow-lg underline underline-offset-4 md:w-2/6 h-24 rounded-lg"
             >
-              <h1>Déjà inscrit?</h1>
-              <h1>Me connecter</h1>
+              <Link to="/authentification">
+                <h1>Déjà inscrit?</h1>
+                <h1>Me connecter</h1>
+              </Link>
             </button>
             <button
               type="button"
               className="border-2 text-blue-800 bg-slate-200 drop-shadow shadow-lg underline underline-offset-4 w-5/6 lg:w-2/6 h-24 rounded-lg z-0"
             >
-              <h1>Nouvel utilsateur?</h1>
-              <h1>Créer un compte</h1>
+              <Link to="/registerPage">
+                <h1>Nouvel utilsateur?</h1>
+                <h1>Créer un compte</h1>
+              </Link>
             </button>
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
