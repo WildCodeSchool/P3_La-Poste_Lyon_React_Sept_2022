@@ -14,7 +14,7 @@ function BannerProfile() {
         <div className="flex justify-around flex-wrap md:mx-10">
           <div className="flex flex-wrap">
             <div className="rounded-full w-100 h-100 my-5">
-              <Link to="/profil">
+              <Link to="/dashboard">
                 <img
                   className="border-black rounded-full w-20 h-20 mr-8"
                   src={User}
