@@ -19,7 +19,7 @@ function DashboardUser() {
           <div className="flex justify-center my-5">
             <img className="h-14" src={Historique} alt="historique" />
           </div>
-          <Link to="/historique" className="">
+          <Link to="/history" className="">
             <AccessButton />
           </Link>
         </li>
@@ -62,7 +62,7 @@ function DashboardUser() {
             <img className="h-16" src={badge1} alt="badge3" />
             <img className="h-16" src={badge1} alt="badge4" />
           </div>
-          <Link to="/tutoriels" className="">
+          <Link to="/reward" className="">
             <AccessButton />
           </Link>
         </li>
