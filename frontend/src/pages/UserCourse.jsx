@@ -30,15 +30,17 @@ function UserCourse() {
             <img src={step1} alt="Step1" />
           </span>
         </div>
-        <div className="ml-14 md:ml-48 grayscale">
-          <span>
-            <img className="h-28 md:h-64" src={wellDone} alt="welldone" />
-          </span>
-        </div>
-        <div className="flex justify-center grayscale">
-          <span>
-            <img src={step2} alt="Step2" />
-          </span>
+        <div className="flex justify-center md:block">
+          <div className="ml-14 md:ml-48 grayscale">
+            <span>
+              <img className="h-28 md:h-64" src={wellDone} alt="welldone" />
+            </span>
+          </div>
+          <div className="flex justify-center grayscale">
+            <span>
+              <img src={step2} alt="Step2" />
+            </span>
+          </div>
         </div>
         <div className="flex justify-end mr-10 md:mr-36 grayscale">
           <span>
