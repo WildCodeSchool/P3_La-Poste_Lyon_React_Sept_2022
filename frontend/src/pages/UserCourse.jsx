@@ -30,7 +30,7 @@ function UserCourse() {
           </span>
         </div>
         <div>
-          <div className="ml-14 md:ml-48 grayscale flex justify-center mb-8">
+          <div className="ml-14 md:ml-48 grayscale flex justify-center mb-8 mt-5">
             <img className="h-28 md:h-64" src={wellDone} alt="welldone" />
           </div>
           <div className="flex justify-center grayscale">
