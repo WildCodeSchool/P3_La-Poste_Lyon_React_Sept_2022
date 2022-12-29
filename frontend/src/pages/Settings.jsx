@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import NavigationBar from "../components/NavigationBar";
 import pencil from "../assets/pencil1.svg";
 import check from "../assets/check.svg";
@@ -56,7 +57,9 @@ function Settings() {
   return (
     <div>
       <NavigationBar />
-      <PreviousButton />
+      <Link to="/dashboard">
+        <PreviousButton />
+      </Link>
       <div className="mt-4 flex justify-center flex-col">
         <h1 className="flex w-full justify-center items-center text-bold text-xl text-black mt-8 h-10 md:text-2xl text-center md:h-14 md:text-center ">
           Modifier mes informations
@@ -78,7 +81,7 @@ function Settings() {
       </div>
       <form>
         <ul className="flex-col mt-12">
-          <li className=" mx-10 md:mx-96 mb-16 my-3 md:m-6 border shadow-xl rounded-lg text-center">
+          <li className=" mx-10 md:mx-48 mb-16 my-3 md:m-6 border shadow-xl rounded-lg text-center">
             {" "}
             <label className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-10 flex justify-start items-center">
               {" "}
@@ -113,7 +116,7 @@ function Settings() {
               </div>
             </div>
           </li>
-          <li className=" mx-10 md:mx-96 mb-16 my-3 md:m-6 border shadow-xl rounded-lg text-center">
+          <li className=" mx-10 md:mx-48 mb-16 my-3 md:m-6 border shadow-xl rounded-lg text-center">
             {" "}
             <label className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-10 flex justify-start items-center">
               {inputcontent === 0 ? "Enfant" : input1}
@@ -132,7 +135,7 @@ function Settings() {
               />{" "}
             </div>
           </li>
-          <li className=" mx-10 md:mx-96 mb-16 my-3 md:m-6 border shadow-xl rounded-lg text-center">
+          <li className=" mx-10 md:mx-48 mb-16 my-3 md:m-6 border shadow-xl rounded-lg text-center">
             {" "}
             <label className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-10 flex justify-start items-center">
               {inputcontent === 0 ? "FindBug" : input2}
@@ -152,7 +155,7 @@ function Settings() {
             </div>
           </li>
 
-          <li className=" mx-10 md:mx-96 mb-16 my-3 md:m-6 border shadow-xl rounded-lg text-center">
+          <li className=" mx-10 md:mx-48 mb-16 my-3 md:m-6 border shadow-xl rounded-lg text-center">
             {" "}
             <label className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-10 flex justify-start items-center">
               {inputcontent === 0 ? "Téléphone" : input3}

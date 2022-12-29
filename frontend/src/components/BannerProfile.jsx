@@ -3,18 +3,20 @@ import { Link } from "react-router-dom";
 import User from "../assets/User.png";
 import medaille from "../assets/medaille.png";
 import parametres from "../assets/parametres.png";
+import MyDash from "./MyDash";
 
 function BannerProfile() {
   return (
     <div className="w-full h-full">
+      <MyDash />
       <div className="py-2" />
-      <div className="flex bg-[#FFC928] w-full justify-between">
-        <div className="flex justify-around flex-wrap mx-10">
+      <div className="flex bg-[#FFC928] w-full justify-between drop-shadow-2xl">
+        <div className="flex justify-around flex-wrap md:mx-10">
           <div className="flex flex-wrap">
             <div className="rounded-full w-100 h-100 my-5">
-              <Link to="/profil">
+              <Link to="/dashboard">
                 <img
-                  className="border-black rounded-full w-20 h-20"
+                  className="border-black rounded-full w-20 h-20 mr-8"
                   src={User}
                   alt="userImage"
                 />
