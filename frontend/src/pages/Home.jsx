@@ -37,7 +37,7 @@ export default function Home() {
               className="border-2 text-blue-800 bg-slate-200 drop-shadow shadow-lg underline underline-offset-4 w-5/6 lg:w-2/6 h-24 rounded-lg z-0"
             >
               <Link to="/registerPage">
-                <h1>Nouvel utilsateur?</h1>
+                <h1>Nouvel utilisateur?</h1>
                 <h1>Créer un compte</h1>
               </Link>
             </button>
