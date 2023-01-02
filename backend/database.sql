@@ -110,7 +110,7 @@ CREATE TABLE `user` (
   `email` varchar(255) NOT NULL,
   `city` varchar(255) DEFAULT NULL,
   `language` varchar(255) DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
+  `hashedPassword` varchar(255) NOT NULL,
   `phone` varchar(16) DEFAULT NULL,
   `profilePicture` varchar(150) DEFAULT NULL,
   `level` int DEFAULT '1',
