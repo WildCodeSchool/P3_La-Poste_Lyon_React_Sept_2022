@@ -34,7 +34,7 @@ function DashboardUser() {
           <div className="flex justify-center my-5">
             <img className="h-20" src={Mestutos} alt="mestutos" />
           </div>
-          <Link to="/tutoriels">
+          <Link to="/categories">
             <AccessButton />
           </Link>
         </li>
