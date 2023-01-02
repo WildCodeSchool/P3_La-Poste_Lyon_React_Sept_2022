@@ -189,14 +189,14 @@ function TutorialCategory() {
           <PreviousButton />
         </Link>
 
-        <h1 className="m-6 text-xl md:text-3xl">Catégories de tutoriels</h1>
+        <h1 className="m-6 text-3xl">Catégories de tutoriels</h1>
 
         {/* I map the categoryList array to display every category */}
         <ul className="vw-3/5 grid grid-cols-1 md:grid-cols-4 place-content-center	">
           {categoryList?.map((category) => (
             /* We make a Link using the category.id to transmit it to the params. It will be recover on the TutorialList page to fetch the good category tutorial list. */
             <Link key={category.id} to={`/categories/${category.id}/tutorials`}>
-              <li className="bg-white flex justify-center border rounded-2xl shadow-lg m-3 p-3 flex-col">
+              <li className="bg-white flex justify-center border rounded-2xl shadow-lg m-3 p-3 flex-col hover:scale-110 hover:duration-100 hover:bg-[#003da5] hover:text-white">
                 <h2 className="text-lg text-center m-1">
                   {category.categoryName}
                 </h2>

@@ -7,9 +7,9 @@ export default function Home() {
     <div className="Home">
       <NavigationBar />
 
-      <div className="flex min-h-screen text-xl md:text-2xl items-center justify-center">
+      <div className="flex h-100 text-xl md:text-2xl justify-center">
         {/* man div opening */}
-        <div className="flex flex-col items-center justify-center pb-60">
+        <div className="flex flex-col mt-[15vh] items-center justify-center">
           {/* switching image by hidden property */}
           <img
             className="block sm:hidden "
@@ -37,7 +37,7 @@ export default function Home() {
               className="border-2 text-blue-800 bg-slate-200 drop-shadow shadow-lg underline underline-offset-4 w-5/6 lg:w-2/6 h-24 rounded-lg z-0"
             >
               <Link to="/registerPage">
-                <h1>Nouvel utilsateur?</h1>
+                <h1>Nouvel utilisateur?</h1>
                 <h1>Créer un compte</h1>
               </Link>
             </button>
