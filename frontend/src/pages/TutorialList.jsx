@@ -289,7 +289,7 @@ function TutorialList() {
               className=" my-3 md:m-6 border shadow-xl rounded-lg text-center"
               key={tutorial.id}
             >
-              <h2 className="text-xl text-white p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
+              <h2 className="text-xl p-2 text-[#003DA5] font-bold  bg-white shadow-md  rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
                 {tutorial.title}
               </h2>
               <p className="p-3 flex justify-center items-center h-24">
