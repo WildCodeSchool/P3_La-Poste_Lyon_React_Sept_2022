@@ -196,7 +196,7 @@ function TutorialCategory() {
           {categoryList?.map((category) => (
             /* We make a Link using the category.id to transmit it to the params. It will be recover on the TutorialList page to fetch the good category tutorial list. */
             <Link key={category.id} to={`/categories/${category.id}/tutorials`}>
-              <li className="bg-white flex justify-center border rounded-2xl shadow-lg m-3 p-3 flex-col hover:scale-110 hover:duration-100 hover:bg-gray-100">
+              <li className="bg-white flex justify-center border rounded-2xl shadow-lg m-3 p-3 flex-col hover:scale-110 hover:duration-100 hover:bg-[#003da5] hover:text-white">
                 <h2 className="text-lg text-center m-1">
                   {category.categoryName}
                 </h2>
