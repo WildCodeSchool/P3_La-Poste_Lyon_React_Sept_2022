@@ -17,7 +17,7 @@ function DashboardUser() {
             Mon historique
           </h2>
           <div className="flex justify-center my-5">
-            <img className="h-14" src={Historique} alt="historique" />
+            <img className="h-20" src={Historique} alt="historique" />
           </div>
           <Link to="/historique" className="">
             <AccessButton />
@@ -29,7 +29,7 @@ function DashboardUser() {
             Mes tutoriels
           </h2>
           <div className="flex justify-center my-5">
-            <img className="h-14" src={Mestutos} alt="mestutos" />
+            <img className="h-20" src={Mestutos} alt="mestutos" />
           </div>
           <Link to="/tutoriels">
             <AccessButton />
@@ -38,15 +38,15 @@ function DashboardUser() {
         {/* Should send the user on the page of HIS tutorials that he already began and not all the tutorials */}
         <li className="box row-start-2 row-span-1 col-start-1 col-span-2 my-3 md:m-6 border shadow-xl rounded-lg text-center h-70 md:box md:row-start-1 md:row-span-1 md:col-start-2 md:col-span-2">
           <h2 className="text-xl md:text-2xl text-white font-bold p-2 bg-[#003DA5] rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
-            Tutoriels en cours
+            Mon parcours utilisateur
           </h2>
           <div className="flex flex-col justify-center h-max">
             <div className="mt-8 mb-8">
               <p className="text-gray-700 text-base">
-                Nom du tutoriel en cours (qui sera un lien)
+                Accéder à mon parcours utilisateur
               </p>
             </div>
-            <Link to="/tutoriels" className="">
+            <Link to="/course" className="">
               <AccessButton />
             </Link>
           </div>
@@ -57,10 +57,10 @@ function DashboardUser() {
             Badges obtenus
           </h2>
           <div className="flex flex-wrap justify-around my-5">
-            <img className="h-16" src={badge1} alt="badge1" />
-            <img className="h-16" src={badge1} alt="badge2" />
-            <img className="h-16" src={badge1} alt="badge3" />
-            <img className="h-16" src={badge1} alt="badge4" />
+            <img className="h-20" src={badge1} alt="badge1" />
+            <img className="h-20" src={badge1} alt="badge2" />
+            <img className="h-20" src={badge1} alt="badge3" />
+            <img className="h-20" src={badge1} alt="badge4" />
           </div>
           <Link to="/tutoriels" className="">
             <AccessButton />
