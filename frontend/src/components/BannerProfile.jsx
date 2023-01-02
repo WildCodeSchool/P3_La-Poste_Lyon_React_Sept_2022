@@ -3,12 +3,10 @@ import { Link } from "react-router-dom";
 import User from "../assets/User.png";
 import medaille from "../assets/medaille.png";
 import parametres from "../assets/parametres.png";
-import MyDash from "./MyDash";
 
 function BannerProfile() {
   return (
     <div className="w-full h-full">
-      <MyDash />
       <div className="py-2" />
       <div className="flex bg-[#FFC928] w-full justify-between drop-shadow-2xl">
         <div className="flex justify-around flex-wrap md:mx-10">
