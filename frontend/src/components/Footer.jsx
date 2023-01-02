@@ -2,8 +2,8 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="flex shadow justify-around fixed bottom-0 w-full h-20 md:h-28 mt-5">
-      <div>
+    <footer className="flex justify-around fixed bottom-0 w-full h-20 md:h-28 mt-5 shadow">
+      <article>
         <a
           href="https://www.service-public.fr/"
           target="_blank"
@@ -15,8 +15,8 @@ function Footer() {
             alt="république française service publique"
           />
         </a>
-      </div>
-      <div>
+      </article>
+      <article>
         <a
           href="https://www.gouvernement.fr/le-secretariat-d-etat-charge-du-numerique"
           target="_blank"
@@ -28,8 +28,8 @@ function Footer() {
             alt="ministère chargé de la transition numérique et des télécomunication"
           />
         </a>
-      </div>
-    </div>
+      </article>
+    </footer>
   );
 }
 
