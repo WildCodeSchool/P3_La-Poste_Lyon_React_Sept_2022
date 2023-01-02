@@ -7,9 +7,9 @@ export default function Home() {
     <div className="Home">
       <NavigationBar />
 
-      <div className="flex min-h-screen text-xl md:text-2xl items-center justify-center">
+      <div className="flex h-100 text-xl md:text-2xl justify-center">
         {/* man div opening */}
-        <div className="flex flex-col items-center justify-center pb-60">
+        <div className="flex flex-col mt-[15vh] items-center justify-center">
           {/* switching image by hidden property */}
           <img
             className="block sm:hidden "
