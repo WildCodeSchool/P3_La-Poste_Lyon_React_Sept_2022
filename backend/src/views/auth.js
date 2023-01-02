@@ -13,7 +13,7 @@ const hashingOptions = {
 const hashPassword = (req, res, next) => {
   argon2
 
-    .hash(req.body.password, hashingOptions)
+    .hash(req.body.hashedPassword, hashingOptions)
 
     .then((hashedPassword) => {
       req.body.hashedPassword = hashedPassword;

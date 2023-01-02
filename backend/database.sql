@@ -80,10 +80,13 @@ CREATE TABLE `tuto` (
   `short_description` varchar(255) NOT NULL,
   `content` varchar(800) NOT NULL,
   `category_id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `creationDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `position` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
-  CONSTRAINT `tuto_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
+  CONSTRAINT `tuto_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
+  CONSTRAINT `tuto_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -115,6 +118,8 @@ CREATE TABLE `user` (
   `profilePicture` varchar(150) DEFAULT NULL,
   `level` int DEFAULT '1',
   `admin` tinyint(1) NOT NULL DEFAULT '0',
+  `creationDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
