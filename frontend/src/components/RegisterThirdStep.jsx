@@ -11,9 +11,12 @@ function RegisterThirdStep() {
       >
         <div className="md:shadow-2xl md:border md:border-grey-50 h-fit">
           <div className="flex flex-col items-center justify-center pb-10 pt-10">
-            <h1 className="flex items-center justify-start flex-col font-bold text-3xl text-center bg-yellow-400 rounded-xl w-4/5 h-4/5 py-14">
+            <div className="relative flex items-center justify-start flex-col font-bold text-3xl text-center bg-yellow-400 rounded-xl w-4/5 h-4/5 py-14">
+              <div className="absolute top-1 left-3 text-white rounded-full h-10 w-10 bg-[#003DA5] flex justify-center">
+                <h3>3</h3>
+              </div>
               Renseigner son profil utilisateur
-            </h1>
+            </div>
             <svg
               width="200"
               height="100"
@@ -67,6 +70,9 @@ function RegisterThirdStep() {
           <div className="flex justify-center items-center">
             <div className="w-screen max-w-md">
               <form className="bg-white rounded px-8 pb-8 mb-4">
+                <p className="text-gray-300 font-light italic">
+                  Tous les champs sont obligatoires
+                </p>
                 <div className="mb-4">
                   <label
                     className="block text-gray-700 text-sm font-bold mb-2"
