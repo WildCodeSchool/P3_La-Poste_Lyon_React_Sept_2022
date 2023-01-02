@@ -6,7 +6,6 @@ import step4 from "../assets/userCourse/Etape4.svg";
 import step5 from "../assets/userCourse/Etape5.svg";
 import step6 from "../assets/userCourse/Etape6.svg";
 import step7 from "../assets/userCourse/Etape7.svg";
-import step8 from "../assets/userCourse/Etape8.svg";
 import step9 from "../assets/userCourse/Etape9.svg";
 import wellDone from "../assets/userCourse/WellDone.svg";
 import onlineWishes from "../assets/userCourse/OnlineWishes.svg";
@@ -30,24 +29,18 @@ function UserCourse() {
             <img src={step1} alt="Step1" />
           </span>
         </div>
-        <div className="ml-14 md:ml-48 grayscale">
-          <span>
+        <div>
+          <div className="ml-14 md:ml-48 grayscale flex justify-center mb-8 mt-5">
             <img className="h-28 md:h-64" src={wellDone} alt="welldone" />
-          </span>
+          </div>
+          <div className="flex justify-center grayscale">
+            <span>
+              <img src={step2} alt="Step2" />
+            </span>
+          </div>
         </div>
-        <div className="flex justify-center grayscale">
-          <span>
-            <img src={step2} alt="Step2" />
-          </span>
-        </div>
-        <div className="flex justify-end mr-10 md:mr-36 grayscale">
-          <span>
-            <img
-              className="h-28 md:h-64 justify-end"
-              src={onlineWishes}
-              alt="onlineWishes"
-            />
-          </span>
+        <div className="flex justify-center mr-10 mb-5 md:mr-36 grayscale">
+          <img className="h-28 md:h-64" src={onlineWishes} alt="onlineWishes" />
         </div>
         <div className="flex justify-center grayscale">
           <span>
@@ -56,23 +49,23 @@ function UserCourse() {
         </div>
         <div className="flex justify-center grayscale">
           <span>
-            <img src={step4} alt="Step4" />
+            <img src={step4} alt="Step4" className="rotate-45" />
           </span>
         </div>
-        <div className="ml-14 md:ml-48 grayscale">
+        <div className="ml-16 md:ml-96 grayscale">
           <span>
             <img className="h-28 md:h-64" src={blooming} alt="blooming" />
           </span>
         </div>
         <div className="flex justify-center grayscale">
           <span>
-            <img src={step5} alt="Step5" />
+            <img src={step4} alt="Step5" className="mt-5" />
           </span>
         </div>
-        <div className="flex justify-end mr-10 md:mr-36 grayscale">
+        <div className="flex justify-end mr-10 md:mr-60 grayscale">
           <span>
             <img
-              className="h-28 md:h-64 justify-end"
+              className="h-28 md:h-64 justify-end my-5"
               src={completed}
               alt="welldone"
             />
@@ -80,18 +73,18 @@ function UserCourse() {
         </div>
         <div className="flex justify-center grayscale">
           <span>
-            <img src={step6} alt="Step6" />
+            <img src={step5} alt="Step6" />
           </span>
         </div>
         <div className="flex justify-center grayscale">
           <span>
-            <img src={step7} alt="Step7" />
+            <img src={step6} alt="Step7" />
           </span>
         </div>
         <div className="flex justify-end mr-10 md:mr-36 grayscale">
           <span>
             <img
-              className="h-28 md:h-64 justify-end"
+              className="h-28 md:h-64 justify-end mb-8"
               src={highFive}
               alt="highFive"
             />
@@ -99,12 +92,12 @@ function UserCourse() {
         </div>
         <div className="flex justify-center grayscale">
           <span>
-            <img src={step8} alt="Step8" />
+            <img src={step7} alt="Step8" />
           </span>
         </div>
         <div className="flex justify-center grayscale">
           <span>
-            <img src={step9} alt="Step9" />
+            <img className="mr-32" src={step9} alt="Step9" />
           </span>
         </div>
         <div className="ml-4 md:ml-28 mb-6 grayscale">

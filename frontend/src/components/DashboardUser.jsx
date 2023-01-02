@@ -22,7 +22,7 @@ function DashboardUser() {
           <div className="flex justify-center my-5">
             <img className="h-20" src={Historique} alt="historique" />
           </div>
-          <Link to="/historique" className="">
+          <Link to="/history" className="">
             <AccessButton />
           </Link>
         </li>
@@ -60,7 +60,7 @@ function DashboardUser() {
           <div className="flex flex-wrap justify-around my-5">
             <img className="h-20" src={badge1} alt="badge1" />
           </div>
-          <Link to="/tutoriels" className="">
+          <Link to="/reward" className="">
             <AccessButton />
           </Link>
         </li>

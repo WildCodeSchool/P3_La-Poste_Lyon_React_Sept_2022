@@ -106,7 +106,7 @@ function NavigationBar() {
 
             {/* Games  */}
             <li className="text-[#333] grayscale  text-right pr-3 flex  w-full  md:justify-start ">
-              <NavLink to="/jeux" className="flex  items-center">
+              <NavLink to="/games" className="flex  items-center">
                 <img
                   src={jeux}
                   className="h-20 w-20 mx-6"
@@ -117,7 +117,7 @@ function NavigationBar() {
             </li>
 
             {/* Journey  */}
-            <li className="text-[#333] grayscale text-right pr-3 flex  w-full md:justify-start">
+            <li className="text-[#333] text-right pr-3 flex  w-full md:justify-start">
               <NavLink to="/course" className="flex  items-center">
                 <img
                   src={parcours}
@@ -142,7 +142,7 @@ function NavigationBar() {
 
             {/* Historic */}
             <li className="text-[#333] text-right pr-3 flex  w-full  md:justify-start ">
-              <NavLink to="/historique" className="flex  items-center">
+              <NavLink to="/history" className="flex  items-center">
                 <img
                   src={historic}
                   className="h-20 w-20 mx-6"
