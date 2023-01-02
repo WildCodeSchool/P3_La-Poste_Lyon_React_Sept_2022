@@ -155,8 +155,8 @@ function RegisterFirstStep() {
                   />
                 </div>
                 <p className=" bg-gray-100 p-3 rounded text-gray-600 text-center text-md  pt-3 pb-3">
-                  Il s'agit de l'adresse e-mail qui te permettra de te connecter
-                  lors de chaque visite, retiens la bien !
+                  Il s'agit de l'adresse e-mail qui vous permet de vous
+                  connecter lors de chaque visite, retenez la bien !
                 </p>
                 <div className="mb-6">
                   <div className="flex justify-center pt-5">
