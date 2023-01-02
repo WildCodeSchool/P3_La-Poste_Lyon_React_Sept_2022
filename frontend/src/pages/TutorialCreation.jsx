@@ -295,7 +295,7 @@ function TutorialCreation() {
             </button>
 
             {/* Validate button -> This button need to send to the DB all selected values */}
-            <Link to="/profil">
+            <Link to="/dashboard">
               <button
                 type="button"
                 onClick={SubmitForm}
