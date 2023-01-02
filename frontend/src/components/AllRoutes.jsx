@@ -7,6 +7,7 @@ import Home from "../pages/Home";
 import Dashboard from "../pages/Dashboard";
 import TutorialCategory from "../pages/TutorialCategory";
 import TutorialList from "../pages/TutorialList";
+import Tutorial from "../pages/Tutorial";
 import Reward from "../pages/Reward";
 import Historic from "../pages/Historic";
 import UserCourse from "../pages/UserCourse";
@@ -23,6 +24,7 @@ function AllRoutes() {
         <Route path="/authentification" element={<AuthentificationPage />} />
         {/* // <Route path="/games" element={<Games />} /> */}
         <Route path="/course" element={<UserCourse />} />
+        <Route path="/categories/tutorials/:id" element={<Tutorial />} />
         <Route path="/categories" element={<TutorialCategory />} />
         <Route path="/categories/:id/tutorials" element={<TutorialList />} />
         <Route path="/history" element={<Historic />} />
