@@ -154,7 +154,7 @@ function RegisterFirstStep() {
                     placeholder="Entrez votre adresse mail"
                   />
                 </div>
-                <p className="text-red-500 text-center text-md italic pt-3 pb-3">
+                <p className=" bg-gray-100 p-3 rounded text-gray-600 text-center text-md  pt-3 pb-3">
                   Il s'agit de l'adresse e-mail qui te permettra de te connecter
                   lors de chaque visite, retiens la bien !
                 </p>

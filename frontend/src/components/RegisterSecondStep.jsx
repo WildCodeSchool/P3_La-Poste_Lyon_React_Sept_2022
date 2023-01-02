@@ -161,7 +161,7 @@ function RegisterSecondStep() {
                     type="password"
                     placeholder="Entrez un mot de passe"
                   />
-                  <p className="text-red-500 text-md italic pt-3">
+                  <p className=" bg-gray-100 p-3 rounded text-gray-600 text-center text-md  pt-3 pb-3">
                     Pensez à bien le retenir !
                   </p>
                   <div className="flex justify-center pt-10">
