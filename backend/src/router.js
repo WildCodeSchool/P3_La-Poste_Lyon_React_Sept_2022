@@ -7,6 +7,7 @@ const userControllers = require("./controllers/userControllers");
 
 router.get("/users", userControllers.browse);
 router.post("/users", hashPassword, userControllers.add);
+router.delete("/user/id:", userControllers.destroy);
 
 // const itemControllers = require("./controllers/itemControllers");
 
