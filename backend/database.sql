@@ -121,7 +121,7 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
-  INSERT INTO user (firstname, lastname, email, hashedPassword, phone, profilePicture, admin) VALUES ('Morgan', 'Mezaache', 'mezaache.morgan@gmail.com', 'test', '0761167419', 'https://play-lh.googleusercontent.com/KmDQ1FXpC2YwxVHcp0shE754vIc-tKQ0_cJEUl8mb3Fovw4nwj6IY_S7WkGM3PYA2w=w800-h500-rw', '1');
+  -- INSERT INTO user (firstname, lastname, email, hashedPassword, phone, profilePicture, admin) VALUES ('Morgan', 'Mezaache', 'mezaache.morgan@gmail.com', 'test', '0761167419', 'https://play-lh.googleusercontent.com/KmDQ1FXpC2YwxVHcp0shE754vIc-tKQ0_cJEUl8mb3Fovw4nwj6IY_S7WkGM3PYA2w=w800-h500-rw', '1');
   
 /*!40101 SET character_set_client = @saved_cs_client */;
   
