@@ -111,11 +111,9 @@ CREATE TABLE `user` (
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `city` varchar(255) DEFAULT NULL,
-  `language` varchar(255) DEFAULT NULL,
   `hashedPassword` varchar(255) NOT NULL,
   `phone` varchar(16) DEFAULT NULL,
-  `profilePicture` varchar(150) DEFAULT NULL,
+  `profilePicture` varchar(255) DEFAULT NULL,
   `level` int DEFAULT '1',
   `admin` tinyint(1) NOT NULL DEFAULT '0',
   `creationDate` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
@@ -123,8 +121,10 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+  INSERT INTO user (firstname, lastname, email, hashedPassword, phone, profilePicture, admin) VALUES ('Morgan', 'Mezaache', 'mezaache.morgan@gmail.com', 'test', '0761167419', 'https://play-lh.googleusercontent.com/KmDQ1FXpC2YwxVHcp0shE754vIc-tKQ0_cJEUl8mb3Fovw4nwj6IY_S7WkGM3PYA2w=w800-h500-rw', '1');
+  
 /*!40101 SET character_set_client = @saved_cs_client */;
-
+  
 --
 -- Dumping data for table `user`
 --
