@@ -12,13 +12,6 @@ class TutoManager extends AbstractManager {
     );
   }
 
-  findByEmailWithPassword(email) {
-    return this.connection.query(
-      `select * from  ${this.table} where email = ?`,
-      [email]
-    );
-  }
-
   findAll() {
     return this.connection.query(
       `select title, short_description, introduction_text, category_id, position from  ${this.table}`
