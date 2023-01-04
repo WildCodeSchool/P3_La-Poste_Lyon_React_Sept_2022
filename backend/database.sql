@@ -68,6 +68,58 @@ LOCK TABLES `historical` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `status`
+--
+
+DROP TABLE IF EXISTS `status`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `status` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `noStarted` tinyint(1) NOT NULL,
+  `inProgress` tinyint(1) NOT NULL,
+  `finished` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `status`
+--
+
+LOCK TABLES `status` WRITE;
+/*!40000 ALTER TABLE `status` DISABLE KEYS */;
+/*!40000 ALTER TABLE `status` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `stepper`
+--
+
+DROP TABLE IF EXISTS `stepper`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `stepper` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `position` int NOT NULL,
+  `content` text NOT NULL,
+  `tuto_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `tuto_id` (`tuto_id`),
+  CONSTRAINT `stepper_ibfk_1` FOREIGN KEY (`tuto_id`) REFERENCES `tuto` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `stepper`
+--
+
+LOCK TABLES `stepper` WRITE;
+/*!40000 ALTER TABLE `stepper` DISABLE KEYS */;
+/*!40000 ALTER TABLE `stepper` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tuto`
 --
 
@@ -142,4 +194,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-04 14:52:17
+-- Dump completed on 2023-01-04 15:18:45
