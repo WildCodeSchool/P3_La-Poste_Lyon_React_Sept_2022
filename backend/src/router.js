@@ -30,7 +30,7 @@ router.get("/categories", categoryControllers.browse);
 router.get("/category/:id", categoryControllers.read);
 router.put("/category/:id", categoryControllers.edit);
 router.post("/category", categoryControllers.add);
-router.delete("/category/:id", userControllers.destroy);
+router.delete("/category/:id", categoryControllers.destroy);
 
 // Tutos management
 
