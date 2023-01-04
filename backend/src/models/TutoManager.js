@@ -5,13 +5,33 @@ class TutoManager extends AbstractManager {
     super({ table: "tuto" });
   }
 
+  find(id) {
+    return this.connection.query(
+      `select title, short_description, introduction_text, category_id, position from  ${this.table} where id = ?`,
+      [id]
+    );
+  }
+
+  findByEmailWithPassword(email) {
+    return this.connection.query(
+      `select * from  ${this.table} where email = ?`,
+      [email]
+    );
+  }
+
+  findAll() {
+    return this.connection.query(
+      `select title, short_description, introduction_text, category_id, position from  ${this.table}`
+    );
+  }
+
   insert(tuto) {
     return this.connection.query(
-      `insert into ${this.table} (name, short_description, content, category_id, position) values (?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (title, short_description, introduction_text, category_id, position) values (?, ?, ?, ?, ?)`,
       [
-        tuto.name,
+        tuto.title,
         tuto.short_description,
-        tuto.content,
+        tuto.introduction_text,
         tuto.category_id,
         tuto.position,
       ]
@@ -20,11 +40,11 @@ class TutoManager extends AbstractManager {
 
   update(tuto) {
     return this.connection.query(
-      `update ${this.table} set name = ?, short_description = ?, content = ?, category_id = ?, position = ? where id = ?`,
+      `update ${this.table} set title = ?, short_description = ?, introduction_text = ?, category_id = ?, position = ? where id = ?`,
       [
-        tuto.name,
+        tuto.title,
         tuto.short_description,
-        tuto.content,
+        tuto.introduction_text,
         tuto.category_id,
         tuto.position,
         tuto.id,

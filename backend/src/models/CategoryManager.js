@@ -7,6 +7,26 @@ class CategoryManager extends AbstractManager {
     super({ table: "category" });
   }
 
+  find(id) {
+    return this.connection.query(
+      `select name, short_description, icon, position from  ${this.table} where id = ?`,
+      [id]
+    );
+  }
+
+  findByEmailWithPassword(email) {
+    return this.connection.query(
+      `select * from  ${this.table} where email = ?`,
+      [email]
+    );
+  }
+
+  findAll() {
+    return this.connection.query(
+      `select name, short_description, icon, position from  ${this.table}`
+    );
+  }
+
   insert(category) {
     return this.connection.query(
       `insert into ${this.table} (name, short_description, icon, position) values (?, ?, ?, ?)`,

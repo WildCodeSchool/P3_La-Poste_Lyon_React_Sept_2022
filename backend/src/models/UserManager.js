@@ -5,6 +5,26 @@ class UserManager extends AbstractManager {
     super({ table: "user" });
   }
 
+  find(id) {
+    return this.connection.query(
+      `select firstname, lastname, email, phone, hashedPassword, profilePicture, level, admin from  ${this.table} where id = ?`,
+      [id]
+    );
+  }
+
+  findByEmailWithPassword(email) {
+    return this.connection.query(
+      `select * from  ${this.table} where email = ?`,
+      [email]
+    );
+  }
+
+  findAll() {
+    return this.connection.query(
+      `select firstname, lastname, email, phone, hashedPassword, profilePicture, level, admin from  ${this.table}`
+    );
+  }
+
   insert(user) {
     return this.connection.query(
       `insert into ${this.table} (firstname, lastname, email, phone, hashedPassword, profilePicture, level, admin) values (?, ?, ?, ?, ?, ?, ?, ?)`,
