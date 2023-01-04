@@ -200,7 +200,7 @@ function TutorialCreation() {
           size: ["18px", "20px", "22px", "24px", "26px", "28px"],
         },
       ],
-      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+
       [{ font: [] }],
       [{ align: [] }],
       ["bold", "underline", "italic"],
