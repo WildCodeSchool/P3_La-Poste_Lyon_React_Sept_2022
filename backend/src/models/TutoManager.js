@@ -6,16 +6,13 @@ class TutoManager extends AbstractManager {
   }
 
   find(id) {
-    return this.connection.query(
-      `select title, short_description, introduction_text, category_id, position from  ${this.table} where id = ?`,
-      [id]
-    );
+    return this.connection.query(`select * from  ${this.table} where id = ?`, [
+      id,
+    ]);
   }
 
   findAll() {
-    return this.connection.query(
-      `select title, short_description, introduction_text, category_id, position from  ${this.table}`
-    );
+    return this.connection.query(`select * from  ${this.table}`);
   }
 
   insert(tuto) {

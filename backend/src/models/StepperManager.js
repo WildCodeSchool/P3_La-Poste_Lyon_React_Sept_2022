@@ -9,15 +9,13 @@ class StepperManager extends AbstractManager {
 
   find(id) {
     return this.connection.query(
-      `select position, content, tuto_id from  ${this.table} where id = ?`,
+      `select * from  ${this.table} where tuto_id = ?`,
       [id]
     );
   }
 
   findAll() {
-    return this.connection.query(
-      `select position, content, tuto_id from  ${this.table}`
-    );
+    return this.connection.query(`select * from  ${this.table}`);
   }
 
   insert(stepper) {

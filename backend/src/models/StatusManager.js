@@ -8,16 +8,13 @@ class StatusManager extends AbstractManager {
   }
 
   find(id) {
-    return this.connection.query(
-      `select noStarted, inProgress, finished from  ${this.table} where id = ?`,
-      [id]
-    );
+    return this.connection.query(`select * from  ${this.table} where id = ?`, [
+      id,
+    ]);
   }
 
   findAll() {
-    return this.connection.query(
-      `select noStarted, inProgress, finished from  ${this.table}`
-    );
+    return this.connection.query(`select * from  ${this.table}`);
   }
 
   insert(status) {
