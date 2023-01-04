@@ -25,7 +25,6 @@ DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(120) NOT NULL,
-  `short_description` varchar(255) NOT NULL,
   `icon` varchar(300) NOT NULL,
   `position` int NOT NULL,
   PRIMARY KEY (`id`)
