@@ -26,10 +26,20 @@ router.delete("/user/:id", userControllers.destroy);
 
 const categoryControllers = require("./controllers/categoryControllers");
 
-router.get("/users", categoryControllers.browse);
-router.get("/user/:id", categoryControllers.read);
-router.put("/user/:id", categoryControllers.edit);
-router.post("/users", hashPassword, categoryControllers.add);
-router.delete("/user/:id", userControllers.destroy);
+router.get("/categories", categoryControllers.browse);
+router.get("/category/:id", categoryControllers.read);
+router.put("/category/:id", categoryControllers.edit);
+router.post("/category", categoryControllers.add);
+router.delete("/category/:id", userControllers.destroy);
+
+// Tutos management
+
+const tutoControllers = require("./controllers/tutoControllers");
+
+router.get("/tutos", tutoControllers.browse);
+router.get("/tuto/:id", tutoControllers.read);
+router.put("/tuto/:id", tutoControllers.edit);
+router.post("/tuto", tutoControllers.add);
+router.delete("/tuto/:id", tutoControllers.destroy);
 
 module.exports = router;
