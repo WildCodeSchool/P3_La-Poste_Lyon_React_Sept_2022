@@ -42,4 +42,24 @@ router.put("/tuto/:id", tutoControllers.edit);
 router.post("/tuto", tutoControllers.add);
 router.delete("/tuto/:id", tutoControllers.destroy);
 
+// Status management
+
+const statusControllers = require("./controllers/statusControllers");
+
+router.get("/status", statusControllers.browse);
+router.get("/status/:id", statusControllers.read);
+router.put("/status/:id", statusControllers.edit);
+router.post("/status", statusControllers.add);
+router.delete("/status/:id", statusControllers.destroy);
+
+// Stepper management
+
+const stepperControllers = require("./controllers/stepperControllers");
+
+router.get("/steppers", stepperControllers.browse);
+router.get("/stepper/:id", stepperControllers.read);
+router.put("/stepper/:id", stepperControllers.edit);
+router.post("/steppers", stepperControllers.add);
+router.delete("/stepper/:id", stepperControllers.destroy);
+
 module.exports = router;
