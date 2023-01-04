@@ -135,11 +135,14 @@ CREATE TABLE `tuto` (
   `user_id` int NOT NULL,
   `creationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `position` int DEFAULT NULL,
+  `status_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
   KEY `tuto_ibfk_2` (`user_id`),
+  KEY `status_id` (`status_id`),
   CONSTRAINT `tuto_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
-  CONSTRAINT `tuto_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
+  CONSTRAINT `tuto_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
+  CONSTRAINT `tuto_ibfk_3` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -194,4 +197,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-04 15:18:45
+-- Dump completed on 2023-01-04 16:35:01
