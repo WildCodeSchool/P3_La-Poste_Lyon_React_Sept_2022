@@ -42,9 +42,31 @@ code {
   color: #61dafb;
 }
 
+p {
+  font-size: large;
+}
 
-/* Custom Quill React Drop dop menu */
+li {
+  font-size: large;
+}
 
+ul {
+  font-size: large;
+}
+
+h1 {
+  font-size: 2rem
+}
+
+h2 {
+  font-size: xx-large;
+}
+
+h3 {
+  font-size: x-large;
+}
+
+/*  Custom Quill React Drop dop menu  */
 .ql-snow .ql-size .ql-picker-item[data-value="18px"]::before {
   content: "18";
   font-size: 18px !important;
@@ -73,3 +95,4 @@ code {
   content: "28";
   font-size: 28px !important;
 }
+ 
