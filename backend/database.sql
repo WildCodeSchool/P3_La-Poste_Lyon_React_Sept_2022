@@ -170,7 +170,7 @@ CREATE TABLE `user` (
   `hashedPassword` varchar(255) NOT NULL,
   `phone` varchar(16) DEFAULT NULL,
   `profilePicture` varchar(255) DEFAULT NULL,
-  `level` int DEFAULT '1',
+  `level` int NOT NULL DEFAULT '1',
   `admin` tinyint(1) NOT NULL DEFAULT '0',
   `creationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),

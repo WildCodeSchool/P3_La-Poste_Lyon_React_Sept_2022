@@ -14,14 +14,6 @@ router.put("/user/:id", userControllers.edit);
 router.post("/users", hashPassword, userControllers.add);
 router.delete("/user/:id", userControllers.destroy);
 
-// const itemControllers = require("./controllers/itemControllers");
-
-// router.get("/items", itemControllers.browse);
-// router.get("/items/:id", itemControllers.read);
-// router.put("/items/:id", itemControllers.edit);
-// router.post("/items", itemControllers.add);
-// router.delete("/items/:id", itemControllers.destroy);
-
 // Categories management
 
 const categoryControllers = require("./controllers/categoryControllers");
