@@ -8,16 +8,13 @@ class CategoryManager extends AbstractManager {
   }
 
   find(id) {
-    return this.connection.query(
-      `select name, short_description, icon, position from  ${this.table} where id = ?`,
-      [id]
-    );
+    return this.connection.query(`select * from  ${this.table} where id = ?`, [
+      id,
+    ]);
   }
 
   findAll() {
-    return this.connection.query(
-      `select name, short_description, icon, position from  ${this.table}`
-    );
+    return this.connection.query(`select * from  ${this.table}`);
   }
 
   insert(category) {
