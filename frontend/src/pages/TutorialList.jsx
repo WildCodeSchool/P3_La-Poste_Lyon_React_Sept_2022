@@ -244,48 +244,6 @@ function TutorialList() {
         <h1 className="m-6 text-3xl  text-center">
           {categoryList[0].categoryName}
         </h1>
-        {/*   <article
-          className="bg-white w-3/5 p-2 border rounded-2xl shadow-lg  grid overflow-hidden 
-      grid-cols-1 grid-rows-2 md:grid-cols-2 md:grid-rows-3 m-auto justify-center"
-        >
-          {/* Display the card of the category 
-          <h2 className="text-2xl text-center p-6 row-start-1 row-end-1 md:col-start-1 md:col-end-3">
-            {categoryList[0].categoryName}
-          </h2>
-          <img
-            src={categoryList[0].imgUrl}
-            alt={categoryList[0].categoryName}
-            className="h-24 md:h-28 justify-self-center box"
-          />
-          <div
-            className="
-        row-start-3 row-end-3 md:col-start-1 md:col-end-3
-        box mt-6 mb-1 justify-self-center w-full md:w-2/3 h-4 bg-gray-300 rounded-full dark:bg-gray-300 shadow-inner"
-          >
-            {/* We used ternary to display the good tailwind class.This define the color of the progression bar - 3 states : start, complete, unstart by default 
-            <div
-              className={`h-4 rounded-full  ${
-                categoryList[0].progression === "start"
-                  ? "bg-[#FFC100] w-1/2"
-                  : categoryList[0].progression === "complete"
-                  ? "bg-[#04DDB4] w-100"
-                  : "w-100"
-              }`}
-            />
-
-            {/*  categoryList[0].progression === "start"
-                ? "bg-[#FFC100] w-1/2"
-                : categoryList[0].progression === "complete"
-                ? "bg-[#04DDB4] w-100"
-                : ""
-            }`} 
-          </div>
-
-          {/* The category description is only display for middle screens 
-          <p className="text-xl hidden  md:block md:box md:row-start-1 md:row-end-4 md:col-start-2 m-auto p-5">
-            {categoryList[0].description}
-          </p>
-        </article> */}
 
         {/* Here we will map the categoryList array to display every tutorials */}
         <ul className="w-3/5 grid grid-cols-1 md:grid-cols-2  m-auto ">
@@ -300,7 +258,10 @@ function TutorialList() {
               <p className="p-3 flex justify-center items-center h-24">
                 {tutorial.shortDescription}
               </p>{" "}
-              <AccessButton />
+              {/* We will need to match the id  */}
+              <Link to={`/categories/tutorials/${categoryList[0].id}`}>
+                <AccessButton />
+              </Link>
               {/* This button in the future will link to the associate tutorial */}
             </li>
           ))}

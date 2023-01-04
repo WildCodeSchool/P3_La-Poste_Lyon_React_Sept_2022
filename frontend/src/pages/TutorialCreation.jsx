@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
-import ReactQuill from "react-quill";
+import ReactQuill, { Quill } from "react-quill";
 import NavigationBar from "../components/NavigationBar";
 import PreviousButton from "../components/PreviousButton";
 
@@ -188,13 +188,36 @@ function TutorialCreation() {
 
   /* Rich editor text value */
   const [value, setValue] = useState("");
+  const Size = Quill.import("attributors/style/size");
+
+  Size.whitelist = ["18px", "20px", "22px", "24px", "26px", "28px"];
+  Quill.register(Size, true);
+
   const modules = {
     toolbar: [
-      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      [
+        {
+          size: ["18px", "20px", "22px", "24px", "26px", "28px"],
+        },
+      ],
+
       [{ font: [] }],
       [{ align: [] }],
       ["bold", "underline", "italic"],
-      [{ color: [] }, { background: [] }],
+      [
+        {
+          color: [
+            "#003DA5",
+            "#FFC927",
+            "#04DDB4",
+            "#374151",
+            "#F6402F",
+            "black",
+            "white",
+          ],
+        },
+        { background: [] },
+      ],
       [{ list: "ordered" }, { list: "bullet" }],
       ["link", "image"],
     ],
