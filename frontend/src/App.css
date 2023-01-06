@@ -55,7 +55,7 @@ ul {
 }
 
 h1 {
-  font-size: 2rem
+  font-size: 2rem;
 }
 
 h2 {
@@ -95,4 +95,3 @@ h3 {
   content: "28";
   font-size: 28px !important;
 }
- 
