@@ -14,7 +14,7 @@ const browse = (req, res) => {
 
 const read = (req, res) => {
   models.stepper
-    .find(req.params.id)
+    .find(req.params.tuto_id)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404);
@@ -31,7 +31,7 @@ const read = (req, res) => {
 const edit = (req, res) => {
   const stepper = req.body;
 
-  stepper.id = parseInt(req.params.id, 10);
+  stepper.tuto_id = parseInt(req.params.tuto_id, 10);
 
   models.stepper
     .update(stepper)
@@ -64,7 +64,7 @@ const add = (req, res) => {
 
 const destroy = (req, res) => {
   models.stepper
-    .delete(req.params.id)
+    .delete(req.params.tuto_id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);

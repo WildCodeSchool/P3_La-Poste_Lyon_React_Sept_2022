@@ -7,10 +7,11 @@ class StepperManager extends AbstractManager {
     super({ table: "stepper" });
   }
 
-  find(id) {
+  // Be careful ! The tutoId is called tuto_id in the database, maybe we will have a problem to find it.
+  find(tutoId) {
     return this.connection.query(
       `select * from  ${this.table} where tuto_id = ?`,
-      [id]
+      [tutoId]
     );
   }
 
@@ -27,8 +28,8 @@ class StepperManager extends AbstractManager {
 
   update(stepper) {
     return this.connection.query(
-      `update ${this.table} set position = ?, content = ?, tuto_id = ? where id = ?`,
-      [stepper.position, stepper.content, stepper.tuto_id, stepper.id]
+      `update ${this.table} set position = ?, content = ?, tuto_id = ? where tuto_id = ?`,
+      [stepper.position, stepper.content, stepper.tuto_id, stepper.tuto_id]
     );
   }
 }
