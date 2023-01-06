@@ -1,5 +1,6 @@
 const models = require("../models");
 
+// get all steppers
 const browse = (req, res) => {
   models.stepper
     .findAll()
@@ -12,6 +13,7 @@ const browse = (req, res) => {
     });
 };
 
+// get steppers by its id - to edit to get steppers by tuto_id
 const read = (req, res) => {
   models.stepper
     .find(req.params.id)
@@ -28,6 +30,7 @@ const read = (req, res) => {
     });
 };
 
+// edit a stepper
 const edit = (req, res) => {
   const stepper = req.body;
 
@@ -48,6 +51,7 @@ const edit = (req, res) => {
     });
 };
 
+// add a stepper
 const add = (req, res) => {
   const stepper = req.body;
 
@@ -62,6 +66,7 @@ const add = (req, res) => {
     });
 };
 
+// delete a stepper
 const destroy = (req, res) => {
   models.stepper
     .delete(req.params.id)
