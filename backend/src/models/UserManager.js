@@ -6,10 +6,9 @@ class UserManager extends AbstractManager {
   }
 
   find(id) {
-    return this.connection.query(
-      `select firstname, lastname, email, phone, profilePicture, level, admin from  ${this.table} where id = ?`,
-      [id]
-    );
+    return this.connection.query(`select * from  ${this.table} where id = ?`, [
+      id,
+    ]);
   }
 
   findByEmailWithPassword(email) {
@@ -20,9 +19,7 @@ class UserManager extends AbstractManager {
   }
 
   findAll() {
-    return this.connection.query(
-      `select firstname, lastname, email, phone, profilePicture, level, admin from  ${this.table}`
-    );
+    return this.connection.query(`select * from  ${this.table}`);
   }
 
   insert(user) {
@@ -43,13 +40,13 @@ class UserManager extends AbstractManager {
 
   update(user) {
     return this.connection.query(
-      `update ${this.table} set firstname = ? , lastname = ? , email = ? , phone = ? , hashedPassword = ? , profilePicture = ? , level = ? , admin  = ?  where id = ?`,
+      `update ${this.table} set firstname = ? , lastname = ? , email = ? , phone = ? , password = ? , profilePicture = ? , level = ? , admin  = ?  where id = ?`,
       [
         user.firstname,
         user.lastname,
         user.email,
         user.phone,
-        user.hashedPassword,
+        user.password,
         user.profilePicture,
         user.level,
         user.admin,
@@ -58,9 +55,9 @@ class UserManager extends AbstractManager {
     );
   }
 
-  delete(user) {
+  delete(id) {
     return this.connection.query(`delete from ${this.table} where id = ?`, [
-      user.id,
+      id,
     ]);
   }
 }

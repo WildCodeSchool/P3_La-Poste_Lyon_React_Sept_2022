@@ -31,8 +31,6 @@ const read = (req, res) => {
 const edit = (req, res) => {
   const tuto = req.body;
 
-  // TODO validations (length, format...)
-
   tuto.id = parseInt(req.params.id, 10);
 
   models.tuto
@@ -53,12 +51,10 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const tuto = req.body;
 
-  // TODO validations (length, format...)
-
   models.tuto
     .insert(tuto)
     .then(([result]) => {
-      res.location(`/tuto/${result.insertId}`).sendStatus(201);
+      res.location(`/tutos/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);

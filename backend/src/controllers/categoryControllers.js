@@ -54,7 +54,7 @@ const add = (req, res) => {
   models.category
     .insert(category)
     .then(([result]) => {
-      res.location(`/category/${result.insertId}`).sendStatus(201);
+      res.location(`/categories/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
