@@ -31,8 +31,6 @@ const read = (req, res) => {
 const edit = (req, res) => {
   const stepper = req.body;
 
-  // TODO validations (length, format...)
-
   stepper.id = parseInt(req.params.id, 10);
 
   models.stepper
@@ -53,12 +51,10 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const stepper = req.body;
 
-  // TODO validations (length, format...)
-
   models.stepper
     .insert(stepper)
     .then(([result]) => {
-      res.location(`/stepper/${result.insertId}`).sendStatus(201);
+      res.location(`/steppers/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);

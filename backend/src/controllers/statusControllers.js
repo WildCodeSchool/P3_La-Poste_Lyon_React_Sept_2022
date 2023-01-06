@@ -31,8 +31,6 @@ const read = (req, res) => {
 const edit = (req, res) => {
   const status = req.body;
 
-  // TODO validations (length, format...)
-
   status.id = parseInt(req.params.id, 10);
 
   models.status
@@ -52,8 +50,6 @@ const edit = (req, res) => {
 
 const add = (req, res) => {
   const status = req.body;
-
-  // TODO validations (length, format...)
 
   models.status
     .insert(status)
