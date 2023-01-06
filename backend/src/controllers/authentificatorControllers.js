@@ -1,5 +1,6 @@
 const models = require("../models");
 
+// check if the email and the password are the same than the database
 const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
   const { email } = req.body;
 
