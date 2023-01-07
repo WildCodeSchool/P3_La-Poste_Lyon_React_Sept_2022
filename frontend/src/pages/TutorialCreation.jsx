@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import { CategoryContextProvider } from "../contexts/CategoryContext";
 import StepperCreation from "@components/StepperCreation";
@@ -11,6 +11,7 @@ import MandatoryInformations from "../components/MandatoryInformations";
 import TutorialValidator from "../components/TutorialValidator";
 
 function TutorialCreation() {
+  const navigate = useNavigate();
   /* Set to get the value of all stepperCreation content */
   const [allStepsContent, setAllStepsContent] = useState([]);
 
@@ -25,33 +26,6 @@ function TutorialCreation() {
   /* State to set up the current step */
   const [currentStep, setCurrentStep] = useState(0);
 
-  /* Stepper */
-  const stepperCreation = [
-    {
-      position: 1,
-      component: (
-        <MandatoryInformations handleAllStepsContent={handleAllStepsContent} />
-      ),
-    },
-    {
-      position: 2,
-      component: (
-        <StepperCreation handleAllStepsContent={handleAllStepsContent} />
-      ),
-    },
-    {
-      position: 3,
-      component: (
-        <TutorialValidator handleAllStepsContent={handleAllStepsContent} />
-      ),
-    },
-  ];
-
-  /* State to check step's status - we fill all the arr with initial value at false */
-  const [stepsCompleted, setStepsCompleted] = useState(
-    Array(stepperCreation.length).fill("")
-  );
-
   /* onClick event of buttons - set the next step and trigger the value of step'statuts */
   const handleNextStep = () => {
     setCurrentStep(currentStep + 1);
@@ -62,13 +36,57 @@ function TutorialCreation() {
     });
   };
 
+  const handlePreviousStep = () => {
+    setCurrentStep(currentStep - 1);
+  };
+
+  /* Stepper */
+  const stepperCreation = [
+    {
+      position: 1,
+      component: (
+        <MandatoryInformations
+          handleAllStepsContent={handleAllStepsContent}
+          currentStep={currentStep}
+          handleNextStep={handleNextStep}
+        />
+      ),
+    },
+    {
+      position: 2,
+      component: (
+        <StepperCreation
+          handleAllStepsContent={handleAllStepsContent}
+          currentStep={currentStep}
+          handleNextStep={handleNextStep}
+          handlePreviousStep={handlePreviousStep}
+        />
+      ),
+    },
+    {
+      position: 3,
+      component: (
+        <TutorialValidator
+          handleAllStepsContent={handleAllStepsContent}
+          currentStep={currentStep}
+          handleNextStep={handleNextStep}
+        />
+      ),
+    },
+  ];
+
+  /* State to check step's status - we fill all the arr with initial value at false */
+  const [stepsCompleted, setStepsCompleted] = useState(
+    Array(stepperCreation.length).fill("")
+  );
+
   return (
     <>
       {" "}
       <CategoryContextProvider>
         <NavigationBar />
         <section className="m-6 flex flex-col items-center">
-          <Link to="/">
+          <Link to={navigate(-1)}>
             {/* This button will link to the Dashboard */}
             <PreviousButton />
           </Link>
@@ -138,12 +156,30 @@ function TutorialCreation() {
           <button
             type="button"
             className="bg-[#003DA5] text-white m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+            onClick={handlePreviousStep}
+          >
+            Précédent
+          </button>
+        )}
+        {currentStep === 1 && (
+          <button
+            type="button"
+            className="bg-[#003DA5] text-white m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
             onClick={handleNextStep}
           >
             Suivant 2
           </button>
         )}
         {/* Button validate at the third step */}
+        {currentStep === 2 && (
+          <button
+            type="button"
+            className="bg-[#003DA5] text-white m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+            onClick={handlePreviousStep}
+          >
+            Précédent
+          </button>
+        )}
         {currentStep === 2 && (
           <button
             type="button"
