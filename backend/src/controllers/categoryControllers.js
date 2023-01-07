@@ -1,5 +1,6 @@
 const models = require("../models");
 
+// get all categories
 const browse = (req, res) => {
   models.category
     .findAll()
@@ -12,6 +13,7 @@ const browse = (req, res) => {
     });
 };
 
+// get category by its id
 const read = (req, res) => {
   models.category
     .find(req.params.id)
@@ -28,6 +30,7 @@ const read = (req, res) => {
     });
 };
 
+// edit a category
 const edit = (req, res) => {
   const category = req.body;
 
@@ -48,6 +51,7 @@ const edit = (req, res) => {
     });
 };
 
+// add a category
 const add = (req, res) => {
   const category = req.body;
 
@@ -62,6 +66,7 @@ const add = (req, res) => {
     });
 };
 
+// delete a category
 const destroy = (req, res) => {
   models.category
     .delete(req.params.id)
