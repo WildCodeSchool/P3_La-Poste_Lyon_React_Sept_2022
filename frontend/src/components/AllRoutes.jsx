@@ -24,7 +24,7 @@ function AllRoutes() {
         <Route path="/authentification" element={<AuthentificationPage />} />
         {/* // <Route path="/games" element={<Games />} /> */}
         <Route path="/course" element={<UserCourse />} />
-        <Route path="/categories/tutorials/:id" element={<Tutorial />} />
+        <Route path="/categories/tutos/:id" element={<Tutorial />} />
         <Route path="/categories" element={<TutorialCategory />} />
         <Route path="/categories/:id/tutorials" element={<TutorialList />} />
         <Route path="/history" element={<Historic />} />

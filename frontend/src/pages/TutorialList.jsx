@@ -57,7 +57,7 @@ function TutorialList() {
                   {tutorial.short_description}
                 </p>{" "}
                 {/* We will need to match the id  */}
-                <Link to={`/categories/tutorials/${id}`}>
+                <Link to={`/categories/tutos/${id}`}>
                   <AccessButton />
                 </Link>
                 {/* This button in the future will link to the associate tutorial */}
