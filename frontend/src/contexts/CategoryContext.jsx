@@ -1,45 +1,29 @@
-import React, {
-  createContext,
-  useContext,
-  useState,
-  useMemo,
-  useEffect,
-} from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 const CategoryContext = createContext();
-
-export default CategoryContext;
+export { CategoryContext };
 
 export function CategoryContextProvider({ children }) {
+  /* fetch categories from localhost */
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    const getCategories = async () => {
-      const response = await fetch("http://localhost:5000/categories");
-      const data = await response.json();
-      setCategories(data);
-      // I want to catch the error
-      if (response.status !== 200) {
-        throw Error(response.message);
-      }
+    const getCategories = () => {
+      fetch("http://localhost:5000/categories")
+        .then((response) => response.json())
+        .then((data) => {
+          setCategories(data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     };
     getCategories();
   }, []);
-  /* put the setter in a useMemo to escape the re-render eslint rules // but the rules not seems to care */
-  const categoriesList = useMemo(
-    () => ({
-      categories,
-      setCategories,
-    }),
-    [categories, setCategories]
-  );
 
   return (
-    /* eslint-disable-next-line react/jsx-no-constructed-context-values  */
-    <CategoryContext.Provider value={{ categoriesList }}>
+    <CategoryContext.Provider value={{ categories }}>
       {children}
     </CategoryContext.Provider>
   );
 }
-
-export const useCategoryContext = () => useContext(CategoryContext);

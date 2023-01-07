@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ReactQuill, { Quill } from "react-quill";
-/* import { useNavigate } from "react-router-dom";
- */
-import { useCategoryContext } from "../contexts/CategoryContext";
+import { CategoryContext } from "../contexts/CategoryContext";
 
 export default function MandatoryInformations({
   handleAllStepsContent,
@@ -10,7 +8,7 @@ export default function MandatoryInformations({
   setCurrentStep,
 }) {
   /* I want to import categories from the context useCategoryContext and display the list of category */
-  const { categoriesList } = useCategoryContext();
+  const { categories } = useContext(CategoryContext);
 
   /* Quill import, size and modules */
   const Size = Quill.import("attributors/style/size");
@@ -164,7 +162,7 @@ export default function MandatoryInformations({
         >
           <option value="">Choisissez une catégorie</option>
           {/* map every category to make a list of options */}
-          {categoriesList.categories?.map((category) => (
+          {categories?.map((category) => (
             <option
               key={category.id}
               value={category.name}
