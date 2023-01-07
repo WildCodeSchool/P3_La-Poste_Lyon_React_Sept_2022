@@ -1,6 +1,6 @@
 /*eslint-disable*/
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import { CategoryContextProvider } from "../contexts/CategoryContext";
 import StepperCreation from "@components/StepperCreation";
@@ -11,8 +11,7 @@ import MandatoryInformations from "../components/MandatoryInformations";
 import TutorialValidator from "../components/TutorialValidator";
 
 function TutorialCreation() {
-  const navigate = useNavigate();
-  /* Set to get the value of all stepperCreation content */
+  /* Set to get the value of all stepperCreation content  */
   const [allStepsContent, setAllStepsContent] = useState([]);
 
   /* I want to add the new value in the current value when I handAllStepsContent */
@@ -48,7 +47,7 @@ function TutorialCreation() {
         <MandatoryInformations
           handleAllStepsContent={handleAllStepsContent}
           currentStep={currentStep}
-          handleNextStep={handleNextStep}
+          setCurrentStep={setCurrentStep}
         />
       ),
     },
@@ -57,6 +56,7 @@ function TutorialCreation() {
       component: (
         <StepperCreation
           handleAllStepsContent={handleAllStepsContent}
+          setCurrentStep={setCurrentStep}
           currentStep={currentStep}
           handleNextStep={handleNextStep}
           handlePreviousStep={handlePreviousStep}
@@ -80,13 +80,15 @@ function TutorialCreation() {
     Array(stepperCreation.length).fill("")
   );
 
-  return (
+  console.log(currentStep);
+  /*   console.log("allStepsContent", allStepsContent);
+   */ return (
     <>
       {" "}
       <CategoryContextProvider>
         <NavigationBar />
         <section className="m-6 flex flex-col items-center">
-          <Link to={navigate(-1)}>
+          <Link to="/">
             {/* This button will link to the Dashboard */}
             <PreviousButton />
           </Link>

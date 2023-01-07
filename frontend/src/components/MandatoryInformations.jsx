@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import ReactQuill, { Quill } from "react-quill";
+/* import { useNavigate } from "react-router-dom";
+ */
 import { useCategoryContext } from "../contexts/CategoryContext";
 
 export default function MandatoryInformations({
   handleAllStepsContent,
   currentStep,
-  handleNextStep,
+  setCurrentStep,
 }) {
   /* I want to import categories from the context useCategoryContext and display the list of category */
   const { categoriesList } = useCategoryContext();
@@ -106,6 +108,8 @@ export default function MandatoryInformations({
       handleAllStepsContent({
         ...mandatoryInformations,
       });
+      /* Go to nextStep */
+      setCurrentStep(currentStep + 1);
     };
 
   return (
@@ -213,17 +217,10 @@ export default function MandatoryInformations({
           />
         </article>
         <section className=" m-2 flex justify-center">
-          <button
-            type="submit"
-            className="bg-[#003DA5] text-white m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
-          >
-            Enregistrer
-          </button>
           {currentStep === 0 && (
             <button
-              type="button"
+              type="submit"
               className="bg-[#003DA5] text-white m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
-              onClick={handleNextStep}
             >
               Suivant
             </button>
