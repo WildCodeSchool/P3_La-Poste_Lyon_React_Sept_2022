@@ -25,7 +25,7 @@ export function CategoryContextProvider({ children }) {
     };
     getCategories();
   }, []);
-
+  /* put the setter in a useMemo to escape the re-render eslint rules // but the rules not seems to care */
   const categoriesList = useMemo(
     () => ({
       categories,
