@@ -11,6 +11,7 @@ const hashingOptions = {
   parallelism: 1,
 };
 
+// This function will recup the password that user put when they login. Then, it will hash it by applying the hashing options defined before. Finally, it will delete the clear password and pass to the next middleware.
 const hashPassword = (req, res, next) => {
   argon2
 
@@ -31,6 +32,7 @@ const hashPassword = (req, res, next) => {
     });
 };
 
+// This function will recup the hashedPassword of an user and compare it with the password. For that, it will hash again the password and compare the  two hashedPassword. Then, if it's verified, it will recup the id of an user and generate a token.
 const verifyPassword = (req, res) => {
   argon2
     .verify(req.user.hashedPassword, req.body.password, hashingOptions)
@@ -54,6 +56,7 @@ const verifyPassword = (req, res) => {
     });
 };
 
+// This function will verify if the token of a user is correct.
 const verifyToken = (req, res, next) => {
   try {
     const authorizationHeader = req.get("Authorization");
