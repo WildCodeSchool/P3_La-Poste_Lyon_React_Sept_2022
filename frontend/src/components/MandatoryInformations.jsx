@@ -1,8 +1,11 @@
-/*eslint-disable*/
 import React, { useState } from "react";
 import ReactQuill, { Quill } from "react-quill";
-/* eslint-disable react/prop-types */
+import { useCategoryContext } from "../contexts/CategoryContext";
+
 export default function MandatoryInformations({ handleAllStepsContent }) {
+  /* I want to import categories from the context useCategoryContext and display the list of category */
+  const { categoriesList } = useCategoryContext();
+
   /* Quill import, size and modules */
   const Size = Quill.import("attributors/style/size");
   Size.whitelist = ["18px", "20px", "22px", "24px", "26px", "28px"];
@@ -37,21 +40,6 @@ export default function MandatoryInformations({ handleAllStepsContent }) {
     ],
   };
 
-  const categoryList = [
-    {
-      id: "1",
-      categoryName: "Se connecter",
-    },
-    {
-      id: "2",
-      categoryName: "Vie courante",
-    },
-    {
-      id: "3",
-      categoryName: "Utiliser un ordinateur",
-    },
-  ];
-
   const [mandatoryInformations, setMandatoryInformations] = useState({
     title: "",
     category: "",
@@ -59,61 +47,62 @@ export default function MandatoryInformations({ handleAllStepsContent }) {
     introduction_text: "",
   });
 
+  /* TITLE */
   /* Make change about the title, we use the async function to get all the state */
   const [title, setTitle] = useState("Titre du tutoriel");
-  const handleTitleChange = async function (event) {
+  const handleTitleChange = async function handleTitleonChange(event) {
     setTitle(event.target.value);
-    /* adding title value to the mandatoryInformations at title */
     setMandatoryInformations({
       ...mandatoryInformations,
       title: event.target.value,
     });
   };
 
-  /* Category  -- display selected with db -- category  and set it */
-  const [/* selected, */ setSelected] = useState("");
-
+  /* CATEGORY */
+  const [selected, setSelected] = useState([]);
   const handleSelectChange = (event) => {
     setSelected(event.target.value);
-    /* adding category value to the mandatoryInformations at category */
     setMandatoryInformations({
       ...mandatoryInformations,
       category: event.target.value,
     });
   };
 
-  /* Rich editor text value  with his modules */
-  const [shortDescriptionValue, setShortDescriptionValue] = useState("");
-  /* I want to put short description value to mandatory informations */
-  const handleShortDescriptionValue = () => {
+  /* SHORT DESCRIPTION */
+  const [shortDescription, setShortDescription] = useState("");
+  const handleShortDescriptionChange = (value) => {
+    setShortDescription(value);
     setMandatoryInformations({
       ...mandatoryInformations,
-      shortDescription: shortDescriptionValue,
+      shortDescription: value,
     });
   };
 
-  const [introductionBtnSave, setIntroductionBtnSave] = useState(false);
-  const [introductionValue, setIntroductionValue] = useState("");
-  /* I want to put introduction value to mandatory informations */
-  const handleIntroductionValue = () => {
-    setIntroductionBtnSave(true);
+  /* INTRODUCTION  */
+  const [introductionText, setIntroductionText] = useState("");
+  const handleIntroductionText = (value) => {
+    setIntroductionText(value);
     setMandatoryInformations({
       ...mandatoryInformations,
-      introduction_text: introductionValue,
+      introduction_text: value,
     });
   };
 
   /* Submit all the content of mandatory information to the main state */
-  const handleMandatoryInformations = (event) => {
-    event.preventDefault();
-    setMandatoryInformations({
-      ...mandatoryInformations,
-      title,
-    });
-    handleAllStepsContent({
-      ...mandatoryInformations,
-    });
-  };
+  const handleMandatoryInformations =
+    async function handleMandatoryInformationsSubmit(event) {
+      event.preventDefault();
+      setMandatoryInformations({
+        ...mandatoryInformations,
+        title,
+        shortDescription,
+      });
+
+      /* handleAllStepsContent is the main component state that will take values of all steps */
+      handleAllStepsContent({
+        ...mandatoryInformations,
+      });
+    };
 
   return (
     <div className="relative m-0 p-0 ">
@@ -136,12 +125,7 @@ export default function MandatoryInformations({ handleAllStepsContent }) {
           placeholder="Insérez un titre"
           className=" border-gray-400  mb-5 p-4 w-full h-10 rounded-bl-lg rounded-br-lg bg-gray-200"
         />
-        <button
-          className=" p-2 absolute right-5"
-          type="button"
-          onClick={handleTitleChange}
-          /* {handleConfirmTitle} */
-        >
+        <button className=" p-2 absolute right-5" type="button">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -159,70 +143,71 @@ export default function MandatoryInformations({ handleAllStepsContent }) {
         </button>
         <label
           htmlFor="tutorial-category"
-          className="text-xl mt-6 text-[#003DA5] p-2 bg-white border rounded-tl-lg rounded-tr-lg h-10  w-full   flex justify-start items-center"
+          className="text-xl mt-6 text-[#003DA5] p-2 bg-white border rounded-tl-lg rounded-tr-lg h-10  w-full   flex justify-start items-center "
         >
           Catégorie du tutoriel
         </label>
         <select
           name="tutorial-category"
           id="tutorial-category"
-          className="w-full h-10 bg-gray-200 rounded-bl-lg rounded-br-lg px-3 mb-6"
+          className="w-full h-10 bg-gray-200 rounded-bl-lg rounded-br-lg px-3 mb-6 "
           onChange={handleSelectChange}
           required
         >
           <option value="">Choisissez une catégorie</option>
           {/* map every category to make a list of options */}
-          {categoryList?.map((category, index) => (
-            <option key={index} value={category.categoryName}>
-              {category.categoryName}
+          {categoriesList.categories?.map((category) => (
+            <option
+              key={category.id}
+              value={category.name}
+              className={`${selected ? "text-[#003DA5]" : ""}}`}
+            >
+              {category.name}
             </option>
           ))}
         </select>
-        {/* Tutorial category creation */}
+        {/* Short Description */}
         <h3 className="text-xl mt-6 text-[#003DA5] p-2 bg-white border rounded-tl-lg rounded-tr-lg h-10  w-full   flex justify-start items-center">
           Description du tutoriel
         </h3>
-        <article className="  w-full " style={{ height: "15vh" }}>
+        <article className=" relative w-full z-40" style={{ height: "15vh" }}>
           <ReactQuill
             htmlFor="short-description"
+            className="absolute z-40"
             theme="snow"
-            value={shortDescriptionValue}
-            onChange={setShortDescriptionValue}
+            value={shortDescription}
+            onChange={handleShortDescriptionChange}
             modules={modules}
             style={{ height: "10vh" }}
           />
+          <input
+            value={shortDescription}
+            onChange={handleShortDescriptionChange}
+            required
+            className="absolute top-0 z-0 text-transparent  p-6 h-full w-full"
+          />
         </article>{" "}
-        <button
-          type="button"
-          className="w-full  text-right text-[#003DA5] underline mb-6"
-          onClick={handleShortDescriptionValue}
-        >
-          {" "}
-          enregistrer{" "}
-        </button>
+        {/* Introduction Text  */}
         <h3 className="text-xl  md:mt-6 text-[#003DA5] p-2 bg-white border rounded-tl-lg rounded-tr-lg h-10  w-full   flex justify-start items-center">
           Texte d'introduction du tutoriel
         </h3>
-        <article className=" w-full " style={{ height: "15vh" }}>
+        <article className=" w-full relative " style={{ height: "15vh" }}>
           <ReactQuill
             htmlFor="short-description"
+            className=""
             theme="snow"
-            value={introductionValue}
-            onChange={setIntroductionValue}
+            value={introductionText}
+            onChange={handleIntroductionText}
             modules={modules}
             style={{ height: "10vh" }}
           />
+          <input
+            value={introductionText}
+            onChange={handleIntroductionText}
+            required
+            className="absolute top-0 z-[-10] text-transparent  p-6 h-full w-full"
+          />
         </article>
-        <button
-          type="button"
-          className={`w-full  text-right text-[#003DA5] underline mb-6 ${
-            introductionBtnSave ? "bg-[#003DA5] text-white" : ""
-          }`}
-          onClick={handleIntroductionValue}
-        >
-          {" "}
-          enregistrer{" "}
-        </button>
         <section className=" m-2 flex justify-center">
           <button
             type="submit"

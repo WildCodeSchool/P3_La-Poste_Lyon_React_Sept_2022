@@ -17,6 +17,8 @@
   },
   "plugins": ["react", "import"],
   "rules": {
+    /* Adding this rules to remove the problem with context passing children as a prop */
+    "react/prop-types": 0,
     /* Adding this rules to improve ternary expression on JSX */
     "no-nested-ternary": "off",
     "no-console": "off",
