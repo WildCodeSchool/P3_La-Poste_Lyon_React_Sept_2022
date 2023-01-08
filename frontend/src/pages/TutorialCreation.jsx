@@ -156,53 +156,6 @@ function TutorialCreation() {
         </div>
       </section>
       {/* Button Next to second step */}
-      {currentStep === 0 && (
-        <button
-          type="button"
-          className="bg-[#003DA5] text-white m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
-          onClick={handleNextStep}
-        >
-          Suivant
-        </button>
-      )}
-      {/*  Button to validate to the third step */}
-      {currentStep === 1 && (
-        <button
-          type="button"
-          className="bg-[#003DA5] text-white m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
-          onClick={handlePreviousStep}
-        >
-          Précédent
-        </button>
-      )}
-      {currentStep === 1 && (
-        <button
-          type="button"
-          className="bg-[#003DA5] text-white m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
-          onClick={handleNextStep}
-        >
-          Suivant 2
-        </button>
-      )}
-      {/* Button validate at the third step */}
-      {currentStep === 2 && (
-        <button
-          type="button"
-          className="bg-[#003DA5] text-white m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
-          onClick={handlePreviousStep}
-        >
-          Précédent
-        </button>
-      )}
-      {currentStep === 2 && (
-        <button
-          type="button"
-          className="bg-[#003DA5] text-white m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
-          onClick={handleNextStep}
-        >
-          Valider
-        </button>
-      )}{" "}
     </>
   );
 }
