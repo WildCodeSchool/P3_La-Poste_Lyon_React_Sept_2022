@@ -1,4 +1,3 @@
-/*eslint-disable*/
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
@@ -12,16 +11,27 @@ import TutorialValidator from "../components/TutorialValidator";
 function TutorialCreation() {
   /* Set to get the value of all stepperCreation content  */
   const [allStepsContent, setAllStepsContent] = useState([]);
+  /* I set the mandatoryInformations here to pass it as a parameters for the steppercreation */
+  const [mandatoryInformations, setMandatoryInformations] = useState({
+    title: "",
+    category: "",
+    shortDescription: "",
+    introduction_text: "",
+  });
 
   /* I want to add the new value in the current value when I handAllStepsContent */
-  const handleAllStepsContent = (newContent) => {
-    setAllStepsContent((prevAllStepsContent) => [
-      ...prevAllStepsContent,
-      newContent,
+  const handleAllStepsContent = (mandatoryInfos, steps) => {
+    setAllStepsContent([
+      {
+        ...mandatoryInfos,
+      },
+      {
+        steps,
+      },
     ]);
   };
 
-  /* State to set up the current step */
+  /* State to set up the current step to switch between components */
   const [currentStep, setCurrentStep] = useState(0);
 
   /* onClick event of buttons - set the next step and trigger the value of step'statuts */
@@ -47,6 +57,8 @@ function TutorialCreation() {
           handleAllStepsContent={handleAllStepsContent}
           currentStep={currentStep}
           setCurrentStep={setCurrentStep}
+          mandatoryInformations={mandatoryInformations}
+          setMandatoryInformations={setMandatoryInformations}
         />
       ),
     },
@@ -59,6 +71,7 @@ function TutorialCreation() {
           currentStep={currentStep}
           handleNextStep={handleNextStep}
           handlePreviousStep={handlePreviousStep}
+          mandatoryInformations={mandatoryInformations}
         />
       ),
     },
@@ -66,22 +79,23 @@ function TutorialCreation() {
       position: 3,
       component: (
         <TutorialValidator
+          handlePreviousStep={handlePreviousStep}
           handleAllStepsContent={handleAllStepsContent}
           currentStep={currentStep}
           handleNextStep={handleNextStep}
+          allStepsContent={allStepsContent}
         />
       ),
     },
   ];
 
   /* State to check step's status - we fill all the arr with initial value at false */
+  /* eslint no-use-before-define: ["error", { "variables": false }] */
   const [stepsCompleted, setStepsCompleted] = useState(
     Array(stepperCreation.length).fill("")
   );
 
-  console.log(currentStep);
-  /*   console.log("allStepsContent", allStepsContent);
-   */ return (
+  return (
     <>
       {" "}
       <NavigationBar />

@@ -6,6 +6,8 @@ export default function MandatoryInformations({
   handleAllStepsContent,
   currentStep,
   setCurrentStep,
+  mandatoryInformations,
+  setMandatoryInformations,
 }) {
   /* I want to import categories from the context useCategoryContext and display the list of category */
   const { categories } = useContext(CategoryContext);
@@ -43,13 +45,6 @@ export default function MandatoryInformations({
       ["link", "image"],
     ],
   };
-
-  const [mandatoryInformations, setMandatoryInformations] = useState({
-    title: "",
-    category: "",
-    shortDescription: "",
-    introduction_text: "",
-  });
 
   /* TITLE */
   /* Make change about the title, we use the async function to get all the state */

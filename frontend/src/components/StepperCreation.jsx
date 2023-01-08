@@ -6,6 +6,7 @@ export default function StepperCreation({
   currentStep,
   setCurrentStep,
   handlePreviousStep,
+  mandatoryInformations,
 }) {
   const Size = Quill.import("attributors/style/size");
   Size.whitelist = ["18px", "20px", "22px", "24px", "26px", "28px"];
@@ -44,7 +45,7 @@ export default function StepperCreation({
   const [inputs, setInputs] = useState([{ content: "", position: "" }]);
 
   /* State for the data of all inputs */
-  const [data, setData] = useState([{}]);
+  const [data, setData] = useState([]);
 
   /* Add a new input */
   const handleAddInput = () => {
@@ -92,12 +93,10 @@ export default function StepperCreation({
   /* Submit the entire steps array */
   const handleSubmit = (event) => {
     event.preventDefault();
-    setData([...data]);
+    setData([...data, { ...data }]);
 
     /* I want to add all the data in handleAllStepsContent */
-    handleAllStepsContent({
-      ...data,
-    });
+    handleAllStepsContent(mandatoryInformations, data);
 
     /* Go to nextStep */
     setCurrentStep(currentStep + 1);
