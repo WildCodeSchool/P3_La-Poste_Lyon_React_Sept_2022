@@ -6,7 +6,7 @@ export default function Home() {
     <div className="Home">
       <div className="flex h-100 text-xl md:text-2xl justify-center">
         {/* man div opening */}
-        <div className="flex flex-col mt-[15vh] items-center justify-center">
+        <div className="flex flex-col mt-[20vh] items-center justify-center">
           {/* switching image by hidden property */}
           <img
             className="block sm:hidden "
