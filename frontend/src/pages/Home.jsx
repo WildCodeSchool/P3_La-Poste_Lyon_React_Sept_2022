@@ -1,12 +1,9 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
-import NavigationBar from "../components/NavigationBar";
 
 export default function Home() {
   return (
     <div className="Home">
-      <NavigationBar />
-
       <div className="flex h-100 text-xl md:text-2xl justify-center">
         {/* man div opening */}
         <div className="flex flex-col mt-[15vh] items-center justify-center">

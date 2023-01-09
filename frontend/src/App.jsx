@@ -1,3 +1,4 @@
+import { BrowserRouter as Router } from "react-router-dom";
 import AllRoutes from "./components/AllRoutes";
 import Footer from "./components/Footer";
 import NavigationBar from "./components/NavigationBar";
@@ -6,12 +7,11 @@ import "./index.css";
 
 function App() {
   return (
-    <AllRoutes>
+    <Router>
       <NavigationBar />
-      <div>
-        <Footer />
-      </div>
-    </AllRoutes>
+      <AllRoutes />
+      <Footer />
+    </Router>
   );
 }
 

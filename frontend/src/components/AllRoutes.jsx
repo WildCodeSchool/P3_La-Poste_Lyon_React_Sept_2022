@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import TutorialCreation from "../pages/TutorialCreation";
 import SearchUsers from "../pages/SearchUsers";
 import Settings from "../pages/Settings";
@@ -16,24 +16,22 @@ import AuthentificationPage from "../pages/AuthentificationPage";
 
 function AllRoutes() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/reward" element={<Reward />} />
-        <Route path="/authentification" element={<AuthentificationPage />} />
-        {/* // <Route path="/games" element={<Games />} /> */}
-        <Route path="/course" element={<UserCourse />} />
-        <Route path="/categories/tutorials/:id" element={<Tutorial />} />
-        <Route path="/categories" element={<TutorialCategory />} />
-        <Route path="/categories/:id/tutorials" element={<TutorialList />} />
-        <Route path="/history" element={<Historic />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/creation" element={<TutorialCreation />} />
-        <Route path="/registerPage" element={<RegisterPage />} />
-        <Route path="/users" element={<SearchUsers />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/reward" element={<Reward />} />
+      <Route path="/authentification" element={<AuthentificationPage />} />
+      {/* // <Route path="/games" element={<Games />} /> */}
+      <Route path="/course" element={<UserCourse />} />
+      <Route path="/categories/tutorials/:id" element={<Tutorial />} />
+      <Route path="/categories" element={<TutorialCategory />} />
+      <Route path="/categories/:id/tutorials" element={<TutorialList />} />
+      <Route path="/history" element={<Historic />} />
+      <Route path="/settings" element={<Settings />} />
+      <Route path="/creation" element={<TutorialCreation />} />
+      <Route path="/registerPage" element={<RegisterPage />} />
+      <Route path="/users" element={<SearchUsers />} />
+    </Routes>
   );
 }
 
