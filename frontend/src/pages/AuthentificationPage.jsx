@@ -4,6 +4,7 @@ import granny from "../assets/granny1.svg";
 import arobase from "../assets/arobaselogo.png";
 import locker from "../assets/lockerlogo.png";
 import forgotpass from "../assets/forgotpass.svg";
+import Footer from "../components/Footer";
 
 function AuthentificationPage() {
   return (
@@ -54,6 +55,7 @@ function AuthentificationPage() {
           Connexion
         </button>
       </Link>
+      <Footer />
     </div>
   );
 }
