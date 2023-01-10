@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import profil from "../assets/profil.png";
-import categories from "../assets/categories.png";
+import categories from "../assets/categories.svg";
 import jeux from "../assets/jeux.png";
 import recompenses from "../assets/recompenses.png";
 import parcours from "../assets/parcours.png";

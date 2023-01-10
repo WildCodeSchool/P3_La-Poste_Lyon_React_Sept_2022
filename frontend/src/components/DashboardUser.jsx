@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Historique from "../assets/Historique.png";
-import Mestutos from "../assets/Mestutos.png";
+import Mestutos from "../assets/Mestutos.svg";
 import badge1 from "../assets/badge1.png";
 import AccessButton from "./AccessButton";
 import BannerProfile from "./BannerProfile";
