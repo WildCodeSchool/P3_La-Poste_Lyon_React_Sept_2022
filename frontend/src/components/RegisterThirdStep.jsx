@@ -1,8 +1,49 @@
 import React from "react";
-import { Link } from "react-scroll";
+import { scroller } from "react-scroll";
 import RegisterFourthStep from "./RegisterFourthStep";
+import step3 from "../assets/id3create.svg";
 
-function RegisterThirdStep() {
+function RegisterThirdStep({
+  registerInformations,
+  setRegisterInformations,
+  submitRegisterInformations,
+}) {
+  const [firstname, setFirstname] = React.useState("");
+  const [lastname, setLastname] = React.useState("");
+  const [phone, setPhone] = React.useState("");
+
+  /* set the firstname */
+  const handleFirstname = (event) => {
+    setFirstname(event.target.value);
+  };
+
+  /* set the lastname */
+  const handleLastname = (event) => {
+    setLastname(event.target.value);
+  };
+
+  /* set the phone */
+  const handlePhone = (event) => {
+    setPhone(event.target.value);
+  };
+
+  /* upload all values to of the registerInformations object and scroll to the last step */
+  const toTheLastStep = () => {
+    setRegisterInformations({
+      ...registerInformations,
+      firstname,
+      lastname,
+      phone,
+    });
+
+    scroller.scrollTo("RegisterFourthStep", {
+      duration: 800,
+      delay: 0,
+      smooth: "easeInOutQuart",
+      offset: -100,
+    });
+  };
+
   return (
     <>
       <div
@@ -17,7 +58,9 @@ function RegisterThirdStep() {
               </div>
               Renseigner son profil utilisateur
             </div>
-            <svg
+
+            <img src={step3} alt="step 3" />
+            {/*  <svg
               width="200"
               height="100"
               viewBox="0 0 722 198"
@@ -65,11 +108,11 @@ function RegisterThirdStep() {
                 d="M345.761 128.514C345.614 128.514 345.467 128.51 345.319 128.503C344.018 128.44 342.745 128.097 341.589 127.496C340.433 126.895 339.42 126.051 338.62 125.022L325.997 108.792C324.527 106.898 323.868 104.498 324.166 102.118C324.463 99.7393 325.692 97.5752 327.583 96.101L328.037 95.7474C329.931 94.2776 332.331 93.6192 334.711 93.9165C337.09 94.2138 339.254 95.4426 340.729 97.3334C341.44 98.2482 342.341 98.9985 343.369 99.5329C344.397 100.067 345.529 100.373 346.687 100.43C347.844 100.486 349 100.292 350.076 99.8598C351.151 99.428 352.121 98.7689 352.918 97.9276L378.55 70.87C379.367 70.0078 380.346 69.3149 381.43 68.8309C382.515 68.3469 383.684 68.0813 384.871 68.0492C386.059 68.0171 387.241 68.2192 388.35 68.644C389.459 69.0688 390.474 69.7079 391.336 70.5248L391.754 70.9213C393.495 72.5709 394.51 74.8445 394.574 77.2421C394.639 79.6397 393.749 81.9648 392.099 83.7059L352.324 125.689C351.48 126.582 350.462 127.292 349.334 127.778C348.205 128.264 346.99 128.514 345.761 128.514V128.514Z"
                 fill="white"
               />
-            </svg>
+            </svg> */}
           </div>
           <div className="flex justify-center items-center">
             <div className="w-screen max-w-md">
-              <form className="bg-white rounded px-8 pb-8 mb-4">
+              <div className="bg-white rounded px-8 pb-8 mb-4">
                 <p className="text-gray-300 font-light italic">
                   Tous les champs sont obligatoires
                 </p>
@@ -83,6 +126,8 @@ function RegisterThirdStep() {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="username"
+                    value={firstname}
+                    onChange={handleFirstname}
                     type="text"
                     placeholder="Entrez votre prénom"
                   />
@@ -97,6 +142,9 @@ function RegisterThirdStep() {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="username"
+                    value={lastname}
+                    required
+                    onChange={handleLastname}
                     type="text"
                     placeholder="Entrez votre nom"
                   />
@@ -111,39 +159,42 @@ function RegisterThirdStep() {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="username"
-                    type="text"
+                    pattern="^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$"
+                    value={phone}
+                    required
+                    onChange={handlePhone}
+                    type="tel"
                     placeholder="Entrez votre numéro de téléphone"
                   />
                 </div>
                 <div className="mt-8">
                   <div className="flex justify-center">
-                    {/* add the Link to scroll the de last register step component */}
-                    <Link to="RegisterFourthStep" smooth duration={800}>
-                      <button type="button">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          className="w-10 h-10"
-                          strokeWidth="3"
-                          stroke="#003DA5"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M13.5 4.5L21 12m0 0l-7.5 7.5M 21 12H3"
-                          />
-                        </svg>
-                      </button>
-                    </Link>
+                    <button type="button" onClick={toTheLastStep}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        className="w-10 h-10"
+                        strokeWidth="3"
+                        stroke="#003DA5"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.5 4.5L21 12m0 0l-7.5 7.5M 21 12H3"
+                        />
+                      </svg>
+                    </button>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <RegisterFourthStep />
+      <RegisterFourthStep
+        submitRegisterInformations={submitRegisterInformations}
+      />
     </>
   );
 }

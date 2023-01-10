@@ -1,4 +1,5 @@
 import { BrowserRouter as Router } from "react-router-dom";
+import { CurrentUserProvider } from "./contexts/userContext";
 import AllRoutes from "./components/AllRoutes";
 import NavigationBar from "./components/NavigationBar";
 import "./App.css";
@@ -6,12 +7,12 @@ import "./index.css";
 
 function App() {
   return (
-    <Router>
-      <div className="">
+    <CurrentUserProvider>
+      <Router>
         <NavigationBar />
-      </div>
-      <AllRoutes />
-    </Router>
+        <AllRoutes />
+      </Router>
+    </CurrentUserProvider>
   );
 }
 

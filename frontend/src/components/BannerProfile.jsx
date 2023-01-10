@@ -30,7 +30,6 @@ function BannerProfile() {
           </div>
         </div>
         <div className="my-2  justify-end">
-          {/* Will send the user on the road parameters not the home page */}
           <Link to="/settings">
             <img className="mr-2 h-10" src={parametres} alt="parametres" />
           </Link>
