@@ -1,5 +1,6 @@
 const models = require("../models");
 
+// get all users
 const browse = (req, res) => {
   models.user
     .findAll()
@@ -12,6 +13,7 @@ const browse = (req, res) => {
     });
 };
 
+// get user by its id
 const read = (req, res) => {
   models.user
     .find(req.params.id)
@@ -28,10 +30,9 @@ const read = (req, res) => {
     });
 };
 
+// edit an user
 const edit = (req, res) => {
   const user = req.body;
-
-  // TODO validations (length, format...)
 
   user.id = parseInt(req.params.id, 10);
 
@@ -50,10 +51,9 @@ const edit = (req, res) => {
     });
 };
 
+// add an user
 const add = (req, res) => {
   const user = req.body;
-
-  // TODO validations (length, format...)
 
   models.user
     .insert(user)
@@ -66,6 +66,7 @@ const add = (req, res) => {
     });
 };
 
+// delete an user
 const destroy = (req, res) => {
   models.user
     .delete(req.params.id)

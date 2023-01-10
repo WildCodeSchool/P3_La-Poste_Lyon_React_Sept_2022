@@ -2,64 +2,68 @@ const express = require("express");
 
 const router = express.Router();
 
-const hashPassword = require("./views/auth");
-
-// Users management
+const { hashPassword, verifyPassword, verifyToken } = require("./views/auth");
 
 const userControllers = require("./controllers/userControllers");
+const authentificationControllers = require("./controllers/authentificatorControllers");
+const categoryControllers = require("./controllers/categoryControllers");
+const tutoControllers = require("./controllers/tutoControllers");
+const statusControllers = require("./controllers/statusControllers");
+const stepperControllers = require("./controllers/stepperControllers");
 
+// PUBLIC ROUTES
+
+// Users management
 router.get("/users", userControllers.browse);
-router.get("/user/:id", userControllers.read);
-router.put("/user/:id", userControllers.edit);
-router.post("/users", hashPassword, userControllers.add);
-router.delete("/user/:id", userControllers.destroy);
-
-// const itemControllers = require("./controllers/itemControllers");
-
-// router.get("/items", itemControllers.browse);
-// router.get("/items/:id", itemControllers.read);
-// router.put("/items/:id", itemControllers.edit);
-// router.post("/items", itemControllers.add);
-// router.delete("/items/:id", itemControllers.destroy);
+router.get("/users/:id", userControllers.read);
+router.post(
+  "/api/login",
+  authentificationControllers.getUserByEmailWithPasswordAndPassToNext,
+  verifyPassword
+);
 
 // Categories management
-
-const categoryControllers = require("./controllers/categoryControllers");
-
 router.get("/categories", categoryControllers.browse);
-router.get("/category/:id", categoryControllers.read);
-router.put("/category/:id", categoryControllers.edit);
-router.post("/category", categoryControllers.add);
-router.delete("/category/:id", categoryControllers.destroy);
+router.get("/categories/:id", categoryControllers.read);
 
 // Tutos management
-
-const tutoControllers = require("./controllers/tutoControllers");
-
 router.get("/tutos", tutoControllers.browse);
-router.get("/tuto/:id", tutoControllers.read);
-router.put("/tuto/:id", tutoControllers.edit);
-router.post("/tuto", tutoControllers.add);
-router.delete("/tuto/:id", tutoControllers.destroy);
+router.get("/tutos/:id", tutoControllers.read);
 
 // Status management
-
-const statusControllers = require("./controllers/statusControllers");
-
 router.get("/status", statusControllers.browse);
 router.get("/status/:id", statusControllers.read);
+
+// Stepper management
+router.get("/steppers", stepperControllers.browse);
+router.get("/steppers/:id", stepperControllers.read);
+
+// PROTECTED ROUTES
+router.use(verifyToken); // From this point, the middleware verifyToken will be used at the beginning of all functions
+
+// Users management
+router.put("/users/:id", userControllers.edit);
+router.post("/users", hashPassword, userControllers.add);
+router.delete("/users/:id", userControllers.destroy);
+
+// Categories management
+router.put("/categories/:id", categoryControllers.edit);
+router.post("/categories", categoryControllers.add);
+router.delete("/categories/:id", categoryControllers.destroy);
+
+// Tutos management
+router.put("/tutos/:id", tutoControllers.edit);
+router.post("/tutos", tutoControllers.add);
+router.delete("/tutos/:id", tutoControllers.destroy);
+
+// Status management
 router.put("/status/:id", statusControllers.edit);
 router.post("/status", statusControllers.add);
 router.delete("/status/:id", statusControllers.destroy);
 
 // Stepper management
-
-const stepperControllers = require("./controllers/stepperControllers");
-
-router.get("/steppers", stepperControllers.browse);
-router.get("/stepper/:id", stepperControllers.read);
-router.put("/stepper/:id", stepperControllers.edit);
+router.put("/steppers/:id", stepperControllers.edit);
 router.post("/steppers", stepperControllers.add);
-router.delete("/stepper/:id", stepperControllers.destroy);
+router.delete("/steppers/:id", stepperControllers.destroy);
 
 module.exports = router;

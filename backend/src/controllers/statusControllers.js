@@ -1,5 +1,6 @@
 const models = require("../models");
 
+// get all status
 const browse = (req, res) => {
   models.status
     .findAll()
@@ -12,6 +13,7 @@ const browse = (req, res) => {
     });
 };
 
+// get status by its id
 const read = (req, res) => {
   models.status
     .find(req.params.id)
@@ -28,10 +30,9 @@ const read = (req, res) => {
     });
 };
 
+// edit a status
 const edit = (req, res) => {
   const status = req.body;
-
-  // TODO validations (length, format...)
 
   status.id = parseInt(req.params.id, 10);
 
@@ -50,10 +51,9 @@ const edit = (req, res) => {
     });
 };
 
+// add a status
 const add = (req, res) => {
   const status = req.body;
-
-  // TODO validations (length, format...)
 
   models.status
     .insert(status)
@@ -66,6 +66,7 @@ const add = (req, res) => {
     });
 };
 
+// delete a status
 const destroy = (req, res) => {
   models.status
     .delete(req.params.id)

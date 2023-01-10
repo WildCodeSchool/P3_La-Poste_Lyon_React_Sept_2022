@@ -1,5 +1,6 @@
 const models = require("../models");
 
+// get all tutos
 const browse = (req, res) => {
   models.tuto
     .findAll()
@@ -12,6 +13,7 @@ const browse = (req, res) => {
     });
 };
 
+// get a tuto with its id
 const read = (req, res) => {
   models.tuto
     .find(req.params.id)
@@ -28,10 +30,9 @@ const read = (req, res) => {
     });
 };
 
+// edit a tuto
 const edit = (req, res) => {
   const tuto = req.body;
-
-  // TODO validations (length, format...)
 
   tuto.id = parseInt(req.params.id, 10);
 
@@ -50,15 +51,14 @@ const edit = (req, res) => {
     });
 };
 
+// add a tuto
 const add = (req, res) => {
   const tuto = req.body;
-
-  // TODO validations (length, format...)
 
   models.tuto
     .insert(tuto)
     .then(([result]) => {
-      res.location(`/tuto/${result.insertId}`).sendStatus(201);
+      res.location(`/tutos/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -66,6 +66,7 @@ const add = (req, res) => {
     });
 };
 
+// delete a tuto
 const destroy = (req, res) => {
   models.tuto
     .delete(req.params.id)

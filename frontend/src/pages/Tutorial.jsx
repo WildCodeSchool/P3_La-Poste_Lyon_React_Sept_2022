@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
-import Stepper from "@components/Stepper";
+import Stepper from "../components/Stepper";
 import BannerProfile from "../components/BannerProfile";
 import NavigationBar from "../components/NavigationBar";
 import PreviousButton from "../components/PreviousButton";

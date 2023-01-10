@@ -19,26 +19,15 @@ class CategoryManager extends AbstractManager {
 
   insert(category) {
     return this.connection.query(
-      `insert into ${this.table} (name, short_description, icon, position) values (?, ?, ?, ?)`,
-      [
-        category.name,
-        category.short_description,
-        category.icon,
-        category.position,
-      ]
+      `insert into ${this.table} (name, icon, position) values (?, ?, ?)`,
+      [category.name, category.icon, category.position]
     );
   }
 
   update(category) {
     return this.connection.query(
-      `update ${this.table} set name = ?, short_description = ?, icon = ?, position = ? where id = ?`,
-      [
-        category.name,
-        category.short_description,
-        category.icon,
-        category.position,
-        category.id,
-      ]
+      `update ${this.table} set name = ?, icon = ?, position = ? where id = ?`,
+      [category.name, category.icon, category.position, category.id]
     );
   }
 }

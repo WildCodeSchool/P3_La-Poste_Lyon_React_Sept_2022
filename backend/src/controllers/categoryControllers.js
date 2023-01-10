@@ -1,5 +1,6 @@
 const models = require("../models");
 
+// get all categories
 const browse = (req, res) => {
   models.category
     .findAll()
@@ -12,6 +13,7 @@ const browse = (req, res) => {
     });
 };
 
+// get category by its id
 const read = (req, res) => {
   models.category
     .find(req.params.id)
@@ -28,10 +30,9 @@ const read = (req, res) => {
     });
 };
 
+// edit a category
 const edit = (req, res) => {
   const category = req.body;
-
-  // TODO validations (length, format...)
 
   category.id = parseInt(req.params.id, 10);
 
@@ -50,15 +51,14 @@ const edit = (req, res) => {
     });
 };
 
+// add a category
 const add = (req, res) => {
   const category = req.body;
-
-  // TODO validations (length, format...)
 
   models.category
     .insert(category)
     .then(([result]) => {
-      res.location(`/category/${result.insertId}`).sendStatus(201);
+      res.location(`/categories/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -66,6 +66,7 @@ const add = (req, res) => {
     });
 };
 
+// delete a category
 const destroy = (req, res) => {
   models.category
     .delete(req.params.id)
