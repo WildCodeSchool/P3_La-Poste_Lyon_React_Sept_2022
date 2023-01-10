@@ -4,7 +4,6 @@ import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import Stepper from "../components/Stepper";
 import BannerProfile from "../components/BannerProfile";
-import NavigationBar from "../components/NavigationBar";
 import PreviousButton from "../components/PreviousButton";
 
 function Tutorial() {
@@ -18,7 +17,6 @@ function Tutorial() {
 
   return (
     <>
-      <NavigationBar />
       <BannerProfile />
       <div className="p-6 md:p-2">
         <Link to="/categories">

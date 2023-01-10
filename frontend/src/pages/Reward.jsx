@@ -1,5 +1,4 @@
 import React from "react";
-import NavigationBar from "../components/NavigationBar";
 import BannerProfile from "../components/BannerProfile";
 import badgeConnect from "../assets/Rewards/1.svg";
 import badgeSecu from "../assets/Rewards/2.png";
@@ -17,9 +16,8 @@ import badgeHorizon from "../assets/Rewards/12.png";
 function Reward() {
   return (
     <div>
-      <NavigationBar />
       <BannerProfile />
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-10">
         <div className="grid overflow-hidden grid-cols-3 grid-rows-4 gap-5">
           <img
             className="flex justify-center"

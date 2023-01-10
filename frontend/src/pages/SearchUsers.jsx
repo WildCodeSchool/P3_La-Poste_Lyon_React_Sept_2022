@@ -1,6 +1,6 @@
-import BannerProfile from "@components/BannerProfile";
-import PreviousButton from "@components/PreviousButton";
 import React, { useState } from "react";
+import BannerProfile from "../components/BannerProfile";
+import PreviousButton from "../components/PreviousButton";
 
 function SearchUsers() {
   const users = [

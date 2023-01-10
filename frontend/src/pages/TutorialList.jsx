@@ -1,10 +1,9 @@
 import React from "react";
 import { /* useParams */ Link } from "react-router-dom";
-import BannerProfile from "@components/BannerProfile";
+import BannerProfile from "../components/BannerProfile";
 import AccessButton from "../components/AccessButton";
 import PreviousButton from "../components/PreviousButton";
 /* useParams is disable for the moment because we are not fetching */
-import NavigationBar from "../components/NavigationBar";
 
 /* I import category list img but only to display the fake list, it will be deleted when we'll import our DB */
 import connected from "../assets/tutorial-category-img/connected.svg";
@@ -235,7 +234,6 @@ function TutorialList() {
 
   return (
     <>
-      <NavigationBar />
       <BannerProfile />
       <section className="m-6">
         <Link to="/categories" className="m-6">
