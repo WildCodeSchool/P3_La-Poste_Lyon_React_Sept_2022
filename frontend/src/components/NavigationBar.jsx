@@ -14,7 +14,7 @@ function NavigationBar() {
 
   return (
     <nav className="navbar">
-      <div className="justify-between mx-autol md:items-center shadow-lg flex h-20 relative z-10">
+      <div className=" relative justify-between mx-autol md:items-center shadow-lg flex h-20 z-10 right-0 top-25">
         <Link to="/dashboard" className="flex items-center">
           <img src={logo} alt="Ligne Bleue" className="h-14 w-14" />
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white" />
@@ -65,9 +65,9 @@ function NavigationBar() {
 
       <div className="relative z-10">
         <div
-          className={`flex-1 justify-self-center md:block md:pb-0 md:mt-0 ${
+          className={`absolute flex-1 justify-self-center md:absolute md:pb-0 md:mt-0 ${
             open
-              ? "block absolute shadow-lg top-0 right-0 bg-white w-screen md:w-96 h-screen z-0 "
+              ? "absolute shadow-lg top-0 right-0 bg-white w-screen md:w-96 h-screen z-10 "
               : "hidden"
           }`}
         >

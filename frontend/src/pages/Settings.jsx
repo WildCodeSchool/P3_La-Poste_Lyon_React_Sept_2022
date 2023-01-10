@@ -52,11 +52,11 @@ function Settings() {
       <Link to="/dashboard">
         <PreviousButton />
       </Link>
-      <div className="mt-4 flex justify-center flex-col">
+      <div className="mt-4 flex justify-center flex-col z-1">
         <h1 className="flex w-full justify-center items-center text-bold text-xl text-black my-8 h-10 md:text-2xl text-center md:h-14 md:text-center ">
           Modifier mes informations
         </h1>
-        <div className="flex justify-center  ">
+        <div className="flex justify-center">
           {!uploadedImage && (
             <img
               src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8HE9nJ03LBSlHivqF46xHQ640tNgo-9nnFrUMANrL3tf4lOHdDeNzjLZurWNUf3oIt8&usqp=CAU"

@@ -5,7 +5,7 @@ import AccessButton from "../components/AccessButton";
 
 function Historic() {
   return (
-    <div>
+    <div className="z-0">
       <h1 className="text-2xl text-center mt-10 mb-20">
         Liste des tutoriels réalisés
       </h1>
