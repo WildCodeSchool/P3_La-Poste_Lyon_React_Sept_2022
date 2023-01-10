@@ -1,5 +1,8 @@
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+
+import CurrentUserContext from "../contexts/userContext";
+
 import profil from "../assets/profil.png";
 import categories from "../assets/categories.png";
 import jeux from "../assets/jeux.png";
@@ -9,6 +12,19 @@ import logo from "../assets/Logo.png";
 import historic from "../assets/Historique.png";
 
 function NavigationBar() {
+  const { currentUser } = useContext(CurrentUserContext);
+
+  const navigate = useNavigate();
+
+  // Log Out remove localStorage and navigate to the main page with a reload
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+
+    navigate("/");
+    window.location.reload();
+  };
+
   // useState used to open and close the burger menu
   const [open, setOpen] = useState(false);
 
@@ -19,50 +35,54 @@ function NavigationBar() {
           <img src={logo} alt="Ligne Bleue" className="h-14 w-14" />
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white" />
         </Link>
+        {/* If connected -> enable menu burger */}
 
-        {/*  */}
-        <div className="block">
-          <button
-            type="button"
-            className="p-2 text-black rounded-md outline-none"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? (
-              <svg
-                onClick={() => setOpen(!open)}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="#333"
-                className="w-12 h-12"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            ) : (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="#333"
-                className="w-12 h-12"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                />
-              </svg>
-            )}
-          </button>
-        </div>
+        {currentUser.email ? (
+          <div className="block">
+            {/* Menu burger */}
+            <button
+              type="button"
+              className="p-2 text-black rounded-md outline-none"
+              onClick={() => setOpen(!open)}
+            >
+              {open ? (
+                <svg
+                  onClick={() => setOpen(!open)}
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="#333"
+                  className="w-12 h-12"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="#333"
+                  className="w-12 h-12"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
-
       <div className="relative z-10">
         <div
           className={`flex-1 justify-self-center md:block md:pb-0 md:mt-0 ${
@@ -154,6 +174,7 @@ function NavigationBar() {
 
             <li className="text-right pr-3 flex  w-full justify-center ">
               <button
+                onClick={() => handleLogout()}
                 type="button"
                 className="text-xl underline text-[#003DA5]"
               >

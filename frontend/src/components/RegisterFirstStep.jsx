@@ -1,10 +1,39 @@
 import React from "react";
-import { Link } from "react-scroll";
+import { scroller } from "react-scroll";
+
 import RegisterSecondStep from "./RegisterSecondStep";
 
-function RegisterFirstStep() {
+function RegisterFirstStep({
+  setRegisterInformations,
+  registerInformations,
+  submitRegisterInformations,
+}) {
   /* State to make the helper modale */
   const [showModal, setShowModal] = React.useState(false);
+
+  /* Store the email */
+  const [email, setEmail] = React.useState("");
+
+  /* Set email */
+  const handleEmail = (event) => {
+    setEmail(event.target.value);
+  };
+
+  /* Update the registerInformations object  */
+  const toTheSecondStep = (e) => {
+    e.preventDefault();
+    setRegisterInformations({
+      ...registerInformations,
+      email,
+    });
+
+    scroller.scrollTo("RegisterSecondStep", {
+      duration: 800,
+      delay: 0,
+      smooth: "easeInOutQuart",
+      offset: -100,
+    });
+  };
 
   return (
     <>
@@ -55,7 +84,7 @@ function RegisterFirstStep() {
           </div>
           <div className="flex justify-center items-center pt-10">
             <div className="w-screen max-w-md h-content max-h-xl">
-              <form className="rounded px-8 pt-6 pb-8">
+              <div className="rounded px-8 pt-6 pb-8">
                 <div className="mb-4">
                   <p className="text-gray-300 font-light italic">
                     Tous les champs sont obligatoires
@@ -150,7 +179,11 @@ function RegisterFirstStep() {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                     id="username"
-                    type="text"
+                    type="email"
+                    pattern="/^([a-z0-9.])+\@gmail.com+$/"
+                    required
+                    value={email}
+                    onChange={handleEmail}
                     placeholder="Entrez votre adresse mail"
                   />
                 </div>
@@ -160,33 +193,38 @@ function RegisterFirstStep() {
                 </p>
                 <div className="mb-6">
                   <div className="flex justify-center pt-5">
-                    {/* add the Link to scroll the de second register step component */}
-                    <Link to="RegisterSecondStep" smooth duration={800}>
-                      <button type="button" className="flex">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          className="w-10 h-10"
-                          strokeWidth="3"
-                          stroke="#003DA5"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M13.5 4.5L21 12m0 0l-7.5 7.5M 21 12H3"
-                          />
-                        </svg>
-                      </button>
-                    </Link>
+                    <button
+                      onClick={toTheSecondStep}
+                      type="button"
+                      className="flex"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        className="w-10 h-10"
+                        strokeWidth="3"
+                        stroke="#003DA5"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.5 4.5L21 12m0 0l-7.5 7.5M 21 12H3"
+                        />
+                      </svg>
+                    </button>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <RegisterSecondStep />
+      <RegisterSecondStep
+        setRegisterInformations={setRegisterInformations}
+        registerInformations={registerInformations}
+        submitRegisterInformations={submitRegisterInformations}
+      />
     </>
   );
 }

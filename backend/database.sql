@@ -169,8 +169,8 @@ CREATE TABLE `user` (
   `hashedPassword` varchar(255) NOT NULL,
   `phone` varchar(16) DEFAULT NULL,
   `profilePicture` varchar(255) DEFAULT NULL,
-  `level` int NOT NULL DEFAULT '1',
-  `admin` tinyint(1) NOT NULL DEFAULT '0',
+  `level` int DEFAULT 1 NOT NULL,
+  `admin` tinyint(1) DEFAULT 0 NOT NULL,
   `creationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
