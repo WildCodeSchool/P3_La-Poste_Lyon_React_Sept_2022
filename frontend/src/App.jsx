@@ -7,7 +7,9 @@ import "./index.css";
 function App() {
   return (
     <Router>
-      <NavigationBar />
+      <div className="">
+        <NavigationBar />
+      </div>
       <AllRoutes />
     </Router>
   );
