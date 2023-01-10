@@ -1,7 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import RegisterFirstStep from "../components/RegisterFirstStep";
-import NavigationBar from "../components/NavigationBar";
 
 function RegisterPage() {
   const navigate = useNavigate();
@@ -41,7 +40,7 @@ function RegisterPage() {
 
     e.preventDefault();
 
-    fetch("http://localhost:5000/api/users/register", requestOptions)
+    fetch(`http://localhost:5000/api/users/register`, requestOptions)
       .then((response) => response.text())
       .catch(console.error);
 
@@ -49,16 +48,13 @@ function RegisterPage() {
   };
 
   return (
-    <>
-      <NavigationBar />
-      <form>
-        <RegisterFirstStep
-          registerInformations={registerInformations}
-          setRegisterInformations={setRegisterInformations}
-          submitRegisterInformations={submitRegisterInformations}
-        />
-      </form>
-    </>
+    <form>
+      <RegisterFirstStep
+        registerInformations={registerInformations}
+        setRegisterInformations={setRegisterInformations}
+        submitRegisterInformations={submitRegisterInformations}
+      />
+    </form>
   );
 }
 

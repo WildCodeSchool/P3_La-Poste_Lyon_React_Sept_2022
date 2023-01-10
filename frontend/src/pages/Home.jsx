@@ -1,15 +1,12 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
-import NavigationBar from "../components/NavigationBar";
 
 export default function Home() {
   return (
     <div className="Home">
-      <NavigationBar />
-
       <div className="flex h-100 text-xl md:text-2xl justify-center">
         {/* man div opening */}
-        <div className="flex flex-col mt-[15vh] items-center justify-center">
+        <div className="flex flex-col mt-[20vh] items-center justify-center">
           {/* switching image by hidden property */}
           <img
             className="block sm:hidden "
@@ -34,7 +31,7 @@ export default function Home() {
             </button>
             <button
               type="button"
-              className="border-2 text-blue-800 bg-slate-200 drop-shadow shadow-lg underline underline-offset-4 w-5/6 lg:w-2/6 h-24 rounded-lg z-0"
+              className="border-2 text-blue-800 bg-slate-200 drop-shadow shadow-lg underline underline-offset-4 w-5/6 md:w-2/6 h-24 rounded-lg z-0"
             >
               <Link to="/registerPage">
                 <h1>Nouvel utilisateur?</h1>

@@ -10,6 +10,8 @@ import recompenses from "../assets/recompenses.png";
 import parcours from "../assets/parcours.png";
 import logo from "../assets/Logo.png";
 import historic from "../assets/Historique.png";
+import closemenu from "../assets/closemenu.svg";
+import openmenu from "../assets/menuopen.svg";
 
 function NavigationBar() {
   const { currentUser } = useContext(CurrentUserContext);
@@ -30,7 +32,7 @@ function NavigationBar() {
 
   return (
     <nav className="navbar">
-      <div className="justify-between mx-autol md:items-center shadow-lg flex h-20 relative z-10">
+      <div className=" relative justify-between mx-autol md:items-center shadow-lg flex h-20 z-10 right-0 top-25">
         <Link to="/dashboard" className="flex items-center">
           <img src={logo} alt="Ligne Bleue" className="h-14 w-14" />
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white" />
@@ -45,37 +47,13 @@ function NavigationBar() {
               className="p-2 text-black rounded-md outline-none"
               onClick={() => setOpen(!open)}
             >
+              {/*  <img src={closemenu} />
+              <img src={openmenu} /> */}
+
               {open ? (
-                <svg
-                  onClick={() => setOpen(!open)}
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="#333"
-                  className="w-12 h-12"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+                <img src={closemenu} className="h-12 w-12" alt="Open menu " />
               ) : (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="#333"
-                  className="w-12 h-12"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-                  />
-                </svg>
+                <img src={openmenu} className="h-12 w-12" alt="Close menu" />
               )}
             </button>
           </div>
@@ -85,9 +63,9 @@ function NavigationBar() {
       </div>
       <div className="relative z-10">
         <div
-          className={`flex-1 justify-self-center md:block md:pb-0 md:mt-0 ${
+          className={`absolute flex-1 justify-self-center md:absolute md:pb-0 md:mt-0 ${
             open
-              ? "block absolute shadow-lg top-0 right-0 bg-white w-screen md:w-96 h-screen z-0 "
+              ? "absolute shadow-lg top-0 right-0 bg-white w-screen md:w-96 h-screen z-10 "
               : "hidden"
           }`}
         >
@@ -99,6 +77,7 @@ function NavigationBar() {
             }
           >
             {/* Profil  */}
+
             <li className="text-[#333]  text-right pr-3 flex   w-full md:justify-start ">
               <NavLink
                 to="/dashboard"

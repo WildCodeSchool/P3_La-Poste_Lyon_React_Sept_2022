@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import NavigationBar from "@components/NavigationBar";
 import { useCurrentUserContext } from "../contexts/userContext";
 import granny from "../assets/granny1.svg";
 import arobase from "../assets/arobaselogo.png";
 import locker from "../assets/lockerlogo.png";
 import forgotpass from "../assets/forgotpass.svg";
+import Footer from "../components/Footer";
 
 function AuthentificationPage() {
   /* Get the context of the user (user informations + token) */
@@ -58,8 +58,6 @@ function AuthentificationPage() {
 
   return (
     <>
-      <NavigationBar />
-
       <form
         onSubmit={handleSubmit}
         className=" flex flex-col items-center justify-center  "
@@ -68,7 +66,7 @@ function AuthentificationPage() {
           CONNECTEZ-VOUS
         </h1>
 
-        <div className=" flex ml-10 md:w-3/5 md:justify-center ">
+        <div className=" flex ml-10 md:w-3/5 justify-center ">
           <label htmlFor="email" name="email">
             <img src={arobase} alt="arobase" className="w-14 h-14 ml1-1" />
           </label>
@@ -88,7 +86,7 @@ function AuthentificationPage() {
           adresse e-mail oubliée?
         </p>
 
-        <div className="flex ml-10 md:w-3/5 md:justify-center">
+        <div className="flex justify-center md:w-3/5">
           <label htmlFor="password" name="password">
             <img src={locker} alt="locker" className="w-14 h-14 ml1-1" />{" "}
           </label>
@@ -103,30 +101,31 @@ function AuthentificationPage() {
             className="bg-gray-200 -4mb0 text-gray-600   py-2 px-4 border  rounded-2xl md:w-3/5 "
           />
         </div>
-        <p className="italic text-gray-400 underline mb-20 ml-40">
-          mot de passe oublié?
+        <p className="italic text-gray-400 underline mb-4 ml-28 md:ml-80 text-xs md:text-sm md:mb-16">
+          mot de passe oublié ?
         </p>
 
-        <div className=" flex flex-col items-center justify-center ml-20 mr-20 ">
+        <div className=" flex flex-col items-center justify-center ml-20 mr-20 md:mb-4">
           <img
             src={granny}
-            className=" max-w-sm w-64 h-64 md:hidden mb-16"
+            className=" max-w-sm w-64 h-64 md:hidden mb-8"
             alt="granny"
           />
           <img
             src={forgotpass}
-            className=" hidden w-21 h-31 mr-50 md:block mb-16"
+            className=" hidden w-21 h-31 mr-50 md:block mb-8 md:mb-9"
             alt="forgotpass"
           />
         </div>
 
         <button
           type="submit"
-          className="bg-[#003DA5] text-white m-1 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+          className="bg-[#003DA5] text-white m-1 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black mb-28"
         >
           Connexion
         </button>
       </form>
+      <Footer />
     </>
   );
 }
