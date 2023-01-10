@@ -6,13 +6,11 @@ import badge1 from "../assets/badge1.png";
 import AccessButton from "./AccessButton";
 import BannerProfile from "./BannerProfile";
 import usercourse from "../assets/parcours.png";
-import MyDash from "./MyDash";
 
 function DashboardUser() {
   return (
     <div className="">
       <BannerProfile />
-      <MyDash />
       <ul className="grid overflow-hidden grid-cols-2 grid-rows-3 gap-5 md:grid md:overflow-hidden md:grid-cols-2 md:grid-rows-2 md:gap-5 mx-6">
         {/* <li> elements are contained in <Link> to redirect the user to the corresponding page */}
         <li className=" box row-start-1 row-span-1 col-start-1 col-span-1 my-3 md:m-6 border shadow-xl rounded-lg text-center h-65 md:box md:row-start-1 md:row-span-1 md:col-start-1 md:col-span-1">
