@@ -1,10 +1,36 @@
 import React from "react";
-import { Link } from "react-scroll";
+import { scroller } from "react-scroll";
 import RegisterThirdStep from "./RegisterThirdStep";
 
-function RegisterSecondStep() {
+function RegisterSecondStep({
+  registerInformations,
+  setRegisterInformations,
+  submitRegisterInformations,
+}) {
   /* State to make the helper modale */
   const [showModal, setShowModal] = React.useState(false);
+
+  /* Set password */
+  const [password, setPassword] = React.useState("");
+  const handlePassword = (event) => {
+    setPassword(event.target.value);
+  };
+
+  /* We upload the registerInformations object with the password and we scroll to the third step */
+  const toTheThirdStep = () => {
+    setRegisterInformations({
+      ...registerInformations,
+      password,
+    });
+
+    scroller.scrollTo("RegisterThirdStep", {
+      duration: 800,
+      delay: 0,
+      smooth: "easeInOutQuart",
+      offset: -100,
+    });
+  };
+
   return (
     <>
       <div
@@ -61,7 +87,7 @@ function RegisterSecondStep() {
           </div>
           <div className="flex justify-center items-center pt-10">
             <div className="w-screen max-w-md">
-              <form className="bg-white rounded px-8 pt-6 pb-8 mb-10">
+              <div className="bg-white rounded px-8 pt-6 pb-8 mb-10">
                 <div className="mb-6">
                   <p className="text-gray-300 font-light italic">
                     Tous les champs sont obligatoires
@@ -158,6 +184,9 @@ function RegisterSecondStep() {
                   <input
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                     id="password"
+                    value={password}
+                    required
+                    onChange={handlePassword}
                     type="password"
                     placeholder="Entrez un mot de passe"
                   />
@@ -165,33 +194,34 @@ function RegisterSecondStep() {
                     Pensez à bien le retenir !
                   </p>
                   <div className="flex justify-center pt-10">
-                    {/* add the Link to scroll the de third register step component */}
-                    <Link to="RegisterThirdStep" smooth duration={800}>
-                      <button type="button">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          className="w-10 h-10"
-                          strokeWidth="3"
-                          stroke="#003DA5"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M13.5 4.5L21 12m0 0l-7.5 7.5M 21 12H3"
-                          />
-                        </svg>
-                      </button>
-                    </Link>
+                    <button type="button" onClick={toTheThirdStep}>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        className="w-10 h-10"
+                        strokeWidth="3"
+                        stroke="#003DA5"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M13.5 4.5L21 12m0 0l-7.5 7.5M 21 12H3"
+                        />
+                      </svg>
+                    </button>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      <RegisterThirdStep />
+      <RegisterThirdStep
+        setRegisterInformations={setRegisterInformations}
+        submitRegisterInformations={submitRegisterInformations}
+        registerInformations={registerInformations}
+      />
     </>
   );
 }

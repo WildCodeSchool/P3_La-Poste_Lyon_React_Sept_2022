@@ -20,6 +20,8 @@
     /* Adding this rules to improve ternary expression on JSX */
     "no-nested-ternary": "off",
     "no-console": "off",
+    /* Remove prop-types  */
+    "react/prop-types": "off",
     "no-restricted-syntax": [
       "error",
       {
