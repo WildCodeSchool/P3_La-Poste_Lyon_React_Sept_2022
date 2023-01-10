@@ -105,16 +105,20 @@ function Settings() {
               </label>{" "}
               <div className="w-full flex justify-end items-center relative">
                 <input
+                  required
+                  pattern=".+"
                   placeholder="Prénom"
-                  className=" border-gray-400 bg-gray-100 rounded-bl-lg rounded-br-lg p-4 w-full h-10"
+                  className=" border-gray-400 bg-gray-100 rounded-bl-lg rounded-br-lg p-4 w-full h-10 "
                   onChange={(event) => setInputcontent(event.target.value)}
                   onKeyDown={handleInput1}
                 />
-                <img
-                  src={pencil}
-                  className="absolute mr-2 w-6 h-6"
-                  alt="Search Icon"
-                />{" "}
+                <button
+                  type="submit"
+                  required
+                  className="cursor-pointer bg-blu text-white p-2 rounded-full h-10 w-10 flex justify-center items-center "
+                >
+                  <img src={pencil} className="w-6 h-6" alt="Edit Icon" />
+                </button>
               </div>
             </li>
             <li className=" mx-10 md:mx-48 mb-16 my-3 md:m-6 border shadow-xl rounded-lg text-center">
@@ -124,16 +128,20 @@ function Settings() {
               </label>{" "}
               <div className="w-full flex justify-end items-center relative">
                 <input
+                  required
+                  pattern=".+"
                   placeholder="Nom"
                   className=" border-gray-400 bg-gray-100 rounded-bl-lg rounded-br-lg  p-4 w-full h-10"
                   onChange={(event) => setInputcontent(event.target.value)}
                   onKeyDown={handleInput2}
                 />
-                <img
-                  src={pencil}
-                  className="absolute mr-2 w-6 h-6"
-                  alt="Search Icon"
-                />{" "}
+                <button
+                  type="submit"
+                  required
+                  className="cursor-pointer bg-blu text-white p-2 rounded-full h-10 w-10 flex justify-center items-center"
+                >
+                  <img src={pencil} className="w-6 h-6" alt="Edit Icon" />
+                </button>
               </div>
             </li>
 
@@ -144,16 +152,20 @@ function Settings() {
               </label>{" "}
               <div className="w-full flex justify-end items-center relative">
                 <input
-                  placeholder="06-62-02-02-02"
-                  className=" border-gray-400 bg-gray-100 rounded-bl-lg rounded-br-lg p-4 w-full h-10"
+                  placeholder="Numéro de téléphone"
+                  className="border-gray-400 bg-gray-100 rounded-bl-lg rounded-br-lg p-4 w-full h-10"
                   onChange={(event) => setInputcontent(event.target.value)}
                   onKeyDown={handleInput3}
+                  required
+                  pattern=".+"
                 />
-                <img
-                  src={pencil}
-                  className="absolute mr-2 w-6 h-6"
-                  alt="Search Icon"
-                />{" "}
+                <button
+                  type="submit"
+                  required
+                  className="cursor-pointer text-white p-2 rounded-full h-10 w-10 flex justify-center items-center"
+                >
+                  <img src={pencil} className="w-6 h-6" alt="Edit Icon" />
+                </button>
               </div>
             </li>
           </ul>
