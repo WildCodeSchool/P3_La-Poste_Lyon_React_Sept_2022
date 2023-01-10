@@ -9,7 +9,7 @@ export function CategoryContextProvider({ children }) {
 
   useEffect(() => {
     const getCategories = () => {
-      fetch("http://localhost:5000/categories")
+      fetch("http://localhost:5000/api/categories")
         .then((response) => response.json())
         .then((data) => {
           setCategories(data);

@@ -13,7 +13,7 @@ function Tutorial() {
   const [tutorial, setTutorial] = useState([]);
   useEffect(() => {
     const fetchTutorial = () => {
-      fetch(`http://localhost:5000/tutos/${id}`)
+      fetch(`http://localhost:5000/api/tutos/${id}`)
         .then((response) => response.json())
         .then((data) => setTutorial(data));
     };
