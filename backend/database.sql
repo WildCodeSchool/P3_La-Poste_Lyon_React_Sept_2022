@@ -68,31 +68,6 @@ LOCK TABLES `historical` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `status`
---
-
-DROP TABLE IF EXISTS `status`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `status` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `noStarted` tinyint(1) NOT NULL,
-  `inProgress` tinyint(1) NOT NULL,
-  `finished` tinyint(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `status`
---
-
-LOCK TABLES `status` WRITE;
-/*!40000 ALTER TABLE `status` DISABLE KEYS */;
-/*!40000 ALTER TABLE `status` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `stepper`
 --
 
@@ -135,12 +110,12 @@ CREATE TABLE `tuto` (
   `category_id` int NOT NULL,
   `creationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `position` int DEFAULT NULL,
-  `status_id` int DEFAULT NULL,
+  `notStarted` tinyint(1) DEFAULT '1',
+  `inProgress` tinyint(1) DEFAULT '0',
+  `finished` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
-  KEY `status_id` (`status_id`),
-  CONSTRAINT `tuto_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
-  CONSTRAINT `tuto_ibfk_3` FOREIGN KEY (`status_id`) REFERENCES `status` (`id`)
+  CONSTRAINT `tuto_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -150,7 +125,7 @@ CREATE TABLE `tuto` (
 
 LOCK TABLES `tuto` WRITE;
 /*!40000 ALTER TABLE `tuto` DISABLE KEYS */;
-INSERT INTO `tuto` VALUES (1,'Les étapes de la connexion','test','Vous trouverez dans ce tutoriel les étapes nécessaires de la connexion à internet.</p><p>Il s’agit ici d’un tutoriel très général qui vous donnera une vue d’ensemble des étapes à réaliser. Les pré-requis :Un appareil compatible (smartphone, tablette, ordinateur etc.)Un modem, ou routeur d’accès à internet (fourni par votre fournisseur d’accès)',1,'2023-01-04 20:02:57',1,NULL);
+INSERT INTO `tuto` VALUES (1,'Les étapes de la connexion','test','Vous trouverez dans ce tutoriel les étapes nécessaires de la connexion à internet.</p><p>Il s’agit ici d’un tutoriel très général qui vous donnera une vue d’ensemble des étapes à réaliser. Les pré-requis :Un appareil compatible (smartphone, tablette, ordinateur etc.)Un modem, ou routeur d’accès à internet (fourni par votre fournisseur d’accès)',1,'2023-01-04 20:02:57',1,1,0,0);
 /*!40000 ALTER TABLE `tuto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -169,12 +144,13 @@ CREATE TABLE `user` (
   `hashedPassword` varchar(255) NOT NULL,
   `phone` varchar(16) DEFAULT NULL,
   `profilePicture` varchar(255) DEFAULT NULL,
-  `level` int DEFAULT 1 NOT NULL,
-  `admin` tinyint(1) DEFAULT 0 NOT NULL,
+  `level` int NOT NULL DEFAULT '1',
+  `admin` tinyint(1) NOT NULL DEFAULT '0',
   `creationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb3;
+  UNIQUE KEY `email` (`email`),
+  UNIQUE KEY `phone` (`phone`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,7 +159,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Chloé','Bidau','chloebidau@hotmail.fr','$argon2id$v=19$m=65536,t=5,p=1$LUUgzhG3HKC2h3WiHdA25Q$fVVEe8DVvBO3hYRD9WYc6qeLj/Kdv6dZvIdZatvYFD4','0647067609','https://images.vexels.com/media/users/3/276920/isolated/preview/6bb7928ad0c767ef137af6a3b4d1cbfb-duck-with-sunglasses-flat.png',0,1,'2023-01-04 13:28:00'),(2,'Marion','Lalonde','marionmizulalonde@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$s96L8bP5O6Ab6f3FwKuHew$/6oWd2Ku1MAob+EMW+Zq4kYRQLaSCTICEkh2lCxEVDs','0666666666','https://media.giphy.com/media/LHZyixOnHwDDy/giphy.gif',0,1,'2023-01-04 13:29:49'),(3,'Quentin','Ferrari','ferrari.quentinjunk@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$1R5T86AylyPprWTMB/Up+Q$O8LJzLb9fNJOfb1CpeYt9nPTaHKX7DX+1snTBZyTT9k','0666666667','https://www.google.com/url?sa=i&url=https%3A%2F%2Ffr.motor1.com%2Fnews%2F596176%2Fferrari-sf90-stradale-novitec-2022%2F&psig=AOvVaw2ti95tJylwnVFqZDudTWy-&ust=1672925500525000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCIi9r6ODrvwCFQAAAAAdAAAAABAE',0,1,'2023-01-04 13:32:15'),(4,'Arnaud','Champetier','arnaud.champetier9@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$AXGPipQqFqCGnfvkM2IiTA$zdsuETA0LPq6woZ2LzXwfw75AfUSJj3Hjs9fXNpqrh4','0668008148','https://cdn.discordapp.com/attachments/1048258885544316998/1060139983748464750/DALLE_2023-01-02_23.41.52_-_a_horse_wearing_a_green_t-shirt_smoking_a_cigar_and_chilling_in_front_of_a_swimming_pool_hyper_realistic.png',0,1,'2023-01-04 13:33:46'),(5,'Morgan','Mezaache','mezaache.morgan@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$4cXuCobA1HmB1aoMr98bhA$RIBFYHZ1RyJreYyeQW/bmmMB8x1EB+0tnJ4Udd6DEWo','0761167419','https://play-lh.googleusercontent.com/KmDQ1FXpC2YwxVHcp0shE754vIc-tKQ0_cJEUl8mb3Fovw4nwj6IY_S7WkGM3PYA2w=w800-h500-rw',0,1,'2023-01-04 13:36:24');
+INSERT INTO `user` VALUES (1,'Chloé','Bidau','chloebidau@hotmail.fr','$argon2id$v=19$m=65536,t=5,p=1$LUUgzhG3HKC2h3WiHdA25Q$fVVEe8DVvBO3hYRD9WYc6qeLj/Kdv6dZvIdZatvYFD4','0647067609','https://images.vexels.com/media/users/3/276920/isolated/preview/6bb7928ad0c767ef137af6a3b4d1cbfb-duck-with-sunglasses-flat.png',0,1,'2023-01-04 13:28:00'),(2,'Marion','Lalonde','marionmizulalonde@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$s96L8bP5O6Ab6f3FwKuHew$/6oWd2Ku1MAob+EMW+Zq4kYRQLaSCTICEkh2lCxEVDs','0666666666','https://media.giphy.com/media/LHZyixOnHwDDy/giphy.gif',0,1,'2023-01-04 13:29:49'),(3,'Quentin','Ferrari','ferrari.quentinjunk@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$1R5T86AylyPprWTMB/Up+Q$O8LJzLb9fNJOfb1CpeYt9nPTaHKX7DX+1snTBZyTT9k','0666666667','https://www.google.com/url?sa=i&url=https%3A%2F%2Ffr.motor1.com%2Fnews%2F596176%2Fferrari-sf90-stradale-novitec-2022%2F&psig=AOvVaw2ti95tJylwnVFqZDudTWy-&ust=1672925500525000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCIi9r6ODrvwCFQAAAAAdAAAAABAE',0,1,'2023-01-04 13:32:15'),(4,'Arnaud','Champetier','arnaud.champetier9@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$AXGPipQqFqCGnfvkM2IiTA$zdsuETA0LPq6woZ2LzXwfw75AfUSJj3Hjs9fXNpqrh4','0668008148','https://cdn.discordapp.com/attachments/1048258885544316998/1060139983748464750/DALLE_2023-01-02_23.41.52_-_a_horse_wearing_a_green_t-shirt_smoking_a_cigar_and_chilling_in_front_of_a_swimming_pool_hyper_realistic.png',0,1,'2023-01-04 13:33:46'),(5,'Morgan','Mezaache','mezaache.morgan@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$4cXuCobA1HmB1aoMr98bhA$RIBFYHZ1RyJreYyeQW/bmmMB8x1EB+0tnJ4Udd6DEWo','0761167419','https://play-lh.googleusercontent.com/KmDQ1FXpC2YwxVHcp0shE754vIc-tKQ0_cJEUl8mb3Fovw4nwj6IY_S7WkGM3PYA2w=w800-h500-rw',0,1,'2023-01-04 13:36:24'),(12,'toto','toto','toto@toto','$argon2id$v=19$m=65536,t=5,p=1$ZsWbC2zbDPLihAEr9yZkYA$vZOhroy/wQKhIcSGIdLy3mNqSYxd0LpjCVwhY9k1Qm4','1234567890',NULL,1,0,'2023-01-10 15:27:36');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -196,4 +172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-01-06 10:50:40
+-- Dump completed on 2023-01-10 16:58:18

@@ -8,7 +8,6 @@ const userControllers = require("./controllers/userControllers");
 const authentificationControllers = require("./controllers/authentificatorControllers");
 const categoryControllers = require("./controllers/categoryControllers");
 const tutoControllers = require("./controllers/tutoControllers");
-const statusControllers = require("./controllers/statusControllers");
 const stepperControllers = require("./controllers/stepperControllers");
 
 // PUBLIC ROUTES
@@ -34,10 +33,6 @@ router.get("/api/categories/:id", categoryControllers.read);
 router.get("/api/tutos", tutoControllers.browse);
 router.get("/api/tutos/:id", tutoControllers.read);
 
-// Status management
-router.get("/api/status", statusControllers.browse);
-router.get("/api/status/:id", statusControllers.read);
-
 // Stepper management
 router.get("/api/steppers", stepperControllers.browse);
 router.get("/api/steppers/:id", stepperControllers.read);
@@ -59,11 +54,6 @@ router.delete("/api/categories/:id", categoryControllers.destroy);
 router.put("/api/tutos/:id", tutoControllers.edit);
 router.post("/api/tutos", tutoControllers.add);
 router.delete("/api/tutos/:id", tutoControllers.destroy);
-
-// Status management
-router.put("/api/status/:id", statusControllers.edit);
-router.post("/api/status", statusControllers.add);
-router.delete("/api/status/:id", statusControllers.destroy);
 
 // Stepper management
 router.put("/api/steppers/:id", stepperControllers.edit);
