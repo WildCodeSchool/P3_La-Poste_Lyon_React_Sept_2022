@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import User from "../assets/User.png";
 import medaille from "../assets/medaille.png";
 import parametres from "../assets/parametres.png";
 import CurrentUserContext from "../contexts/userContext";
@@ -25,7 +24,10 @@ function BannerProfile() {
               <Link to="/dashboard">
                 <img
                   className="border-black rounded-full w-20 h-20 mr-8"
-                  src={User}
+                  src={
+                    currentUser?.profilePicture ||
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8HE9nJ03LBSlHivqF46xHQ640tNgo-9nnFrUMANrL3tf4lOHdDeNzjLZurWNUf3oIt8&usqp=CAU"
+                  }
                   alt="userImage"
                 />
               </Link>

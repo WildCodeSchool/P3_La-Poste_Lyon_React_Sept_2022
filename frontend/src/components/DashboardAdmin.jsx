@@ -6,11 +6,10 @@ function DashboardAdmin() {
   return (
     <div className="DashboardAdmin">
       <div className="min-h-full w-full flex flex-col justify-center items-center text-xl">
+        <BannerProfile />
         <h1 className="flex justify-center bg-[#003DA5] text-white rounded-xl w-4/6 mb-10 mt-5 md:text-2xl p-1">
           Mon tableau de bord
         </h1>
-
-        <BannerProfile />
 
         <div className="w-5/6 mb-10">
           <p className="flex justify-center bg-[#003DA5] rounded-t-lg text-white md:text-2xl p-2">

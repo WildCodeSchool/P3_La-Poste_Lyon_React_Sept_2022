@@ -49,6 +49,7 @@ function AllRoutes() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/creation" element={<TutorialCreation />} />
           <Route path="/users" element={<SearchUsers />} />
+          <Route path="/settings" element={<Settings />} />
         </>
       )}
       <Route path="*" element={<Error />} />
