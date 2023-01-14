@@ -46,6 +46,7 @@ function AllRoutes() {
       {currentUser && currentUser.admin === 1 && (
         <>
           {/* Admin connexion */}
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/creation" element={<TutorialCreation />} />
           <Route path="/users" element={<SearchUsers />} />
         </>
