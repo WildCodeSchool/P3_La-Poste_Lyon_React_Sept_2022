@@ -61,12 +61,11 @@ function AuthentificationPage() {
       /* then I get the response to json. If response == 401 console log error else .then result
        */
       .then((response) => {
-        if (response.status === 401) {
-          notifyError();
-          setPassword("");
-          return;
+        if (response.status !== 401) {
+          /* eslint consistent-return: off */ return response.json();
         }
-        response.json();
+        notifyError();
+        setPassword("");
       })
       .then((result) => {
         if (result.token) {
