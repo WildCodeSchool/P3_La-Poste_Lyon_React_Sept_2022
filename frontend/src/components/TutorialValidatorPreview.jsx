@@ -1,6 +1,7 @@
 import React from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import stepCompleted from "../assets/step-complete.svg";
 
 function TutorialValidatorPreview({
   showModal,
@@ -72,20 +73,11 @@ function TutorialValidatorPreview({
                             {index === currentModaleStep ? (
                               `${step.position}`
                             ) : modalestepsCompleted[index] ? (
-                              <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                fill="none"
-                                viewBox="-7 0 24 27"
-                                strokeWidth="2"
-                                stroke="#003DA5"
-                                className="w-4 h-6"
-                              >
-                                <path
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  d="M4.5 12.75l6 6 9-13.5"
-                                />
-                              </svg>
+                              <img
+                                src={stepCompleted}
+                                alt="step completed"
+                                className="w-5 h-6"
+                              />
                             ) : (
                               `${step.position}`
                             )}

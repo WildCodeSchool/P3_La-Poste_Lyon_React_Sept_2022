@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import ReactQuill, { Quill } from "react-quill";
 import TutorialCreationTitles from "./TutorialCreationTitles";
+import addstep from "../assets/addstep.svg";
+import removestep from "../assets/removestep.svg";
 
 export default function StepperCreation({
   handleAllStepsContent,
@@ -167,38 +169,20 @@ export default function StepperCreation({
         <section className="flex w-full  justify-end">
           {/* Adding Input Button */}
           <button type="button" onClick={handleAddInput}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="#003DA5"
-              className="w-8 h-8 hover:stroke-[#FFC927]"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+            <img
+              src={addstep}
+              alt="add step"
+              className="w-8 h-8 transition ease-in-out delay-100  hover:scale-110 duration-300"
+            />
           </button>
 
           {/* Remove Input Button */}
           <button type="button" onClick={handleRemoveInput}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="#003DA5"
-              className="w-8 h-8 hover:stroke-[#FFC927]"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
+            <img
+              src={removestep}
+              alt="remove step"
+              className="w-8 h-8 transition ease-in-out delay-100  hover:scale-110 duration-300"
+            />
           </button>
         </section>
         {/* Submit and Previous Button */}
