@@ -83,7 +83,10 @@ function NavigationBar({ adminView, handleAdminView }) {
                     color="amber"
                     defaultChecked
                   />
-                  <h3 className="ml-3"> {adminView ? "User" : "Admin"}</h3>
+                  <h3 className="ml-3">
+                    {" "}
+                    {adminView ? "Utilisateur" : "Admin"}
+                  </h3>
                 </li>
 
                 {adminView ? (

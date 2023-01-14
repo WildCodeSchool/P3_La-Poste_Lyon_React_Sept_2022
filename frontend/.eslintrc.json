@@ -17,6 +17,8 @@
   },
   "plugins": ["react", "import"],
   "rules": {
+    /* Adding this rules to remove the problem with context passing children as a prop */
+    "react/prop-types": 0,
     /* Adding this rules to improve ternary expression on JSX */
     "no-nested-ternary": "off",
     "no-console": "off",
@@ -29,6 +31,7 @@
         "message": "You can only call the error() and warn() functions from the console object"
       }
     ],
+    "react/jsx-no-constructed-context-values": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/no-unescaped-entities": "off",
