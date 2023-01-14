@@ -12,6 +12,11 @@ function DashboardAdmin() {
   return (
     <div className="">
       <BannerProfile />
+      <div className="mt-2 flex justify-center">
+        <h1 className="flex justify-center items-center text-bold text-xl text-white rounded-xl shadow-lg bg-[#003DA5] w-2/3 h-10 md:text-2xl text-center md:w-1/4 md:h-10 md:text-center">
+          Mon tableau de bord
+        </h1>
+      </div>
       <ul className="grid overflow-hidden grid-cols-1 grid-rows-4 gap-5 md:grid md:overflow-hidden md:grid-cols-2 md:grid-rows-2 md:gap-5 mx-6">
         {/* <li> elements are contained in <Link> to redirect the user to the corresponding page */}
         <li className=" box row-start-1 row-span-1 col-start-1 col-span-1 my-3 md:m-6 border shadow-xl rounded-lg text-center h-65 md:box md:row-start-1 md:row-span-1 md:col-start-1 md:col-span-1">
