@@ -1,5 +1,8 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import NavigationBarLink from "./NavigationBarLink";
+import profil from "../assets/profil.png";
+
 import tutoManagement from "../assets/navbarAdmin/TutoManagement.svg";
 import tutoCreation from "../assets/navbarAdmin/TutoCreation.svg";
 import usersManagement from "../assets/navbarAdmin/usersManagement.svg";
@@ -33,44 +36,32 @@ function NavigationBarAdmin({ open }) {
                 : "hidden"
             }
           >
-            {/* Tutos creation  */}
-            <li className="text-[#333]  text-right pr-3 flex   w-full md:justify-start ">
-              <NavLink to="/creation" className="flex justify-end items-center">
-                <img
-                  src={tutoCreation}
-                  className="h-20 w-20 mx-6"
-                  alt="Mon profil"
-                />
-                <h3>Créer un tutoriel</h3>
-              </NavLink>
-            </li>
+            {/* Dashboard */}
+            <NavigationBarLink
+              imgSrc={profil}
+              text="Tableau de bord"
+              linkDestination="/dashboard"
+            />
 
+            {/* Tutos creation  */}
+            <NavigationBarLink
+              imgSrc={tutoCreation}
+              text="Créer un tutoriel"
+              linkDestination="/creation"
+            />
             {/* Tutos management */}
-            <li className="text-[#333] text-right pr-3 flex   w-full  md:justify-start">
-              <NavLink
-                to="/creation"
-                className="flex  justify-end  items-center"
-              >
-                <img
-                  src={tutoManagement}
-                  className="h-20 w-20 mx-6"
-                  alt="Catégories de tutoriels"
-                />
-                <h3>Gérer les tutoriels</h3>
-              </NavLink>
-            </li>
+            <NavigationBarLink
+              imgSrc={tutoManagement}
+              text="Gérer les tutoriels"
+              linkDestination="/tutos"
+            />
 
             {/* Users management  */}
-            <li className="text-[#333] text-right pr-3 flex  w-full  md:justify-start ">
-              <NavLink to="/users" className="flex  items-center">
-                <img
-                  src={usersManagement}
-                  className="h-20 w-20 mx-6"
-                  alt="Catégories de tutoriels"
-                />
-                <h3>Gérer les utilisateurs</h3>
-              </NavLink>
-            </li>
+            <NavigationBarLink
+              imgSrc={usersManagement}
+              text="Gérer les utilisateurs"
+              linkDestination="/users"
+            />
 
             {/* Logout */}
             <li className="text-right pr-3 flex  w-full justify-center ">

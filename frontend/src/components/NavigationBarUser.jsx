@@ -1,5 +1,6 @@
 import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import NavigationBarLink from "./NavigationBarLink";
 
 import profil from "../assets/profil.png";
 import categories from "../assets/categories.svg";
@@ -36,75 +37,46 @@ function NavigationBarUser({ open }) {
         >
           {/* Profil  */}
 
-          <li className="text-[#333]  text-right pr-3 flex   w-full md:justify-start ">
-            <NavLink to="/dashboard" className="flex justify-end items-center">
-              <img src={profil} className="h-20 w-20 mx-6" alt="Mon profil" />
-              <h3>Mon Espace</h3>
-            </NavLink>
-          </li>
+          <NavigationBarLink
+            imgSrc={profil}
+            text="Mon Espace"
+            linkDestination="/dashboard"
+          />
 
           {/* Categories */}
-          <li className="text-[#333] text-right pr-3 flex   w-full  md:justify-start">
-            <NavLink
-              to="/categories"
-              className="flex  justify-end  items-center"
-            >
-              <img
-                src={categories}
-                className="h-20 w-20 mx-6"
-                alt="Catégories de tutoriels"
-              />
-              <h3>Catégories de tutoriels</h3>
-            </NavLink>
-          </li>
+          <NavigationBarLink
+            imgSrc={categories}
+            text="Catégories de tutoriels"
+            linkDestination="/categories"
+          />
 
           {/* Games  */}
-          <li className="text-[#333] grayscale  text-right pr-3 flex  w-full  md:justify-start ">
-            <NavLink to="/games" className="flex  items-center">
-              <img
-                src={jeux}
-                className="h-20 w-20 mx-6"
-                alt="Catégories de tutoriels"
-              />
-              <h3>Mes jeux</h3>
-            </NavLink>
-          </li>
+          <NavigationBarLink
+            imgSrc={jeux}
+            text="Mes jeux"
+            linkDestination="/games"
+          />
 
           {/* Journey  */}
-          <li className="text-[#333] text-right pr-3 flex  w-full md:justify-start">
-            <NavLink to="/course" className="flex  items-center">
-              <img
-                src={parcours}
-                className="h-20 w-20 mx-6"
-                alt="Catégories de tutoriels"
-              />
-              <h3>Mon Parcours</h3>
-            </NavLink>
-          </li>
+          <NavigationBarLink
+            imgSrc={parcours}
+            text="Mon Parcours"
+            linkDestination="/course"
+          />
 
           {/* Rewards */}
-          <li className="text-[#333]  text-right pr-3 flex   w-full  md:justify-start">
-            <NavLink to="/reward" className="flex items-center">
-              <img
-                src={recompenses}
-                className="h-20 w-20 mx-6"
-                alt="Catégories de tutoriels"
-              />
-              <h3>Mes récompenses</h3>
-            </NavLink>
-          </li>
+          <NavigationBarLink
+            imgSrc={recompenses}
+            text="Mes récompenses"
+            linkDestination="/reward"
+          />
 
           {/* Historic */}
-          <li className="text-[#333] text-right pr-3 flex  w-full  md:justify-start ">
-            <NavLink to="/history" className="flex  items-center">
-              <img
-                src={historic}
-                className="h-20 w-20 mx-6"
-                alt="Catégories de tutoriels"
-              />
-              <h3 className="">Mon historique</h3>
-            </NavLink>
-          </li>
+          <NavigationBarLink
+            imgSrc={historic}
+            text="Mon historique"
+            linkDestination="/history"
+          />
 
           <li className="text-right pr-3 flex  w-full justify-center ">
             <button
