@@ -51,7 +51,7 @@ const edit = (req, res) => {
     });
 };
 
-// add an user
+// add a user
 const add = (req, res) => {
   const user = req.body;
 

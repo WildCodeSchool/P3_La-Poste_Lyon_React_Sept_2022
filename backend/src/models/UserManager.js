@@ -36,23 +36,6 @@ class UserManager extends AbstractManager {
     );
   }
 
-  update(user) {
-    return this.connection.query(
-      `update ${this.table} set firstname = ? , lastname = ? , email = ? , phone = ? , password = ? , profilePicture = ? , level = ? , admin  = ?  where id = ?`,
-      [
-        user.firstname,
-        user.lastname,
-        user.email,
-        user.phone,
-        user.password,
-        user.profilePicture,
-        user.level,
-        user.admin,
-        user.id,
-      ]
-    );
-  }
-
   delete(id) {
     return this.connection.query(`delete from ${this.table} where id = ?`, [
       id,
