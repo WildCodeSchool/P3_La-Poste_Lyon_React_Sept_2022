@@ -41,7 +41,7 @@ function RegisterFirstStep({
       <div className="flex justify-center items-center flex-col h-screen w-screen">
         <div className="md:shadow-2xl md:border md:border-grey-50 md:py-10 h-fit">
           <div className="flex flex-col items-center justify-center">
-            <div className="relative flex items-center justify-start flex-col font-bold text-3xl text-center bg-yellow-400 rounded-xl w-4/5 h-4/5 py-14">
+            <div className="relative flex items-center justify-start flex-col font-bold text-3xl text-center bg-[#FFC928] rounded-xl w-4/5 h-4/5 py-14">
               <div className="absolute top-1 left-3 text-white rounded-full h-10 w-10 bg-[#003DA5] flex justify-center">
                 <h3>1</h3>
               </div>

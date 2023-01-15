@@ -17,7 +17,7 @@ function BannerProfile() {
 
   return (
     <div className="w-full h-full">
-      <div className="flex bg-[#FFC928] w-full justify-between drop-shadow-2xl">
+      <div className="flex bg-[#FFC928] w-full justify-between shadow">
         <div className="flex justify-around flex-wrap md:mx-10">
           <div className="flex flex-wrap">
             <div className="rounded-full w-100 h-100 my-5">
