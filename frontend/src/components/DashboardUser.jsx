@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Historique from "../assets/Historique.png";
-import Mestutos from "../assets/Mestutos.png";
+import Mestutos from "../assets/Mestutos.svg";
 import badge1 from "../assets/badge1.png";
 import BannerProfile from "./BannerProfile";
 import usercourse from "../assets/parcours.png";
@@ -11,7 +11,7 @@ function DashboardUser() {
     <div className="">
       <BannerProfile />
       <div className="mt-2 flex justify-center">
-        <h1 className="flex justify-center items-center text-bold text-xl text-white rounded-2xl shadow-lg bg-[#003DA5] w-2/3 h-10 md:text-2xl text-center md:w-1/4 md:h-10 md:text-center">
+        <h1 className="flex justify-center items-center text-bold text-xl text-white rounded-xl shadow-lg bg-[#003DA5] w-2/3 h-10  text-center md:w-1/4 md:h-10 md:text-center">
           Mon tableau de bord
         </h1>
       </div>

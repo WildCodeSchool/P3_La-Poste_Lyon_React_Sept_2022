@@ -1,21 +1,19 @@
-import React, { useState, useContext } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Switch } from "@material-tailwind/react";
 
-import CurrentUserContext from "../contexts/userContext";
-
-import profil from "../assets/profil.png";
-import categories from "../assets/categories.png";
-import jeux from "../assets/jeux.png";
-import recompenses from "../assets/recompenses.png";
-import parcours from "../assets/parcours.png";
 import logo from "../assets/Logo.png";
-import historic from "../assets/Historique.png";
 import closemenu from "../assets/closemenu.svg";
 import openmenu from "../assets/menuopen.svg";
 
-function NavigationBar() {
-  const { currentUser } = useContext(CurrentUserContext);
+import CurrentUserContext from "../contexts/userContext";
 
+import NavigationBarAdmin from "./NavigationBarAdmin";
+import NavigationBarUser from "./NavigationBarUser";
+
+function NavigationBar({ adminView, handleAdminView }) {
+  const { currentUser } = useContext(CurrentUserContext);
+  const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
   // Log Out remove localStorage and navigate to the main page with a reload
@@ -27,29 +25,22 @@ function NavigationBar() {
     window.location.reload();
   };
 
-  // useState used to open and close the burger menu
-  const [open, setOpen] = useState(false);
-
   return (
     <nav className="navbar">
-      <div className=" relative justify-between mx-autol md:items-center shadow-lg flex h-20 z-10 right-0 top-25">
+      <div className="justify-between items-center mx-autol md:items-center shadow flex h-20 relative z-10">
         <Link to="/dashboard" className="flex items-center">
           <img src={logo} alt="Ligne Bleue" className="h-14 w-14" />
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white" />
         </Link>
         {/* If connected -> enable menu burger */}
-
         {currentUser.email ? (
           <div className="block">
-            {/* Menu burger */}
+            {/* Menu burger toggle icon */}
             <button
               type="button"
               className="p-2 text-black rounded-md outline-none"
               onClick={() => setOpen(!open)}
             >
-              {/*  <img src={closemenu} />
-              <img src={openmenu} /> */}
-
               {open ? (
                 <img src={closemenu} className="h-12 w-12" alt="Open menu " />
               ) : (
@@ -63,9 +54,9 @@ function NavigationBar() {
       </div>
       <div className="relative z-10">
         <div
-          className={`absolute flex-1 justify-self-center md:absolute md:pb-0 md:mt-0 ${
+          className={`flex-1 justify-self-center md:block md:pb-0 md:mt-0 ${
             open
-              ? "absolute shadow-lg top-0 right-0 bg-white w-screen md:w-96 h-screen z-10 "
+              ? "block absolute shadow-lg top-0 right-0 bg-white w-screen md:w-96 h-screen z-0 "
               : "hidden"
           }`}
         >
@@ -76,81 +67,39 @@ function NavigationBar() {
                 : "hidden"
             }
           >
-            {/* Profil  */}
+            {/* If connected as user enable user links */}
+            {currentUser && currentUser.admin === 0 && (
+              <NavigationBarUser open={open} />
+            )}
 
-            <li className="text-[#333]  text-right pr-3 flex   w-full md:justify-start ">
-              <NavLink
-                to="/dashboard"
-                className="flex justify-end items-center"
-              >
-                <img src={profil} className="h-20 w-20 mx-6" alt="Mon profil" />
-                <h3>Mon Espace</h3>
-              </NavLink>
-            </li>
+            {/* If connected as admin enable admin links or user links */}
+            {currentUser && currentUser.admin === 1 && (
+              <>
+                <li className="flex justify-center w-full items-center mb-3">
+                  <Switch
+                    checked={adminView}
+                    onChange={handleAdminView}
+                    id="amber"
+                    color="amber"
+                    defaultChecked
+                  />
+                  <h3 className="ml-3">
+                    {" "}
+                    {adminView ? "Utilisateur" : "Admin"}
+                  </h3>
+                </li>
 
-            {/* Categories */}
-            <li className="text-[#333] text-right pr-3 flex   w-full  md:justify-start">
-              <NavLink
-                to="/categories"
-                className="flex  justify-end  items-center"
-              >
-                <img
-                  src={categories}
-                  className="h-20 w-20 mx-6"
-                  alt="Catégories de tutoriels"
-                />
-                <h3>Catégories de tutoriels</h3>
-              </NavLink>
-            </li>
-
-            {/* Games  */}
-            <li className="text-[#333] grayscale  text-right pr-3 flex  w-full  md:justify-start ">
-              <NavLink to="/games" className="flex  items-center">
-                <img
-                  src={jeux}
-                  className="h-20 w-20 mx-6"
-                  alt="Catégories de tutoriels"
-                />
-                <h3>Mes jeux</h3>
-              </NavLink>
-            </li>
-
-            {/* Journey  */}
-            <li className="text-[#333] text-right pr-3 flex  w-full md:justify-start">
-              <NavLink to="/course" className="flex  items-center">
-                <img
-                  src={parcours}
-                  className="h-20 w-20 mx-6"
-                  alt="Catégories de tutoriels"
-                />
-                <h3>Mon Parcours</h3>
-              </NavLink>
-            </li>
-
-            {/* Rewards */}
-            <li className="text-[#333]  text-right pr-3 flex   w-full  md:justify-start">
-              <NavLink to="/reward" className="flex items-center">
-                <img
-                  src={recompenses}
-                  className="h-20 w-20 mx-6"
-                  alt="Catégories de tutoriels"
-                />
-                <h3>Mes récompenses</h3>
-              </NavLink>
-            </li>
-
-            {/* Historic */}
-            <li className="text-[#333] text-right pr-3 flex  w-full  md:justify-start ">
-              <NavLink to="/history" className="flex  items-center">
-                <img
-                  src={historic}
-                  className="h-20 w-20 mx-6"
-                  alt="Catégories de tutoriels"
-                />
-                <h3 className="">Mon historique</h3>
-              </NavLink>
-            </li>
-
+                {adminView ? (
+                  <NavigationBarUser />
+                ) : (
+                  <NavigationBarAdmin
+                    open={open}
+                    handleAdminView={handleAdminView}
+                    adminView={adminView}
+                  />
+                )}
+              </>
+            )}
             <li className="text-right pr-3 flex  w-full justify-center ">
               <button
                 onClick={() => handleLogout()}
