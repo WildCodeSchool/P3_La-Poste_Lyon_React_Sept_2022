@@ -1,5 +1,5 @@
-import PreviousButton from "@components/PreviousButton";
 import React from "react";
+import PreviousButton from "../components/PreviousButton";
 import forgotpass from "../assets/forgotpass.svg";
 
 function ForgottenPassword() {

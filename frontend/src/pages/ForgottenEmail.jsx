@@ -1,5 +1,5 @@
-import PreviousButton from "@components/PreviousButton";
 import React from "react";
+import PreviousButton from "../components/PreviousButton";
 import forgotemail from "../assets/email.svg";
 
 function ForgottenEmail() {
