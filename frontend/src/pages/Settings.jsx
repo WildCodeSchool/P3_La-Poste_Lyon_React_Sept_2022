@@ -26,25 +26,25 @@ function Settings() {
      */
   };
 
-  const [input1, setInput1] = useState("Prénom");
-  const [input2, setInput2] = useState("Nom");
-  const [input3, setInput3] = useState("Téléphone");
+  const [firstname, setFirstname] = useState("Prénom");
+  const [lastname, setLastname] = useState("Nom");
+  const [phone, setPhone] = useState("Téléphone");
 
   const [inputcontent, setInputcontent] = useState("");
 
   const handleInput1 = (event) => {
     if (event.key === "Enter") {
-      setInput1(inputcontent);
+      setFirstname(inputcontent);
     }
   };
   const handleInput2 = (event) => {
     if (event.key === "Enter") {
-      setInput2(inputcontent);
+      setLastname(inputcontent);
     }
   };
   const handleInput3 = (event) => {
     if (event.key === "Enter") {
-      setInput3(inputcontent);
+      setPhone(inputcontent);
     }
   };
 
@@ -101,7 +101,7 @@ function Settings() {
             <li className=" mx-10 md:mx-48 mb-16 my-3 md:m-6  border shadow-xl rounded-lg text-center">
               {" "}
               <label className="text-xl text-[#003DA5] p-2 bg-white rounded-tl-lg rounded-tr-lg h-10 flex justify-start items-center">
-                {inputcontent === 0 ? "Enfant" : input1}
+                {inputcontent === 0 ? "Enfant" : firstname}
               </label>{" "}
               <div className="w-full flex justify-end items-center relative">
                 <input
@@ -120,7 +120,7 @@ function Settings() {
             <li className=" mx-10 md:mx-48 mb-16 my-3 md:m-6 border shadow-xl rounded-lg text-center">
               {" "}
               <label className="text-xl text-[#003DA5] p-2 bg-white rounded-tl-lg rounded-tr-lg h-10 flex justify-start items-center">
-                {inputcontent === 0 ? "FindBug" : input2}
+                {inputcontent === 0 ? "FindBug" : lastname}
               </label>{" "}
               <div className="w-full flex justify-end items-center relative">
                 <input
@@ -140,7 +140,7 @@ function Settings() {
             <li className=" mx-10 md:mx-48 mb-16 my-3 md:m-6 border shadow-xl rounded-lg text-center">
               {" "}
               <label className="text-xl text-[#003DA5] p-2 bg-white  rounded-tl-lg rounded-tr-lg h-10 flex justify-start items-center ">
-                {inputcontent === 0 ? "Téléphone" : input3}
+                {inputcontent === 0 ? "Téléphone" : phone}
               </label>{" "}
               <div className="w-full flex justify-end items-center relative">
                 <input
