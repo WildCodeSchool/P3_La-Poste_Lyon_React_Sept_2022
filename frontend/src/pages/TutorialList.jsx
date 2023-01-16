@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
-
+import { CategoryContext } from "../contexts/CategoryContext";
 import BannerProfile from "../components/BannerProfile";
 import AccessButton from "../components/AccessButton";
 import PreviousButton from "../components/PreviousButton";
@@ -21,9 +21,15 @@ function TutorialList() {
   }, []);
 
   /* Filtred tutorial by the good category corresponding to the id  */
-  const filteredTutorials = tutorials.filter(
+  const filteredTutorials = tutorials?.filter(
     (tutorial) => tutorial.category_id === parseInt(id, 10)
   );
+
+  /* get the category name */
+  const { categories } = useContext(CategoryContext);
+  const categoryName = categories?.find(
+    (category) => category.id === parseInt(id, 10)
+  ).name;
 
   return (
     <>
@@ -31,11 +37,11 @@ function TutorialList() {
       <section className="m-6">
         <PreviousButton />
 
-        <h1 className="m-6 text-3xl  text-center">{/* {categoryName} */}</h1>
+        <h1 className="m-6 text-3xl  text-center"> {categoryName} </h1>
 
         {/* We display the tutorials with the filter of the cagtegory selected */}
         <ul className="w-3/5 grid grid-cols-1 md:grid-cols-2  m-auto ">
-          {filteredTutorials.map((tutorial) => (
+          {filteredTutorials?.map((tutorial) => (
             <li
               className=" my-3 md:m-6 border shadow-xl rounded-lg text-center"
               key={tutorial.id}

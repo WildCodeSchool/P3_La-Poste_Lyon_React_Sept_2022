@@ -83,8 +83,9 @@ function TutorialValidator(allStepsContent) {
           setTimeout(() => {
             navigate(
               /* eslint-disable react/destructuring-assignment */
-              `/categories/${allStepsContent.allStepsContent.category}/tutorials`
+              `/categories/`
             );
+
             return response.text();
           });
         }

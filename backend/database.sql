@@ -16,7 +16,11 @@ CREATE TABLE `tuto` (
   FOREIGN KEY (`category_id`) REFERENCES `category` (`id`)
 );
 
-INSERT INTO `tuto` VALUES (1,'Les étapes de la connexion','test','Vous trouverez dans ce tutoriel les étapes nécessaires de la connexion à internet. Il s’agit ici d’un tutoriel très général qui vous donnera une vue d’ensemble des étapes à réaliser. Les pré-requis :Un appareil compatible (smartphone, tablette, ordinateur etc.)Un modem, ou routeur d’accès à internet (fourni par votre fournisseur d’accès)',1,'2023-01-04 20:02:57',1,1,0,0);
+INSERT INTO `tuto` VALUES (1,'Les étapes de la connexion',
+'Découvrez les étapes de la connexion à internet',
+'<p>Vous trouverez dans ce tutoriel les étapes nécessaires de la connexion à internet.</p><p>Il s’agit ici d’un tutoriel très général qui vous donnera une vue d’ensemble des étapes à réaliser.</p><p><br></p><p><u style="color: rgb(0, 61, 165);">Les pré-requis :</u></p><ul><li>Un appareil compatible (smartphone, tablette, ordinateur etc.)</li><li>Un modem, ou routeur d’accès à internet (fourni par votre fournisseur d’accès)</li></ul><p><br></p>'
+  ,1,
+  '2023-01-04 20:02:57',1,1,0,0);
 
 DROP TABLE IF EXISTS `user`;
 
