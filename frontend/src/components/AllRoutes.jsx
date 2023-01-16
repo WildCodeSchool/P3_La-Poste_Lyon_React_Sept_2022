@@ -1,5 +1,6 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import Error from "../pages/Error";
 import TutorialCreation from "../pages/TutorialCreation";
 import SearchUsers from "../pages/SearchUsers";
 import Settings from "../pages/Settings";
@@ -13,27 +14,61 @@ import Historic from "../pages/Historic";
 import UserCourse from "../pages/UserCourse";
 import RegisterPage from "../pages/RegisterPage";
 import AuthentificationPage from "../pages/AuthentificationPage";
+import ForgottenPassword from "../pages/ForgottenPassword";
+import ForgottenEmail from "../pages/ForgottenEmail";
+import CurrentUserContext from "../contexts/userContext";
 
-function AllRoutes() {
+function AllRoutes({ adminView, handleAdminView }) {
+  const { currentUser } = React.useContext(CurrentUserContext);
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/reward" element={<Reward />} />
-        <Route path="/authentification" element={<AuthentificationPage />} />
-        {/* // <Route path="/games" element={<Games />} /> */}
-        <Route path="/course" element={<UserCourse />} />
-        <Route path="/categories/tutorials/:id" element={<Tutorial />} />
-        <Route path="/categories" element={<TutorialCategory />} />
-        <Route path="/categories/:id/tutorials" element={<TutorialList />} />
-        <Route path="/history" element={<Historic />} />
-        <Route path="/settings" element={<Settings />} />
-        <Route path="/creation" element={<TutorialCreation />} />
-        <Route path="/registerPage" element={<RegisterPage />} />
-        <Route path="/users" element={<SearchUsers />} />
-      </Routes>
-    </Router>
+    <Routes>
+      {/* Without connexion */}
+      <Route path="/" element={<Home />} />
+      <Route path="/authentification" element={<AuthentificationPage />} />
+      <Route path="/forgotten-password" element={<ForgottenPassword />} />
+      <Route path="/forgotten-email" element={<ForgottenEmail />} />
+      <Route path="/registerPage" element={<RegisterPage />} />
+
+      {currentUser && currentUser.admin === 0 && (
+        <>
+          {/* User connexion */}
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/reward" element={<Reward />} />
+          <Route path="/course" element={<UserCourse />} />
+          <Route path="/categories/tutorials/:id" element={<Tutorial />} />
+          <Route path="/categories" element={<TutorialCategory />} />
+          <Route path="/categories/:id/tutorials" element={<TutorialList />} />
+          <Route path="/history" element={<Historic />} />
+          <Route path="/settings" element={<Settings />} />
+        </>
+      )}
+      {currentUser && currentUser.admin === 1 && (
+        <>
+          {/* Admin connexion */}
+          <Route
+            path="/dashboard"
+            element={
+              <Dashboard
+                handleAdminView={handleAdminView}
+                adminView={adminView}
+              />
+            }
+          />
+          <Route path="/creation" element={<TutorialCreation />} />
+          <Route path="/users" element={<SearchUsers />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/reward" element={<Reward />} />
+          <Route path="/course" element={<UserCourse />} />
+          <Route path="/categories/tutorials/:id" element={<Tutorial />} />
+          <Route path="/categories" element={<TutorialCategory />} />
+          <Route path="/categories/:id/tutorials" element={<TutorialList />} />
+          <Route path="/history" element={<Historic />} />
+        </>
+      )}
+      <Route path="*" element={<Error />} />
+    </Routes>
   );
 }
 

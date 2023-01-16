@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="flex justify-around fixed bottom-0 w-full h-20 md:h-28 mt-5 shadow">
+    <footer className="bg-white flex justify-around fixed bottom-0 w-full h-20 md:h-28 mt-5 shadow">
       <article>
         <a
           href="https://www.service-public.fr/"
