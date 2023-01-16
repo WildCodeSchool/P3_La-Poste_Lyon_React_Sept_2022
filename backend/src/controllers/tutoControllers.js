@@ -1,9 +1,22 @@
 const models = require("../models");
 
-// get all tutos by category
+// get all tutos by category and return every tutos  with is id
 const browse = (req, res) => {
   models.tuto
     .findAllByCategory(req.params.id)
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+// get all tutos by category and return every tutos  with is id
+const browseAll = (req, res) => {
+  models.tuto
+    .findAll()
     .then(([rows]) => {
       res.send(rows);
     })
@@ -93,6 +106,7 @@ const destroy = (req, res) => {
 
 module.exports = {
   browse,
+  browseAll,
   read,
   edit,
   add,

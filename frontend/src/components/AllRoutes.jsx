@@ -36,9 +36,12 @@ function AllRoutes({ adminView, handleAdminView }) {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/reward" element={<Reward />} />
           <Route path="/course" element={<UserCourse />} />
-          <Route path="/categories/tutorials/:id" element={<Tutorial />} />
+          <Route path="/api/tutos/:id" element={<Tutorial />} />
           <Route path="/categories" element={<TutorialCategory />} />
-          <Route path="/categories/:id/tutorials" element={<TutorialList />} />
+          <Route
+            path="/categories/:id/tutorials/:id"
+            element={<TutorialList />}
+          />
           <Route path="/history" element={<Historic />} />
           <Route path="/settings" element={<Settings />} />
         </>
@@ -60,6 +63,7 @@ function AllRoutes({ adminView, handleAdminView }) {
           <Route path="/settings" element={<Settings />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/reward" element={<Reward />} />
+          <Route path="/api/tutos/:id" element={<Tutorial />} />
           <Route path="/course" element={<UserCourse />} />
           <Route path="/categories/tutorials/:id" element={<Tutorial />} />
           <Route path="/categories" element={<TutorialCategory />} />

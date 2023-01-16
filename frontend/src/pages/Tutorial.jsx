@@ -19,6 +19,21 @@ function Tutorial() {
     fetchTutorial();
   }, [id]);
 
+  /* Fetch the stepper and compare it to the id of the tutorial */
+  const [steppers, setSteppers] = useState([]);
+  useEffect(() => {
+    const fetchSteppers = () => {
+      fetch(`http://localhost:5000/api/steppers`)
+        .then((response) => response.json())
+        .then((data) => setSteppers(data));
+    };
+    fetchSteppers();
+  }, []);
+
+  const filteredSteppers = steppers.filter(
+    (stepper) => stepper.tuto_id === parseInt(id, 10)
+  );
+
   return (
     <>
       <BannerProfile />
@@ -41,7 +56,7 @@ function Tutorial() {
           />
         </div>
         {/* Stepper */}
-        <Stepper />
+        <Stepper filteredSteppers={filteredSteppers} />
       </section>
     </>
   );
