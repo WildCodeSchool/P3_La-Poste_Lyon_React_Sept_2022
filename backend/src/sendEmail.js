@@ -9,7 +9,7 @@ mailer.sendMail(
     to: req.user.email,
     subject: "Mot de passe oublié",
     text: "Pour créer un nouveau mot de passe, cliquez ici !",
-    html: `<p>Pour créer un nouveau mot de passe, <a href="${FRONTEND_URL}/reviewpassword/${req.passwordToken}">cliquez ici !</a></p>`,
+    html: `<p>Pour créer un nouveau mot de passe, <a href="${FRONTEND_URL}/resetpassword/${req.passwordToken}">cliquez ici !</a></p>`,
   },
   (err, info) => {
     if (err) console.error(err);
