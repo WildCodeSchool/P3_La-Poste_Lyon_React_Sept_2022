@@ -58,7 +58,15 @@ const add = (req, res) => {
   models.tuto
     .insert(tuto)
     .then(([result]) => {
-      res.location(`/tutos/${result.insertId}`).sendStatus(201);
+      if (tuto.steps?.length > 0) {
+        models.stepper
+          .insertAll(tuto.steps, result.insertId)
+          .then(res.location(`/tutos/${result.insertId}`).sendStatus(201))
+          .catch((err) => {
+            console.error(err);
+            res.sendStatus(500);
+          });
+      } else res.location(`/tutos/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
