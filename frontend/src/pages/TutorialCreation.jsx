@@ -12,21 +12,17 @@ function TutorialCreation() {
   /* I set the mandatoryInformations here to pass it as a parameters for the steppercreation */
   const [mandatoryInformations, setMandatoryInformations] = useState({
     title: "",
-    category: "",
-    shortDescription: "",
+    category_id: "",
+    short_description: "",
     introduction_text: "",
   });
 
   /* I want to add the new value in the current value when I handAllStepsContent */
   const handleAllStepsContent = (mandatoryInfos, steps) => {
-    setAllStepsContent([
-      {
-        ...mandatoryInfos,
-      },
-      {
-        steps,
-      },
-    ]);
+    setAllStepsContent({
+      ...mandatoryInfos,
+      steps,
+    });
   };
 
   /* State to set up the current step to switch between components */

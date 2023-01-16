@@ -1,9 +1,9 @@
 const models = require("../models");
 
-// get all tutos
+// get all tutos by category
 const browse = (req, res) => {
   models.tuto
-    .findAll()
+    .findAllByCategory(req.params.id)
     .then(([rows]) => {
       res.send(rows);
     })
