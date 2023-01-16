@@ -26,27 +26,9 @@ function Settings() {
      */
   };
 
-  const [firstname, setFirstname] = useState("Prénom");
-  const [lastname, setLastname] = useState("Nom");
-  const [phone, setPhone] = useState("Téléphone");
-
-  const [inputcontent, setInputcontent] = useState("");
-
-  const handleInput1 = (event) => {
-    if (event.key === "Enter") {
-      setFirstname(inputcontent);
-    }
-  };
-  const handleInput2 = (event) => {
-    if (event.key === "Enter") {
-      setLastname(inputcontent);
-    }
-  };
-  const handleInput3 = (event) => {
-    if (event.key === "Enter") {
-      setPhone(inputcontent);
-    }
-  };
+  const [firstname, setFirstname] = useState(null);
+  const [lastname, setLastname] = useState(null);
+  const [phone, setPhone] = useState(null);
 
   return (
     <>
@@ -100,15 +82,11 @@ function Settings() {
           <ul className="flex-col mt-12">
             <li className=" mx-10 md:mx-48 mb-16 my-3 md:m-6  border shadow-xl rounded-lg text-center">
               {" "}
-              <label className="text-xl text-[#003DA5] p-2 bg-white rounded-tl-lg rounded-tr-lg h-10 flex justify-start items-center">
-                {inputcontent === 0 ? "Enfant" : firstname}
-              </label>{" "}
               <div className="w-full flex justify-end items-center relative">
                 <input
-                  placeholder="Prénom"
+                  placeholder={`${firstname}`}
                   className=" border-gray-400 bg-gray-100 rounded-bl-lg rounded-br-lg p-4 w-full h-10"
-                  onChange={(event) => setInputcontent(event.target.value)}
-                  onKeyDown={handleInput1}
+                  onChange={(e) => setFirstname(e.target.value)}
                 />
                 <img
                   src={pencil}
@@ -119,15 +97,11 @@ function Settings() {
             </li>
             <li className=" mx-10 md:mx-48 mb-16 my-3 md:m-6 border shadow-xl rounded-lg text-center">
               {" "}
-              <label className="text-xl text-[#003DA5] p-2 bg-white rounded-tl-lg rounded-tr-lg h-10 flex justify-start items-center">
-                {inputcontent === 0 ? "FindBug" : lastname}
-              </label>{" "}
               <div className="w-full flex justify-end items-center relative">
                 <input
-                  placeholder="Nom"
+                  placeholder={`${lastname}`}
                   className=" border-gray-400 bg-gray-100 rounded-bl-lg rounded-br-lg  p-4 w-full h-10"
-                  onChange={(event) => setInputcontent(event.target.value)}
-                  onKeyDown={handleInput2}
+                  onChange={(e) => setLastname(e.target.value)}
                 />
                 <img
                   src={pencil}
@@ -139,15 +113,11 @@ function Settings() {
 
             <li className=" mx-10 md:mx-48 mb-16 my-3 md:m-6 border shadow-xl rounded-lg text-center">
               {" "}
-              <label className="text-xl text-[#003DA5] p-2 bg-white  rounded-tl-lg rounded-tr-lg h-10 flex justify-start items-center ">
-                {inputcontent === 0 ? "Téléphone" : phone}
-              </label>{" "}
               <div className="w-full flex justify-end items-center relative">
                 <input
-                  placeholder="06-62-02-02-02"
+                  placeholder={`${phone}`}
                   className=" border-gray-400 bg-gray-100 rounded-bl-lg rounded-br-lg p-4 w-full h-10"
-                  onChange={(event) => setInputcontent(event.target.value)}
-                  onKeyDown={handleInput3}
+                  onChange={(e) => setPhone(e.target.value)}
                 />
                 <img
                   src={pencil}
