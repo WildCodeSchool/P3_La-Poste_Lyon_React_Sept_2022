@@ -46,6 +46,8 @@ router.get("/api/status/:id", statusControllers.read);
 router.get("/api/steppers", stepperControllers.browse);
 router.get("/api/steppers/:id", stepperControllers.read);
 
+//
+
 // PROTECTED ROUTES
 router.use(verifyToken); // From this point, the middleware verifyToken will be used at the beginning of all functions
 
