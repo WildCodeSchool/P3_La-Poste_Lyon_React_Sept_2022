@@ -21,15 +21,27 @@ class StepperManager extends AbstractManager {
 
   insert(stepper) {
     return this.connection.query(
-      `insert into ${this.table} (position, content, tuto_id) values (?, ?, ?)`,
-      [stepper.position, stepper.content, stepper.tuto_id]
+      "INSERT INTO stepper (positionStep, content, tuto_id) values (?, ?, LAST_INSERT_ID())",
+      [stepper.positionStep, stepper.content, stepper.tuto_id]
+    );
+  }
+
+  insertAll(steps, tutoId) {
+    const stepsArray = steps.map((step) => [
+      step.positionStep,
+      step.content,
+      tutoId,
+    ]);
+    return this.connection.query(
+      `INSERT INTO stepper (positionStep, content, tuto_id) values ?`,
+      [stepsArray]
     );
   }
 
   update(stepper) {
     return this.connection.query(
-      `update ${this.table} set position = ?, content = ?, tuto_id = ? where tuto_id = ?`,
-      [stepper.position, stepper.content, stepper.tuto_id, stepper.tuto_id]
+      `update ${this.table} set positionStep = ?, content = ?, tuto_id = ? where tuto_id = ?`,
+      [stepper.positionStep, stepper.content, stepper.tuto_id, stepper.tuto_id]
     );
   }
 }
