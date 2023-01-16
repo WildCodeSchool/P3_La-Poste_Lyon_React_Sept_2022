@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Switch } from "@material-tailwind/react";
 
 import logo from "../assets/Logo.png";
@@ -24,14 +24,17 @@ function NavigationBar({ adminView, handleAdminView }) {
     navigate("/");
     window.location.reload();
   };
+  const goBackToDashboard = () =>
+    navigate(currentUser.email ? "/dashboard" : "/");
 
   return (
     <nav className="navbar">
       <div className="justify-between items-center mx-autol md:items-center shadow flex h-20 relative z-10">
-        <Link to="/dashboard" className="flex items-center">
+        {/* */}
+        <button type="button" onClick={goBackToDashboard}>
           <img src={logo} alt="Ligne Bleue" className="h-14 w-14" />
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white" />
-        </Link>
+        </button>
         {/* If connected -> enable menu burger */}
         {currentUser.email ? (
           <div className="block">
