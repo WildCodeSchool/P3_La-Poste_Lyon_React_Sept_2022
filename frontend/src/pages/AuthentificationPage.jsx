@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import NavigationBar from "@components/NavigationBar";
+import NavigationBar from "../components/NavigationBar";
 import granny from "../assets/granny1.svg";
 import arobase from "../assets/arobaselogo.png";
 import locker from "../assets/lockerlogo.png";

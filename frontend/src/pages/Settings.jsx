@@ -26,25 +26,52 @@ function Settings() {
      */
   };
 
-  const [input1, setInput1] = useState("Prénom");
-  const [input2, setInput2] = useState("Nom");
-  const [input3, setInput3] = useState("Téléphone");
+  // const [profilePicture, setProfilePicture] = useState("");
+  const [firstname, setFirstname] = useState("Prénom");
+  const [lastname, setLastName] = useState("Nom");
+  const [phone, setPhone] = useState("Téléphone");
 
-  const [inputcontent, setInputcontent] = useState("");
+  const [setUser] = useState("");
+
+  const [inputcontent] = useState("");
 
   const handleInput1 = (event) => {
     if (event.key === "Enter") {
-      setInput1(inputcontent);
+      setFirstname(inputcontent);
     }
   };
   const handleInput2 = (event) => {
     if (event.key === "Enter") {
-      setInput2(inputcontent);
+      setLastName(inputcontent);
     }
   };
   const handleInput3 = (event) => {
     if (event.key === "Enter") {
-      setInput3(inputcontent);
+      setPhone(inputcontent);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const body = JSON.stringify({ firstname, lastname, phone });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body,
+    };
+
+    if (firstname && lastname && phone) {
+      fetch("http://localhost:5000/api/user:id", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          setUser(result.user);
+        })
+        .catch(console.error);
     }
   };
 
@@ -56,6 +83,7 @@ function Settings() {
         <Link to="/dashboard">
           <PreviousButton />
         </Link>
+
         <div className="mt-4 flex justify-center flex-col">
           <h1 className="flex w-full justify-center items-center text-bold text-xl text-black my-8 h-10 md:text-2xl text-center md:h-14 md:text-center ">
             Modifier mes informations
@@ -96,20 +124,21 @@ function Settings() {
             </div>
           </div>
         </div>
-        <form>
+        <form onSubmit={handleSubmit}>
           <ul className="flex-col mt-12">
             <li className=" mx-10 md:mx-48 mb-16 my-3 md:m-6  border shadow-xl rounded-lg text-center">
               {" "}
               <label className="text-xl text-[#003DA5] p-2 bg-white rounded-tl-lg rounded-tr-lg h-10 flex justify-start items-center">
-                {inputcontent === 0 ? "Enfant" : input1}
+                {inputcontent === 0 ? "Enfant" : firstname}
               </label>{" "}
               <div className="w-full flex justify-end items-center relative">
                 <input
+                  type="Prénom"
                   required
                   pattern=".+"
                   placeholder="Prénom"
                   className=" border-gray-400 bg-gray-100 rounded-bl-lg rounded-br-lg p-4 w-full h-10 "
-                  onChange={(event) => setInputcontent(event.target.value)}
+                  onChange={(event) => setFirstname(event.target.value)}
                   onKeyDown={handleInput1}
                 />
                 <button
@@ -124,15 +153,16 @@ function Settings() {
             <li className=" mx-10 md:mx-48 mb-16 my-3 md:m-6 border shadow-xl rounded-lg text-center">
               {" "}
               <label className="text-xl text-[#003DA5] p-2 bg-white rounded-tl-lg rounded-tr-lg h-10 flex justify-start items-center">
-                {inputcontent === 0 ? "FindBug" : input2}
+                {inputcontent === 0 ? "FindBug" : lastname}
               </label>{" "}
               <div className="w-full flex justify-end items-center relative">
                 <input
+                  type="Nom"
                   required
                   pattern=".+"
                   placeholder="Nom"
                   className=" border-gray-400 bg-gray-100 rounded-bl-lg rounded-br-lg  p-4 w-full h-10"
-                  onChange={(event) => setInputcontent(event.target.value)}
+                  onChange={(event) => setLastName(event.target.value)}
                   onKeyDown={handleInput2}
                 />
                 <button
@@ -148,13 +178,14 @@ function Settings() {
             <li className=" mx-10 md:mx-48 mb-16 my-3 md:m-6 border shadow-xl rounded-lg text-center">
               {" "}
               <label className="text-xl text-[#003DA5] p-2 bg-white  rounded-tl-lg rounded-tr-lg h-10 flex justify-start items-center ">
-                {inputcontent === 0 ? "Téléphone" : input3}
+                {inputcontent === 0 ? "Téléphone" : phone}
               </label>{" "}
               <div className="w-full flex justify-end items-center relative">
                 <input
+                  type="Numéro"
                   placeholder="Numéro de téléphone"
                   className="border-gray-400 bg-gray-100 rounded-bl-lg rounded-br-lg p-4 w-full h-10"
-                  onChange={(event) => setInputcontent(event.target.value)}
+                  onChange={(event) => setPhone(event.target.value)}
                   onKeyDown={handleInput3}
                   required
                   pattern=".+"
