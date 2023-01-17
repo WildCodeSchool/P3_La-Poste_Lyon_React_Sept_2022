@@ -21,6 +21,8 @@ function Settings() {
     /*     setFileName(event.target.files[0].name);
      */
   };
+
+  // All states
   const [firstname, setFirstname] = useState(currentUser.firstname);
   const [lastname, setLastname] = useState(currentUser.lastname);
   const [phone, setPhone] = useState(currentUser.phone);
@@ -28,6 +30,7 @@ function Settings() {
   const notifyErrorProfile = () =>
     toast.error("Une erreur est survenue, veuillez vérifier vos informations");
 
+  // All state handle functions
   const handleChangeFirstname = (e) => {
     setFirstname(e.target.value);
   };
@@ -53,23 +56,24 @@ function Settings() {
     setPhone("");
   };
 
+  // Put function
   const submitSettingModify = (e) => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token}`);
     myHeaders.append("Content-Type", "application/json");
 
-    const raw = JSON.stringify({
+    const userraw = JSON.stringify({
       firstname,
       lastname,
       phone,
       currentUser_id: currentUser.id,
     });
-    console.warn(raw);
+    console.warn(userraw);
 
     const requestOptions = {
       method: "PUT",
       headers: myHeaders,
-      body: raw,
+      body: userraw,
       redirect: "follow",
     };
 
@@ -82,11 +86,11 @@ function Settings() {
         ),
         {
           loading: "En cours",
-          success: "Profil edited",
-          error: "Pouet",
+          success: "Profil mis à jour",
+          error: "Attention aux erreurs",
         }
       )
-
+      // toaster management
       .then((response) => {
         response.text();
         console.warn(response);
@@ -99,6 +103,7 @@ function Settings() {
         }
       })
 
+      // user realtime update
       .then(
         setCurrentUser({
           ...currentUser,
