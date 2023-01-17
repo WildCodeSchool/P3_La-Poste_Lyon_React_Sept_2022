@@ -24,6 +24,7 @@
     "no-console": "off",
     /* Remove prop-types  */
     "react/prop-types": "off",
+
     "no-restricted-syntax": [
       "error",
       {

@@ -1,9 +1,22 @@
 import React, { useState } from "react";
 import "react-quill/dist/quill.snow.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast, Toaster } from "react-hot-toast";
 import TutorialValidatorPreview from "./TutorialValidatorPreview";
+import { useCurrentUserContext } from "../contexts/userContext";
 
 function TutorialValidator(allStepsContent) {
+  const navigate = useNavigate();
+  /* Get the token from the userContext */
+  const { token } = useCurrentUserContext();
+
+  /* Toast */
+  const notify = () => {
+    toast("Votre tutoriel a bien été publié", {
+      icon: "👍",
+    });
+  };
+
   const [showModal, setShowModal] = React.useState(false);
 
   /* We will post this data to create tutorial */
@@ -11,8 +24,7 @@ function TutorialValidator(allStepsContent) {
    */
 
   // eslint-disable-next-line react/destructuring-assignment
-  const mandatory = allStepsContent.allStepsContent;
-
+  const mandatory = JSON.stringify(allStepsContent.allStepsContent);
   // eslint-disable-next-line react/destructuring-assignment
   const { steps } = allStepsContent.allStepsContent;
 
@@ -47,12 +59,43 @@ function TutorialValidator(allStepsContent) {
 
   const handlePublication = (e) => {
     e.preventDefault();
-    /* We will post this data to create tutorial 
-  with the tutorialDataToValidae */
+
+    const myHeaders = new Headers();
+
+    myHeaders.append("Authorization", `Bearer ${token}`);
+    myHeaders.append("Content-Type", "application/json");
+    /* It's an object that will be sent in the body of request */
+    const body = mandatory;
+
+    fetch("http://localhost:5000/api/tutos", {
+      method: "POST",
+      redirect: "follow",
+      body,
+      headers: myHeaders,
+    })
+      /* then I get the response to json. If response == 401 console log error else .then result
+       */
+      .then((response) => {
+        if (response.status === 401) {
+          console.warn("error");
+        } else {
+          notify();
+          setTimeout(() => {
+            navigate(
+              /* eslint-disable react/destructuring-assignment */
+              `/categories/`
+            );
+
+            return response.text();
+          });
+        }
+      })
+      .catch((error) => console.warn("error", error));
   };
 
   return (
     <div className="m-O p-0">
+      <Toaster />
       <div className=" my-6 p-6  border w-[45vw] rounded-xl shadow-xl flex-col justify-end items-center relative">
         <h1 className="text-2xl text-center m-6 text-[#003DA5]">Validation</h1>
         <article className="text-center">
