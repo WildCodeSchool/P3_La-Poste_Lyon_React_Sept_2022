@@ -94,7 +94,7 @@ function Settings() {
       const formData = new FormData();
       formData.append("profilePicture", avatarRef.current.files[0]);
       const requestOptions = {
-        method: "POST",
+        method: "PUT",
         headers: myHeader,
         body: formData,
       };

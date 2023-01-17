@@ -81,6 +81,7 @@ router.delete("/api/steppers/:id", stepperControllers.destroy);
 
 // Gestion des avatars
 router.get("/api/avatars/:fileName", fileControllers.sendAvatar);
+router.put("/api/avatars/:id", userControllers.updateAvatar);
 
 router.post(
   "/api/avatars",
