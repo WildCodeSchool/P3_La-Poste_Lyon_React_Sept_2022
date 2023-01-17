@@ -74,7 +74,7 @@ function TutorialsManagement() {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then((data) => {
         if (data.error) {
           toast.error(data.error);
@@ -87,7 +87,7 @@ function TutorialsManagement() {
     fetchTutorials();
     setTimeout(() => {
       notify();
-    }, 1000);
+    }, 500);
   };
 
   return (
