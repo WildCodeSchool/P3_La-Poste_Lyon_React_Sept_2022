@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PreviousButton from "../components/PreviousButton";
-import { useCurrentUserContext } from "../contexts/userContext";
 import granny from "../assets/granny1.svg";
 import locker from "../assets/lockerlogo.png";
 import forgotpass from "../assets/forgotpass.svg";
 
 function ForgottenPassword() {
-  /* Get the context of the user (user informations + token) */
-  const { setCurrentUser, setToken } = useCurrentUserContext();
-
   /* Import useNavigate to move after the login  */
   const navigate = useNavigate();
 
@@ -30,28 +26,14 @@ function ForgottenPassword() {
     });
 
     /* function push user and token in the localstorage */
-    fetch("http://localhost:5000/api/resetpassword", {
+    fetch("http://localhost:5000/api/resetpassword/:passwordToken", {
       method: "POST",
       redirect: "follow",
       body,
       headers: myHeaders,
     })
-      /* then I get the response to json. If response == 401 console log error else .then result
-       */
-      .then((response) => {
-        if (response.status !== 401) {
-          /* eslint consistent-return: off */ return response.json();
-        }
-        setPassword("");
-      })
-      .then((result) => {
-        if (result.token) {
-          setCurrentUser(result.user);
-          setToken(result.token);
-          setTimeout(() => {
-            navigate("/authentification");
-          }, 1000);
-        }
+      .then(() => {
+        navigate("/authentification");
       })
       .catch((error) => console.warn(error));
   };

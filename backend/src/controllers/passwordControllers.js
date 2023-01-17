@@ -24,21 +24,16 @@ const verifyEmail = (req, res, next) => {
     });
 };
 
-// je génère mon token grace à uuidv4
-// j'enregistre le token dans ma BDD et je l'associe avec le user (update user en ajoutant cette valeur dans le champ concerné update table machin where user.id = ?) dans le passwordManager
-// je transmet le token au prochain middleware
+// I generate my token through uuidv4
+// I save the token in my BDD and associate it with the user
+// I transmit the token to the next middleware
 const generatePasswordToken = (req, res, next) => {
   const { user } = req;
   user.passwordToken = uuidv4();
 
   models.user
     .updatePasswordToken(user)
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.sendStatus(404);
-      } else {
-        res.sendStatus(204);
-      }
+    .then(() => {
       next();
     })
     .catch((err) => {
@@ -47,14 +42,41 @@ const generatePasswordToken = (req, res, next) => {
     });
 };
 
-// Create a new password
-const resetPassword = (req, res) => {
-  const user = req.body;
+// Verify if the tokenPassword exist
+const verifyTokenPassword = (req, res, next) => {
+  const { passwordToken } = req.body;
 
   models.user
-    .insert(user)
+    .selectToken(passwordToken)
+    .then(([users]) => {
+      console.warn(users);
+      if (users[0] != null) {
+        // eslint-disable-next-line prefer-destructuring
+        req.user = users[0];
+
+        next();
+      } else {
+        res.sendStatus(200);
+      }
+    })
+    .catch((err) => {
+      console.warn(err);
+      res.sendStatus(501);
+    });
+};
+
+// Create and hash a new password
+const resetPassword = (req, res) => {
+  const { password } = req.body;
+
+  models.user
+    .updatePassword(password)
     .then(([result]) => {
-      res.location(`/users/${result.insertId}`).sendStatus(201);
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.status(202);
+      }
     })
     .catch((err) => {
       console.error(err);
@@ -65,5 +87,6 @@ const resetPassword = (req, res) => {
 module.exports = {
   verifyEmail,
   generatePasswordToken,
+  verifyTokenPassword,
   resetPassword,
 };

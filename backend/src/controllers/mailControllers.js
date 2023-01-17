@@ -1,3 +1,4 @@
+/* eslint-disable */
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 
@@ -6,7 +7,7 @@ const { FRONTEND_URL } = process.env;
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: process.env.SMTP_PORT,
-  secure: true,
+  secure: false,
   auth: {
     user: process.env.SMTP_USER,
     pass: process.env.SMTP_PASSWORD,
@@ -20,9 +21,10 @@ const sendForgottenPassword = (req, res) => {
       to: req.user.email,
       subject: "Mot de passe oublié",
       text: "Pour créer un nouveau mot de passe, cliquez ici !",
-      html: `<p>Pour créer un nouveau mot de passe, <a href="${FRONTEND_URL}/resetpassword/${req.passwordToken}">cliquez ici !</a></p>`,
+      html: `<p>Pour créer un nouveau mot de passe, <a href="${FRONTEND_URL}/resetpassword/${req.user.passwordToken}">cliquez ici !</a></p>`,
     },
-    (err) => {
+    (err, info) => {
+      console.log(info);
       if (err) {
         console.error(err);
         res.sendStatus(500);

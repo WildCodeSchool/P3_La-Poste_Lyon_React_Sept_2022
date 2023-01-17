@@ -1,13 +1,18 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { toast, Toaster } from "react-hot-toast";
 import PreviousButton from "../components/PreviousButton";
 import granny from "../assets/granny1.svg";
 import arobase from "../assets/arobaselogo.png";
 import forgotpass from "../assets/forgotpass.svg";
 
 function ForgottenPassword() {
-  /* Import useNavigate to move after the login  */
-  const navigate = useNavigate();
+  /* Toast */
+
+  const notifySuccess = () => {
+    toast("Un email a été envoyé sur votre boîte mail.", {
+      icon: "📩",
+    });
+  };
 
   /* set email and password */
   const [email, setEmail] = useState("");
@@ -34,13 +39,16 @@ function ForgottenPassword() {
       headers: myHeaders,
     })
       .then(() => {
-        navigate("/");
+        notifySuccess();
       })
       .catch((error) => console.warn(error));
   };
 
   return (
     <>
+      <div>
+        <Toaster position="top-center" reverseOrder />
+      </div>{" "}
       <PreviousButton />
       <form
         onSubmit={handleSubmit}
