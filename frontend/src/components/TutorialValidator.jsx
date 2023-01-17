@@ -26,6 +26,9 @@ function TutorialValidator(allStepsContent) {
   // eslint-disable-next-line react/destructuring-assignment
   const mandatory = JSON.stringify(allStepsContent.allStepsContent);
   // eslint-disable-next-line react/destructuring-assignment
+  const previewData = allStepsContent.allStepsContent;
+
+  // eslint-disable-next-line react/destructuring-assignment
   const { steps } = allStepsContent.allStepsContent;
 
   /* Modale Stepper States */
@@ -73,21 +76,17 @@ function TutorialValidator(allStepsContent) {
       body,
       headers: myHeaders,
     })
-      /* then I get the response to json. If response == 401 console log error else .then result
-       */
+      /* then I get the response to json. If response == 401 console log error else .then result */
+      /* eslint-disable  consistent-return */
       .then((response) => {
         if (response.status === 401) {
           console.warn("error");
         } else {
           notify();
           setTimeout(() => {
-            navigate(
-              /* eslint-disable react/destructuring-assignment */
-              `/categories/`
-            );
-
-            return response.text();
-          });
+            navigate("/dashboard");
+          }, 2000);
+          return response.json();
         }
       })
       .catch((error) => console.warn("error", error));
@@ -137,10 +136,10 @@ function TutorialValidator(allStepsContent) {
         </section>
 
         <TutorialValidatorPreview
+          previewData={previewData}
           showModal={showModal}
           setShowModal={setShowModal}
           steps={steps}
-          mandatory={mandatory}
           modalestepsCompleted={modalestepsCompleted}
           currentModaleStep={currentModaleStep}
           setCurrentModaleStep={setCurrentModaleStep}

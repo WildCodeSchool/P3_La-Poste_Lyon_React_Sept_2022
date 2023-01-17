@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import ReactQuill from "react-quill";
 import quillConfig from "../config/quillConfig";
 import { CategoryContext } from "../contexts/CategoryContext";
-import pen from "../assets/pen.svg";
 import TutorialCreationTitles from "./TutorialCreationTitles";
 import SubmitButton from "./SubmitButton";
 import TutorialCreationQuillArea from "./TutorialCreationQuillArea";
@@ -95,12 +94,6 @@ export default function MandatoryInformations({
             onChange={handleTitleChange}
             placeholder="Insérez un titre"
             className=" border-gray-400  mb-5 p-4 w-full h-10 rounded-bl-lg rounded-br-lg bg-gray-200"
-          />
-
-          <img
-            src={pen}
-            alt="pen"
-            className="w-6 h-6 absolute right-2 bottom-8 "
           />
         </div>
         {/* Category */}

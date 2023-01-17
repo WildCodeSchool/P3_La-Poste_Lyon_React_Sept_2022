@@ -73,6 +73,7 @@ function TutorialCreation() {
       position: 3,
       component: (
         <TutorialValidator
+          mandatoryInformations={mandatoryInformations}
           handlePreviousStep={handlePreviousStep}
           handleAllStepsContent={handleAllStepsContent}
           currentStep={currentStep}
