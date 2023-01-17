@@ -27,6 +27,7 @@ class StepperManager extends AbstractManager {
   }
 
   insertAll(steps, tutoId) {
+    // we map to create as much steps we are receiving
     const stepsArray = steps.map((step) => [
       step.positionStep,
       step.content,
