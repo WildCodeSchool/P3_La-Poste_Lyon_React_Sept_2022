@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import { useNavigate } from "react-router-dom";
@@ -10,13 +10,17 @@ export default function Stepper(filteredSteppers) {
 
   const navigate = useNavigate();
 
-  /* State to check step's status - we fill all the arr with initial value at false */
-  const [stepsCompleted, setStepsCompleted] = useState(
-    Array(steps.length).fill(false)
-  );
-
   /* State to set up the current step */
   const [currentStep, setCurrentStep] = useState(0);
+
+  /* /* State to check step's status - we fill all the arr with initial value  and make it async */
+  const [stepsCompleted, setStepsCompleted] = useState(
+    Array(steps.length).fill("")
+  );
+
+  useEffect(() => {
+    setStepsCompleted(Array(steps.length).fill("")); // This will always use latest value of count
+  }, [steps]);
 
   /* onClick event of buttons - set the next step and trigger the value of step'statuts */
   const handleNextStep = () => {
@@ -51,7 +55,7 @@ export default function Stepper(filteredSteppers) {
             <button
               type="button"
               /* eslint-disable react/no-array-index-key */
-              key={step.positionStep}
+              key={index}
               className={`relative rounded-full h-10 w-10 ${
                 index === currentStep
                   ? "bg-[#003DA5] text-white"

@@ -54,6 +54,7 @@ function TutorialList() {
                 {tutorial.short_description.replace(/(<([^>]+)>)/gi, "")}
               </p>{" "}
               {/* make a button to go to the tutorial */}
+              {/* Update status -> started  */}
               <Link to={`/api/tutos/${tutorial.id}`}>
                 <AccessButton id={tutorial.id} />
               </Link>
