@@ -3,6 +3,8 @@ import { scroller } from "react-scroll";
 import RegisterThirdStep from "./RegisterThirdStep";
 import questionbtn from "../assets/question-circle.svg";
 import step2 from "../assets/id2create.svg";
+import RegisterSecondStepModale from "./RegisterSecondStepModale";
+import nextBtn from "../assets/nextBtn.svg";
 
 function RegisterSecondStep({
   registerInformations,
@@ -19,7 +21,8 @@ function RegisterSecondStep({
   };
 
   /* We upload the registerInformations object with the password and we scroll to the third step */
-  const toTheThirdStep = () => {
+  const toTheThirdStep = (e) => {
+    e.preventDefault();
     setRegisterInformations({
       ...registerInformations,
       password,
@@ -35,31 +38,30 @@ function RegisterSecondStep({
 
   return (
     <>
-      <div
-        className="flex justify-evenly flex-col items-center h-screen w-screen"
+      <form
+        onSubmit={toTheThirdStep}
+        className="flex justify-evenly flex-col items-center h-screen w-screen "
         id="RegisterSecondStep"
       >
-        <div className="md:shadow-2xl md:border md:border-grey-50 h-fit">
-          <div className="flex flex-col items-center justify-center pt-20">
-            <div className="relative flex items-center justify-start flex-col font-bold text-3xl text-center bg-[#FFC928] rounded-xl w-4/5 h-4/5 py-14">
-              <div className="absolute top-1 left-3 text-white rounded-full h-10 w-10 bg-[#003DA5] flex justify-center">
-                <h3>2</h3>
-              </div>
-              Créer votre mot de passe
-            </div>
+        <div className="md:shadow-2xl md:border rounded-xl md:border-grey-50 md:py-10 h-fit bg-gradient-to-b from-[#003DA5] to-[#023998]">
+          <div className="flex flex-col items-center justify-center">
+            <h1 className="text-white text-3xl">
+              Choississez votre mot de passe
+            </h1>
+
             <div>
               <img src={step2} alt="second step" />
             </div>
           </div>
           <div className="flex justify-center items-center pt-10">
             <div className="w-screen max-w-md">
-              <div className="bg-white rounded px-8 pt-6 pb-8 mb-10">
+              <div className=" rounded px-8 pt-6 ">
                 <div className="mb-6">
                   <p className="text-gray-300 font-light italic">
                     Tous les champs sont obligatoires
                   </p>
                   <label
-                    className="flex flex-ro items-center text-gray-700 text-sm font-bold mb-2 pb-3"
+                    className="flex flex-ro items-center text-white text-sm font-bold mb-2 pb-3"
                     htmlFor="password"
                   >
                     Mot de passe
@@ -76,64 +78,7 @@ function RegisterSecondStep({
                     </button>
                     {/* Modale */}
                     {showModal ? (
-                      <>
-                        <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
-                          <div className="relative w-auto my-6 mx-auto max-w-3xl">
-                            {/* content */}
-                            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
-                              {/* header */}
-                              <div className="flex items-start justify-between p-5 border-b border-solid border-slate-200 rounded-t">
-                                <h3 className="text-2xl font-semibold">
-                                  Créer son mot de passe
-                                </h3>
-                                <button
-                                  type="button"
-                                  className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                                  onClick={() => setShowModal(false)}
-                                >
-                                  <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                                    ×
-                                  </span>
-                                </button>
-                              </div>
-                              {/* body */}
-                              <div className="relative p-6 flex-auto">
-                                <p className="my-4 text-slate-500 text-lg leading-relaxed">
-                                  Besoin d'aide ?
-                                </p>
-                                <p className="my-4 text-black font-light">
-                                  Afin de vous connecter sur la plateforme, vous
-                                  devez après avoir créer votre identifiant,
-                                  choisir un mot de passe
-                                  <br />
-                                  Le mot de passe est un code personnel et
-                                  confidentiel qui vous permet de vous connecter
-                                  à l'application. Votre mot de passe peut être
-                                  assimiler à une "clé" que vous seul devez
-                                  conserver.
-                                  <br />
-                                  <br />
-                                  <br />
-                                  Nous vous invitions vivement à conserver votre
-                                  mot de passe dans un endroit sécurisé afin de
-                                  ne pas l'oublier !
-                                </p>
-                              </div>
-                              {/* footer */}
-                              <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">
-                                <button
-                                  className="text-[#003DA5] background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                                  type="button"
-                                  onClick={() => setShowModal(false)}
-                                >
-                                  Fermer
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="opacity-25 fixed inset-0 z-40 bg-black" />
-                      </>
+                      <RegisterSecondStepModale setShowModal={setShowModal} />
                     ) : null}
                     {/* End of the modale */}
                   </label>
@@ -147,25 +92,15 @@ function RegisterSecondStep({
                     type="password"
                     placeholder="Entrez un mot de passe"
                   />
-                  <p className=" bg-gray-100 p-3 rounded text-gray-600 text-center text-md  pt-3 pb-3">
-                    Pensez à bien le retenir !
-                  </p>
+
                   <div className="flex justify-center pt-10">
-                    <button type="button" onClick={toTheThirdStep}>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        className="w-10 h-10"
-                        strokeWidth="3"
-                        stroke="#003DA5"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M13.5 4.5L21 12m0 0l-7.5 7.5M 21 12H3"
-                        />
-                      </svg>
+                    {/* eslint-disable react/button-has-type */}
+                    <button type="onSubmit" className="flex">
+                      <img
+                        src={nextBtn}
+                        alt="next button"
+                        className="mx-3 w-10 h-10"
+                      />
                     </button>
                   </div>
                 </div>
@@ -173,7 +108,7 @@ function RegisterSecondStep({
             </div>
           </div>
         </div>
-      </div>
+      </form>
       <RegisterThirdStep
         setRegisterInformations={setRegisterInformations}
         submitRegisterInformations={submitRegisterInformations}

@@ -1,7 +1,20 @@
 const models = require("../models");
 
-// get all tutos
+// get all tutos by category and return every tutos  with is id
 const browse = (req, res) => {
+  models.tuto
+    .findAllByCategory(req.params.id)
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+// get all tutos by category and return every tutos  with is id
+const browseAll = (req, res) => {
   models.tuto
     .findAll()
     .then(([rows]) => {
@@ -58,7 +71,15 @@ const add = (req, res) => {
   models.tuto
     .insert(tuto)
     .then(([result]) => {
-      res.location(`/tutos/${result.insertId}`).sendStatus(201);
+      if (tuto.steps?.length > 0) {
+        models.stepper
+          .insertAll(tuto.steps, result.insertId)
+          .then(res.location(`/tutos/${result.insertId}`).sendStatus(201))
+          .catch((err) => {
+            console.error(err);
+            res.sendStatus(500);
+          });
+      } else res.location(`/tutos/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -85,6 +106,7 @@ const destroy = (req, res) => {
 
 module.exports = {
   browse,
+  browseAll,
   read,
   edit,
   add,

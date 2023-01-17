@@ -33,7 +33,7 @@ export default function MandatoryInformations({
     setSelected(event.target.value);
     setMandatoryInformations({
       ...mandatoryInformations,
-      category: event.target.value,
+      category_id: event.target.value,
     });
   };
 
@@ -43,7 +43,7 @@ export default function MandatoryInformations({
     setShortDescription(value);
     setMandatoryInformations({
       ...mandatoryInformations,
-      shortDescription: value,
+      short_description: value,
     });
   };
 
@@ -120,7 +120,7 @@ export default function MandatoryInformations({
           {categories?.map((category) => (
             <option
               key={category.id}
-              value={category.name}
+              value={category.id}
               className={`${selected ? "text-[#003DA5]" : ""}}`}
             >
               {category.name}

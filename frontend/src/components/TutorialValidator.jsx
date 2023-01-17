@@ -1,19 +1,32 @@
 import React, { useState } from "react";
 import "react-quill/dist/quill.snow.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast, Toaster } from "react-hot-toast";
 import TutorialValidatorPreview from "./TutorialValidatorPreview";
+import { useCurrentUserContext } from "../contexts/userContext";
 
 function TutorialValidator(allStepsContent) {
+  const navigate = useNavigate();
+  /* Get the token from the userContext */
+  const { token } = useCurrentUserContext();
+
+  /* Toast */
+  const notify = () => {
+    toast("Votre tutoriel a bien été publié", {
+      icon: "👍",
+    });
+  };
+
   const [showModal, setShowModal] = React.useState(false);
 
   /* We will post this data to create tutorial */
-  /*   const tutorialDataToValidate = allStepsContent.allStepsContent;
+  /*  const tutorialDataToValidate = allStepsContent.allStepsContent;
    */
 
   // eslint-disable-next-line react/destructuring-assignment
-  const mandatory = allStepsContent.allStepsContent[0];
+  const mandatory = JSON.stringify(allStepsContent.allStepsContent);
   // eslint-disable-next-line react/destructuring-assignment
-  const { steps } = allStepsContent.allStepsContent[1];
+  const { steps } = allStepsContent.allStepsContent;
 
   /* Modale Stepper States */
   /* State to check step's status - we fill all the arr with initial value at false */
@@ -44,23 +57,53 @@ function TutorialValidator(allStepsContent) {
     });
   };
 
-  const handlePublication = () => {
-    /* We will post this data to create tutorial 
-  with the tutorialDataToValidae */
+  const handlePublication = (e) => {
+    e.preventDefault();
+
+    const myHeaders = new Headers();
+
+    myHeaders.append("Authorization", `Bearer ${token}`);
+    myHeaders.append("Content-Type", "application/json");
+    /* It's an object that will be sent in the body of request */
+    const body = mandatory;
+
+    fetch("http://localhost:5000/api/tutos", {
+      method: "POST",
+      redirect: "follow",
+      body,
+      headers: myHeaders,
+    })
+      /* then I get the response to json. If response == 401 console log error else .then result
+       */
+      .then((response) => {
+        if (response.status === 401) {
+          console.warn("error");
+        } else {
+          notify();
+          setTimeout(() => {
+            navigate(
+              /* eslint-disable react/destructuring-assignment */
+              `/categories/`
+            );
+
+            return response.text();
+          });
+        }
+      })
+      .catch((error) => console.warn("error", error));
   };
 
   return (
     <div className="m-O p-0">
+      <Toaster />
       <div className=" my-6 p-6  border w-[45vw] rounded-xl shadow-xl flex-col justify-end items-center relative">
         <h1 className="text-2xl text-center m-6 text-[#003DA5]">Validation</h1>
-        <article>
-          Votre tutoriel est prêt à être publié. Vous pouvez encore le modifier
-          ou le prévisualiser avant de le publier.
+        <article className="text-center">
+          Votre tutoriel est prêt ! Vous pouvez le prévisualiser avant de le
+          publier.
           <hr className="my-6" />
-          Une fois publié, votre tutoriel pourra être modifié directement depuis
-          la page de votre tutoriel.
         </article>
-        <section className="my-8">
+        <section className="my-8 flex flex-wrap justify-center">
           {
             // eslint-disable-next-line react/destructuring-assignment
             allStepsContent.currentStep === 2 && (
