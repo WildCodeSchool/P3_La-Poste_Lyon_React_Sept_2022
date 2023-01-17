@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import { avatar } from "@material-tailwind/react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
-import NavigationBar from "../components/NavigationBar";
 import pencil from "../assets/pencil1.svg";
 import upload from "../assets/uploadIcon.svg";
 import PreviousButton from "../components/PreviousButton";
+import { useCurrentUserContext } from "../contexts/userContext";
 
 // Banner to implement to this page,with a previous icon to add on the banner.
 
@@ -12,9 +13,13 @@ import PreviousButton from "../components/PreviousButton";
 // There is also an icon with an Onclick allowing for the user to select and display a profile picture.
 
 function Settings() {
+  const avatarRef = useRef(null);
+  const { currentUser, setCurrentUser, token } = useCurrentUserContext();
+  const [msg, setMsg] = useState("Aucun upload effectué");
+
   /*   const [defaultImage, setDefaultImage] = useState(profilepic);
-   */ const [uploadedImage, setUploadedImage] = useState(null);
-  const [image, setImage] = useState(null);
+   */ const [uploadedImage, setUploadedImage] = useState({ avatar });
+  const [, setImage] = useState(null);
   /*   const [fileName, setFileName] = useState("");
    */
   const handleImageChange = (event) => {
@@ -31,7 +36,7 @@ function Settings() {
   const [lastname, setLastName] = useState("Nom");
   const [phone, setPhone] = useState("Téléphone");
 
-  const [setUser] = useState("");
+  // const [setUser] = useState("");
 
   const [inputcontent] = useState("");
 
@@ -51,6 +56,8 @@ function Settings() {
     }
   };
 
+  // Méthode pour fetch les données des users pour les garder en mémoire (firstname, lastname, phone)
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -69,59 +76,115 @@ function Settings() {
       fetch("http://localhost:5000/api/user:id", requestOptions)
         .then((response) => response.json())
         .then((result) => {
-          setUser(result.user);
+          setCurrentUser(result.user);
         })
         .catch(console.error);
     }
   };
 
+  // Méthode pour fetch l'avatar uploadé
+
+  const handleSubmitAvatar = (e) => {
+    e.preventDefault();
+    if (avatarRef.current.files[0]) {
+      // recupération des articles.
+      const myHeader = new Headers();
+      myHeader.append("Authorization", `Bearer ${token}`);
+
+      const formData = new FormData();
+      formData.append("profilePicture", avatarRef.current.files[0]);
+      const requestOptions = {
+        method: "POST",
+        headers: myHeader,
+        body: formData,
+      };
+      // on appelle le back
+      fetch(
+        `http://localhost:5000/api/avatars/${currentUser.id}`,
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((results) => {
+          // maj avatar
+          setCurrentUser({ ...currentUser, avatar: results.avatar });
+          setMsg("Upload réussi !");
+        })
+        .catch((error) => {
+          console.error(error);
+          setMsg("Upload échoué !");
+        });
+    } else {
+      setMsg(
+        "Vous auriez pas oublié un truc ? Le fichier à uploader, par exemple ?"
+      );
+    }
+  };
+
+  /* const hSubmit = (evt) => {
+    evt.preventDefault();
+
+    const formData = new FormData();
+    formData.append("avatar", avatarRef.current.files[0]);
+
+    axios
+      .post("http://localhost:5000/api/avatars", formData)
+      .then(() => {
+        setMsg("Upload réussi !");
+      })
+      .catch(() => {
+        setMsg("Upload échoué !");
+      });
+  }; */
+
   return (
-    <>
-      <NavigationBar />
-
-      <div className="my-6">
-        <Link to="/dashboard">
-          <PreviousButton />
-        </Link>
-
-        <div className="mt-4 flex justify-center flex-col">
-          <h1 className="flex w-full justify-center items-center text-bold text-xl text-black my-8 h-10 md:text-2xl text-center md:h-14 md:text-center ">
-            Modifier mes informations
-          </h1>
-          <div className="flex justify-center  ">
-            {!uploadedImage && (
+    <div className="my-6">
+      <Link to="/dashboard">
+        <PreviousButton />
+      </Link>
+      <div className="mt-4 flex justify-center flex-col z-1">
+        <h1 className="flex w-full justify-center items-center text-bold text-xl text-black my-8 h-10 md:text-2xl text-center md:h-14 md:text-center ">
+          Modifier mes informations
+        </h1>
+        <div className="flex justify-center">
+          {!uploadedImage && (
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8HE9nJ03LBSlHivqF46xHQ640tNgo-9nnFrUMANrL3tf4lOHdDeNzjLZurWNUf3oIt8&usqp=CAU"
+              alt=""
+              className="object-fit w-36  h-36 border rounded-full"
+            />
+          )}
+          {uploadedImage && (
+            <form encType="multipart/image" onSubmit={handleSubmitAvatar}>
               <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8HE9nJ03LBSlHivqF46xHQ640tNgo-9nnFrUMANrL3tf4lOHdDeNzjLZurWNUf3oIt8&usqp=CAU"
-                alt=""
-                className="object-fit w-36  h-36 border rounded-full"
+                src={uploadedImage}
+                className="object-fit border w-36  rounded-full"
+                alt="Uploaded"
               />
-            )}
-            {uploadedImage && (
-              <div className="">
-                <img
-                  src={URL.createObjectURL(image)}
-                  className="object-fit border w-36  rounded-full"
-                  alt="Uploaded"
-                />
-              </div>
-            )}
-            <div className="mt-32">
-              <label htmlFor="image-upload" className=" ">
-                <img
-                  src={upload}
-                  alt="Upload Icon"
-                  className="absolute w-7 h-7 cursor-pointer"
-                />
-              </label>
+              <input type="file" ref={avatarRef} />
+              <button type="submit">Envoyer</button>
+              <p>{msg}</p>
+            </form>
+            /* <form enctype="multipart/form-data" onSubmit={hSubmit}>
+            <input type="file" name="monfichier" ref={inputRef} />
+            <button type="submit">Envoyer</button> */
+          )}
 
-              <input
-                type="file"
-                id="image-upload"
-                accept="image/*"
-                onChange={handleImageChange}
-                className="hidden"
+          <div className="mt-32">
+            <label htmlFor="image-upload" className=" ">
+              <img
+                src={upload}
+                alt="Upload Icon"
+                className="absolute w-7 h-7 cursor-pointer"
               />
-            </div>
+            </label>
+
+            <input
+              type="file"
+              id="image-upload"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="hidden"
+            />
           </div>
         </div>
         <form onSubmit={handleSubmit}>
@@ -182,27 +245,22 @@ function Settings() {
               </label>{" "}
               <div className="w-full flex justify-end items-center relative">
                 <input
-                  type="Numéro"
-                  placeholder="Numéro de téléphone"
-                  className="border-gray-400 bg-gray-100 rounded-bl-lg rounded-br-lg p-4 w-full h-10"
+                  placeholder="06-62-02-02-02"
+                  className=" border-gray-400 bg-gray-100 rounded-bl-lg rounded-br-lg p-4 w-full h-10"
                   onChange={(event) => setPhone(event.target.value)}
                   onKeyDown={handleInput3}
-                  required
-                  pattern=".+"
                 />
-                <button
-                  type="submit"
-                  required
-                  className="cursor-pointer text-white p-2 rounded-full h-10 w-10 flex justify-center items-center"
-                >
-                  <img src={pencil} className="w-6 h-6" alt="Edit Icon" />
-                </button>
+                <img
+                  src={pencil}
+                  className="absolute mr-2 w-6 h-6"
+                  alt="Search Icon"
+                />{" "}
               </div>
             </li>
           </ul>
         </form>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -1,8 +1,8 @@
 const models = require("../models");
 
-// get all users
+// get all tutos
 const browse = (req, res) => {
-  models.user
+  models.tuto
     .findAll()
     .then(([rows]) => {
       res.send(rows);
@@ -13,9 +13,9 @@ const browse = (req, res) => {
     });
 };
 
-// get user by its id
+// get a tuto with its id
 const read = (req, res) => {
-  models.user
+  models.tuto
     .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
@@ -30,14 +30,14 @@ const read = (req, res) => {
     });
 };
 
-// edit an user
+// edit a tuto
 const edit = (req, res) => {
-  const user = req.body;
+  const tuto = req.body;
 
-  user.id = parseInt(req.params.id, 10);
+  tuto.id = parseInt(req.params.id, 10);
 
-  models.user
-    .update(user)
+  models.tuto
+    .update(tuto)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -51,14 +51,14 @@ const edit = (req, res) => {
     });
 };
 
-// add an user
+// add a tuto
 const add = (req, res) => {
-  const user = req.body;
+  const tuto = req.body;
 
-  models.user
-    .insert(user)
+  models.tuto
+    .insert(tuto)
     .then(([result]) => {
-      res.location(`/users/${result.insertId}`).sendStatus(201);
+      res.location(`/tutos/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -66,9 +66,9 @@ const add = (req, res) => {
     });
 };
 
-// delete an user
+// delete a tuto
 const destroy = (req, res) => {
-  models.user
+  models.tuto
     .delete(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
@@ -83,10 +83,27 @@ const destroy = (req, res) => {
     });
 };
 
+const updateAvatar = (req, res) => {
+  const id = req.payload.sub;
+  const { profilePicture } = req;
+
+  models.user
+    .updateAvatar(id, profilePicture)
+    .then(([result]) => {
+      if (result.affectedRows === 0) res.sendStatus(404);
+      else res.status(202).send({ profilePicture });
+    })
+    .catch((error) => {
+      console.error(error);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browse,
   read,
   edit,
   add,
   destroy,
+  updateAvatar,
 };

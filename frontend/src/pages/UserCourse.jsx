@@ -1,5 +1,4 @@
 import React from "react";
-import NavigationBar from "../components/NavigationBar";
 import step1 from "../assets/userCourse/Etape1.svg";
 import step2 from "../assets/userCourse/Etape2.svg";
 import step4 from "../assets/userCourse/Etape4.svg";
@@ -17,7 +16,6 @@ import awards from "../assets/userCourse/Awards.svg";
 function UserCourse() {
   return (
     <div>
-      <NavigationBar />
       <div className="mt-7 mb-7 flex justify-center">
         <h1 className="flex justify-center items-center text-bold text-xl text-white rounded-3xl shadow-lg bg-[#003DA5] w-2/3 h-10 md:text-2xl text-center md:w-1/4 md:h-14 md:text-center">
           Parcours utilisateur
