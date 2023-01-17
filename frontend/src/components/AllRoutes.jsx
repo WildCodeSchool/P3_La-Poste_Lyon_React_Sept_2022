@@ -47,10 +47,7 @@ function AllRoutes({ adminView, handleAdminView }) {
           <Route path="/course" element={<UserCourse />} />
           <Route path="/api/tutos/:id" element={<Tutorial />} />
           <Route path="/categories" element={<TutorialCategory />} />
-          <Route
-            path="/categories/:id/tutorials/:id"
-            element={<TutorialList />}
-          />
+          <Route path="/categories/:id/tutorials" element={<TutorialList />} />
           <Route path="/history" element={<Historic />} />
           <Route path="/settings" element={<Settings />} />
         </>
