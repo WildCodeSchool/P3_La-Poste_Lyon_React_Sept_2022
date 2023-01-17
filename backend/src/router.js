@@ -31,9 +31,7 @@ router.get("/api/categories", categoryControllers.browse);
 router.get("/api/categories/:id", categoryControllers.read);
 
 // Tutos management
-/* router.get("/api/tutos/category_id/:id", tutoControllers.browse); */
 
-router.get("/api/tutos", tutoControllers.browse);
 /* Route to get all tutos by the category id */
 router.get("/api/tutos/category_id/:id", tutoControllers.browse);
 /* router to browseAll */
