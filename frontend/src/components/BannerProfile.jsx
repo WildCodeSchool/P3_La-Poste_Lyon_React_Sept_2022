@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
-import medaille from "../assets/medaille.png";
-import parametres from "../assets/parametres.png";
+import { Link, useNavigate } from "react-router-dom";
+import logout from "../assets/logout.svg";
+import parametres from "../assets/parametres.svg";
 import CurrentUserContext from "../contexts/userContext";
 
 function BannerProfile() {
@@ -15,15 +15,24 @@ function BannerProfile() {
     userLevel = "Intermédiaire";
   }
 
+  // Log Out remove localStorage and navigate to the main page with a reload
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+
+    navigate("/");
+    window.location.reload();
+  };
   return (
     <div className="w-full h-full">
-      <div className="flex bg-[#FFC928] w-full justify-between shadow">
+      <div className="flex bg-gradient-to-r from-main-yellow to-second-yellow w-full justify-between shadow">
         <div className="flex justify-around flex-wrap md:mx-10">
           <div className="flex flex-wrap">
             <div className="rounded-full w-100 h-100 my-5">
               <Link to="/dashboard">
                 <img
-                  className="border-black rounded-full w-20 h-20 mr-8"
+                  className="border-black border rounded-full w-20 h-20 mr-8"
                   src={
                     currentUser?.profilePicture ||
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8HE9nJ03LBSlHivqF46xHQ640tNgo-9nnFrUMANrL3tf4lOHdDeNzjLZurWNUf3oIt8&usqp=CAU"
@@ -33,24 +42,32 @@ function BannerProfile() {
               </Link>
             </div>
           </div>
-          <div className="my-5 md:flex md:flex-wrap md:items-center">
+          <div className="my-5 md:flex md:flex-col  ">
             <h2 className="text-2xl">
-              {currentUser.firstname} {currentUser.lastname}
+              Bonjour,{" "}
+              <span className=" font-semibold">
+                {currentUser.firstname} {currentUser.lastname}{" "}
+              </span>{" "}
+              !
             </h2>
-            <div className="flex items-center flex-wrap">
-              <img className="h-7 mr-3" src={medaille} alt="userImage" />
-              <h2 className="text-2xl">
-                {currentUser.admin === 1 && "Admin"}
+            <div className="flex justify-start items-center flex-wrap">
+              <Link to="/settings">
+                <img className="mr-2 h-6" src={parametres} alt="parametres" />
+              </Link>
+              <h2 className="text-md text-[#333] semibold">
+                {currentUser.admin === 1 && "Administrateur"}
                 {currentUser.admin === 0 && userLevel}
               </h2>
             </div>
           </div>
         </div>
-        <div className="my-2  justify-end">
-          <Link to="/settings">
-            <img className="mr-2 h-10" src={parametres} alt="parametres" />
-          </Link>
-        </div>
+        <button
+          type="button"
+          onClick={handleLogout}
+          className=" m-6 flex  items-center justify-end"
+        >
+          <img src={logout} alt="Disconnect" className="w-8" />
+        </button>
       </div>
     </div>
   );

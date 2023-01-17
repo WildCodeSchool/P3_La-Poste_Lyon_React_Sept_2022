@@ -37,7 +37,9 @@ function TutorialList() {
       <section className="m-6">
         <PreviousButton />
 
-        <h1 className="m-6 text-3xl  text-center"> {categoryName} </h1>
+        <h1 className="flex   justify-center items-center font-bold text-3xl text-main-blue rounded-xl h-10 text-center md:h-10 md:text-center">
+          {categoryName}
+        </h1>
 
         {/* We display the tutorials with the filter of the cagtegory selected */}
         <ul className="w-3/5 grid grid-cols-1 md:grid-cols-2  m-auto ">
@@ -47,9 +49,10 @@ function TutorialList() {
               /* eslint-disable react/no-array-index-key */
               key={index}
             >
-              <h2 className="text-xl p-2 text-[#003DA5] font-bold  bg-white shadow-md  rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
+              <h2 className="text-lg   md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
                 {tutorial.title}
               </h2>
+              <hr />
               <p className="p-3 flex justify-center items-center h-24">
                 {tutorial.short_description.replace(/(<([^>]+)>)/gi, "")}
               </p>{" "}
