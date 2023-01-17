@@ -52,10 +52,10 @@ router.post(
   mailControllers.sendForgottenPassword
 );
 router.post(
-  `/api/resetpassword/:passwordToken`,
+  `/api/resetpassword`,
   passwordControllers.verifyTokenPassword,
-  passwordControllers.resetPassword,
-  hashPassword
+  hashPassword,
+  passwordControllers.resetPassword
 );
 
 // PROTECTED ROUTES

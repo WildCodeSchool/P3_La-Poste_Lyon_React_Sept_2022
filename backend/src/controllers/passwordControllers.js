@@ -67,10 +67,11 @@ const verifyTokenPassword = (req, res, next) => {
 
 // Create and hash a new password
 const resetPassword = (req, res) => {
-  const { password } = req.body;
+  const { user } = req;
+  user.hashedPassword = req.body.hashedPassword;
 
   models.user
-    .updatePassword(password)
+    .updatePasswordAfterReset(user)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);

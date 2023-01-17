@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PreviousButton from "../components/PreviousButton";
 import granny from "../assets/granny1.svg";
 import locker from "../assets/lockerlogo.png";
 import forgotpass from "../assets/forgotpass.svg";
 
 function ForgottenPassword() {
+  // I recup passwordToken from the URL
+  const { passwordToken } = useParams();
+
   /* Import useNavigate to move after the login  */
   const navigate = useNavigate();
 
@@ -23,10 +26,11 @@ function ForgottenPassword() {
     /* It's an object that will be sent in the body of request */
     const body = JSON.stringify({
       password,
+      passwordToken,
     });
 
     /* function push user and token in the localstorage */
-    fetch("http://localhost:5000/api/resetpassword/:passwordToken", {
+    fetch("http://localhost:5000/api/resetpassword", {
       method: "POST",
       redirect: "follow",
       body,
