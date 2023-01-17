@@ -21,7 +21,8 @@
     "jsonwebtoken": "^9.0.0",
     "mysql2": "^2.3.3",
     "nodemailer": "^6.9.0",
-    "template-fullstack": "file:.."
+    "template-fullstack": "file:..",
+    "uuid": "^9.0.0"
   },
   "rules": {
     "no-console": [

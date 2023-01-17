@@ -1,15 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PreviousButton from "../components/PreviousButton";
-import { useCurrentUserContext } from "../contexts/userContext";
 import granny from "../assets/granny1.svg";
 import arobase from "../assets/arobaselogo.png";
 import forgotpass from "../assets/forgotpass.svg";
 
 function ForgottenPassword() {
-  /* Get the context of the user (user informations + token) */
-  const { user } = useCurrentUserContext();
-
   /* Import useNavigate to move after the login  */
   const navigate = useNavigate();
 
@@ -30,18 +26,15 @@ function ForgottenPassword() {
       email,
     });
 
-    /* When the user enter his email adress, we will first verify if the adress exist in our database. Then, we will send an email in this adress if it exist or render nothing if it's not. */
+    /* When the user enter his email adress, we will begin all the middleware of the route /forgottenpassword */
     fetch("http://localhost:5000/api/forgottenpassword", {
       method: "POST",
       redirect: "follow",
       body,
       headers: myHeaders,
     })
-      /* result is an email. I compare it to email of all users. If it exist, we execute the fetch. */
-      .then((result) => {
-        if (result === user.email) {
-          navigate("/");
-        }
+      .then(() => {
+        navigate("/");
       })
       .catch((error) => console.warn(error));
   };

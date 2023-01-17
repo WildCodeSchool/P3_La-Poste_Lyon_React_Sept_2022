@@ -11,6 +11,7 @@ const tutoControllers = require("./controllers/tutoControllers");
 const statusControllers = require("./controllers/statusControllers");
 const stepperControllers = require("./controllers/stepperControllers");
 const passwordControllers = require("./controllers/passwordControllers");
+const mailControllers = require("./controllers/mailControllers");
 
 // PUBLIC ROUTES
 
@@ -46,7 +47,9 @@ router.get("/api/steppers/:id", stepperControllers.read);
 // Reset password
 router.post(
   "/api/forgottenpassword",
-  passwordControllers.verifyEmailAndSendEmail
+  passwordControllers.verifyEmail,
+  passwordControllers.generatePasswordToken,
+  mailControllers.sendForgottenPassword
 );
 router.post(
   `/api/resetpassword`,
