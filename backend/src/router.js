@@ -33,7 +33,13 @@ router.get("/api/categories", categoryControllers.browse);
 router.get("/api/categories/:id", categoryControllers.read);
 
 // Tutos management
+/* router.get("/api/tutos/category_id/:id", tutoControllers.browse); */
+
 router.get("/api/tutos", tutoControllers.browse);
+/* Route to get all tutos by the category id */
+router.get("/api/tutos/category_id/:id", tutoControllers.browse);
+/* router to browseAll */
+router.get("/api/tutos/all", tutoControllers.browseAll);
 router.get("/api/tutos/:id", tutoControllers.read);
 
 // Status management
@@ -82,6 +88,8 @@ router.post("/api/status", statusControllers.add);
 router.delete("/api/status/:id", statusControllers.destroy);
 
 // Stepper management
+/* road to destroy all stepper of a tutorial */
+router.delete("/api/steppers/tuto_id/:id", stepperControllers.destroy);
 router.put("/api/steppers/:id", stepperControllers.edit);
 router.post("/api/steppers", stepperControllers.add);
 router.delete("/api/steppers/:id", stepperControllers.destroy);

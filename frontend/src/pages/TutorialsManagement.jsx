@@ -1,32 +1,29 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { toast, Toaster } from "react-hot-toast";
-import DeleteModaleUser from "../components/DeleteModaleUser";
 import CurrentUserContext from "../contexts/userContext";
+import { CategoryContext } from "../contexts/CategoryContext";
 import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
+import DeleteModaleTutorial from "../components/DeleteModaleTutorial";
 import trash from "../assets/trash.svg";
 
-function SearchUsers() {
-  const notify = () => toast.success("L'utilisateur a bien été supprimé");
+function TutorialsManagement() {
+  const notify = () => toast.success("Le tutoriel a bien été supprimé");
 
-  /* Get bearer token from userContext to get permission about delete user */
+  /* Token */
   const { token } = useContext(CurrentUserContext);
 
-  /* Fetch the users of the application */
-  const [users, setUsers] = useState([]);
+  /* Fetch all the tutorials */
+  const [tutorials, setTutorials] = useState([]);
 
-  const fetchUsers = async () => {
-    const response = await fetch("http://localhost:5000/api/users");
-    const data = await response.json();
-    setUsers(data);
+  const fetchTutorials = () => {
+    fetch(`http://localhost:5000/api/tutos/all`)
+      .then((response) => response.json())
+      .then((data) => setTutorials(data));
   };
-
   useEffect(() => {
-    fetchUsers();
-  }, [users]);
-
-  /* We remove admin from the user management */
-  const noAdmin = users?.filter((user) => user.admin !== 1);
+    fetchTutorials();
+  }, []);
 
   /* State the search value, then make it lowercase and normalize accent */
   const [search, setSearch] = useState("");
@@ -35,35 +32,59 @@ function SearchUsers() {
     .normalize("NFD")
     .replace(/[\u0300-\u036f+.]/g, "");
 
-  /* Filtred user precomputed */
-  const filtredUser = noAdmin?.filter(
-    (user) =>
-      user.firstname
+  /* Filtred tutorials precomputed */
+  const filtredTutorials = tutorials?.filter(
+    (tutorial) =>
+      tutorial.title
         .toLowerCase()
         .normalize("NFD")
         .replace(/[\u0300-\u036f]/g, "")
-        .includes(normalizeSearch) ||
-      user.lastname
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .includes(normalizeSearch)
+        .includes(normalizeSearch) || tutorial.category_name === search
   );
 
-  /* Delete user */
+  /* Match the category id to the category name */
+  const { categories } = useContext(CategoryContext);
+
+  /* Delete tutorial */
   const [confirmDeleteModale, setConfirmDeleteModale] = useState(false);
   const [id, setId] = useState();
 
-  const handleDeleteUser = async () => {
-    fetch(`http://localhost:5000/api/users/${id}`, {
+  const handleDeleteTutorial = async () => {
+    /* delete all steppers */
+
+    fetch(`http://localhost:5000/api/steppers/tuto_id/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-    });
-    setConfirmDeleteModale(!confirmDeleteModale);
-    fetchUsers();
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          toast.error(data.error);
+        }
+      });
+
+    /* delete the tutorial  */
+    fetch(`http://localhost:5000/api/tutos/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        if (data.error) {
+          toast.error(data.error);
+        } else {
+          setTutorials(tutorials.filter((tutorial) => tutorial.id !== id));
+        }
+      });
+
+    setConfirmDeleteModale(false);
+    fetchTutorials();
     setTimeout(() => {
       notify();
     }, 500);
@@ -76,15 +97,15 @@ function SearchUsers() {
       <PreviousButton />
       <h2 className="m-6 text-xl text-center md:text-3xl">
         {" "}
-        Gestion des utilisateurs{" "}
+        Gestion des tutoriels
       </h2>
       <form className="w-full flex flex-col justify-center items-center ">
         <input
           type="text"
-          id="users"
-          name="users"
+          id="tutoriels"
+          name="tutoriels"
           onChange={(e) => setSearch(e.target.value)}
-          placeholder="Recherchez un utilisateur"
+          placeholder="Recherchez un tutoriel"
           className=" border-gray-400 rounded-lg mb-5 p-4 w-4/6 md:w-2/6 h-10  bg-gray-200"
         />
 
@@ -93,7 +114,7 @@ function SearchUsers() {
             <div className="w-5/6  mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
               <header className="px-5 py-4 border-b border-gray-100">
                 <h2 className="text-xl font-semibold text-[#003DA5]">
-                  Utilisateurs
+                  Tutoriels
                 </h2>
               </header>
               <div className="p-3">
@@ -102,21 +123,19 @@ function SearchUsers() {
                     <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
                       <tr>
                         <th className="p-2 whitespace-nowrap">
-                          <div className="font-semibold text-left">
-                            Nom - Prénom
-                          </div>
-                        </th>
-                        <th className="p-2 whitespace-nowrap">
-                          <div className="font-semibold text-left">Email</div>
+                          <div className="font-semibold text-left">Titre</div>
                         </th>
                         <th className="p-2 whitespace-nowrap">
                           <div className="font-semibold text-left">
-                            Téléphone
+                            Catégorie
                           </div>
                         </th>
                         <th className="p-2 whitespace-nowrap">
-                          <div className="font-semibold text-left">Niveau</div>
+                          <div className="font-semibold text-left">
+                            Créé le :{" "}
+                          </div>
                         </th>
+
                         <th className="p-2 whitespace-nowrap">
                           <div className="font-semibold text-center">
                             Gestion
@@ -125,44 +144,58 @@ function SearchUsers() {
                       </tr>
                     </thead>
                     <tbody className="text-sm divide-y divide-gray-100">
-                      {filtredUser.length === 0 ? (
+                      {tutorials.length === 0 ? (
                         <div className="mx-0 text-1xl">
-                          Aucun utilisateur n'a été trouvé
+                          Aucun tutoriel n'a été trouvé
                         </div>
                       ) : (
-                        filtredUser?.map((user) => (
-                          <tr key={user.id} className="hover:bg-gray-100">
+                        filtredTutorials?.map((tutorial) => (
+                          <tr key={tutorial.id} className="hover:bg-gray-100">
                             <td className="p-2 whitespace-nowrap">
                               <div className="flex items-center">
-                                <div className="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
-                                  <img
-                                    className="rounded-full"
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8HE9nJ03LBSlHivqF46xHQ640tNgo-9nnFrUMANrL3tf4lOHdDeNzjLZurWNUf3oIt8&usqp=CAU"
-                                    width="40"
-                                    height="40"
-                                    alt={user.firstname}
-                                  />
-                                </div>
                                 <div className="font-medium text-gray-800">
-                                  {user.lastname} {user.firstname}
+                                  {tutorial.title}
                                 </div>
                               </div>
                             </td>
                             <td className="p-2 whitespace-nowrap">
-                              <div className="text-left">{user.email}</div>
+                              <div className="flex flex-col justify-center ">
+                                <img
+                                  className="rounded-full"
+                                  src={
+                                    categories?.find(
+                                      (category) =>
+                                        category?.id === tutorial?.category_id
+                                    )?.icon
+                                  }
+                                  width="40"
+                                  height="40"
+                                  alt={tutorial.title}
+                                />{" "}
+                                {
+                                  categories?.find(
+                                    (category) =>
+                                      category?.id === tutorial?.category_id
+                                  )?.name
+                                }
+                              </div>
                             </td>
                             <td className="p-2 whitespace-nowrap">
-                              <div className="text-left ">{user.phone}</div>
+                              <div className="text-left ">
+                                {tutorial.creationDate
+                                  .slice(0, 10)
+                                  .split("-")
+                                  .reverse()
+                                  .join("/")}
+                              </div>
                             </td>
-                            <td className="p-2 whitespace-nowrap">
-                              <div className="mx-5">{user.level}</div>
-                            </td>
+
                             <td className="p-2 whitespace-nowrap">
                               <div className="text-lg text-center">
                                 {" "}
                                 <button
                                   onClick={() => {
-                                    setId(user.id);
+                                    setId(tutorial.id);
                                     setConfirmDeleteModale(!false);
                                   }}
                                   type="button"
@@ -183,9 +216,8 @@ function SearchUsers() {
           </div>
         </section>
 
-        <DeleteModaleUser
-          fetchUsers={fetchUsers}
-          handleDeleteUser={handleDeleteUser}
+        <DeleteModaleTutorial
+          handleDeleteTutorial={handleDeleteTutorial}
           setConfirmDeleteModale={setConfirmDeleteModale}
           confirmDeleteModale={confirmDeleteModale}
         />
@@ -194,4 +226,4 @@ function SearchUsers() {
   );
 }
 
-export default SearchUsers;
+export default TutorialsManagement;

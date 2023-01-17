@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import ReactQuill from "react-quill";
 import quillConfig from "../config/quillConfig";
 import { CategoryContext } from "../contexts/CategoryContext";
-import pen from "../assets/pen.svg";
 import TutorialCreationTitles from "./TutorialCreationTitles";
 import SubmitButton from "./SubmitButton";
 import TutorialCreationQuillArea from "./TutorialCreationQuillArea";
@@ -33,7 +32,7 @@ export default function MandatoryInformations({
     setSelected(event.target.value);
     setMandatoryInformations({
       ...mandatoryInformations,
-      category: event.target.value,
+      category_id: event.target.value,
     });
   };
 
@@ -43,7 +42,7 @@ export default function MandatoryInformations({
     setShortDescription(value);
     setMandatoryInformations({
       ...mandatoryInformations,
-      shortDescription: value,
+      short_description: value,
     });
   };
 
@@ -96,12 +95,6 @@ export default function MandatoryInformations({
             placeholder="Insérez un titre"
             className=" border-gray-400  mb-5 p-4 w-full h-10 rounded-bl-lg rounded-br-lg bg-gray-200"
           />
-
-          <img
-            src={pen}
-            alt="pen"
-            className="w-6 h-6 absolute right-2 bottom-8 "
-          />
         </div>
         {/* Category */}
         <TutorialCreationTitles
@@ -120,7 +113,7 @@ export default function MandatoryInformations({
           {categories?.map((category) => (
             <option
               key={category.id}
-              value={category.name}
+              value={category.id}
               className={`${selected ? "text-[#003DA5]" : ""}}`}
             >
               {category.name}

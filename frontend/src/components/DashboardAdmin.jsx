@@ -42,7 +42,7 @@ function DashboardAdmin() {
           <div className="flex justify-center my-5">
             <img className="h-20" src={tutoManagement} alt="gestionTutos" />
           </div>
-          <Link to="/categories/:id/tutorials">
+          <Link to="/tutorials-management">
             <AccessButton />
           </Link>
         </li>

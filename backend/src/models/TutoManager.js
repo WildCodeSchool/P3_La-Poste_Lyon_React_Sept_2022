@@ -15,15 +15,21 @@ class TutoManager extends AbstractManager {
     return this.connection.query(`select * from  ${this.table}`);
   }
 
+  findAllByCategory(categoryId) {
+    return this.connection.query(
+      ` SELECT * FROM ${this.table} LEFT JOIN category ON ${this.table}.category_id = category.id WHERE category.id = ?`,
+      [categoryId]
+    );
+  }
+
   insert(tuto) {
     return this.connection.query(
-      `insert into ${this.table} (title, short_description, introduction_text, category_id, position) values (?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (title, short_description, introduction_text, category_id) values (?, ?, ?, ?)`,
       [
         tuto.title,
         tuto.short_description,
         tuto.introduction_text,
         tuto.category_id,
-        tuto.position,
       ]
     );
   }
