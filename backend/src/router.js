@@ -74,6 +74,8 @@ router.post("/api/status", statusControllers.add);
 router.delete("/api/status/:id", statusControllers.destroy);
 
 // Stepper management
+/* road to destroy all stepper of a tutorial */
+router.delete("/api/steppers/tuto_id/:id", stepperControllers.destroy);
 router.put("/api/steppers/:id", stepperControllers.edit);
 router.post("/api/steppers", stepperControllers.add);
 router.delete("/api/steppers/:id", stepperControllers.destroy);

@@ -1,11 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
-import DeleteModale from "@components/DeleteModale";
+import { Toast, toaster } from "react-hot-toast";
+import DeleteModaleUser from "../components/DeleteModaleUser";
 import CurrentUserContext from "../contexts/userContext";
 import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
 import trash from "../assets/trash.svg";
 
 function SearchUsers() {
+  const notify = () =>
+    toaster.success("L'utilisateur a bien été supprimé", {
+      duration: 3,
+    });
+
   /* Get bearer token from userContext to get permission about delete user */
   const { token } = useContext(CurrentUserContext);
 
@@ -61,10 +67,12 @@ function SearchUsers() {
     });
     setConfirmDeleteModale(!confirmDeleteModale);
     fetchUsers();
+    notify();
   };
 
   return (
     <section>
+      <Toast />
       <BannerProfile />
       <PreviousButton />
       <h2 className="m-6 text-xl text-center md:text-3xl">
@@ -176,7 +184,7 @@ function SearchUsers() {
           </div>
         </section>
 
-        <DeleteModale
+        <DeleteModaleUser
           fetchUsers={fetchUsers}
           handleDeleteUser={handleDeleteUser}
           setConfirmDeleteModale={setConfirmDeleteModale}
