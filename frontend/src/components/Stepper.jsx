@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import { useNavigate } from "react-router-dom";
+import completeStep from "../assets/completeStep.svg";
 
 export default function Stepper(filteredSteppers) {
   /* eslint-disable react/destructuring-assignment */
@@ -11,7 +12,7 @@ export default function Stepper(filteredSteppers) {
 
   /* State to check step's status - we fill all the arr with initial value at false */
   const [stepsCompleted, setStepsCompleted] = useState(
-    Array(steps.length).fill("")
+    Array(steps.length).fill(false)
   );
 
   /* State to set up the current step */
@@ -39,11 +40,11 @@ export default function Stepper(filteredSteppers) {
 
   return (
     <div className="stepper m-6">
-      <div className="stepper-header flex flex-row items-center justify-center">
+      <div className="stepper-header gap-3 md:gap-0 flex flex-row items-center justify-center">
         {steps?.map((step, index) => (
           /* eslint-disable react/no-array-index-key */
-          <div key={index}>
-            <div className="inline-block h-1  w-5 md:w-20 border-t-4 border-dark-500 " />
+          <>
+            <div className="hidden md:inline-block h-1  w-5 md:w-20 border-t-4 border-dark-500 " />
 
             {/* The stepper button will take the stepper label and get a ternary condition to change his look :
              Not start  / In progress / Finished */}
@@ -63,26 +64,18 @@ export default function Stepper(filteredSteppers) {
               {index === currentStep ? (
                 `${step.positionStep}`
               ) : stepsCompleted[index] ? (
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="-7 0 24 27"
-                  strokeWidth="2"
-                  stroke="#003DA5"
-                  className="w-7 h-7"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4.5 12.75l6 6 9-13.5"
-                  />
-                </svg>
+                <img
+                  src={completeStep}
+                  alt="Complete step"
+                  className="w-6 w-6"
+                />
               ) : (
                 `${step.positionStep}`
               )}
             </button>
-            <div className="inline-block h-1 w-5 md:w-20 border-t-4 border-dark-500" />
-          </div>
+
+            <div className="hidden md:inline-block h-1 w-5 md:w-20 border-t-4 border-dark-500" />
+          </>
         ))}
       </div>
 
