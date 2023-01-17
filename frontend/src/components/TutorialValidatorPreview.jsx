@@ -71,7 +71,7 @@ function TutorialValidatorPreview({
                             onClick={() => handleModaleStepClick(index)}
                           >
                             {index === currentModaleStep ? (
-                              `${step.position}`
+                              `${step.positionStep}`
                             ) : modalestepsCompleted[index] ? (
                               <img
                                 src={stepCompleted}
@@ -79,7 +79,7 @@ function TutorialValidatorPreview({
                                 className="w-5 h-6"
                               />
                             ) : (
-                              `${step.position}`
+                              `${step.positionStep}`
                             )}
                           </button>
                           <div className="inline-block h-1 w-5 md:w-20 border-t-4 border-dark-500" />
