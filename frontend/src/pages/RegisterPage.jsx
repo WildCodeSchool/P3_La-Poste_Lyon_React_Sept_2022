@@ -48,13 +48,13 @@ function RegisterPage() {
   };
 
   return (
-    <form>
+    <div>
       <RegisterFirstStep
         registerInformations={registerInformations}
         setRegisterInformations={setRegisterInformations}
         submitRegisterInformations={submitRegisterInformations}
       />
-    </form>
+    </div>
   );
 }
 

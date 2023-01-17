@@ -40,7 +40,13 @@ router.get("/api/categories", categoryControllers.browse);
 router.get("/api/categories/:id", categoryControllers.read);
 
 // Tutos management
+/* router.get("/api/tutos/category_id/:id", tutoControllers.browse); */
+
 router.get("/api/tutos", tutoControllers.browse);
+/* Route to get all tutos by the category id */
+router.get("/api/tutos/category_id/:id", tutoControllers.browse);
+/* router to browseAll */
+router.get("/api/tutos/all", tutoControllers.browseAll);
 router.get("/api/tutos/:id", tutoControllers.read);
 
 // Status management
@@ -50,6 +56,8 @@ router.get("/api/status/:id", statusControllers.read);
 // Stepper management
 router.get("/api/steppers", stepperControllers.browse);
 router.get("/api/steppers/:id", stepperControllers.read);
+
+//
 
 // PROTECTED ROUTES
 router.use(verifyToken); // From this point, the middleware verifyToken will be used at the beginning of all functions
