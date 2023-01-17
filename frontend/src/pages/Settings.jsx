@@ -1,6 +1,9 @@
 import React, { useState, useContext } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
 import pencil1 from "../assets/pencil1.svg";
 import CurrentUserContext from "../contexts/userContext";
+import PreviousButton from "../components/PreviousButton";
 
 function Settings() {
   const { currentUser, setCurrentUser, token } = useContext(CurrentUserContext);
@@ -9,6 +12,7 @@ function Settings() {
   const [image, setImage] = useState(null);
   /*   const [fileName, setFileName] = useState("");
    */
+  const navigate = useNavigate();
   const handleImageChange = (event) => {
     setUploadedImage(event.target.files[0]);
     setImage(
@@ -21,6 +25,9 @@ function Settings() {
   const [lastname, setLastname] = useState(currentUser.lastname);
   const [phone, setPhone] = useState(currentUser.phone);
 
+  const notifyErrorProfile = () =>
+    toast.error("Une erreur est survenue, veuillez vérifier vos informations");
+
   const handleChangeFirstname = (e) => {
     setFirstname(e.target.value);
   };
@@ -30,6 +37,22 @@ function Settings() {
   const handleChangePhone = (e) => {
     setPhone(e.target.value);
   };
+
+  const handleClickFirstName = () => {
+    // 👇️ clear input value
+    setFirstname("");
+  };
+
+  const handleClickLastName = () => {
+    // 👇️ clear input value
+    setLastname("");
+  };
+
+  const handleClickPhone = () => {
+    // 👇️ clear input value
+    setPhone("");
+  };
+
   const submitSettingModify = (e) => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token}`);
@@ -51,9 +74,30 @@ function Settings() {
     };
 
     e.preventDefault();
+    toast
+      .promise(
+        fetch(
+          `http://localhost:5000/api/users/${currentUser.id}`,
+          requestOptions
+        ),
+        {
+          loading: "En cours",
+          success: "Profil edited",
+          error: "Pouet",
+        }
+      )
 
-    fetch(`http://localhost:5000/api/users/${currentUser.id}`, requestOptions)
-      .then((response) => response.json())
+      .then((response) => {
+        response.text();
+        console.warn(response);
+        if (response.status === 204) {
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, 2000);
+        } else {
+          notifyErrorProfile();
+        }
+      })
 
       .then(
         setCurrentUser({
@@ -61,12 +105,16 @@ function Settings() {
           firstname,
           lastname,
           phone,
-        }).catch(console.error)
+        })
       );
   };
 
   return (
     <div className="my-6">
+      <Link to="/dashboard">
+        <PreviousButton />
+      </Link>
+      <Toaster position="top-center" reverseOrder={false} />
       <div className="mt-4 flex justify-center flex-col z-1">
         <h1 className="flex w-full justify-center items-center text-bold text-xl text-black my-8 h-10 md:text-2xl text-center md:h-14 md:text-center ">
           Modifier mes informations
@@ -115,8 +163,9 @@ function Settings() {
               <input
                 value={firstname}
                 placeholder={`${currentUser.firstname}`}
-                className=" border-gray-400 bg-gray-100 rounded-bl-lg rounded-br-lg p-4 w-full h-10"
+                className=" border-gray-400 bg-gray-100 rounded-bl-lg p-4 w-full h-10 text-gray-700"
                 onChange={handleChangeFirstname}
+                onClick={handleClickFirstName}
               />
               <img
                 src={pencil1}
@@ -131,8 +180,9 @@ function Settings() {
               <input
                 value={lastname}
                 placeholder={`${currentUser.lastname}`}
-                className=" border-gray-400 bg-gray-100 rounded-bl-lg rounded-br-lg  p-4 w-full h-10"
+                className=" border-gray-400 bg-gray-100 rounded-bl-lg  p-4 w-full h-10 text-gray-700"
                 onChange={handleChangeLastname}
+                onClick={handleClickLastName}
               />
               <img
                 src={pencil1}
@@ -148,8 +198,9 @@ function Settings() {
               <input
                 value={phone}
                 placeholder={`${currentUser.phone}`}
-                className=" border-gray-400 bg-gray-100 rounded-bl-lg rounded-br-lg p-4 w-full h-10"
+                className=" border-gray-400 bg-gray-100 rounded-bl-lg p-4 w-full h-10 text-gray-700"
                 onChange={handleChangePhone}
+                onClick={handleClickPhone}
               />
               <img
                 src={pencil1}
@@ -159,7 +210,14 @@ function Settings() {
             </div>
           </li>
         </ul>
-        <button type="submit">submit</button>
+        <div className="w-full flex justify-center items-center relative">
+          <button
+            type="submit"
+            className="bg-[#003DA5] text-white m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+          >
+            Valider
+          </button>
+        </div>
       </form>
     </div>
   );
