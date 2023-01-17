@@ -22,14 +22,14 @@ function TutorialList() {
 
   /* Filtred tutorial by the good category corresponding to the id  */
   const filteredTutorials = tutorials?.filter(
-    (tutorial) => tutorial.category_id === parseInt(id, 10)
+    (tutorial) => tutorial?.category_id === parseInt(id, 10)
   );
 
   /* get the category name */
   const { categories } = useContext(CategoryContext);
   const categoryName = categories?.find(
-    (category) => category.id === parseInt(id, 10)
-  ).name;
+    (category) => category?.id === parseInt(id, 10)
+  )?.name;
 
   return (
     <>
@@ -41,10 +41,11 @@ function TutorialList() {
 
         {/* We display the tutorials with the filter of the cagtegory selected */}
         <ul className="w-3/5 grid grid-cols-1 md:grid-cols-2  m-auto ">
-          {filteredTutorials?.map((tutorial) => (
+          {filteredTutorials?.map((tutorial, index) => (
             <li
               className=" my-3 md:m-6 border shadow-xl rounded-lg text-center"
-              key={tutorial.id}
+              /* eslint-disable react/no-array-index-key */
+              key={index}
             >
               <h2 className="text-xl p-2 text-[#003DA5] font-bold  bg-white shadow-md  rounded-tl-lg rounded-tr-lg h-20 flex justify-center items-center">
                 {tutorial.title}

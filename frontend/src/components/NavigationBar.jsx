@@ -81,12 +81,8 @@ function NavigationBar({ adminView, handleAdminView }) {
                     onChange={handleAdminView}
                     id="amber"
                     color="amber"
-                    defaultChecked
                   />
-                  <h3 className="ml-3">
-                    {" "}
-                    {adminView ? "Utilisateur" : "Admin"}
-                  </h3>
+                  <h3 className="ml-3"> {adminView && "Utilisateur"}</h3>
                 </li>
 
                 {adminView ? (

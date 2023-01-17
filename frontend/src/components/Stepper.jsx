@@ -41,13 +41,15 @@ export default function Stepper(filteredSteppers) {
     <div className="stepper m-6">
       <div className="stepper-header flex flex-row items-center justify-center">
         {steps?.map((step, index) => (
-          <>
+          /* eslint-disable react/no-array-index-key */
+          <div key={index}>
             <div className="inline-block h-1  w-5 md:w-20 border-t-4 border-dark-500 " />
 
             {/* The stepper button will take the stepper label and get a ternary condition to change his look :
              Not start  / In progress / Finished */}
             <button
               type="button"
+              /* eslint-disable react/no-array-index-key */
               key={step.positionStep}
               className={`relative rounded-full h-10 w-10 ${
                 index === currentStep
@@ -80,7 +82,7 @@ export default function Stepper(filteredSteppers) {
               )}
             </button>
             <div className="inline-block h-1 w-5 md:w-20 border-t-4 border-dark-500" />
-          </>
+          </div>
         ))}
       </div>
 
