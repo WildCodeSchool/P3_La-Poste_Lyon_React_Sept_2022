@@ -4,10 +4,11 @@ import "react-quill/dist/quill.snow.css";
 import stepCompleted from "../assets/step-complete.svg";
 
 function TutorialValidatorPreview({
+  previewData,
   showModal,
   setShowModal,
   steps,
-  mandatory,
+
   modalestepsCompleted,
   currentModaleStep,
   setCurrentModaleStep,
@@ -41,12 +42,12 @@ function TutorialValidatorPreview({
                 {/* CONTENT OF THE MODAL */}
                 <div className="relative p-6 flex-auto">
                   <h1 className="my-6 text-2xl md:text-3xl text-[#003DA5] text-center ">
-                    {mandatory.title}
+                    {previewData?.title}
                   </h1>
                   <div className="stepper m-6">
                     <div>
                       <ReactQuill
-                        value={mandatory.introduction_text}
+                        value={previewData?.introduction_text}
                         readOnly
                         theme="bubble"
                       />

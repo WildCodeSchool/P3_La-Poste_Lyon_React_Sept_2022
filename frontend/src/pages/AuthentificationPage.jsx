@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import PreviousButton from "@components/PreviousButton";
 import { toast, Toaster } from "react-hot-toast";
+import PreviousButton from "../components/PreviousButton";
 import { useCurrentUserContext } from "../contexts/userContext";
 import granny from "../assets/granny1.svg";
 import arobase from "../assets/arobaselogo.png";
@@ -90,7 +90,7 @@ function AuthentificationPage() {
         className=" flex flex-col items-center justify-center  "
       >
         {" "}
-        <h1 className=" items-center content-center justify-center text-3xl mb-10 mt-10">
+        <h1 className=" items-center content-center justify-center text-3xl mb-10 mt-16">
           CONNECTEZ-VOUS
           <span className="block text-sm text-center underline text-gray-600">
             <Link to="/registerPage"> ou créez un compte</Link>
@@ -111,16 +111,16 @@ function AuthentificationPage() {
               onChange={handleChangeEmail}
               id="email"
               name="email"
-              className="bg-gray-200 w-full text-gray-600   py-2 px-4 border rounded-2xl "
+              className="bg-gray-200 w-full text-gray-600 py-2 px-4 border rounded-2xl "
             />
           </div>
           {/* mail */}
 
-          <p className="italic text-gray-400 underline text-right">
+          <p className="italic text-gray-400 underline text-right text-sm md:text-lg">
             <Link to="/forgotten-email"> adresse e-mail oubliée?</Link>
           </p>
         </div>
-        <div className="flex-col  mt-8 justify-center w-1/2">
+        <div className="flex-col mt-8 justify-center w-1/2">
           <div className="flex">
             <label htmlFor="password" name="password">
               <img src={locker} alt="locker" className="w-14 h-14 mr-3" />{" "}
@@ -134,10 +134,10 @@ function AuthentificationPage() {
               id="password"
               name="password"
               placeholder="Entrez votre mot de passe"
-              className="bg-gray-200  text-gray-600 py-2 px-4  w-full rounded-2xl  "
+              className="bg-gray-200  text-gray-600 py-2 px-4 w-full rounded-2xl  "
             />
           </div>{" "}
-          <p className="italic text-gray-400 underline text-right">
+          <p className="italic text-gray-400 underline text-right text-sm md:text-lg">
             <Link to="/forgotten-password"> mot de passe oublié ? </Link>
           </p>
         </div>
@@ -149,13 +149,13 @@ function AuthentificationPage() {
           />
           <img
             src={forgotpass}
-            className=" hidden w-21 h-31 mr-50 md:block mb-8 md:mb-9"
+            className=" hidden w-21 h-31 mr-50 md:block mb-8 md:mb-9 md:mt-12"
             alt="forgotpass"
           />
         </div>
         <button
           type="submit"
-          className="bg-[#003DA5] text-white m-1 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black mb-28"
+          className="bg-[#FFC927] text-white m-1 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#003DA5] hover:text-black mb-28"
         >
           Connexion
         </button>

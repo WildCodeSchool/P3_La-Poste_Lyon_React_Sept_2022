@@ -26,7 +26,7 @@ function NavigationBarAdmin() {
       <NavigationBarLink
         imgSrc={tutoManagement}
         text="Gérer les tutoriels"
-        linkDestination="/tutos"
+        linkDestination="/tutorials-management"
       />
 
       {/* Users management  */}

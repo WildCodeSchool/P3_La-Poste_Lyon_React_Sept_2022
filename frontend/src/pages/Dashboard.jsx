@@ -7,13 +7,13 @@ function Dashboard({ adminView }) {
   const { currentUser } = useContext(CurrentUserContext);
 
   return (
-    <div>
+    <>
       {currentUser && currentUser.admin === 0 && <DashboardUser />}
       {currentUser && currentUser.admin === 1 && (
         /* eslint-disable react/jsx-no-useless-fragment */
         <>{adminView ? <DashboardUser /> : <DashboardAdmin />}</>
       )}
-    </div>
+    </>
   );
 }
 

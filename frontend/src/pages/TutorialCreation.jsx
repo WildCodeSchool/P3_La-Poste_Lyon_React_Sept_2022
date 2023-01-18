@@ -73,6 +73,7 @@ function TutorialCreation() {
       position: 3,
       component: (
         <TutorialValidator
+          mandatoryInformations={mandatoryInformations}
           handlePreviousStep={handlePreviousStep}
           handleAllStepsContent={handleAllStepsContent}
           currentStep={currentStep}
@@ -95,8 +96,9 @@ function TutorialCreation() {
         {/* This button will link to the Dashboard */}
         <PreviousButton />
 
-        <h1 className="m-6 text-xl md:text-3xl">Création de tutoriel</h1>
-
+        <h1 className="flex my-3 justify-center items-center font-bold text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">
+          Création de tutoriel
+        </h1>
         <div className="stepper-header flex flex-row items-center justify-center ">
           {stepperCreation?.map((step, index) => (
             <>

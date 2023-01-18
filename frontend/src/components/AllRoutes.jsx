@@ -16,6 +16,7 @@ import UserCourse from "../pages/UserCourse";
 import RegisterPage from "../pages/RegisterPage";
 import AuthentificationPage from "../pages/AuthentificationPage";
 import ForgottenPassword from "../pages/ForgottenPassword";
+import ResetPassword from "../pages/ResetPassword";
 import ForgottenEmail from "../pages/ForgottenEmail";
 import CurrentUserContext from "../contexts/userContext";
 
@@ -28,6 +29,7 @@ function AllRoutes({ adminView, handleAdminView }) {
       <Route path="/" element={<Home />} />
       <Route path="/authentification" element={<AuthentificationPage />} />
       <Route path="/forgotten-password" element={<ForgottenPassword />} />
+      <Route path="/resetpassword/:passwordToken" element={<ResetPassword />} />
       <Route path="/forgotten-email" element={<ForgottenEmail />} />
       <Route path="/registerPage" element={<RegisterPage />} />
 

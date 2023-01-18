@@ -27,6 +27,7 @@ class StepperManager extends AbstractManager {
   }
 
   insertAll(steps, tutoId) {
+    // we map to create as much steps we are receiving
     const stepsArray = steps.map((step) => [
       step.positionStep,
       step.content,
@@ -35,6 +36,14 @@ class StepperManager extends AbstractManager {
     return this.connection.query(
       `INSERT INTO stepper (positionStep, content, tuto_id) values ?`,
       [stepsArray]
+    );
+  }
+
+  /* Delete the step from the tutorial */
+  deleteAll(tutoId) {
+    return this.connection.query(
+      `delete from ${this.table} where tuto_id = ?`,
+      [tutoId]
     );
   }
 
