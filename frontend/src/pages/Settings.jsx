@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import pencil1 from "../assets/pencil1.svg";
+import uploadIcon from "../assets/uploadIcon.svg";
 import CurrentUserContext from "../contexts/userContext";
 import PreviousButton from "../components/PreviousButton";
 
@@ -115,19 +115,20 @@ function Settings() {
   };
 
   return (
-    <div className="my-6">
+    <div className=" flex flex-col justify-center my-6">
       <Link to="/dashboard">
         <PreviousButton />
       </Link>
       <Toaster position="top-center" reverseOrder={false} />
+
       <div className="mt-4 flex justify-center flex-col z-1">
-        <h1 className="flex w-full justify-center items-center text-bold text-xl text-black my-8 h-10 md:text-2xl text-center md:h-14 md:text-center ">
+        <h1 className="flex w-full justify-center items-center font-bold text-3xl text-main-blue my-3 h-10 text-center md:h-14 md:text-center ">
           Modifier mes informations
         </h1>
         <div className="flex justify-center">
           {!uploadedImage && (
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8HE9nJ03LBSlHivqF46xHQ640tNgo-9nnFrUMANrL3tf4lOHdDeNzjLZurWNUf3oIt8&usqp=CAU"
+              src={`https://api.multiavatar.com/${currentUser.firstname}.svg`}
               alt=""
               className="object-fit w-36  h-36 border rounded-full"
             />
@@ -144,7 +145,7 @@ function Settings() {
           <div className="mt-32">
             <label htmlFor="image-upload">
               <img
-                src="./src/assets/uploadIcon.png"
+                src={uploadIcon}
                 alt="Upload Icon"
                 className="absolute w-7 h-7 cursor-pointer"
               />
@@ -160,9 +161,9 @@ function Settings() {
           </div>
         </div>
       </div>
-      <form onSubmit={submitSettingModify}>
-        <ul className="flex-col mt-12">
-          <li className=" mx-10 md:mx-48 mb-16 my-3 md:m-6  border shadow-xl rounded-lg text-center">
+      <form onSubmit={submitSettingModify} className="p-8">
+        <ul className="flex-col  p-8 ">
+          <li className="my-3 md:m-6  border shadow-xl rounded-lg text-center">
             {" "}
             <div className="w-full flex justify-end items-center relative">
               <input
@@ -171,15 +172,11 @@ function Settings() {
                 className=" border-gray-400 bg-gray-100 rounded-bl-lg p-4 w-full h-10 text-gray-700"
                 onChange={handleChangeFirstname}
                 onClick={handleClickFirstName}
+                required
               />
-              <img
-                src={pencil1}
-                className="absolute mr-2 w-6 h-6"
-                alt="Search Icon"
-              />{" "}
             </div>
           </li>
-          <li className=" mx-10 md:mx-48 mb-16 my-3 md:m-6 border shadow-xl rounded-lg text-center">
+          <li className="  my-3 md:m-6 border shadow-xl rounded-lg text-center">
             {" "}
             <div className="w-full flex justify-end items-center relative">
               <input
@@ -188,16 +185,12 @@ function Settings() {
                 className=" border-gray-400 bg-gray-100 rounded-bl-lg  p-4 w-full h-10 text-gray-700"
                 onChange={handleChangeLastname}
                 onClick={handleClickLastName}
+                required
               />
-              <img
-                src={pencil1}
-                className="absolute mr-2 w-6 h-6"
-                alt="Search Icon"
-              />{" "}
             </div>
           </li>
 
-          <li className=" mx-10 md:mx-48 mb-16 my-3 md:m-6 border shadow-xl rounded-lg text-center">
+          <li className="  my-3 md:m-6 border shadow-xl rounded-lg text-center">
             {" "}
             <div className="w-full flex justify-end items-center relative">
               <input
@@ -206,19 +199,15 @@ function Settings() {
                 className=" border-gray-400 bg-gray-100 rounded-bl-lg p-4 w-full h-10 text-gray-700"
                 onChange={handleChangePhone}
                 onClick={handleClickPhone}
+                required
               />
-              <img
-                src={pencil1}
-                className="absolute mr-2 w-6 h-6"
-                alt="Search Icon"
-              />{" "}
             </div>
           </li>
         </ul>
         <div className="w-full flex justify-center items-center relative">
           <button
             type="submit"
-            className="bg-[#003DA5] text-white m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+            className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
           >
             Valider
           </button>

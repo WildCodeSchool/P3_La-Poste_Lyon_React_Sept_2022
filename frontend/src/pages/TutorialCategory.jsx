@@ -18,7 +18,9 @@ function TutorialCategory() {
           {/* This button will link to the Dashboard */}
           <PreviousButton />
 
-          <h1 className="m-6 text-3xl">Catégories de tutoriels</h1>
+          <h1 className="m-3 text-3xl font-bold text-main-blue">
+            Catégories de tutoriels
+          </h1>
 
           {/* I map the categoryList array to display every category */}
           <ul className="vw-3/5 grid grid-cols-1 md:grid-cols-4 place-content-center	">

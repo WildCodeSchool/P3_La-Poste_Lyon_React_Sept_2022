@@ -27,7 +27,7 @@ function NavigationBar({ adminView, handleAdminView }) {
 
   return (
     <nav className="navbar">
-      <div className="justify-between items-center mx-autol md:items-center shadow flex h-20 relative z-10">
+      <div className="justify-between items-center mx-autol md:items-center shadow flex h-14 relative z-10">
         <Link to="/dashboard" className="flex items-center">
           <img src={logo} alt="Ligne Bleue" className="h-14 w-14" />
           <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white" />

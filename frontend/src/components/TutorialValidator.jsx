@@ -96,7 +96,9 @@ function TutorialValidator(allStepsContent) {
     <div className="m-O p-0">
       <Toaster />
       <div className=" my-6 p-6  border w-[45vw] rounded-xl shadow-xl flex-col justify-end items-center relative">
-        <h1 className="text-2xl text-center m-6 text-[#003DA5]">Validation</h1>
+        <h1 className="text-3xl font-semibold text-center m-6 text-main-blue">
+          Validation
+        </h1>
         <article className="text-center">
           Votre tutoriel est prêt ! Vous pouvez le prévisualiser avant de le
           publier.
@@ -108,7 +110,7 @@ function TutorialValidator(allStepsContent) {
             allStepsContent.currentStep === 2 && (
               <button
                 type="button"
-                className="bg-[#003DA5] text-white m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+                className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow hover:bg-main-blue hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
                 // eslint-disable-next-line react/destructuring-assignment
                 onClick={allStepsContent.handlePreviousStep}
               >
@@ -119,14 +121,14 @@ function TutorialValidator(allStepsContent) {
           <button
             type="button"
             onClick={() => setShowModal(true)}
-            className="bg-[#003DA5] text-white m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+            className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow hover:bg-main-blue hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
           >
             Prévisualisation
           </button>
           <Link to="/dashboard">
             <button
               type="button"
-              className="bg-[#FFC927] text-black m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:scale-110"
+              className="bg-gradient-to-r from-blue-900 to-main-blue text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-second-yellow hover:to-main-yellow hover:text-white"
               onClick={handlePublication}
             >
               Publication
