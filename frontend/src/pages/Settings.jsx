@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import uploadIcon from "../assets/uploadIcon.svg";
-// import CurrentUserContext from "../contexts/userContext";
 import PreviousButton from "../components/PreviousButton";
 import { useCurrentUserContext } from "../contexts/userContext";
 
@@ -10,13 +9,8 @@ function Settings() {
   const { currentUser, setCurrentUser, token } = useCurrentUserContext();
 
   const avatarRef = useRef(null);
-  const [setMsg] = useState("");
+  const [msg, setMsg] = useState("");
 
-  /*   const [defaultImage, setDefaultImage] = useState(profilepic);
-   */ // const [uploadedImage, setUploadedImage] = useState(null);
-  // const [image, setImage] = useState(null);
-  /*   const [fileName, setFileName] = useState("");
-   */
   const navigate = useNavigate();
 
   // const [profilePicture, setProfilePicture] = useState("");
@@ -167,6 +161,7 @@ function Settings() {
 
   return (
     <div className=" flex flex-col justify-center my-6">
+      <p>{msg}</p>
       <Link to="/dashboard">
         <PreviousButton />
       </Link>
