@@ -165,13 +165,15 @@ function Settings() {
   return (
     <div className=" flex flex-col justify-center my-6">
       <Toaster position="top-center" reverseOrder />
-      <Link to="/dashboard">
-        <PreviousButton />
-      </Link>
+      <div className="pb-10">
+        <Link to="/dashboard">
+          <PreviousButton />
+        </Link>
+      </div>
       <Toaster position="top-center" reverseOrder={false} />
 
       <div className="mt-4 flex justify-center flex-col z-1">
-        <h1 className="flex w-full justify-center items-center font-bold text-3xl text-main-blue my-3 h-10 text-center md:h-14 md:text-center ">
+        <h1 className="flex w-full justify-center items-center font-bold text-2xl md:text-3xl text-main-blue my-3 h-10 text-center md:h-14 md:text-center ">
           Modifier mes informations
         </h1>
         <div className="flex justify-center">
