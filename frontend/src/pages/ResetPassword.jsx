@@ -19,6 +19,10 @@ function ForgottenPassword() {
     setPassword(e.target.value);
   };
 
+  const verifyPassword = (e) => {
+    setPassword(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const myHeaders = new Headers();
@@ -81,7 +85,7 @@ function ForgottenPassword() {
               type="password"
               required
               value={password}
-              onChange={handleChangePassword}
+              onChange={verifyPassword}
               id="password"
               name="password"
               placeholder="Confirmer votre nouveau mot de passe"
