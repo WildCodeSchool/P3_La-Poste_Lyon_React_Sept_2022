@@ -45,8 +45,8 @@ const browseStartedTutoByUser = (req, res) => {
 // browse all finished tutos by user id
 const browseFinisheddTutoByUser = (req, res) => {
   const userId = parseInt(req.params.id, 10);
-  models.historical
-    .findAllUnstartedTuto(userId)
+  models.tutorialStatus
+    .findAllFinishedTuto(userId)
     .then(([rows]) => {
       res.send(rows);
     })
