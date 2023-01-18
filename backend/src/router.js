@@ -58,7 +58,7 @@ router.get("/api/status/:id", statusControllers.read);
 router.get("/api/steppers", stepperControllers.browse);
 router.get("/api/steppers/:id", stepperControllers.read);
 
-router.get("/api/avatars/:fileName", fileControllers.sendAvatar);
+router.get("/api/avatars/:profilePicture", fileControllers.sendAvatar);
 //
 
 // PROTECTED ROUTES
@@ -90,9 +90,8 @@ router.post("/api/steppers", stepperControllers.add);
 router.delete("/api/steppers/:id", stepperControllers.destroy);
 
 // Gestion des avatars
-router.put("/api/avatars/:id", userControllers.updateAvatar);
 
-router.post(
+router.put(
   "/api/avatars",
   upload.single("profilePicture"),
   fileControllers.renameAvatar,

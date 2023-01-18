@@ -1,4 +1,3 @@
-import { avatar } from "@material-tailwind/react";
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import pencil from "../assets/pencil1.svg";
@@ -15,21 +14,19 @@ import { useCurrentUserContext } from "../contexts/userContext";
 function Settings() {
   const avatarRef = useRef(null);
   const { currentUser, setCurrentUser, token } = useCurrentUserContext();
-  const [msg, setMsg] = useState("Aucun upload effectué");
+  const [setMsg] = useState("");
 
   /*   const [defaultImage, setDefaultImage] = useState(profilepic);
-   */ const [uploadedImage, setUploadedImage] = useState({ avatar });
-  const [, setImage] = useState(null);
-  /*   const [fileName, setFileName] = useState("");
-   */
-  const handleImageChange = (event) => {
+  // const [uploadedImage, setUploadedImage] = useState();
+  // const [, setImage] = useState(null);
+  //  const [fileName, setFileName] = useState("");
+
+  /* const handleImageChange = (event) => {
     setUploadedImage(event.target.files[0]);
-    setImage(
-      event.target.files[0]
-    ); /*  setDefaultImage(event.target.files[0]); */
+    setImage(event.target.files[0]);
+    setDefaultImage(event.target.files[0]);
     /*     setFileName(event.target.files[0].name);
-     */
-  };
+  };     */
 
   // const [profilePicture, setProfilePicture] = useState("");
   const [firstname, setFirstname] = useState("Prénom");
@@ -99,14 +96,12 @@ function Settings() {
         body: formData,
       };
       // on appelle le back
-      fetch(
-        `http://localhost:5000/api/avatars/${currentUser.id}`,
-        requestOptions
-      )
+      fetch(`http://localhost:5000/api/avatars`, requestOptions)
         .then((response) => response.json())
         .then((results) => {
           // maj avatar
-          setCurrentUser({ ...currentUser, avatar: results.avatar });
+          console.warn(results, "test");
+          setCurrentUser({ ...currentUser, profilePicture: results.avatar });
           setMsg("Upload réussi !");
         })
         .catch((error) => {
@@ -146,29 +141,15 @@ function Settings() {
           Modifier mes informations
         </h1>
         <div className="flex justify-center">
-          {!uploadedImage && (
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8HE9nJ03LBSlHivqF46xHQ640tNgo-9nnFrUMANrL3tf4lOHdDeNzjLZurWNUf3oIt8&usqp=CAU"
-              alt=""
-              className="object-fit w-36  h-36 border rounded-full"
-            />
-          )}
-          {uploadedImage && (
-            <form encType="multipart/image" onSubmit={handleSubmitAvatar}>
-              <img
-                src={uploadedImage}
-                className="object-fit border w-36  rounded-full"
-                alt="Uploaded"
-              />
-              <input type="file" ref={avatarRef} />
-              <button type="submit">Envoyer</button>
-              <p>{msg}</p>
-            </form>
-            /* <form enctype="multipart/form-data" onSubmit={hSubmit}>
-            <input type="file" name="monfichier" ref={inputRef} />
-            <button type="submit">Envoyer</button> */
-          )}
-
+          <img
+            src={
+              currentUser?.profilePicture
+                ? `http://localhost:5000/api/avatars/${currentUser.profilePicture}`
+                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8HE9nJ03LBSlHivqF46xHQ640tNgo-9nnFrUMANrL3tf4lOHdDeNzjLZurWNUf3oIt8&usqp=CAU"
+            }
+            alt="userImage"
+            className="object-fit w-36  h-36 border rounded-full"
+          />
           <div className="mt-32">
             <label htmlFor="image-upload" className=" ">
               <img
@@ -179,10 +160,11 @@ function Settings() {
             </label>
 
             <input
+              ref={avatarRef}
               type="file"
               id="image-upload"
               accept="image/*"
-              onChange={handleImageChange}
+              onChange={handleSubmitAvatar}
               className="hidden"
             />
           </div>

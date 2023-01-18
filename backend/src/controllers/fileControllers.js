@@ -24,9 +24,9 @@ const renameAvatar = (req, res, next) => {
 };
 
 const sendAvatar = (req, res) => {
-  const { fileName } = req.params;
+  const { profilePicture } = req.params;
 
-  res.download(avatarDirectory + fileName, fileName, (err) => {
+  res.download(avatarDirectory + profilePicture, profilePicture, (err) => {
     if (err) {
       res.status(404).send({
         message: `Avatar not found.`,
