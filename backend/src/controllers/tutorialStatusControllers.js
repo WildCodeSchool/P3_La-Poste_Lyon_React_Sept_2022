@@ -3,8 +3,8 @@ const models = require("../models");
 // browse all tuto by user id
 const browseAllTutoByUser = (req, res) => {
   const userId = parseInt(req.params.id, 10);
-  models.historical
-    .findAllByUserId(userId)
+  models.tutorialStatus
+    .findAllStatusByUserId(userId)
     .then(([rows]) => {
       res.send(rows);
     })

@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import { CategoryContext } from "../contexts/CategoryContext";
 import { TutorialsContext } from "../contexts/TutorialsContext";
+import { TutorialStatusContext } from "../contexts/TutorialStatusContext";
 import CurrentUserContext from "../contexts/userContext";
 import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
@@ -11,6 +12,8 @@ function TutorialList() {
   const navigate = useNavigate();
 
   const { currentUser, token } = useContext(CurrentUserContext);
+  const { setTutorialStatus } = useContext(TutorialStatusContext);
+  const { tutorialStatus } = useContext(TutorialStatusContext);
   /* Using params to recover the tutorial category ID - It will be used to fetch the associate tutorial list */
   const { id } = useParams();
 
@@ -28,32 +31,45 @@ function TutorialList() {
   )?.name;
 
   const tutorialStarted = (tutorial) => {
-    /* Fetch all status dans check it  */
+    /* Check if the tutorialStatus match with the tutorial id */
+    const tutorialStatusStarted = tutorialStatus?.find(
+      (status) => status?.tuto_id === tutorial.id
+    );
 
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${token}`);
-    myHeaders.append("Content-Type", "application/json");
+    /* Then check the condition, if started just navigate, if not post the started status */
+    if (tutorialStatusStarted) {
+      navigate(`/api/tutos/${tutorial.id}`);
+    } else {
+      const myHeaders = new Headers();
+      myHeaders.append("Authorization", `Bearer ${token}`);
+      myHeaders.append("Content-Type", "application/json");
 
-    const body = JSON.stringify({
-      tuto_id: tutorial.id,
-      user_id: currentUser.id,
-    });
+      const body = JSON.stringify({
+        tuto_id: tutorial.id,
+        user_id: currentUser.id,
+      });
 
-    const requestOptions = {
-      method: "POST",
-      redirect: "follow",
-      headers: myHeaders,
-      body,
-    };
+      const requestOptions = {
+        method: "POST",
+        redirect: "follow",
+        headers: myHeaders,
+        body,
+      };
 
-    fetch("http://localhost:5000/api/tutorialStatusStarted", requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.warn(result))
-      .catch((error) => console.error("error", error));
+      fetch("http://localhost:5000/api/tutorialStatusStarted", requestOptions)
+        .then((response) => response.text())
+        .then((result) => {
+          console.warn(result);
+        })
+        .catch((error) => console.error("error", error));
 
-    navigate(`/api/tutos/${tutorial.id}`);
-
-    /* set tutorials status  to the context */
+      /* update TutorialStatus  */
+      setTutorialStatus((previousStatus) => [
+        ...previousStatus,
+        { tuto_id: tutorial.id, user_id: currentUser.id },
+      ]);
+      navigate(`/api/tutos/${tutorial.id}`);
+    }
   };
 
   return (

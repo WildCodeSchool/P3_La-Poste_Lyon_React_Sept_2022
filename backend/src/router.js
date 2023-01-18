@@ -57,6 +57,11 @@ router.get(
   tutorialStatusControllers.browseFinisheddTutoByUser
 );
 
+router.get(
+  "/api/tutorialStatus/:id",
+  tutorialStatusControllers.browseAllTutoByUser
+);
+
 // Stepper management
 router.get("/api/steppers", stepperControllers.browse);
 router.get("/api/steppers/:id", stepperControllers.read);
