@@ -1,7 +1,7 @@
 import React, { useState, useEffect /* useContext */ } from "react";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
-import { useNavigate /* useParams */ } from "react-router-dom";
+import /* useNavigate */ /* useParams */ "react-router-dom";
 /* import CurrentUserContext from "../contexts/userContext";
  */
 import completeStep from "../assets/completeStep.svg";
