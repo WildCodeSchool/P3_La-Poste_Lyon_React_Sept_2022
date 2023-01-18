@@ -60,7 +60,7 @@ function NavigationBar({ adminView, handleAdminView }) {
         <div
           className={`flex-1 justify-self-center md:block md:pb-0 md:mt-0 ${
             open
-              ? "block absolute shadow-lg top-0 right-0 bg-white w-screen md:w-96 h-screen z-0"
+              ? "block absolute shadow-lg top-0 right-0 bg-white w-screen md:w-96 z-0"
               : "hidden"
           }`}
         >
@@ -76,7 +76,7 @@ function NavigationBar({ adminView, handleAdminView }) {
             {/* If connected as admin enable admin links or user links */}
             {currentUser && currentUser.admin === 1 && (
               <>
-                <li className="flex justify-center w-full items-center mb-3">
+                <li className="flex justify-center w-full items-center">
                   <Switch
                     checked={adminView}
                     onChange={handleAdminView}

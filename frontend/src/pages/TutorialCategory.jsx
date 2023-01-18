@@ -18,7 +18,7 @@ function TutorialCategory() {
           {/* This button will link to the Dashboard */}
           <PreviousButton />
 
-          <h1 className="m-3 text-3xl font-bold text-main-blue">
+          <h1 className="m-2 text-3xl font-bold text-main-blue text-center">
             Catégories de tutoriels
           </h1>
 
@@ -41,7 +41,7 @@ function TutorialCategory() {
                   ) : (
                     ""
                   )}
-                  <div className="mt-6 mb-4 w-full h-4 bg-gray-200 rounded-full dark:bg-gray-700">
+                  <div className="mt-6 w-full h-4 bg-gray-200 rounded-full dark:bg-gray-700">
                     {/* We used ternary to display the good tailwind class.This define the color of the progression bar - 3 states : start, complete, unstart by default */}
                     <div
                       className={`h-4 rounded-full  ${
