@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
+import statusFInished from "../assets/tutorials-status/status-finished.svg";
+import statusStarted from "../assets/tutorials-status/status-started.svg";
 import { CategoryContext } from "../contexts/CategoryContext";
 import { TutorialsContext } from "../contexts/TutorialsContext";
 import { TutorialStatusContext } from "../contexts/TutorialStatusContext";
@@ -58,9 +60,7 @@ function TutorialList() {
 
       fetch("http://localhost:5000/api/tutorialStatusStarted", requestOptions)
         .then((response) => response.text())
-        .then((result) => {
-          console.warn(result);
-        })
+        .then(() => {})
         .catch((error) => console.error("error", error));
 
       /* update TutorialStatus  */
@@ -78,7 +78,7 @@ function TutorialList() {
       <section className="m-6">
         <PreviousButton />
 
-        <h1 className="flex   justify-center items-center font-bold text-3xl text-main-blue rounded-xl h-10 text-center md:h-10 md:text-center">
+        <h1 className="flex justify-center items-center font-bold text-3xl text-main-blue rounded-xl h-10 text-center md:h-10 md:text-center">
           {categoryName}
         </h1>
 
@@ -86,9 +86,26 @@ function TutorialList() {
         <ul className="w-3/5 grid grid-cols-1 md:grid-cols-2  m-auto ">
           {filteredTutorials?.map((tutorial, index) => (
             <li
-              className=" my-3 md:m-6 border shadow-xl rounded-lg text-center"
+              className=" relative my-3 md:m-6 border shadow-xl rounded-lg text-center"
               key={index}
             >
+              {/* Icon when status is finished */}
+              {tutorialStatus?.find((status) => status?.tuto_id === tutorial.id)
+                ?.status === "finished" && (
+                <div className="absolute top-[-10px] right-[-10px] rounded-full  flex justify-center items-center">
+                  <img
+                    src={statusFInished}
+                    alt="finished"
+                    className="h-10 w-10"
+                  />
+                </div>
+              )}
+              {tutorialStatus?.find((status) => status?.tuto_id === tutorial.id)
+                ?.status === "started" && (
+                <div className="absolute top-[-7px] right-[-7px] rounded-full  flex justify-center items-center">
+                  <img src={statusStarted} alt="started" className="h-7 w-7" />
+                </div>
+              )}
               <h2 className="text-lg   md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
                 {tutorial.title}
               </h2>
@@ -103,7 +120,19 @@ function TutorialList() {
                 onClick={() => tutorialStarted(tutorial)}
                 className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
               >
-                Accéder
+                {/* Match tutorialsStatus id with the id of the tutorial */}
+
+                {tutorialStatus?.find(
+                  (status) => status?.tuto_id === tutorial.id
+                )?.status === "finished" && "Revoir"}
+
+                {tutorialStatus?.find(
+                  (status) => status?.tuto_id === tutorial.id
+                )?.status === "started" && "Reprendre"}
+                {/* If default value */}
+                {tutorialStatus?.find(
+                  (status) => status?.tuto_id === tutorial.id
+                )?.status === undefined && "Commencer"}
               </button>
             </li>
           ))}

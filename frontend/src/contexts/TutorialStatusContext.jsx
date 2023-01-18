@@ -23,7 +23,7 @@ export function TutorialStatusContextProvider({ children }) {
 
   useEffect(() => {
     getTutorialStatus();
-  }, []);
+  }, [tutorialStatus.length]);
 
   return (
     <TutorialStatusContext.Provider

@@ -4,6 +4,7 @@ import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import { useNavigate, useParams } from "react-router-dom";
 import CurrentUserContext from "../contexts/userContext";
+import { TutorialStatusContext } from "../contexts/TutorialStatusContext";
 import completeStep from "../assets/completeStep.svg";
 
 export default function Stepper(filteredSteppers) {
@@ -12,7 +13,9 @@ export default function Stepper(filteredSteppers) {
 
   const { id } = useParams();
 
+  const { setTutorialStatus } = useContext(TutorialStatusContext);
   const { currentUser, token } = useContext(CurrentUserContext);
+
   /* eslint-disable react/destructuring-assignment */
   const steps = filteredSteppers?.filteredSteppers;
 
@@ -71,6 +74,10 @@ export default function Stepper(filteredSteppers) {
     fetch("http://localhost:5000/api/tutorialStatusFinished", requestOptions)
       .then((response) => response.text())
       .then(() => {
+        setTutorialStatus((previousStatus) => [
+          ...previousStatus,
+          { tuto_id: id, user_id: currentUser.id },
+        ]);
         notify();
         setTimeout(() => {
           navigate(-1);
