@@ -1,8 +1,8 @@
 const models = require("../models");
 
-// get all tutos
+// get all users
 const browse = (req, res) => {
-  models.tuto
+  models.user
     .findAll()
     .then(([rows]) => {
       res.send(rows);
@@ -13,9 +13,9 @@ const browse = (req, res) => {
     });
 };
 
-// get a tuto with its id
+// get user by its id
 const read = (req, res) => {
-  models.tuto
+  models.user
     .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
@@ -30,14 +30,31 @@ const read = (req, res) => {
     });
 };
 
-// edit a tuto
+// add an user
+const add = (req, res) => {
+  const user = req.body;
+
+  // on verifie les données
+
+  models.user
+    .insert(user)
+    .then(([result]) => {
+      res.location(`/api/users/${result.insertId}`).sendStatus(201);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.sendStatus(500);
+    });
+};
+
+// edit an user
 const edit = (req, res) => {
-  const tuto = req.body;
+  const user = req.body;
 
-  tuto.id = parseInt(req.params.id, 10);
+  user.id = parseInt(req.params.id, 10);
 
-  models.tuto
-    .update(tuto)
+  models.user
+    .update(user)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -51,24 +68,9 @@ const edit = (req, res) => {
     });
 };
 
-// add a tuto
-const add = (req, res) => {
-  const tuto = req.body;
-
-  models.tuto
-    .insert(tuto)
-    .then(([result]) => {
-      res.location(`/tutos/${result.insertId}`).sendStatus(201);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
-};
-
-// delete a tuto
+// delete an user
 const destroy = (req, res) => {
-  models.tuto
+  models.user
     .delete(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
@@ -85,13 +87,13 @@ const destroy = (req, res) => {
 
 const updateAvatar = (req, res) => {
   const id = req.payload.sub;
-  const { profilePicture } = req;
+  const { avatar } = req;
 
   models.user
-    .updateAvatar(id, profilePicture)
+    .updateAvatar(id, avatar)
     .then(([result]) => {
       if (result.affectedRows === 0) res.sendStatus(404);
-      else res.status(202).send({ profilePicture });
+      else res.status(202).send({ avatar });
     })
     .catch((error) => {
       console.error(error);

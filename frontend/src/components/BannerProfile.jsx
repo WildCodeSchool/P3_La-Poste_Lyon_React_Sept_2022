@@ -25,8 +25,9 @@ function BannerProfile() {
                 <img
                   className="border-black rounded-full w-20 h-20 mr-8"
                   src={
-                    currentUser?.profilePicture ||
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8HE9nJ03LBSlHivqF46xHQ640tNgo-9nnFrUMANrL3tf4lOHdDeNzjLZurWNUf3oIt8&usqp=CAU"
+                    currentUser?.profilePicture !== ""
+                      ? `http://localhost:5000/api/avatars/${currentUser.profilePicture}`
+                      : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8HE9nJ03LBSlHivqF46xHQ640tNgo-9nnFrUMANrL3tf4lOHdDeNzjLZurWNUf3oIt8&usqp=CAU"
                   }
                   alt="userImage"
                 />
