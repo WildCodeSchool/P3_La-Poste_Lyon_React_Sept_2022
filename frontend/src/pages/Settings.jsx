@@ -1,26 +1,25 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import uploadIcon from "../assets/uploadIcon.svg";
-import CurrentUserContext from "../contexts/userContext";
+// import CurrentUserContext from "../contexts/userContext";
 import PreviousButton from "../components/PreviousButton";
+import { useCurrentUserContext } from "../contexts/userContext";
 
 function Settings() {
-  const { currentUser, setCurrentUser, token } = useContext(CurrentUserContext);
+  const { currentUser, setCurrentUser, token } = useCurrentUserContext();
+
+  const avatarRef = useRef(null);
+  const [setMsg] = useState("");
+
   /*   const [defaultImage, setDefaultImage] = useState(profilepic);
-   */ const [uploadedImage, setUploadedImage] = useState(null);
-  const [image, setImage] = useState(null);
+   */ // const [uploadedImage, setUploadedImage] = useState(null);
+  // const [image, setImage] = useState(null);
   /*   const [fileName, setFileName] = useState("");
    */
   const navigate = useNavigate();
-  const handleImageChange = (event) => {
-    setUploadedImage(event.target.files[0]);
-    setImage(
-      event.target.files[0]
-    ); /*  setDefaultImage(event.target.files[0]); */
-    /*     setFileName(event.target.files[0].name);
-     */
-  };
+
+  // const [profilePicture, setProfilePicture] = useState("");
 
   // All states
   const [firstname, setFirstname] = useState(currentUser.firstname);
@@ -54,6 +53,58 @@ function Settings() {
   const handleClickPhone = () => {
     // 👇️ clear input value
     setPhone("");
+  };
+
+  /* const hSubmit = (evt) => {
+    evt.preventDefault();
+
+    const formData = new FormData();
+    formData.append("avatar", avatarRef.current.files[0]);
+
+    axios
+      .post("http://localhost:5000/api/avatars", formData)
+      .then(() => {
+        setMsg("Upload réussi !");
+      })
+      .catch(() => {
+        setMsg("Upload échoué !");
+      });
+  }; */
+
+  // Méthode pour fetch l'avatar uploadé
+
+  const handleSubmitAvatar = (e) => {
+    e.preventDefault();
+    if (avatarRef.current.files[0]) {
+      // recupération des articles.
+      const myHeader = new Headers();
+      myHeader.append("Authorization", `Bearer ${token}`);
+
+      const formData = new FormData();
+      formData.append("profilePicture", avatarRef.current.files[0]);
+      const requestOptions = {
+        method: "PUT",
+        headers: myHeader,
+        body: formData,
+      };
+      // on appelle le back
+      fetch(`http://localhost:5000/api/avatars`, requestOptions)
+        .then((response) => response.json())
+        .then((results) => {
+          // maj avatar
+          console.warn(results, "test");
+          setCurrentUser({ ...currentUser, profilePicture: results.avatar });
+          setMsg("Upload réussi !");
+        })
+        .catch((error) => {
+          console.error(error);
+          setMsg("Upload échoué !");
+        });
+    } else {
+      setMsg(
+        "Vous auriez pas oublié un truc ? Le fichier à uploader, par exemple ?"
+      );
+    }
   };
 
   // Put function
@@ -126,22 +177,15 @@ function Settings() {
           Modifier mes informations
         </h1>
         <div className="flex justify-center">
-          {!uploadedImage && (
-            <img
-              src={`https://api.multiavatar.com/${currentUser.firstname}.svg`}
-              alt=""
-              className="object-fit w-36  h-36 border rounded-full"
-            />
-          )}
-          {uploadedImage && (
-            <div>
-              <img
-                src={URL.createObjectURL(image)}
-                className="object-fit border w-36  rounded-full"
-                alt="Uploaded"
-              />
-            </div>
-          )}
+          <img
+            src={
+              currentUser?.profilePicture
+                ? `http://localhost:5000/api/avatars/${currentUser.profilePicture}`
+                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8HE9nJ03LBSlHivqF46xHQ640tNgo-9nnFrUMANrL3tf4lOHdDeNzjLZurWNUf3oIt8&usqp=CAU"
+            }
+            alt="userImage"
+            className="object-fit w-36  h-36 border rounded-full"
+          />
           <div className="mt-32">
             <label htmlFor="image-upload">
               <img
@@ -152,10 +196,11 @@ function Settings() {
             </label>
 
             <input
+              ref={avatarRef}
               type="file"
               id="image-upload"
               accept="image/*"
-              onChange={handleImageChange}
+              onChange={handleSubmitAvatar}
               className="hidden"
             />
           </div>
