@@ -10,6 +10,8 @@ const categoryControllers = require("./controllers/categoryControllers");
 const tutoControllers = require("./controllers/tutoControllers");
 const statusControllers = require("./controllers/statusControllers");
 const stepperControllers = require("./controllers/stepperControllers");
+const passwordControllers = require("./controllers/passwordControllers");
+const mailControllers = require("./controllers/mailControllers");
 
 // PUBLIC ROUTES
 
@@ -48,7 +50,26 @@ router.get("/api/status/:id", statusControllers.read);
 router.get("/api/steppers", stepperControllers.browse);
 router.get("/api/steppers/:id", stepperControllers.read);
 
-//
+// Reset password
+router.post(
+  "/api/forgottenpassword",
+  passwordControllers.verifyEmail,
+  passwordControllers.generatePasswordToken,
+  mailControllers.sendForgottenPassword
+);
+router.post(
+  `/api/resetpassword`,
+  passwordControllers.verifyTokenPassword,
+  hashPassword,
+  passwordControllers.resetPassword
+);
+
+// Reset email
+router.post(
+  "/api/forgottenemail",
+  passwordControllers.verifyEmail,
+  mailControllers.sendForgottenEmail
+);
 
 // PROTECTED ROUTES
 router.use(verifyToken); // From this point, the middleware verifyToken will be used at the beginning of all functions
