@@ -1,40 +1,32 @@
-import BannerProfile from "@components/BannerProfile";
-import PreviousButton from "@components/PreviousButton";
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { toast, Toaster } from "react-hot-toast";
+import DeleteModaleUser from "../components/DeleteModaleUser";
+import CurrentUserContext from "../contexts/userContext";
+import BannerProfile from "../components/BannerProfile";
+import PreviousButton from "../components/PreviousButton";
+import trash from "../assets/trash.svg";
 
 function SearchUsers() {
-  const users = [
-    {
-      firstname: "Chloé",
-      lastname: "Bidau",
-      mail: "jesuischloe@gmail.com",
-      phoneNumber: "0601020304",
-    },
-    {
-      firstname: "Morgan",
-      lastname: "Mezaache",
-      mail: "jesuismorgan@gmail.com",
-      phoneNumber: "0602030405",
-    },
-    {
-      firstname: "Arnaud",
-      lastname: "Champetier",
-      mail: "jesuisarnaud@gmail.com",
-      phoneNumber: "0603040506",
-    },
-    {
-      firstname: "Quentin",
-      lastname: "Ferrari",
-      mail: "jesuisquentin@gmail.com",
-      phoneNumber: "0604050607",
-    },
-    {
-      firstname: "Marion",
-      lastname: "Lalonde",
-      mail: "jesuismarion@gmail.com",
-      phoneNumber: "0607080910",
-    },
-  ];
+  const notify = () => toast.success("L'utilisateur a bien été supprimé");
+
+  /* Get bearer token from userContext to get permission about delete user */
+  const { token } = useContext(CurrentUserContext);
+
+  /* Fetch the users of the application */
+  const [users, setUsers] = useState([]);
+
+  const fetchUsers = async () => {
+    const response = await fetch("http://localhost:5000/api/users");
+    const data = await response.json();
+    setUsers(data);
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, [users]);
+
+  /* We remove admin from the user management */
+  const noAdmin = users?.filter((user) => user.admin !== 1);
 
   /* State the search value, then make it lowercase and normalize accent */
   const [search, setSearch] = useState("");
@@ -44,7 +36,7 @@ function SearchUsers() {
     .replace(/[\u0300-\u036f+.]/g, "");
 
   /* Filtred user precomputed */
-  const filtredUser = users?.filter(
+  const filtredUser = noAdmin?.filter(
     (user) =>
       user.firstname
         .toLowerCase()
@@ -58,23 +50,28 @@ function SearchUsers() {
         .includes(normalizeSearch)
   );
 
-  /* State to display more informations */
-  const [showDetails, setShowDetails] = useState(false);
-  const [SelectedUser, setSelectedUser] = useState("");
-
-  const handleSelectedUser = (index) => {
-    setSelectedUser(index);
-    setShowDetails(!showDetails);
-  };
-
   /* Delete user */
+  const [confirmDeleteModale, setConfirmDeleteModale] = useState(false);
+  const [id, setId] = useState();
 
-  const handleUser = () => {
-    /*  alert("Supprimé !"); */
+  const handleDeleteUser = async () => {
+    fetch(`http://localhost:5000/api/users/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+    setConfirmDeleteModale(!confirmDeleteModale);
+    fetchUsers();
+    setTimeout(() => {
+      notify();
+    }, 500);
   };
 
   return (
     <section>
+      <Toaster />
       <BannerProfile />
       <PreviousButton />
       <h2 className="m-6 text-xl text-center md:text-3xl">
@@ -88,99 +85,110 @@ function SearchUsers() {
           name="users"
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Recherchez un utilisateur"
-          className=" border-gray-400 rounded mb-5 p-4 w-4/6 md:w-2/6 h-10  bg-gray-200"
+          className=" border-gray-400 rounded-lg mb-5 p-4 w-4/6 md:w-2/6 h-10  bg-gray-200"
         />
 
-        <ul className="p-0 m-0">
-          {filtredUser.length === 0 ? (
-            <li className="mx-0 text-1xl">Aucun utilisateur n'a été trouvé</li>
-          ) : (
-            filtredUser?.map((user, index) => (
-              <li className=" mx-0 p-6  rounded shadow-lg items-center relative grid grid-cols-2 gap-4 w-full m-2 border">
-                <div className="text-1xl w-78 md:w-96">
-                  {user.firstname} {user.lastname}{" "}
-                  <button
-                    type="button"
-                    className=""
-                    onClick={() => handleSelectedUser(index)}
-                  >
-                    {showDetails ? (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 19 19"
-                        strokeWidth="1.5"
-                        stroke="#003DA5"
-                        className="w-4 h-4"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M19.5 12h-15"
-                        />
-                      </svg>
-                    ) : (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 19 19"
-                        strokeWidth="1.5"
-                        stroke="#003DA5"
-                        className="w-4 h-4"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M12 6v12m6-6H6"
-                        />
-                      </svg>
-                    )}
-                  </button>
+        <section className="antialiased bg-gray-100 text-gray-600 w-screen px-4">
+          <div className="flex flex-col justify-center bg-gray-200 py-3 w-full h-full">
+            <div className="w-5/6  mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+              <header className="px-5 py-4 border-b border-gray-100">
+                <h2 className="m-6 font-bold text-main-blue text-3xl text-center md:text-3xl">
+                  Utilisateurs
+                </h2>
+              </header>
+              <div className="p-3">
+                <div className="overflow-x-auto">
+                  <table className="table-auto w-full">
+                    <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                      <tr>
+                        <th className="p-2 whitespace-nowrap">
+                          <div className="font-semibold text-left">
+                            Nom - Prénom
+                          </div>
+                        </th>
+                        <th className="p-2 whitespace-nowrap">
+                          <div className="font-semibold text-left">Email</div>
+                        </th>
+                        <th className="p-2 whitespace-nowrap">
+                          <div className="font-semibold text-left">
+                            Téléphone
+                          </div>
+                        </th>
+                        <th className="p-2 whitespace-nowrap">
+                          <div className="font-semibold text-left">Niveau</div>
+                        </th>
+                        <th className="p-2 whitespace-nowrap">
+                          <div className="font-semibold text-center">
+                            Gestion
+                          </div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="text-sm divide-y divide-gray-100">
+                      {filtredUser.length === 0 ? (
+                        <div className="mx-0 text-1xl">
+                          Aucun utilisateur n'a été trouvé
+                        </div>
+                      ) : (
+                        filtredUser?.map((user) => (
+                          <tr key={user.id} className="hover:bg-gray-100">
+                            <td className="p-2 whitespace-nowrap">
+                              <div className="flex items-center">
+                                <div className="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
+                                  <img
+                                    className="rounded-full"
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8HE9nJ03LBSlHivqF46xHQ640tNgo-9nnFrUMANrL3tf4lOHdDeNzjLZurWNUf3oIt8&usqp=CAU"
+                                    width="40"
+                                    height="40"
+                                    alt={user.firstname}
+                                  />
+                                </div>
+                                <div className="font-medium text-gray-800">
+                                  {user.lastname} {user.firstname}
+                                </div>
+                              </div>
+                            </td>
+                            <td className="p-2 whitespace-nowrap">
+                              <div className="text-left">{user.email}</div>
+                            </td>
+                            <td className="p-2 whitespace-nowrap">
+                              <div className="text-left ">{user.phone}</div>
+                            </td>
+                            <td className="p-2 whitespace-nowrap">
+                              <div className="mx-5">{user.level}</div>
+                            </td>
+                            <td className="p-2 whitespace-nowrap">
+                              <div className="text-lg text-center">
+                                {" "}
+                                <button
+                                  onClick={() => {
+                                    setId(user.id);
+                                    setConfirmDeleteModale(!false);
+                                  }}
+                                  type="button"
+                                  className=" focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2  dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
+                                >
+                                  <img src={trash} alt="trash for users" />
+                                </button>
+                              </div>
+                            </td>
+                          </tr>
+                        ))
+                      )}
+                    </tbody>
+                  </table>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-                <button
-                  type="button"
-                  className="w-20 absolute right-0 "
-                  onClick={handleUser}
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.5"
-                    stroke="red"
-                    className="w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                    />
-                  </svg>
-                </button>
-
-                <div
-                  className={
-                    SelectedUser === index && showDetails
-                      ? " relative w-full col-start-1 col-end-3 grid items-center justify-center"
-                      : "hidden"
-                  }
-                >
-                  <ul className="">
-                    <li className="text-1xl font-bold ">Prénom : </li>
-                    {user.firstname}{" "}
-                    <li className="font-bold text-1xl">Nom : </li>{" "}
-                    {user.lastname}{" "}
-                    <li className="font-bold text-1xl">E-mail : </li>{" "}
-                    {user.mail}{" "}
-                    <li className="font-bold  text-1xl">Téléphone : </li>{" "}
-                    {user.phoneNumber}
-                  </ul>
-                </div>
-              </li>
-            ))
-          )}
-        </ul>
+        <DeleteModaleUser
+          fetchUsers={fetchUsers}
+          handleDeleteUser={handleDeleteUser}
+          setConfirmDeleteModale={setConfirmDeleteModale}
+          confirmDeleteModale={confirmDeleteModale}
+        />
       </form>
     </section>
   );

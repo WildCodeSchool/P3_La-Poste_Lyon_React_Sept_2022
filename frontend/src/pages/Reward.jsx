@@ -1,25 +1,23 @@
 import React from "react";
-import NavigationBar from "../components/NavigationBar";
 import BannerProfile from "../components/BannerProfile";
 import badgeConnect from "../assets/Rewards/1.svg";
-import badgeSecu from "../assets/Rewards/2.png";
-import badgeHelp from "../assets/Rewards/3.png";
-import badgeMedia from "../assets/Rewards/4.png";
-import badgeMessage from "../assets/Rewards/5.png";
-import badgeWelcome from "../assets/Rewards/6.png";
-import badgeTutos from "../assets/Rewards/7.png";
-import badgeGame from "../assets/Rewards/8.png";
-import badgeAdventure from "../assets/Rewards/9.png";
-import badgeWay from "../assets/Rewards/10.png";
-import badgeProfil from "../assets/Rewards/11.png";
-import badgeHorizon from "../assets/Rewards/12.png";
+import badgeSecu from "../assets/Rewards/2.svg";
+import badgeHelp from "../assets/Rewards/3.svg";
+import badgeMedia from "../assets/Rewards/4.svg";
+import badgeMessage from "../assets/Rewards/5.svg";
+import badgeWelcome from "../assets/Rewards/6.svg";
+import badgeTutos from "../assets/Rewards/7.svg";
+import badgeGame from "../assets/Rewards/8.svg";
+import badgeAdventure from "../assets/Rewards/9.svg";
+import badgeWay from "../assets/Rewards/10.svg";
+import badgeProfil from "../assets/Rewards/11.svg";
+import badgeHorizon from "../assets/Rewards/12.svg";
 
 function Reward() {
   return (
     <div>
-      <NavigationBar />
       <BannerProfile />
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-10">
         <div className="grid overflow-hidden grid-cols-3 grid-rows-4 gap-5">
           <img
             className="flex justify-center"

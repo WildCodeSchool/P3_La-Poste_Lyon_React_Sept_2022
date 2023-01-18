@@ -10,12 +10,18 @@ const categoryControllers = require("./controllers/categoryControllers");
 const tutoControllers = require("./controllers/tutoControllers");
 const statusControllers = require("./controllers/statusControllers");
 const stepperControllers = require("./controllers/stepperControllers");
+const passwordControllers = require("./controllers/passwordControllers");
+const mailControllers = require("./controllers/mailControllers");
 
 // PUBLIC ROUTES
 
 // Users management
-router.get("/users", userControllers.browse);
-router.get("/users/:id", userControllers.read);
+router.get("/api/users", userControllers.browse);
+router.get("/api/users/:id", userControllers.read);
+router.post("/api/users", hashPassword, userControllers.add);
+
+/* Authentification and login */
+router.post("/api/users/register", hashPassword, userControllers.add);
 router.post(
   "/api/login",
   authentificationControllers.getUserByEmailWithPasswordAndPassToNext,
@@ -23,47 +29,76 @@ router.post(
 );
 
 // Categories management
-router.get("/categories", categoryControllers.browse);
-router.get("/categories/:id", categoryControllers.read);
+router.get("/api/categories", categoryControllers.browse);
+router.get("/api/categories/:id", categoryControllers.read);
 
 // Tutos management
-router.get("/tutos", tutoControllers.browse);
-router.get("/tutos/:id", tutoControllers.read);
+/* router.get("/api/tutos/category_id/:id", tutoControllers.browse); */
+
+router.get("/api/tutos", tutoControllers.browse);
+/* Route to get all tutos by the category id */
+router.get("/api/tutos/category_id/:id", tutoControllers.browse);
+/* router to browseAll */
+router.get("/api/tutos/all", tutoControllers.browseAll);
+router.get("/api/tutos/:id", tutoControllers.read);
 
 // Status management
-router.get("/status", statusControllers.browse);
-router.get("/status/:id", statusControllers.read);
+router.get("/api/status", statusControllers.browse);
+router.get("/api/status/:id", statusControllers.read);
 
 // Stepper management
-router.get("/steppers", stepperControllers.browse);
-router.get("/steppers/:id", stepperControllers.read);
+router.get("/api/steppers", stepperControllers.browse);
+router.get("/api/steppers/:id", stepperControllers.read);
+
+// Reset password
+router.post(
+  "/api/forgottenpassword",
+  passwordControllers.verifyEmail,
+  passwordControllers.generatePasswordToken,
+  mailControllers.sendForgottenPassword
+);
+router.post(
+  `/api/resetpassword`,
+  passwordControllers.verifyTokenPassword,
+  hashPassword,
+  passwordControllers.resetPassword
+);
+
+// Reset email
+router.post(
+  "/api/forgottenemail",
+  passwordControllers.verifyEmail,
+  mailControllers.sendForgottenEmail
+);
 
 // PROTECTED ROUTES
 router.use(verifyToken); // From this point, the middleware verifyToken will be used at the beginning of all functions
 
 // Users management
-router.put("/users/:id", userControllers.edit);
-router.post("/users", hashPassword, userControllers.add);
-router.delete("/users/:id", userControllers.destroy);
+router.put("/api/users/:id", userControllers.edit);
+
+router.delete("/api/users/:id", userControllers.destroy);
 
 // Categories management
-router.put("/categories/:id", categoryControllers.edit);
-router.post("/categories", categoryControllers.add);
-router.delete("/categories/:id", categoryControllers.destroy);
+router.put("/api/categories/:id", categoryControllers.edit);
+router.post("/api/categories", categoryControllers.add);
+router.delete("/api/categories/:id", categoryControllers.destroy);
 
 // Tutos management
-router.put("/tutos/:id", tutoControllers.edit);
-router.post("/tutos", tutoControllers.add);
-router.delete("/tutos/:id", tutoControllers.destroy);
+router.put("/api/tutos/:id", tutoControllers.edit);
+router.post("/api/tutos", tutoControllers.add);
+router.delete("/api/tutos/:id", tutoControllers.destroy);
 
 // Status management
-router.put("/status/:id", statusControllers.edit);
-router.post("/status", statusControllers.add);
-router.delete("/status/:id", statusControllers.destroy);
+router.put("/api/status/:id", statusControllers.edit);
+router.post("/api/status", statusControllers.add);
+router.delete("/api/status/:id", statusControllers.destroy);
 
 // Stepper management
-router.put("/steppers/:id", stepperControllers.edit);
-router.post("/steppers", stepperControllers.add);
-router.delete("/steppers/:id", stepperControllers.destroy);
+/* road to destroy all stepper of a tutorial */
+router.delete("/api/steppers/tuto_id/:id", stepperControllers.destroy);
+router.put("/api/steppers/:id", stepperControllers.edit);
+router.post("/api/steppers", stepperControllers.add);
+router.delete("/api/steppers/:id", stepperControllers.destroy);
 
 module.exports = router;

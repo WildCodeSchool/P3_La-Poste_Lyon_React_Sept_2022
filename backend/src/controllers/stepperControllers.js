@@ -66,10 +66,10 @@ const add = (req, res) => {
     });
 };
 
-// delete a stepper
+/* delete all steos of  the stepper associate to the tutoID  */
 const destroy = (req, res) => {
   models.stepper
-    .delete(req.params.tuto_id)
+    .deleteAll(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);

@@ -1,86 +1,82 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import BannerProfile from "./BannerProfile";
-import Footer from "./Footer";
-import NavigationBar from "./NavigationBar";
+import tutoManagement from "../assets/navbarAdmin/TutoManagement.svg";
+import tutoCreation from "../assets/navbarAdmin/TutoCreation.svg";
+import usersManagement from "../assets/navbarAdmin/usersManagement.svg";
+import AccessButton from "./AccessButton";
+import Mestutos from "../assets/Mestutos.svg";
 
 // page component for admin only.
 function DashboardAdmin() {
   return (
-    <div className="DashboardAdmin">
-      <NavigationBar />
-      <div className="min-h-full w-full flex flex-col justify-center items-center text-xl">
-        <h1 className="flex justify-center bg-[#003DA5] text-white rounded-xl w-4/6 mb-10 mt-5 md:text-2xl p-1">
+    <>
+      <BannerProfile />
+      <div className="mt-2 flex justify-center">
+        <h1 className="m-3 flex justify-center items-center font-bold text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">
           Mon tableau de bord
         </h1>
-
-        <BannerProfile />
-        {/* 3 times same button div  */}
-        <div className="w-5/6 mb-10">
-          <p className="flex justify-center bg-[#003DA5] rounded-t-lg text-white md:text-2xl p-2">
-            gérer les utilisateur
-          </p>
-          <button
-            type="button"
-            className="flex shadow-lg items-center w-full justify-between p-2"
-          >
-            <img
-              src="./src/assets/gererlesutilisateurs.png"
-              alt="gérer les utilisateurs"
-            />
-            <div>
-              <p className="md:text-2xl">modifier les utilisateurs exitant</p>
-            </div>
-            <img
-              src="./src/assets/indexdroite.png"
-              alt="fleche vers la droite"
-            />
-          </button>
-        </div>
-        <div className="w-5/6 mb-10">
-          <p className="flex justify-center bg-[#003DA5] rounded-t-lg text-white md:text-2xl p-2">
-            Gérer les tutoriels existants
-          </p>
-          <button
-            type="button"
-            className="flex shadow-lg items-center w-full justify-between p-2"
-          >
-            <img src="/src/assets/gererlestuto.png" alt="gérer les tutoriel" />
-            <div>
-              <p className="md:text-2xl">
-                Modifier ou supprimer les tutoriels existants
-              </p>
-            </div>
-            <img
-              src="./src/assets/indexdroite.png"
-              alt="fleche vers la droite"
-            />
-          </button>
-        </div>
-        <div className="w-5/6">
-          <p className="flex justify-center bg-[#003DA5] rounded-t-lg text-white md:text-2xl p-2">
-            Créer un tutoriel
-          </p>
-          <button
-            type="button"
-            className="flex shadow-lg items-center w-full justify-between"
-          >
-            <img
-              className="w-24 h-auto"
-              src="./src/assets/créer un tutoriel.png"
-              alt="créer un tutoriel"
-            />
-            <div>
-              <p className="md:text-2xl">créer un tutoriel</p>
-            </div>
-            <img
-              src="./src/assets/indexdroite.png"
-              alt="fleche vers la droite"
-            />
-          </button>
-        </div>
-        <Footer />
       </div>
-    </div>
+      <ul className="grid   overflow-hidden grid-cols-1 grid-rows-4 gap-5 md:grid md:overflow-hidden md:grid-cols-2 md:grid-rows-2 md:gap-5 py-[1vh] mx-[12vw]">
+        {/* <li> elements are contained in <Link> to redirect the user to the corresponding page */}
+        <li className="bg-white box row-start-1 row-span-1 col-start-1 col-span-1 my-3 md:m-6 border shadow-xl rounded-xl text-center h-65 md:box md:row-start-1 md:row-span-1 md:col-start-1 md:col-span-1">
+          <h2 className="text-xl md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
+            Gérer les utilisateurs
+          </h2>
+          <hr />
+          <div className="flex justify-center my-5">
+            <img
+              className="h-20"
+              src={usersManagement}
+              alt="gestionUtilisateurs"
+            />
+          </div>
+          <Link to="/users">
+            <AccessButton />
+          </Link>
+        </li>
+        <li className="bg-white box row-start-2 row-span-1 col-start-1 col-span-1 my-3 md:m-6 border shadow-xl rounded-lg text-center h-65 md:box md:row-start-2 md:row-span-1 md:col-start-1 md:col-span-1">
+          <h2 className="text-xl md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
+            Gérer les tutoriels existants
+          </h2>
+          <hr />
+          <div className="flex justify-center my-5">
+            <img className="h-20" src={tutoManagement} alt="gestionTutos" />
+          </div>
+          <Link to="/tutorials-management">
+            <AccessButton />
+          </Link>
+        </li>
+        {/* Should send the user on the page of HIS tutorials that he already began and not all the tutorials */}
+        <li className="bg-white box row-start-3 row-span-1 col-start-1 col-span-2 my-3 md:m-6 border shadow-xl rounded-lg text-center h-65 md:box md:row-start-1 md:row-span-1 md:col-start-2 md:col-span-2">
+          <h2 className="text-xl md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
+            Créer un tutoriel
+          </h2>
+          <hr />
+          <div className="flex flex-col justify-center h-max">
+            <div className="flex justify-center my-5">
+              <img className="h-20" src={tutoCreation} alt="creationTutos" />
+            </div>
+            <Link to="/creation">
+              <AccessButton />
+            </Link>
+          </div>
+        </li>
+        {/* */}
+        <li className="bg-white box row-start-4 row-span-1 col-start-1 col-span-2 my-3 md:m-6 border shadow-xl rounded-lg text-center h-65 md:box md:row-start-2 md:row-span-1 md:col-start-2 md:col-span-2">
+          <h2 className="text-xl md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
+            Tous les tutoriels
+          </h2>
+          <hr />
+          <div className="flex flex-wrap justify-around my-5">
+            <img className="h-20" src={Mestutos} alt="tousLesTutos" />
+          </div>
+          <Link to="/categories">
+            <AccessButton />
+          </Link>
+        </li>
+      </ul>
+    </>
   );
 }
 

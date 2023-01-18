@@ -1,64 +1,165 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import NavigationBar from "@components/NavigationBar";
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { toast, Toaster } from "react-hot-toast";
+import PreviousButton from "../components/PreviousButton";
+import { useCurrentUserContext } from "../contexts/userContext";
 import granny from "../assets/granny1.svg";
 import arobase from "../assets/arobaselogo.png";
 import locker from "../assets/lockerlogo.png";
 import forgotpass from "../assets/forgotpass.svg";
 
 function AuthentificationPage() {
+  /* Toast */
+
+  const notifyError = () => {
+    toast("Vos informations de connexion sont incorrectes", {
+      icon: "🚫",
+    });
+  };
+
+  const notifySuccess = (firstname) => {
+    toast(`Bonjour ${firstname}!`, {
+      icon: "👋",
+    });
+  };
+
+  /* Get the context of the user (user informations + token) */
+  const { setCurrentUser, setToken } = useCurrentUserContext();
+
+  /* Import useNavigate to move after the login  */
+  const navigate = useNavigate();
+
+  /* set email and password */
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleChangeEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    /* It's an object that will be sent in the body of request */
+    const body = JSON.stringify({
+      email,
+      password,
+    });
+
+    /* function push user and token in the localstorage */
+    fetch("http://localhost:5000/api/login", {
+      method: "POST",
+      redirect: "follow",
+      body,
+      headers: myHeaders,
+    })
+      /* then I get the response to json. If response == 401 console log error else .then result
+       */
+      .then((response) => {
+        if (response.status !== 401) {
+          /* eslint consistent-return: off */ return response.json();
+        }
+        notifyError();
+        setPassword("");
+      })
+      .then((result) => {
+        if (result.token) {
+          setCurrentUser(result.user);
+          setToken(result.token);
+          notifySuccess(result.user.firstname);
+          setTimeout(() => {
+            navigate("/dashboard");
+          }, 1000);
+        } else {
+          notifyError();
+        }
+      })
+      .catch((error) => console.warn(error));
+  };
+
   return (
     <>
-      <NavigationBar />
-
-      <div className=" flex flex-col items-center justify-center  ">
-        <h1 className=" items-center content-center justify-center text-3xl mb-10 mt-10">
+      <Toaster position="top-center" reverseOrder /> <PreviousButton />
+      <form
+        onSubmit={handleSubmit}
+        className=" flex flex-col items-center justify-center  "
+      >
+        {" "}
+        <h1 className=" items-center content-center justify-center text-3xl mb-10 mt-16">
           CONNECTEZ-VOUS
+          <span className="block text-sm text-center underline text-gray-600">
+            <Link to="/registerPage"> ou créez un compte</Link>
+          </span>
         </h1>
+        <div className=" flex-col w-1/2 justify-center mb-8 ">
+          {/* label and input */}
+          <div className="flex">
+            <label htmlFor="email" name="email">
+              <img src={arobase} alt="arobase" className="w-14 h-14 mr-3" />
+            </label>
+            <input
+              type="email"
+              pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
+              placeholder="Entrez votre addresse email"
+              required
+              value={email}
+              onChange={handleChangeEmail}
+              id="email"
+              name="email"
+              className="bg-gray-200 w-full text-gray-600 py-2 px-4 border rounded-2xl "
+            />
+          </div>
+          {/* mail */}
 
-        <div className=" flex ml-10 md:w-3/5 md:justify-center ">
-          <img src={arobase} alt="arobase" className="w-14 h-14 ml1-1" />
-          <input
-            placeholder="Entrez votre addresse email"
-            className="bg-gray-200 -4mb0 text-gray-600   py-2 px-4 border rounded-2xl   md:w-3/5 "
-          />
+          <p className="italic text-gray-400 underline text-right text-sm md:text-lg">
+            <Link to="/forgotten-email"> adresse e-mail oubliée?</Link>
+          </p>
         </div>
-        <p className="italic text-gray-400 underline mb-12 ml-40">
-          adresse e-mail oubliée?
-        </p>
+        <div className="flex-col mt-8 justify-center w-1/2">
+          <div className="flex">
+            <label htmlFor="password" name="password">
+              <img src={locker} alt="locker" className="w-14 h-14 mr-3" />{" "}
+            </label>
 
-        <div className="flex ml-10 md:w-3/5 md:justify-center">
-          <img src={locker} alt="locker" className="w-14 h-14 ml1-1" />
-          <input
-            placeholder="Entrez votre mot de passe"
-            className="bg-gray-200 -4mb0 text-gray-600   py-2 px-4 border  rounded-2xl md:w-3/5 "
-          />
+            <input
+              type="password"
+              required
+              value={password}
+              onChange={handleChangePassword}
+              id="password"
+              name="password"
+              placeholder="Entrez votre mot de passe"
+              className="bg-gray-200  text-gray-600 py-2 px-4 w-full rounded-2xl  "
+            />
+          </div>{" "}
+          <p className="italic text-gray-400 underline text-right text-sm md:text-lg">
+            <Link to="/forgotten-password"> mot de passe oublié ? </Link>
+          </p>
         </div>
-        <p className="italic text-gray-400 underline mb-20 ml-40">
-          mot de passe oublié?
-        </p>
-
-        <div className=" flex flex-col items-center justify-center ml-20 mr-20 ">
+        <div className=" flex flex-col items-center justify-center ml-20 mr-20 md:mb-4">
           <img
             src={granny}
-            className=" max-w-sm w-64 h-64 md:hidden mb-16"
+            className=" max-w-sm w-64 h-64 md:hidden mb-8"
             alt="granny"
           />
           <img
             src={forgotpass}
-            className=" hidden w-21 h-31 mr-50 md:block mb-16"
+            className=" hidden w-21 h-31 mr-50 md:block mb-8 md:mb-9 md:mt-12"
             alt="forgotpass"
           />
         </div>
-        <Link to="/dashboard">
-          <button
-            type="button"
-            className="bg-[#003DA5] text-white m-1 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
-          >
-            Connexion
-          </button>
-        </Link>
-      </div>
+        <button
+          type="submit"
+          className="bg-[#FFC927] text-white m-1 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#003DA5] hover:text-black mb-28"
+        >
+          Connexion
+        </button>
+      </form>
     </>
   );
 }
