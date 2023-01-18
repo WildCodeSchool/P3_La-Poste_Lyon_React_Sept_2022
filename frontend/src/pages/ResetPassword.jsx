@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast, Toaster } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import PreviousButton from "../components/PreviousButton";
 import granny from "../assets/granny1.svg";
@@ -6,7 +7,14 @@ import locker from "../assets/lockerlogo.png";
 import forgotpass from "../assets/forgotpass.svg";
 
 function ForgottenPassword() {
-  // I recup passwordToken from the URL
+  /* Toast */
+  const problemReleved = () => {
+    toast("Les deux mots de passe doivent être identiques !", {
+      icon: "🚫",
+    });
+  };
+
+  /* I recup passwordToken from the URL */
   const { passwordToken } = useParams();
 
   /* Import useNavigate to move after the login  */
@@ -14,40 +22,48 @@ function ForgottenPassword() {
 
   /* set password */
   const [password, setPassword] = useState("");
+  const [passwordVerification, setPasswordVerification] = useState("");
 
   const handleChangePassword = (e) => {
     setPassword(e.target.value);
   };
 
   const verifyPassword = (e) => {
-    setPassword(e.target.value);
+    setPasswordVerification(e.target.value);
   };
 
+  /* When I submit, I verify first if the two password are the same. If no, I don't accept to change the password, if yes, the fetch can be launched. */
   const handleSubmit = (e) => {
     e.preventDefault();
-    const myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
-    /* It's an object that will be sent in the body of request */
-    const body = JSON.stringify({
-      password,
-      passwordToken,
-    });
+    if (passwordVerification !== password) problemReleved();
+    else {
+      const myHeaders = new Headers();
+      myHeaders.append("Content-Type", "application/json");
+      /* It's an object that will be sent in the body of request */
+      const body = JSON.stringify({
+        password,
+        passwordToken,
+      });
 
-    /* function push user and token in the localstorage */
-    fetch("http://localhost:5000/api/resetpassword", {
-      method: "POST",
-      redirect: "follow",
-      body,
-      headers: myHeaders,
-    })
-      .then(() => {
-        navigate("/authentification");
+      /* function push user and token in the localstorage */
+      fetch("http://localhost:5000/api/resetpassword", {
+        method: "POST",
+        redirect: "follow",
+        body,
+        headers: myHeaders,
       })
-      .catch((error) => console.warn(error));
+        .then(() => {
+          navigate("/authentification");
+        })
+        .catch((error) => console.warn(error));
+    }
   };
 
   return (
     <>
+      <div>
+        <Toaster position="top-center" reverseOrder />
+      </div>{" "}
       <PreviousButton />
       <form
         onSubmit={handleSubmit}
@@ -84,7 +100,7 @@ function ForgottenPassword() {
             <input
               type="password"
               required
-              value={password}
+              value={passwordVerification}
               onChange={verifyPassword}
               id="password"
               name="password"
