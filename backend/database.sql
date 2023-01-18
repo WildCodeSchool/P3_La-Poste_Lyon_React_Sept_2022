@@ -56,7 +56,7 @@ DROP TABLE IF EXISTS `tutorialStatus`;
 CREATE TABLE `tutorialStatus` (
   `tuto_id` int NOT NULL,
   `user_id` int NOT NULL,
-  `status` nvarchar(50) DEFAULT "unstarted",
+  `status` nvarchar(50),
   FOREIGN KEY (tuto_id) REFERENCES tuto(id),
   FOREIGN KEY (user_id) REFERENCES user(id)
 );
