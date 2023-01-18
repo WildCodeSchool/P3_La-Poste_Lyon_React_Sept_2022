@@ -69,11 +69,13 @@ const add = (req, res) => {
   const tuto = req.body;
 
   models.tuto
+    // insert the tuto
     .insert(tuto)
+    // executed only if we have steps / we post all steps after post tuto
     .then(([result]) => {
       if (tuto.steps?.length > 0) {
         models.stepper
-          .insertAll(tuto.steps, result.insertId)
+          .insertAll(tuto.steps, result.insertId) // last insertId = id of just created tuto
           .then(res.location(`/tutos/${result.insertId}`).sendStatus(201))
           .catch((err) => {
             console.error(err);
