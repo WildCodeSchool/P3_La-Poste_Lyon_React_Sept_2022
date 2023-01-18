@@ -27,7 +27,7 @@ export function TutorialStatusContextProvider({ children }) {
 
   return (
     <TutorialStatusContext.Provider
-      value={{ tutorialStatus, setTutorialStatus }}
+      value={{ tutorialStatus, setTutorialStatus, getTutorialStatus }}
     >
       {children}
     </TutorialStatusContext.Provider>
