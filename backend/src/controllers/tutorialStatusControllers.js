@@ -57,9 +57,10 @@ const browseFinisheddTutoByUser = (req, res) => {
 };
 
 const updateToStart = (req, res) => {
-  const id = parseInt(req.params.id, 10);
+  const raw = req.body;
+
   models.tutorialStatus
-    .updateToStart(id)
+    .updateToStarted(raw)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -74,15 +75,29 @@ const updateToStart = (req, res) => {
 };
 
 const updateToFinished = (req, res) => {
-  const id = parseInt(req.params.id, 10);
+  const raw = req.body;
+
   models.tutorialStatus
-    .updateToStart(id)
+    .updateToFinished(raw)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
       } else {
         res.sendStatus(204);
       }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+const addTutoStatus = (req, res) => {
+  const tuto = req.body;
+  models.tutorialStatus
+    .addTutoStatus(tuto)
+    .then(([result]) => {
+      res.location(`/users/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -97,4 +112,5 @@ module.exports = {
   browseFinisheddTutoByUser,
   updateToStart,
   updateToFinished,
+  addTutoStatus,
 };

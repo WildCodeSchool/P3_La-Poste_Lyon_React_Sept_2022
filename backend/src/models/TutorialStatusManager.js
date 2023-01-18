@@ -47,15 +47,22 @@ class TutoManager extends AbstractManager {
 
   updateToStarted(tutorialStatus) {
     return this.connection.query(
-      `update ${this.table} set status = "started" where id = ?`,
-      [tutorialStatus.user_id]
+      `update ${this.table} set status = "started" where user_id = ? and tuto_id = ?`,
+      [tutorialStatus.user_id, tutorialStatus.tuto_id]
     );
   }
 
   updateToFinished(tutorialStatus) {
     return this.connection.query(
-      `update ${this.table} set status = "finished" where id = ?`,
-      [tutorialStatus.user_id]
+      `update ${this.table} set status = "finished" where user_id = ? and tuto_id = ?`,
+      [tutorialStatus.user_id, tutorialStatus.tuto_id]
+    );
+  }
+
+  addTutoStatus(tutorialStatus) {
+    return this.connection.query(
+      `insert into ${this.table} (tuto_id, user_id) values (?, ?)`,
+      [tutorialStatus.tuto_id, tutorialStatus.user_id]
     );
   }
 }

@@ -80,9 +80,17 @@ router.post("/api/tutos", tutoControllers.add);
 router.delete("/api/tutos/:id", tutoControllers.destroy);
 
 // TutorialStatus management
-router.put("/api/status/:id", tutorialStatusControllers.edit);
-router.post("/api/status", tutorialStatusControllers.add);
-router.delete("/api/status/:id", tutorialStatusControllers.destroy);
+router.put(
+  "/api/tutorialStatusStarted",
+  tutorialStatusControllers.updateToStart
+);
+router.put(
+  "/api/tutorialStatusFinished",
+  tutorialStatusControllers.updateToFinished
+);
+// router.post("/api/tutorialStatus", tutorialStatusControllers.add);
+
+router.post("/api/TutoStatus", tutorialStatusControllers.addTutoStatus);
 
 // Stepper management
 router.put("/api/steppers/:id", stepperControllers.edit);
