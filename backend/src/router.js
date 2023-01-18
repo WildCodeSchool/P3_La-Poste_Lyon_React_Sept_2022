@@ -8,8 +8,8 @@ const userControllers = require("./controllers/userControllers");
 const authentificationControllers = require("./controllers/authentificatorControllers");
 const categoryControllers = require("./controllers/categoryControllers");
 const tutoControllers = require("./controllers/tutoControllers");
-const statusControllers = require("./controllers/statusControllers");
 const stepperControllers = require("./controllers/stepperControllers");
+const tutorialStatusControllers = require("./controllers/tutorialStatusControllers");
 
 // PUBLIC ROUTES
 
@@ -31,16 +31,29 @@ router.get("/api/categories", categoryControllers.browse);
 router.get("/api/categories/:id", categoryControllers.read);
 
 // Tutos management
-
 /* Route to get all tutos by the category id */
 router.get("/api/tutos/category_id/:id", tutoControllers.browse);
 /* router to browseAll */
 router.get("/api/tutos/all", tutoControllers.browseAll);
 router.get("/api/tutos/:id", tutoControllers.read);
 
-// Status management
-router.get("/api/status", statusControllers.browse);
-router.get("/api/status/:id", statusControllers.read);
+// Historical management
+router.get(
+  "/api/historical/:id",
+  tutorialStatusControllers.browseAllTutoByUser
+);
+router.get(
+  "/api/historical/unstarted/:id",
+  tutorialStatusControllers.browseUnstartedTutoByUser
+);
+router.get(
+  "/api/historical/started/:id",
+  tutorialStatusControllers.browseStartedTutoByUser
+);
+router.get(
+  "/api/historical/finished/:id",
+  tutorialStatusControllers.browseFinisheddTutoByUser
+);
 
 // Stepper management
 router.get("/api/steppers", stepperControllers.browse);
@@ -66,10 +79,10 @@ router.put("/api/tutos/:id", tutoControllers.edit);
 router.post("/api/tutos", tutoControllers.add);
 router.delete("/api/tutos/:id", tutoControllers.destroy);
 
-// Status management
-router.put("/api/status/:id", statusControllers.edit);
-router.post("/api/status", statusControllers.add);
-router.delete("/api/status/:id", statusControllers.destroy);
+// TutorialStatus management
+router.put("/api/status/:id", tutorialStatusControllers.edit);
+router.post("/api/status", tutorialStatusControllers.add);
+router.delete("/api/status/:id", tutorialStatusControllers.destroy);
 
 // Stepper management
 router.put("/api/steppers/:id", stepperControllers.edit);

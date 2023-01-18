@@ -48,9 +48,9 @@ CREATE TABLE `category` (
 );
 INSERT INTO `category` (name, icon, position) VALUES ('Se connecter','src/assets/tutorial-category-img/connected.svg',1),('Vie courante','src/assets/tutorial-category-img/currentlife.svg',2),('Utiliser un ordinateur','src/assets/tutorial-category-img/desktop.svg',3),('Se faire aider','src/assets/tutorial-category-img/getHelped.svg',4),('Aller plus loin','src/assets/tutorial-category-img/going.svg',5),('Mails','src/assets/tutorial-category-img/mails.svg',6),('Médias','src/assets/tutorial-category-img/media.svg ',7),('Messages','src/assets/tutorial-category-img/message.svg',8),('Se déplacer','src/assets/tutorial-category-img/navigate.svg',9),('Naviguer sur internet','src/assets/tutorial-category-img/navigateinternet.svg',10),('Sécurité','src/assets/tutorial-category-img/security.svg',11),('Utiliser son téléphone','src/assets/tutorial-category-img/usephone.svg',12);
 
-DROP TABLE IF EXISTS `historical`;
+DROP TABLE IF EXISTS `tutorialStatus`;
 
-CREATE TABLE `historical` (
+CREATE TABLE `tutorialStatus` (
   `tuto_id` int NOT NULL,
   `user_id` int NOT NULL,
   `status` nvarchar(50) DEFAULT "unstarted",
