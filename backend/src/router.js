@@ -1,6 +1,14 @@
 const express = require("express");
 
+// Ajout de multer
+const multer = require("multer");
+
 const router = express.Router();
+
+// On définit la destination de stockage de nos fichiers
+// const upload = multer({ dest: process.env.AVATAR_DIRECTORY });
+// On définit la destination de stockage de nos fichiers
+const upload = multer({ dest: "public/uploads/" });
 
 const { hashPassword, verifyPassword, verifyToken } = require("./views/auth");
 
@@ -8,10 +16,12 @@ const userControllers = require("./controllers/userControllers");
 const authentificationControllers = require("./controllers/authentificatorControllers");
 const categoryControllers = require("./controllers/categoryControllers");
 const tutoControllers = require("./controllers/tutoControllers");
-const statusControllers = require("./controllers/statusControllers");
 const stepperControllers = require("./controllers/stepperControllers");
+const tutorialStatusControllers = require("./controllers/tutorialStatusControllers");
 const passwordControllers = require("./controllers/passwordControllers");
 const mailControllers = require("./controllers/mailControllers");
+
+const fileControllers = require("./controllers/fileControllers");
 
 // PUBLIC ROUTES
 
@@ -33,18 +43,29 @@ router.get("/api/categories", categoryControllers.browse);
 router.get("/api/categories/:id", categoryControllers.read);
 
 // Tutos management
-/* router.get("/api/tutos/category_id/:id", tutoControllers.browse); */
-
-router.get("/api/tutos", tutoControllers.browse);
 /* Route to get all tutos by the category id */
 router.get("/api/tutos/category_id/:id", tutoControllers.browse);
 /* router to browseAll */
 router.get("/api/tutos/all", tutoControllers.browseAll);
 router.get("/api/tutos/:id", tutoControllers.read);
 
-// Status management
-router.get("/api/status", statusControllers.browse);
-router.get("/api/status/:id", statusControllers.read);
+// Historical management
+router.get(
+  "/api/historical/:id",
+  tutorialStatusControllers.browseAllTutoByUser
+);
+router.get(
+  "/api/historical/unstarted/:id",
+  tutorialStatusControllers.browseUnstartedTutoByUser
+);
+router.get(
+  "/api/historical/started/:id",
+  tutorialStatusControllers.browseStartedTutoByUser
+);
+router.get(
+  "/api/historical/finished/:id",
+  tutorialStatusControllers.browseFinisheddTutoByUser
+);
 
 // Stepper management
 router.get("/api/steppers", stepperControllers.browse);
@@ -71,6 +92,9 @@ router.post(
   mailControllers.sendForgottenEmail
 );
 
+// Avatar management
+router.get("/api/avatars/:profilePicture", fileControllers.sendAvatar);
+
 // PROTECTED ROUTES
 router.use(verifyToken); // From this point, the middleware verifyToken will be used at the beginning of all functions
 
@@ -89,10 +113,18 @@ router.put("/api/tutos/:id", tutoControllers.edit);
 router.post("/api/tutos", tutoControllers.add);
 router.delete("/api/tutos/:id", tutoControllers.destroy);
 
-// Status management
-router.put("/api/status/:id", statusControllers.edit);
-router.post("/api/status", statusControllers.add);
-router.delete("/api/status/:id", statusControllers.destroy);
+// TutorialStatus management
+router.put(
+  "/api/tutorialStatusStarted",
+  tutorialStatusControllers.updateToStart
+);
+router.put(
+  "/api/tutorialStatusFinished",
+  tutorialStatusControllers.updateToFinished
+);
+// router.post("/api/tutorialStatus", tutorialStatusControllers.add);
+
+router.post("/api/TutoStatus", tutorialStatusControllers.addTutoStatus);
 
 // Stepper management
 /* road to destroy all stepper of a tutorial */
@@ -100,5 +132,14 @@ router.delete("/api/steppers/tuto_id/:id", stepperControllers.destroy);
 router.put("/api/steppers/:id", stepperControllers.edit);
 router.post("/api/steppers", stepperControllers.add);
 router.delete("/api/steppers/:id", stepperControllers.destroy);
+
+// Gestion des avatars
+
+router.put(
+  "/api/avatars",
+  upload.single("profilePicture"),
+  fileControllers.renameAvatar,
+  userControllers.updateAvatar
+);
 
 module.exports = router;

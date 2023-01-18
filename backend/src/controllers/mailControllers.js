@@ -3,13 +3,14 @@ require("dotenv").config();
 const nodemailer = require("nodemailer");
 
 const { FRONTEND_URL } = process.env;
+const { SMTP_USER } = process.env;
 
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,
   port: process.env.SMTP_PORT,
   secure: false,
   auth: {
-    user: process.env.SMTP_USER,
+    user: `${SMTP_USER}`,
     pass: process.env.SMTP_PASSWORD,
   },
 });
@@ -17,7 +18,7 @@ const transporter = nodemailer.createTransport({
 const sendForgottenPassword = (req, res) => {
   transporter.sendMail(
     {
-      from: "chloebidau@hotmail.fr",
+      from: SMTP_USER,
       to: req.user.email,
       subject: "Mot de passe oublié",
       text: "Pour créer un nouveau mot de passe, cliquez ici !",
@@ -36,7 +37,7 @@ const sendForgottenPassword = (req, res) => {
 const sendForgottenEmail = (req, res) => {
   transporter.sendMail(
     {
-      from: "chloebidau@hotmail.fr",
+      from: SMTP_USER,
       to: req.user.email,
       subject: "Email oublié",
       text: "Si vous recevez ce mail, c'est qu'il s'agit de la bonne adresse mail !",

@@ -30,6 +30,23 @@ const read = (req, res) => {
     });
 };
 
+// add an user
+const add = (req, res) => {
+  const user = req.body;
+
+  // on verifie les données
+
+  models.user
+    .insert(user)
+    .then(([result]) => {
+      res.location(`/api/users/${result.insertId}`).sendStatus(201);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.sendStatus(500);
+    });
+};
+
 // edit an user
 const edit = (req, res) => {
   const user = req.body;
@@ -44,21 +61,6 @@ const edit = (req, res) => {
       } else {
         res.sendStatus(204);
       }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
-};
-
-// add an user
-const add = (req, res) => {
-  const user = req.body;
-
-  models.user
-    .insert(user)
-    .then(([result]) => {
-      res.location(`/users/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -83,10 +85,27 @@ const destroy = (req, res) => {
     });
 };
 
+const updateAvatar = (req, res) => {
+  const id = req.payload.sub;
+  const { avatar } = req;
+
+  models.user
+    .updateAvatar(id, avatar)
+    .then(([result]) => {
+      if (result.affectedRows === 0) res.sendStatus(404);
+      else res.status(202).send({ avatar });
+    })
+    .catch((error) => {
+      console.error(error);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browse,
   read,
   edit,
   add,
   destroy,
+  updateAvatar,
 };
