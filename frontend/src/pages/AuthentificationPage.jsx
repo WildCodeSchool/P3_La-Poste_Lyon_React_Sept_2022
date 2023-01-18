@@ -92,7 +92,7 @@ function AuthentificationPage() {
         {" "}
         <h1 className=" items-center content-center justify-center text-3xl mb-10 mt-16">
           CONNECTEZ-VOUS
-          <span className="block text-sm text-center underline text-gray-600">
+          <span className="block text-sm text-center underline text-gray-500 hover:text-black">
             <Link to="/registerPage"> ou créez un compte</Link>
           </span>
         </h1>
