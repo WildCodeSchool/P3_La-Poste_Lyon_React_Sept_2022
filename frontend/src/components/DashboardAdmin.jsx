@@ -13,7 +13,7 @@ function DashboardAdmin() {
     <>
       <BannerProfile />
       <div className="mt-2 flex justify-center">
-        <h1 className="flex justify-center items-center font-bold text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">
+        <h1 className="m-3 flex justify-center items-center font-bold text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">
           Mon tableau de bord
         </h1>
       </div>
