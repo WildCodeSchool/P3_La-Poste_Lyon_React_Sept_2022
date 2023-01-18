@@ -95,7 +95,7 @@ function TutorialsManagement() {
       <Toaster />
       <BannerProfile />
       <PreviousButton />
-      <h2 className="m-6 text-xl text-center md:text-3xl">
+      <h2 className="m-6 font-bold text-main-blue text-3xl text-center md:text-3xl">
         {" "}
         Gestion des tutoriels
       </h2>
@@ -113,9 +113,7 @@ function TutorialsManagement() {
           <div className="flex flex-col justify-center bg-gray-200 py-3 w-full h-full">
             <div className="w-5/6  mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
               <header className="px-5 py-4 border-b border-gray-100">
-                <h2 className="text-xl font-semibold text-[#003DA5]">
-                  Tutoriels
-                </h2>
+                <h2 className="text-2xl font-bold text-main-blue">Tutoriels</h2>
               </header>
               <div className="p-3">
                 <div className="overflow-x-auto">

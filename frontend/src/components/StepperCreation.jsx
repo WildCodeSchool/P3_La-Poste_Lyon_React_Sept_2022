@@ -87,13 +87,13 @@ export default function StepperCreation({
                 {/* Position  */}
                 <section className="flex  w-36">
                   <label
-                    className="text-xl font-medium  text-[#003DA5] "
+                    className="text-main-black font-semibold text-lg "
                     htmlFor={`position-${index}`}
                   >
                     Étape n°
                   </label>
                   <input
-                    className="h-full  text-center text-[#003DA5] text-lg"
+                    className="h-full  text-center text-[#003DA5] text-lg font-bold"
                     type="number"
                     min="1"
                     max="10"
@@ -162,14 +162,14 @@ export default function StepperCreation({
           <section className="flex justify-center">
             <button
               type="button"
-              className="bg-[#003DA5] text-white m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+              className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow hover:bg-main-blue hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
               onClick={handlePreviousStep}
             >
               Précédent
             </button>
             <button
               type="submit"
-              className="bg-[#003DA5] text-white m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+              className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow hover:bg-main-blue hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
             >
               Suivant
             </button>
