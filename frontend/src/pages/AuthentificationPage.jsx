@@ -116,8 +116,11 @@ function AuthentificationPage() {
           </div>
           {/* mail */}
 
-          <p className="italic text-gray-400 underline text-right text-sm md:text-lg hover:text-black">
-            <Link to="/forgotten-email"> adresse e-mail oubliée?</Link>
+          <p className="italic text-gray-400 underline text-right text-sm md:text-lg">
+            <Link to="/forgotten-email" className="hover:text-black">
+              {" "}
+              adresse e-mail oubliée?
+            </Link>
           </p>
         </div>
         <div className="flex-col mt-8 justify-center w-1/2">
@@ -137,8 +140,11 @@ function AuthentificationPage() {
               className="bg-gray-200  text-gray-600 py-2 px-4 w-full rounded-2xl  "
             />
           </div>{" "}
-          <p className="italic text-gray-400 underline text-right text-sm md:text-lg hover:text-black">
-            <Link to="/forgotten-password"> mot de passe oublié ? </Link>
+          <p className="italic text-gray-400 underline text-right text-sm md:text-lg">
+            <Link to="/forgotten-password" className="hover:text-black">
+              {" "}
+              mot de passe oublié ?{" "}
+            </Link>
           </p>
         </div>
         <div className=" flex flex-col items-center justify-center ml-20 mr-20 md:mb-4">
