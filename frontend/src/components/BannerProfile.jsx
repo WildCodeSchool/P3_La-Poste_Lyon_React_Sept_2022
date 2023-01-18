@@ -44,11 +44,7 @@ function BannerProfile() {
           </div>
           <div className="my-5 md:flex md:flex-col  ">
             <h2 className="text-2xl">
-              Bonjour,{" "}
-              <span className=" font-semibold">
-                {currentUser.firstname} {currentUser.lastname}{" "}
-              </span>{" "}
-              !
+              Bonjour <span className=" ">{currentUser.firstname} </span> !
             </h2>
             <div className="flex justify-start items-center flex-wrap">
               <Link to="/settings">
