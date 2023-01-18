@@ -21,7 +21,7 @@ function Settings() {
 
   const notifyForget = () => {
     toast(
-      "Vous auriez pas oublié un truc ? Le fichier à uploader, par exemple ?.",
+      "Vous n'auriez pas oublié un truc ? Le fichier à uploader, par exemple ?.",
       {
         icon: "🤭",
       }
