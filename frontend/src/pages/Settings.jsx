@@ -116,9 +116,11 @@ function Settings() {
 
   return (
     <div className=" flex flex-col justify-center my-6">
-      <Link to="/dashboard">
-        <PreviousButton />
-      </Link>
+      <div className="pb-6">
+        <Link to="/dashboard">
+          <PreviousButton />
+        </Link>
+      </div>
       <Toaster position="top-center" reverseOrder={false} />
 
       <div className="mt-4 flex justify-center flex-col z-1">
