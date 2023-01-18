@@ -60,6 +60,8 @@ CREATE TABLE `tutorialStatus` (
   FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
+INSERT INTO `tutorialStatus` (tuto_id, user_id) VALUES (1, 1), (2, 1), (3, 1), (4, 1);
+
 DROP TABLE IF EXISTS `stepper`;
 
 CREATE TABLE `stepper` (
