@@ -1,20 +1,23 @@
-import React, { useState, useEffect /* useContext */ } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { toast, Toaster } from "react-hot-toast";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
-import /* useNavigate */ /* useParams */ "react-router-dom";
-/* import CurrentUserContext from "../contexts/userContext";
- */
+import { useNavigate, useParams } from "react-router-dom";
+import CurrentUserContext from "../contexts/userContext";
 import completeStep from "../assets/completeStep.svg";
 
 export default function Stepper(filteredSteppers) {
-  /*   const { id } = useParams();
-   */
-  /*   const { currentUser } = useContext(CurrentUserContext);
-   */ /* eslint-disable react/destructuring-assignment */
+  const notify = () =>
+    toast.success("Bravo ! Vous avez réalisé le tutoriel ! 👋 !");
+
+  const { id } = useParams();
+
+  const { currentUser, token } = useContext(CurrentUserContext);
+  /* eslint-disable react/destructuring-assignment */
   const steps = filteredSteppers?.filteredSteppers;
 
-  /*   const navigate = useNavigate();
-   */
+  const navigate = useNavigate();
+
   /* State to set up the current step */
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -49,15 +52,40 @@ export default function Stepper(filteredSteppers) {
 
   /* Send validate tuto */
   const setValidateInfos = () => {
-    /* navigate(-1); */
-    /* set tutorials status */
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`);
+    myHeaders.append("Content-Type", "application/json");
+
+    const body = JSON.stringify({
+      tuto_id: id,
+      user_id: currentUser.id,
+    });
+
+    const requestOptions = {
+      method: "PUT",
+      redirect: "follow",
+      headers: myHeaders,
+      body,
+    };
+
+    fetch("http://localhost:5000/api/tutorialStatusFinished", requestOptions)
+      .then((response) => response.text())
+      .then(() => {
+        notify();
+        setTimeout(() => {
+          navigate(-1);
+        }, 2000);
+      })
+      .catch((error) => console.error("error", error));
+
+    /* set tutorials status context */
   };
 
   return (
     <div className="stepper m-6">
+      <Toaster />
       <div className="stepper-header gap-3 md:gap-0 flex flex-row items-center justify-center">
         {steps?.map((step, index) => (
-          /* eslint-disable react/no-array-index-key */
           <div key={index} className="flex items-center">
             <div
               key={step.positionStep}
@@ -68,7 +96,6 @@ export default function Stepper(filteredSteppers) {
              Not start  / In progress / Finished */}
             <button
               type="button"
-              /* eslint-disable react/no-array-index-key */
               key={index}
               className={`relative rounded-full h-10 w-10 ${
                 index === currentStep

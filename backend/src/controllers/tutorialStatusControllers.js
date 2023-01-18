@@ -56,17 +56,13 @@ const browseFinisheddTutoByUser = (req, res) => {
     });
 };
 
-const updateToStart = (req, res) => {
+const postToStart = (req, res) => {
   const raw = req.body;
 
   models.tutorialStatus
-    .updateToStarted(raw)
+    .postToStarted(raw)
     .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.sendStatus(404);
-      } else {
-        res.sendStatus(204);
-      }
+      res.location(`/tutoStatus/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -110,7 +106,7 @@ module.exports = {
   browseUnstartedTutoByUser,
   browseStartedTutoByUser,
   browseFinisheddTutoByUser,
-  updateToStart,
+  postToStart,
   updateToFinished,
   addTutoStatus,
 };

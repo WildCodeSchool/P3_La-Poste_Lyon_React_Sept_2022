@@ -1,16 +1,16 @@
-import React, { /* useState, useEffect, */ useContext } from "react";
+import React, { useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import { CategoryContext } from "../contexts/CategoryContext";
 import { TutorialsContext } from "../contexts/TutorialsContext";
-/* import CurrentUserContext from "../contexts/userContext";
- */ import BannerProfile from "../components/BannerProfile";
+import CurrentUserContext from "../contexts/userContext";
+import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
 
 function TutorialList() {
   const navigate = useNavigate();
 
-  /* const { currentUser } = useContext(CurrentUserContext); */
+  const { currentUser, token } = useContext(CurrentUserContext);
   /* Using params to recover the tutorial category ID - It will be used to fetch the associate tutorial list */
   const { id } = useParams();
 
@@ -27,9 +27,33 @@ function TutorialList() {
     (category) => category?.id === parseInt(id, 10)
   )?.name;
 
-  const setInfos = (tutorial) => {
+  const tutorialStarted = (tutorial) => {
+    /* Fetch all status dans check it  */
+
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`);
+    myHeaders.append("Content-Type", "application/json");
+
+    const body = JSON.stringify({
+      tuto_id: tutorial.id,
+      user_id: currentUser.id,
+    });
+
+    const requestOptions = {
+      method: "POST",
+      redirect: "follow",
+      headers: myHeaders,
+      body,
+    };
+
+    fetch("http://localhost:5000/api/tutorialStatusStarted", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.warn(result))
+      .catch((error) => console.error("error", error));
+
     navigate(`/api/tutos/${tutorial.id}`);
-    /* set tutorials status */
+
+    /* set tutorials status  to the context */
   };
 
   return (
@@ -47,7 +71,6 @@ function TutorialList() {
           {filteredTutorials?.map((tutorial, index) => (
             <li
               className=" my-3 md:m-6 border shadow-xl rounded-lg text-center"
-              /* eslint-disable react/no-array-index-key */
               key={index}
             >
               <h2 className="text-lg   md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
@@ -61,7 +84,7 @@ function TutorialList() {
               {/* Update status -> started  */}
               <button
                 type="button"
-                onClick={() => setInfos(tutorial)}
+                onClick={() => tutorialStarted(tutorial)}
                 className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
               >
                 Accéder
