@@ -79,7 +79,7 @@ function UserCourse() {
             <img src={step6} alt="Step7" />
           </span>
         </div>
-        <div className="flex justify-end mr-10 md:mr-36 grayscale">
+        <div className="flex justify-end mr-10 md:mr-56 grayscale">
           <span>
             <img
               className="h-28 md:h-64 justify-end mb-8"
@@ -98,7 +98,7 @@ function UserCourse() {
             <img className="mr-32" src={step9} alt="Step9" />
           </span>
         </div>
-        <div className="ml-4 md:ml-28 mb-6 grayscale">
+        <div className="ml-4 md:ml-52 mb-6 grayscale">
           <span>
             <img className="h-28 md:h-64" src={awards} alt="awards" />
           </span>
