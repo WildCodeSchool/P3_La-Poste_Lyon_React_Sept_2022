@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Toaster } from "react-hot-toast";
+import { toast, Toaster } from "react-hot-toast";
 import PreviousButton from "../components/PreviousButton";
 import forgotemail from "../assets/email.svg";
 import arobase from "../assets/arobaselogo.png";
@@ -7,11 +7,11 @@ import arobase from "../assets/arobaselogo.png";
 function ForgottenEmail() {
   /* Toast */
 
-  // const notifySuccess = () => {
-  //   toast("Un email a été envoyé sur votre boîte mail.", {
-  //     icon: "📩",
-  //   });
-  // };
+  const notifySuccess = () => {
+    toast("Un email a été envoyé sur votre boîte mail.", {
+      icon: "📩",
+    });
+  };
 
   /* set email */
   const [email, setEmail] = useState("");
@@ -21,7 +21,26 @@ function ForgottenEmail() {
   };
 
   const handleSubmit = (e) => {
-    setEmail(e.target.value);
+    e.preventDefault();
+
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    /* It's an object that will be sent in the body of request */
+    const body = JSON.stringify({
+      email,
+    });
+
+    /* When the user enter his email adress, we will begin all the middleware of the route /forgottenpassword */
+    fetch("http://localhost:5000/api/forgottenemail", {
+      method: "POST",
+      redirect: "follow",
+      body,
+      headers: myHeaders,
+    })
+      .then(() => {
+        notifySuccess();
+      })
+      .catch((error) => console.warn(error));
   };
 
   return (

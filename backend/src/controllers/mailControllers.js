@@ -33,4 +33,23 @@ const sendForgottenPassword = (req, res) => {
   );
 };
 
-module.exports = { sendForgottenPassword };
+const sendForgottenEmail = (req, res) => {
+  transporter.sendMail(
+    {
+      from: "chloebidau@hotmail.fr",
+      to: req.user.email,
+      subject: "Email oublié",
+      text: "Si vous recevez ce mail, c'est qu'il s'agit de la bonne adresse mail !",
+      html: `<p>L'adresse mail utilisée pour vous connecter à votre compte La Ligne Bleue est celle-ci : ${req.user.email}</a></p>`,
+    },
+    (err, info) => {
+      console.log(info);
+      if (err) {
+        console.error(err);
+        res.sendStatus(500);
+      } else res.sendStatus(200);
+    }
+  );
+};
+
+module.exports = { sendForgottenPassword, sendForgottenEmail };

@@ -64,6 +64,13 @@ router.post(
   passwordControllers.resetPassword
 );
 
+// Reset email
+router.post(
+  "/api/forgottenemail",
+  passwordControllers.verifyEmail,
+  mailControllers.sendForgottenEmail
+);
+
 // PROTECTED ROUTES
 router.use(verifyToken); // From this point, the middleware verifyToken will be used at the beginning of all functions
 
