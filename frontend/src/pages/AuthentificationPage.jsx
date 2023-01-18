@@ -92,7 +92,7 @@ function AuthentificationPage() {
         {" "}
         <h1 className=" items-center content-center justify-center text-3xl mb-10 mt-16">
           CONNECTEZ-VOUS
-          <span className="block text-sm text-center underline text-gray-600">
+          <span className="block text-sm text-center underline text-gray-500 hover:text-black">
             <Link to="/registerPage"> ou créez un compte</Link>
           </span>
         </h1>
@@ -117,7 +117,10 @@ function AuthentificationPage() {
           {/* mail */}
 
           <p className="italic text-gray-400 underline text-right text-sm md:text-lg">
-            <Link to="/forgotten-email"> adresse e-mail oubliée?</Link>
+            <Link to="/forgotten-email" className="hover:text-black">
+              {" "}
+              adresse e-mail oubliée?
+            </Link>
           </p>
         </div>
         <div className="flex-col mt-8 justify-center w-1/2">
@@ -138,7 +141,10 @@ function AuthentificationPage() {
             />
           </div>{" "}
           <p className="italic text-gray-400 underline text-right text-sm md:text-lg">
-            <Link to="/forgotten-password"> mot de passe oublié ? </Link>
+            <Link to="/forgotten-password" className="hover:text-black">
+              {" "}
+              mot de passe oublié ?{" "}
+            </Link>
           </p>
         </div>
         <div className=" flex flex-col items-center justify-center ml-20 mr-20 md:mb-4">

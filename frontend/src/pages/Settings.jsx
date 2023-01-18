@@ -1,26 +1,40 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import uploadIcon from "../assets/uploadIcon.svg";
-import CurrentUserContext from "../contexts/userContext";
 import PreviousButton from "../components/PreviousButton";
+import { useCurrentUserContext } from "../contexts/userContext";
 
 function Settings() {
-  const { currentUser, setCurrentUser, token } = useContext(CurrentUserContext);
-  /*   const [defaultImage, setDefaultImage] = useState(profilepic);
-   */ const [uploadedImage, setUploadedImage] = useState(null);
-  const [image, setImage] = useState(null);
-  /*   const [fileName, setFileName] = useState("");
-   */
-  const navigate = useNavigate();
-  const handleImageChange = (event) => {
-    setUploadedImage(event.target.files[0]);
-    setImage(
-      event.target.files[0]
-    ); /*  setDefaultImage(event.target.files[0]); */
-    /*     setFileName(event.target.files[0].name);
-     */
+  /* Toast */
+  const notifySuccess = () => {
+    toast("Image bien téléchargée !", {
+      icon: "🥳",
+    });
   };
+
+  const notifyError = () => {
+    toast("Erreur dans le téléchargement de l'image...", {
+      icon: "⛔",
+    });
+  };
+
+  const notifyForget = () => {
+    toast(
+      "Vous n'auriez pas oublié un truc ? Le fichier à uploader, par exemple ?.",
+      {
+        icon: "🤭",
+      }
+    );
+  };
+
+  const { currentUser, setCurrentUser, token } = useCurrentUserContext();
+
+  const avatarRef = useRef(null);
+
+  const navigate = useNavigate();
+
+  // const [profilePicture, setProfilePicture] = useState("");
 
   // All states
   const [firstname, setFirstname] = useState(currentUser.firstname);
@@ -56,6 +70,40 @@ function Settings() {
     setPhone("");
   };
 
+  // Méthode pour fetch l'avatar uploadé
+
+  const handleSubmitAvatar = (e) => {
+    e.preventDefault();
+    if (avatarRef.current.files[0]) {
+      // recupération des articles.
+      const myHeader = new Headers();
+      myHeader.append("Authorization", `Bearer ${token}`);
+
+      const formData = new FormData();
+      formData.append("profilePicture", avatarRef.current.files[0]);
+      const requestOptions = {
+        method: "PUT",
+        headers: myHeader,
+        body: formData,
+      };
+      // on appelle le back
+      fetch(`http://localhost:5000/api/avatars`, requestOptions)
+        .then((response) => response.json())
+        .then((results) => {
+          // maj avatar
+
+          setCurrentUser({ ...currentUser, profilePicture: results.avatar });
+          notifySuccess();
+        })
+        .catch((error) => {
+          console.error(error);
+          notifyError();
+        });
+    } else {
+      notifyForget();
+    }
+  };
+
   // Put function
   const submitSettingModify = (e) => {
     const myHeaders = new Headers();
@@ -68,7 +116,6 @@ function Settings() {
       phone,
       currentUser_id: currentUser.id,
     });
-    console.warn(userraw);
 
     const requestOptions = {
       method: "PUT",
@@ -93,7 +140,6 @@ function Settings() {
       // toaster management
       .then((response) => {
         response.text();
-        console.warn(response);
         if (response.status === 204) {
           setTimeout(() => {
             navigate("/dashboard");
@@ -116,32 +162,28 @@ function Settings() {
 
   return (
     <div className=" flex flex-col justify-center my-6">
-      <Link to="/dashboard">
-        <PreviousButton />
-      </Link>
+      <Toaster position="top-center" reverseOrder />
+      <div className="pb-10">
+        <Link to="/dashboard">
+          <PreviousButton />
+        </Link>
+      </div>
       <Toaster position="top-center" reverseOrder={false} />
 
       <div className="mt-4 flex justify-center flex-col z-1">
-        <h1 className="flex w-full justify-center items-center font-bold text-3xl text-main-blue my-3 h-10 text-center md:h-14 md:text-center ">
+        <h1 className="flex w-full justify-center items-center font-bold text-2xl md:text-3xl text-main-blue my-3 h-10 text-center md:h-14 md:text-center ">
           Modifier mes informations
         </h1>
         <div className="flex justify-center">
-          {!uploadedImage && (
-            <img
-              src={`https://api.multiavatar.com/${currentUser.firstname}.svg`}
-              alt=""
-              className="object-fit w-36  h-36 border rounded-full"
-            />
-          )}
-          {uploadedImage && (
-            <div>
-              <img
-                src={URL.createObjectURL(image)}
-                className="object-fit border w-36  rounded-full"
-                alt="Uploaded"
-              />
-            </div>
-          )}
+          <img
+            src={
+              currentUser?.profilePicture !== null
+                ? `http://localhost:5000/api/avatars/${currentUser?.profilePicture}`
+                : `https://api.multiavatar.com/${currentUser.firstname}.svg`
+            }
+            alt="userImage"
+            className="object-fit w-36  h-36 border rounded-full"
+          />
           <div className="mt-32">
             <label htmlFor="image-upload">
               <img
@@ -152,10 +194,11 @@ function Settings() {
             </label>
 
             <input
+              ref={avatarRef}
               type="file"
               id="image-upload"
               accept="image/*"
-              onChange={handleImageChange}
+              onChange={handleSubmitAvatar}
               className="hidden"
             />
           </div>

@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import statusFInished from "../assets/tutorials-status/status-finished.svg";
-import statusStarted from "../assets/tutorials-status/status-started.svg";
 import { CategoryContext } from "../contexts/CategoryContext";
 import { TutorialsContext } from "../contexts/TutorialsContext";
 import { TutorialStatusContext } from "../contexts/TutorialStatusContext";
@@ -86,7 +85,7 @@ function TutorialList() {
         <section className="m-6">
           <PreviousButton />
 
-          <h1 className="flex justify-center items-center font-bold text-3xl text-main-blue rounded-xl h-10 text-center md:h-10 md:text-center">
+          <h1 className="flex justify-center items-center font-bold text-[26px] text-main-blue rounded-xl h-10 text-center md:h-10 md:text-center pt-3">
             {categoryName}
           </h1>
 
@@ -109,22 +108,11 @@ function TutorialList() {
                     />
                   </div>
                 )}
-                {tutorialStatus?.find(
-                  (status) => status?.tuto_id === tutorial.id
-                )?.status === "started" && (
-                  <div className="absolute top-[-7px] right-[-7px] rounded-full  flex justify-center items-center">
-                    <img
-                      src={statusStarted}
-                      alt="started"
-                      className="h-7 w-7"
-                    />
-                  </div>
-                )}
-                <h2 className="text-lg   md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
+                <h2 className="text-lg md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
                   {tutorial.title}
                 </h2>
                 <hr />
-                <p className="p-3 flex justify-center items-center h-24">
+                <p className="p-3 text-base flex justify-center items-center h-24">
                   {tutorial.short_description.replace(/(<([^>]+)>)/gi, "")}
                 </p>{" "}
                 {/* make a button to go to the tutorial */}

@@ -1,6 +1,14 @@
 const express = require("express");
 
+// Ajout de multer
+const multer = require("multer");
+
 const router = express.Router();
+
+// On définit la destination de stockage de nos fichiers
+// const upload = multer({ dest: process.env.AVATAR_DIRECTORY });
+// On définit la destination de stockage de nos fichiers
+const upload = multer({ dest: "public/uploads/" });
 
 const { hashPassword, verifyPassword, verifyToken } = require("./views/auth");
 
@@ -12,6 +20,8 @@ const stepperControllers = require("./controllers/stepperControllers");
 const tutorialStatusControllers = require("./controllers/tutorialStatusControllers");
 const passwordControllers = require("./controllers/passwordControllers");
 const mailControllers = require("./controllers/mailControllers");
+
+const fileControllers = require("./controllers/fileControllers");
 
 // PUBLIC ROUTES
 
@@ -87,6 +97,9 @@ router.post(
   mailControllers.sendForgottenEmail
 );
 
+// Avatar management
+router.get("/api/avatars/:profilePicture", fileControllers.sendAvatar);
+
 // PROTECTED ROUTES
 router.use(verifyToken); // From this point, the middleware verifyToken will be used at the beginning of all functions
 
@@ -124,5 +137,14 @@ router.delete("/api/steppers/tuto_id/:id", stepperControllers.destroy);
 router.put("/api/steppers/:id", stepperControllers.edit);
 router.post("/api/steppers", stepperControllers.add);
 router.delete("/api/steppers/:id", stepperControllers.destroy);
+
+// Gestion des avatars
+
+router.put(
+  "/api/avatars",
+  upload.single("profilePicture"),
+  fileControllers.renameAvatar,
+  userControllers.updateAvatar
+);
 
 module.exports = router;

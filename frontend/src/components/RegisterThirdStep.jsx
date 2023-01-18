@@ -51,7 +51,7 @@ function RegisterThirdStep({
       <form
         onSubmit={toTheLastStep}
         id="RegisterThirdStep"
-        className="flex justify-center flex-col items-center h-screen w-screen "
+        className="flex justify-center flex-col items-center h-screen w-screen pb-64"
       >
         <div className=" rounded-xl  md:py-10 h-fit bg-gradient-to-b from-[#003DA5] to-[#023998]">
           <div className="  h-fit ">
