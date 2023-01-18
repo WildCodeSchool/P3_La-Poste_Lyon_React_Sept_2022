@@ -20,7 +20,9 @@
     "express": "^4.17.2",
     "jsonwebtoken": "^9.0.0",
     "mysql2": "^2.3.3",
-    "template-fullstack": "file:.."
+    "nodemailer": "^6.9.0",
+    "template-fullstack": "file:..",
+    "uuid": "^9.0.0"
   },
   "rules": {
     "no-console": [
