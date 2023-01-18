@@ -39,6 +39,14 @@ class StepperManager extends AbstractManager {
     );
   }
 
+  /* Delete the step from the tutorial */
+  deleteAll(tutoId) {
+    return this.connection.query(
+      `delete from ${this.table} where tuto_id = ?`,
+      [tutoId]
+    );
+  }
+
   update(stepper) {
     return this.connection.query(
       `update ${this.table} set positionStep = ?, content = ?, tuto_id = ? where tuto_id = ?`,

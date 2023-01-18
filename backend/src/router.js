@@ -93,6 +93,8 @@ router.put(
 router.post("/api/TutoStatus", tutorialStatusControllers.addTutoStatus);
 
 // Stepper management
+/* road to destroy all stepper of a tutorial */
+router.delete("/api/steppers/tuto_id/:id", stepperControllers.destroy);
 router.put("/api/steppers/:id", stepperControllers.edit);
 router.post("/api/steppers", stepperControllers.add);
 router.delete("/api/steppers/:id", stepperControllers.destroy);

@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
-import DeleteModale from "@components/DeleteModale";
+import { toast, Toaster } from "react-hot-toast";
+import DeleteModaleUser from "../components/DeleteModaleUser";
 import CurrentUserContext from "../contexts/userContext";
 import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
 import trash from "../assets/trash.svg";
 
 function SearchUsers() {
+  const notify = () => toast.success("L'utilisateur a bien été supprimé");
+
   /* Get bearer token from userContext to get permission about delete user */
   const { token } = useContext(CurrentUserContext);
 
@@ -20,7 +23,7 @@ function SearchUsers() {
 
   useEffect(() => {
     fetchUsers();
-  }, []);
+  }, [users]);
 
   /* We remove admin from the user management */
   const noAdmin = users?.filter((user) => user.admin !== 1);
@@ -61,10 +64,14 @@ function SearchUsers() {
     });
     setConfirmDeleteModale(!confirmDeleteModale);
     fetchUsers();
+    setTimeout(() => {
+      notify();
+    }, 500);
   };
 
   return (
     <section>
+      <Toaster />
       <BannerProfile />
       <PreviousButton />
       <h2 className="m-6 text-xl text-center md:text-3xl">
@@ -85,7 +92,7 @@ function SearchUsers() {
           <div className="flex flex-col justify-center bg-gray-200 py-3 w-full h-full">
             <div className="w-5/6  mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
               <header className="px-5 py-4 border-b border-gray-100">
-                <h2 className="text-xl font-semibold text-[#003DA5]">
+                <h2 className="m-6 font-bold text-main-blue text-3xl text-center md:text-3xl">
                   Utilisateurs
                 </h2>
               </header>
@@ -176,7 +183,7 @@ function SearchUsers() {
           </div>
         </section>
 
-        <DeleteModale
+        <DeleteModaleUser
           fetchUsers={fetchUsers}
           handleDeleteUser={handleDeleteUser}
           setConfirmDeleteModale={setConfirmDeleteModale}

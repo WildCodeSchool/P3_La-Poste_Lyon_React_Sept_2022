@@ -26,6 +26,9 @@ function TutorialValidator(allStepsContent) {
   // eslint-disable-next-line react/destructuring-assignment
   const mandatory = JSON.stringify(allStepsContent.allStepsContent);
   // eslint-disable-next-line react/destructuring-assignment
+  const previewData = allStepsContent.allStepsContent;
+
+  // eslint-disable-next-line react/destructuring-assignment
   const { steps } = allStepsContent.allStepsContent;
 
   /* Modale Stepper States */
@@ -73,21 +76,17 @@ function TutorialValidator(allStepsContent) {
       body,
       headers: myHeaders,
     })
-      /* then I get the response to json. If response == 401 console log error else .then result
-       */
+      /* then I get the response to json. If response == 401 console log error else .then result */
+      /* eslint-disable  consistent-return */
       .then((response) => {
         if (response.status === 401) {
           console.warn("error");
         } else {
           notify();
           setTimeout(() => {
-            navigate(
-              /* eslint-disable react/destructuring-assignment */
-              `/categories/`
-            );
-
-            return response.text();
-          });
+            navigate("/dashboard");
+          }, 2000);
+          return response.json();
         }
       })
       .catch((error) => console.warn("error", error));
@@ -97,7 +96,9 @@ function TutorialValidator(allStepsContent) {
     <div className="m-O p-0">
       <Toaster />
       <div className=" my-6 p-6  border w-[45vw] rounded-xl shadow-xl flex-col justify-end items-center relative">
-        <h1 className="text-2xl text-center m-6 text-[#003DA5]">Validation</h1>
+        <h1 className="text-3xl font-semibold text-center m-6 text-main-blue">
+          Validation
+        </h1>
         <article className="text-center">
           Votre tutoriel est prêt ! Vous pouvez le prévisualiser avant de le
           publier.
@@ -109,7 +110,7 @@ function TutorialValidator(allStepsContent) {
             allStepsContent.currentStep === 2 && (
               <button
                 type="button"
-                className="bg-[#003DA5] text-white m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+                className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow hover:bg-main-blue hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
                 // eslint-disable-next-line react/destructuring-assignment
                 onClick={allStepsContent.handlePreviousStep}
               >
@@ -120,14 +121,14 @@ function TutorialValidator(allStepsContent) {
           <button
             type="button"
             onClick={() => setShowModal(true)}
-            className="bg-[#003DA5] text-white m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+            className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow hover:bg-main-blue hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
           >
             Prévisualisation
           </button>
           <Link to="/dashboard">
             <button
               type="button"
-              className="bg-[#FFC927] text-black m-3 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:scale-110"
+              className="bg-gradient-to-r from-blue-900 to-main-blue text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-second-yellow hover:to-main-yellow hover:text-white"
               onClick={handlePublication}
             >
               Publication
@@ -137,10 +138,10 @@ function TutorialValidator(allStepsContent) {
         </section>
 
         <TutorialValidatorPreview
+          previewData={previewData}
           showModal={showModal}
           setShowModal={setShowModal}
           steps={steps}
-          mandatory={mandatory}
           modalestepsCompleted={modalestepsCompleted}
           currentModaleStep={currentModaleStep}
           setCurrentModaleStep={setCurrentModaleStep}
