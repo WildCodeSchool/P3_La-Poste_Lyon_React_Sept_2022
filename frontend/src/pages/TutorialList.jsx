@@ -1,24 +1,20 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { /* useState, useEffect, */ useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import { CategoryContext } from "../contexts/CategoryContext";
-import BannerProfile from "../components/BannerProfile";
-import AccessButton from "../components/AccessButton";
+import { TutorialsContext } from "../contexts/TutorialsContext";
+/* import CurrentUserContext from "../contexts/userContext";
+ */ import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
 
 function TutorialList() {
+  const navigate = useNavigate();
+
+  /* const { currentUser } = useContext(CurrentUserContext); */
   /* Using params to recover the tutorial category ID - It will be used to fetch the associate tutorial list */
   const { id } = useParams();
 
-  /* Fetch all the tutorials of the category */
-  const [tutorials, setTutorials] = useState([]);
-  useEffect(() => {
-    fetch(`http://localhost:5000/api/tutos/all`)
-      .then((response) => response.json())
-      .then((data) => {
-        setTutorials(data);
-      });
-  }, []);
+  const { tutorials } = useContext(TutorialsContext);
 
   /* Filtred tutorial by the good category corresponding to the id  */
   const filteredTutorials = tutorials?.filter(
@@ -30,6 +26,11 @@ function TutorialList() {
   const categoryName = categories?.find(
     (category) => category?.id === parseInt(id, 10)
   )?.name;
+
+  const setInfos = (tutorial) => {
+    navigate(`/api/tutos/${tutorial.id}`);
+    /* set tutorials status */
+  };
 
   return (
     <>
@@ -58,9 +59,13 @@ function TutorialList() {
               </p>{" "}
               {/* make a button to go to the tutorial */}
               {/* Update status -> started  */}
-              <Link to={`/api/tutos/${tutorial.id}`}>
-                <AccessButton id={tutorial.id} />
-              </Link>
+              <button
+                type="button"
+                onClick={() => setInfos(tutorial)}
+                className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
+              >
+                Accéder
+              </button>
             </li>
           ))}
         </ul>

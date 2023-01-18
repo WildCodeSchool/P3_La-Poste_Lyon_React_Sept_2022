@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CurrentUserProvider } from "./contexts/userContext";
+
+import { CategoryContextProvider } from "./contexts/CategoryContext";
 import AllRoutes from "./components/AllRoutes";
 import NavigationBar from "./components/NavigationBar";
-import { CategoryContextProvider } from "./contexts/CategoryContext";
+import { TutorialsContextProvider } from "./contexts/TutorialsContext";
 import "./App.css";
 import "./index.css";
 
@@ -16,13 +18,18 @@ function App() {
   return (
     <CurrentUserProvider>
       <CategoryContextProvider>
-        <Router>
-          <NavigationBar
-            handleAdminView={handleAdminView}
-            adminView={adminView}
-          />
-          <AllRoutes handleAdminView={handleAdminView} adminView={adminView} />
-        </Router>
+        <TutorialsContextProvider>
+          <Router>
+            <NavigationBar
+              handleAdminView={handleAdminView}
+              adminView={adminView}
+            />
+            <AllRoutes
+              handleAdminView={handleAdminView}
+              adminView={adminView}
+            />
+          </Router>
+        </TutorialsContextProvider>
       </CategoryContextProvider>
     </CurrentUserProvider>
   );
