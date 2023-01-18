@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
 const sendForgottenPassword = (req, res) => {
   transporter.sendMail(
     {
-      from: "chloebidau@hotmail.fr",
+      from: process.env.SMTP_USER,
       to: req.user.email,
       subject: "Mot de passe oublié",
       text: "Pour créer un nouveau mot de passe, cliquez ici !",
@@ -36,7 +36,7 @@ const sendForgottenPassword = (req, res) => {
 const sendForgottenEmail = (req, res) => {
   transporter.sendMail(
     {
-      from: "chloebidau@hotmail.fr",
+      from: process.env.SMTP_USER,
       to: req.user.email,
       subject: "Email oublié",
       text: "Si vous recevez ce mail, c'est qu'il s'agit de la bonne adresse mail !",
