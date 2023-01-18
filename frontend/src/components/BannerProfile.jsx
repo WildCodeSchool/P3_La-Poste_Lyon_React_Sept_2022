@@ -35,7 +35,7 @@ function BannerProfile() {
                   className="border-black border rounded-full w-20 h-20 mr-8"
                   src={
                     currentUser?.profilePicture ||
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8HE9nJ03LBSlHivqF46xHQ640tNgo-9nnFrUMANrL3tf4lOHdDeNzjLZurWNUf3oIt8&usqp=CAU"
+                    `https://api.multiavatar.com/${currentUser.firstname}.svg`
                   }
                   alt="userImage"
                 />
