@@ -6,10 +6,31 @@ import PreviousButton from "../components/PreviousButton";
 import { useCurrentUserContext } from "../contexts/userContext";
 
 function Settings() {
+  /* Toast */
+  const notifySuccess = () => {
+    toast("Image bien téléchargée !", {
+      icon: "🥳",
+    });
+  };
+
+  const notifyError = () => {
+    toast("Erreur dans le téléchargement de l'image...", {
+      icon: "⛔",
+    });
+  };
+
+  const notifyForget = () => {
+    toast(
+      "Vous auriez pas oublié un truc ? Le fichier à uploader, par exemple ?.",
+      {
+        icon: "🤭",
+      }
+    );
+  };
+
   const { currentUser, setCurrentUser, token } = useCurrentUserContext();
 
   const avatarRef = useRef(null);
-  const [msg, setMsg] = useState("");
 
   const navigate = useNavigate();
 
@@ -49,22 +70,6 @@ function Settings() {
     setPhone("");
   };
 
-  /* const hSubmit = (evt) => {
-    evt.preventDefault();
-
-    const formData = new FormData();
-    formData.append("avatar", avatarRef.current.files[0]);
-
-    axios
-      .post("http://localhost:5000/api/avatars", formData)
-      .then(() => {
-        setMsg("Upload réussi !");
-      })
-      .catch(() => {
-        setMsg("Upload échoué !");
-      });
-  }; */
-
   // Méthode pour fetch l'avatar uploadé
 
   const handleSubmitAvatar = (e) => {
@@ -88,16 +93,14 @@ function Settings() {
           // maj avatar
           console.warn(results, "test");
           setCurrentUser({ ...currentUser, profilePicture: results.avatar });
-          setMsg("Upload réussi !");
+          notifySuccess();
         })
         .catch((error) => {
           console.error(error);
-          setMsg("Upload échoué !");
+          notifyError();
         });
     } else {
-      setMsg(
-        "Vous auriez pas oublié un truc ? Le fichier à uploader, par exemple ?"
-      );
+      notifyForget();
     }
   };
 
@@ -161,7 +164,7 @@ function Settings() {
 
   return (
     <div className=" flex flex-col justify-center my-6">
-      <p>{msg}</p>
+      <Toaster position="top-center" reverseOrder />
       <Link to="/dashboard">
         <PreviousButton />
       </Link>
