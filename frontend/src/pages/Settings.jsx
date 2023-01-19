@@ -233,7 +233,7 @@ function Settings() {
             </div>
           </li>
 
-          <li className="  my-3 md:m-6 border shadow-xl rounded-lg text-center">
+          <li className="my-3 md:m-6 border shadow-xl rounded-lg text-center">
             {" "}
             <div className="w-full flex justify-end items-center relative">
               <input
