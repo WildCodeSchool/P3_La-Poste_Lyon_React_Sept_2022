@@ -101,7 +101,7 @@ function TutorialCreation() {
         </h1>
         <div className="stepper-header flex flex-row items-center justify-center ">
           {stepperCreation?.map((step, index) => (
-            <>
+            <div key={index}>
               <div className="inline-block h-1  w-5 md:w-20 border-t-4 border-dark-500 " />
 
               {/* The stepper button will take the stepper label and get a ternary condition to change his look :
@@ -139,7 +139,7 @@ function TutorialCreation() {
                 )}
               </button>
               <div className="inline-block h-1 w-5 md:w-20 border-t-4 border-dark-500" />
-            </>
+            </div>
           ))}
         </div>
 

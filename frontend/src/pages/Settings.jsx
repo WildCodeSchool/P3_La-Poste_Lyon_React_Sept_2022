@@ -91,7 +91,7 @@ function Settings() {
         .then((response) => response.json())
         .then((results) => {
           // maj avatar
-          console.warn(results, "test");
+
           setCurrentUser({ ...currentUser, profilePicture: results.avatar });
           notifySuccess();
         })
@@ -116,7 +116,6 @@ function Settings() {
       phone,
       currentUser_id: currentUser.id,
     });
-    console.warn(userraw);
 
     const requestOptions = {
       method: "PUT",
@@ -141,7 +140,6 @@ function Settings() {
       // toaster management
       .then((response) => {
         response.text();
-        console.warn(response);
         if (response.status === 204) {
           setTimeout(() => {
             navigate("/dashboard");
@@ -165,21 +163,23 @@ function Settings() {
   return (
     <div className=" flex flex-col justify-center my-6">
       <Toaster position="top-center" reverseOrder />
-      <Link to="/dashboard">
-        <PreviousButton />
-      </Link>
+      <div className="pb-10">
+        <Link to="/dashboard">
+          <PreviousButton />
+        </Link>
+      </div>
       <Toaster position="top-center" reverseOrder={false} />
 
       <div className="mt-4 flex justify-center flex-col z-1">
-        <h1 className="flex w-full justify-center items-center font-bold text-3xl text-main-blue my-3 h-10 text-center md:h-14 md:text-center ">
+        <h1 className="flex w-full justify-center items-center font-bold text-2xl md:text-3xl text-main-blue my-3 h-10 text-center md:h-14 md:text-center ">
           Modifier mes informations
         </h1>
         <div className="flex justify-center">
           <img
             src={
-              currentUser?.profilePicture
-                ? `http://localhost:5000/api/avatars/${currentUser.profilePicture}`
-                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8HE9nJ03LBSlHivqF46xHQ640tNgo-9nnFrUMANrL3tf4lOHdDeNzjLZurWNUf3oIt8&usqp=CAU"
+              currentUser?.profilePicture !== null
+                ? `http://localhost:5000/api/avatars/${currentUser?.profilePicture}`
+                : `https://api.multiavatar.com/${currentUser.firstname}.svg`
             }
             alt="userImage"
             className="object-fit w-36  h-36 border rounded-full"

@@ -3,8 +3,8 @@ const models = require("../models");
 // browse all tuto by user id
 const browseAllTutoByUser = (req, res) => {
   const userId = parseInt(req.params.id, 10);
-  models.historical
-    .findAllByUserId(userId)
+  models.tutorialStatus
+    .findAllStatusByUserId(userId)
     .then(([rows]) => {
       res.send(rows);
     })
@@ -45,8 +45,8 @@ const browseStartedTutoByUser = (req, res) => {
 // browse all finished tutos by user id
 const browseFinisheddTutoByUser = (req, res) => {
   const userId = parseInt(req.params.id, 10);
-  models.historical
-    .findAllUnstartedTuto(userId)
+  models.tutorialStatus
+    .findAllFinishedTuto(userId)
     .then(([rows]) => {
       res.send(rows);
     })
@@ -56,17 +56,13 @@ const browseFinisheddTutoByUser = (req, res) => {
     });
 };
 
-const updateToStart = (req, res) => {
+const postToStart = (req, res) => {
   const raw = req.body;
 
   models.tutorialStatus
-    .updateToStarted(raw)
+    .postToStarted(raw)
     .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.sendStatus(404);
-      } else {
-        res.sendStatus(204);
-      }
+      res.location(`/tutoStatus/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -110,7 +106,7 @@ module.exports = {
   browseUnstartedTutoByUser,
   browseStartedTutoByUser,
   browseFinisheddTutoByUser,
-  updateToStart,
+  postToStart,
   updateToFinished,
   addTutoStatus,
 };

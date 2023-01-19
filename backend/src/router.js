@@ -67,6 +67,11 @@ router.get(
   tutorialStatusControllers.browseFinisheddTutoByUser
 );
 
+router.get(
+  "/api/tutorialStatus/:id",
+  tutorialStatusControllers.browseAllTutoByUser
+);
+
 // Stepper management
 router.get("/api/steppers", stepperControllers.browse);
 router.get("/api/steppers/:id", stepperControllers.read);
@@ -114,9 +119,9 @@ router.post("/api/tutos", tutoControllers.add);
 router.delete("/api/tutos/:id", tutoControllers.destroy);
 
 // TutorialStatus management
-router.put(
+router.post(
   "/api/tutorialStatusStarted",
-  tutorialStatusControllers.updateToStart
+  tutorialStatusControllers.postToStart
 );
 router.put(
   "/api/tutorialStatusFinished",
@@ -124,7 +129,7 @@ router.put(
 );
 // router.post("/api/tutorialStatus", tutorialStatusControllers.add);
 
-router.post("/api/TutoStatus", tutorialStatusControllers.addTutoStatus);
+router.post("/api/tutoStatus", tutorialStatusControllers.addTutoStatus);
 
 // Stepper management
 /* road to destroy all stepper of a tutorial */

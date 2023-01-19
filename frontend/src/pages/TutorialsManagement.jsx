@@ -59,7 +59,7 @@ function TutorialsManagement() {
         "Content-Type": "application/json",
       },
     })
-      .then((response) => response.json())
+      .then((response) => response.text())
       .then((data) => {
         if (data.error) {
           toast.error(data.error);
@@ -94,7 +94,9 @@ function TutorialsManagement() {
     <section>
       <Toaster />
       <BannerProfile />
-      <PreviousButton />
+      <div className="pb-2">
+        <PreviousButton />
+      </div>
       <h2 className="m-6 font-bold text-main-blue text-3xl text-center md:text-3xl">
         {" "}
         Gestion des tutoriels

@@ -15,10 +15,15 @@ function SearchUsers() {
   /* Fetch the users of the application */
   const [users, setUsers] = useState([]);
 
-  const fetchUsers = async () => {
-    const response = await fetch("http://localhost:5000/api/users");
-    const data = await response.json();
-    setUsers(data);
+  const fetchUsers = () => {
+    fetch(`http://localhost:5000/api/users`)
+      .then((response) => response.json())
+      .then((data) => {
+        setUsers(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   useEffect(() => {

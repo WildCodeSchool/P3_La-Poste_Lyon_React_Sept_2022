@@ -40,7 +40,7 @@ function RegisterSecondStep({
     <>
       <form
         onSubmit={toTheThirdStep}
-        className="flex justify-evenly flex-col items-center h-screen w-screen "
+        className="flex justify-evenly flex-col items-center h-screen w-screen pb-60"
         id="RegisterSecondStep"
       >
         <div className="md:shadow-2xl md:border rounded-xl md:border-grey-50 md:py-10 h-fit bg-gradient-to-b from-[#003DA5] to-[#023998]">
