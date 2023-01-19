@@ -81,8 +81,7 @@ export default function StepperCreation({
       >
         <div className="h-fit">
           {inputs.map((input, index) => (
-            <div className="h-100 md:h-[45vh]">
-              {/* eslint-disable-next-line react/no-array-index-key */}
+            <div key={index} className="h-100 md:h-[45vh]">
               <div key={index} className="flex flex-col   h-full w-full">
                 {/* Position  */}
                 <section className="flex  w-36">

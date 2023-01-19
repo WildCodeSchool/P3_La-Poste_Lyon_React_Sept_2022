@@ -86,7 +86,7 @@ function TutorialValidator(allStepsContent) {
           setTimeout(() => {
             navigate("/dashboard");
           }, 2000);
-          return response.json();
+          return response.text();
         }
       })
       .catch((error) => console.warn("error", error));

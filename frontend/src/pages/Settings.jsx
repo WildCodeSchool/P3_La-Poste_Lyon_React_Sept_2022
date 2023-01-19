@@ -91,7 +91,7 @@ function Settings() {
         .then((response) => response.json())
         .then((results) => {
           // maj avatar
-          console.warn(results, "test");
+
           setCurrentUser({ ...currentUser, profilePicture: results.avatar });
           notifySuccess();
         })
@@ -116,7 +116,6 @@ function Settings() {
       phone,
       currentUser_id: currentUser.id,
     });
-    console.warn(userraw);
 
     const requestOptions = {
       method: "PUT",
@@ -141,7 +140,6 @@ function Settings() {
       // toaster management
       .then((response) => {
         response.text();
-        console.warn(response);
         if (response.status === 204) {
           setTimeout(() => {
             navigate("/dashboard");
@@ -179,9 +177,9 @@ function Settings() {
         <div className="flex justify-center">
           <img
             src={
-              currentUser?.profilePicture
-                ? `http://localhost:5000/api/avatars/${currentUser.profilePicture}`
-                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQp8HE9nJ03LBSlHivqF46xHQ640tNgo-9nnFrUMANrL3tf4lOHdDeNzjLZurWNUf3oIt8&usqp=CAU"
+              currentUser?.profilePicture !== null
+                ? `http://localhost:5000/api/avatars/${currentUser?.profilePicture}`
+                : `https://api.multiavatar.com/${currentUser.firstname}.svg`
             }
             alt="userImage"
             className="object-fit w-36  h-36 border rounded-full"

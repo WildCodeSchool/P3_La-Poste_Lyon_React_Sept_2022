@@ -5,11 +5,11 @@ class TutoManager extends AbstractManager {
     super({ table: "tutorialStatus" });
   }
 
-  // GET ALL TUTO BY USER ID
-  findAllByUserId(tutorialStatus) {
+  // GET ALL TUTO STATUS BY USER ID
+  findAllStatusByUserId(userID) {
     return this.connection.query(
-      `select * from ${this.table} join tuto on ${this.table}.tuto_id = tuto.id where user_id = ?`,
-      [tutorialStatus.user_id]
+      `select * from ${this.table} left join tuto on ${this.table}.tuto_id = tuto.id where ${this.table}.user_id = ?`,
+      [userID]
     );
   }
 
@@ -22,18 +22,18 @@ class TutoManager extends AbstractManager {
   }
 
   // GET ALL STARTED TUTO BY USER ID
-  findAllStartedTuto(tutorialStatus) {
+  findAllStartedTuto(userID) {
     return this.connection.query(
       `select * from ${this.table} join tuto on ${this.table}.tuto_id = tuto.id where user_id = ? and status = "started"`,
-      [tutorialStatus.user_id]
+      [userID]
     );
   }
 
   // GET ALL FINISHED TUTO BY USER ID
-  findAllFinishedTuto(tutorialStatus) {
+  findAllFinishedTuto(userID) {
     return this.connection.query(
       `select * from ${this.table} join tuto on ${this.table}.tuto_id = tuto.id where user_id = ? and status = "finished"`,
-      [tutorialStatus.user_id]
+      [userID]
     );
   }
 
@@ -45,10 +45,11 @@ class TutoManager extends AbstractManager {
     );
   }
 
-  updateToStarted(tutorialStatus) {
+  postToStarted(tutorialStatus) {
     return this.connection.query(
-      `update ${this.table} set status = "started" where user_id = ? and tuto_id = ?`,
-      [tutorialStatus.user_id, tutorialStatus.tuto_id]
+      `insert into ${this.table}  (tuto_id, user_id, status) 
+      VALUES (?, ?, "started")`,
+      [tutorialStatus.tuto_id, tutorialStatus.user_id]
     );
   }
 
