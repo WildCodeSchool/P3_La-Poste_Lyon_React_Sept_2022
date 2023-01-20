@@ -161,7 +161,7 @@ function Settings() {
   };
 
   return (
-    <div className=" flex flex-col justify-center my-6">
+    <div className=" relative flex flex-col justify-center my-6">
       <Toaster position="top-center" reverseOrder />
       <div className="pb-10">
         <Link to="/dashboard">
@@ -170,11 +170,11 @@ function Settings() {
       </div>
       <Toaster position="top-center" reverseOrder={false} />
 
-      <div className="mt-4 flex justify-center flex-col z-1">
-        <h1 className="flex w-full justify-center items-center font-bold text-2xl md:text-3xl text-main-blue my-3 h-10 text-center md:h-14 md:text-center ">
+      <div className="mt-4  relative h-48 bg-main-yellow flex justify-center flex-col z-1">
+        {/*   <h1 className="flex w-full justify-center items-center font-bold text-2xl md:text-3xl text-main-blue my-3 h-10 text-center md:h-14 md:text-center ">
           Modifier mes informations
-        </h1>
-        <div className="flex justify-center">
+        </h1> */}
+        <div className="flex absolute bottom-[-4vh] inset-x-0 justify-center items-center">
           <img
             src={
               currentUser?.profilePicture !== null
@@ -182,7 +182,7 @@ function Settings() {
                 : `https://api.multiavatar.com/${currentUser.firstname}.svg`
             }
             alt="userImage"
-            className="object-fit w-36  h-36 border rounded-full"
+            className="object-fit w-48  h-48 border rounded-full "
           />
           <div className="mt-32">
             <label htmlFor="image-upload">
@@ -204,28 +204,47 @@ function Settings() {
           </div>
         </div>
       </div>
+
       <form onSubmit={submitSettingModify} className="p-8">
         <ul className="flex-col  p-8 ">
-          <li className="my-3 md:m-6  border shadow-xl rounded-lg text-center">
+          <h1 className="flex w-full justify-left items-center font-bold text-xl md:text-2xl text-main-blue my-3 h-10 text-center md:h-14 md:text-center ">
+            Modifier mes informations
+          </h1>
+          <li className="my-3 md:m-6  border shadow-xl rounded-lg   bg-main-blue text-white">
             {" "}
             <div className="w-full flex justify-end items-center relative">
+              <label
+                htmlFor="firstname"
+                className="px-3  font-semibold w-32 border-r-gray "
+              >
+                {" "}
+                Prénom{" "}
+              </label>
               <input
                 value={firstname}
                 placeholder={`${currentUser.firstname}`}
-                className=" border-gray-400 bg-gray-100 rounded-bl-lg p-4 w-full h-10 text-gray-700"
+                className=" border-gray-400 bg-gray-100 p-4 w-full h-10 text-gray-700"
                 onChange={handleChangeFirstname}
                 onClick={handleClickFirstName}
                 required
+                name="firstname"
               />
             </div>
           </li>
-          <li className="  my-3 md:m-6 border shadow-xl rounded-lg text-center">
+          <li className="  my-3 md:m-6 border shadow-xl rounded-lg  bg-main-blue text-white">
             {" "}
             <div className="w-full flex justify-end items-center relative">
+              <label
+                htmlFor="firstname"
+                className="px-3  font-semibold  w-32 border-r-gray "
+              >
+                {" "}
+                Nom{" "}
+              </label>
               <input
                 value={lastname}
                 placeholder={`${currentUser.lastname}`}
-                className=" border-gray-400 bg-gray-100 rounded-bl-lg  p-4 w-full h-10 text-gray-700"
+                className=" border-gray-400 bg-gray-100  p-4 w-full h-10 text-gray-700"
                 onChange={handleChangeLastname}
                 onClick={handleClickLastName}
                 required
@@ -233,13 +252,20 @@ function Settings() {
             </div>
           </li>
 
-          <li className="my-3 md:m-6 border shadow-xl rounded-lg text-center">
+          <li className="my-3 md:m-6 border shadow-xl rounded-lg  bg-main-blue text-white">
             {" "}
             <div className="w-full flex justify-end items-center relative">
+              <label
+                htmlFor="firstname"
+                className="px-3 w-32 font-semibold border-r-gray "
+              >
+                {" "}
+                Téléphone{" "}
+              </label>
               <input
                 value={phone}
                 placeholder={`${currentUser.phone}`}
-                className=" border-gray-400 bg-gray-100 rounded-bl-lg p-4 w-full h-10 text-gray-700"
+                className=" border-gray-400 bg-gray-100  p-4 w-full h-10 text-gray-700"
                 onChange={handleChangePhone}
                 onClick={handleClickPhone}
                 required
