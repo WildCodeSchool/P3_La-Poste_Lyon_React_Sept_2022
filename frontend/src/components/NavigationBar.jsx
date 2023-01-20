@@ -29,7 +29,7 @@ function NavigationBar({ adminView, handleAdminView }) {
     }
   };
 
-  /* */
+  /* Close menu when click outside */
   const concernedElement = document.getElementById("click-menu");
   document.addEventListener("mousedown", (event) => {
     if (concernedElement === null) {

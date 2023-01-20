@@ -27,13 +27,13 @@ function UserCourse() {
         </h1>
       </div>
       <div className="flex flex-col">
-        <NavLink to="/dashboard">
-          <div className="flex justify-center">
+        <div className="flex justify-center">
+          <NavLink to="/dashboard">
             <span>
               <img src={step1} alt="Step1" />
             </span>
-          </div>
-        </NavLink>
+          </NavLink>
+        </div>
         <div>
           <div className="ml-14 md:ml-48 grayscale flex justify-center mb-8 mt-5">
             <img className="h-28 md:h-64" src={wellDone} alt="welldone" />
