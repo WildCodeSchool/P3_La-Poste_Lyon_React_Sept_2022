@@ -38,13 +38,13 @@ function UserCourse() {
           <div className="ml-14 md:ml-48 grayscale flex justify-center mb-8 mt-5">
             <img className="h-28 md:h-64" src={wellDone} alt="welldone" />
           </div>
-          <NavLink>
-            <div className="flex justify-center grayscale">
+          <div className="flex justify-center grayscale">
+            <NavLink>
               <span>
                 <img src={step2} alt="Step2" />
               </span>
-            </div>
-          </NavLink>
+            </NavLink>
+          </div>
         </div>
         <div className="flex justify-center mr-10 mb-5 md:mr-36 grayscale">
           <img className="h-28 md:h-64" src={onlineWishes} alt="onlineWishes" />
