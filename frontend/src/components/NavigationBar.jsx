@@ -9,20 +9,24 @@ import NavigationBarAdmin from "./NavigationBarAdmin";
 import NavigationBarUser from "./NavigationBarUser";
 
 function NavigationBar({ adminView, handleAdminView }) {
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   // Log Out remove localStorage and navigate to the main page with a reload
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+    setCurrentUser({});
+    setOpen(!open);
     navigate("/");
-    window.location.reload();
   };
 
   const wayFromLogo = () => {
-    // eslint-disable-next-line no-unused-expressions
-    currentUser.email ? navigate("/dashboard") : navigate("/");
+    if (currentUser.email) {
+      navigate("/dashboard");
+    } else {
+      navigate("/");
+    }
   };
 
   /* */

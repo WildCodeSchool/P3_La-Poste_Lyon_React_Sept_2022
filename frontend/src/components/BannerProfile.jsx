@@ -5,7 +5,7 @@ import parametres from "../assets/parametres.svg";
 import CurrentUserContext from "../contexts/userContext";
 
 function BannerProfile() {
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 
   let userLevel;
 
@@ -20,9 +20,8 @@ function BannerProfile() {
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-
+    setCurrentUser({});
     navigate("/");
-    window.location.reload();
   };
   return (
     <div className="w-full h-full">
