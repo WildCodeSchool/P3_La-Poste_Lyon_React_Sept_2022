@@ -1,13 +1,24 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function NavigationBarLink({ imgSrc, text, linkDestination }) {
+function NavigationBarLink({ imgSrc, text, linkDestination, setOpen, open }) {
+  const navigate = useNavigate();
+
+  const navigateTo = (linkDestination) => {
+    setOpen(!open);
+    navigate(linkDestination);
+  };
+
   return (
     <li className="text-[#333]  text-right pr-3 flex   w-full md:justify-start ">
-      <NavLink to={linkDestination} className="flex justify-end items-center">
+      <button
+        type="button"
+        onClick={() => navigateTo(linkDestination)}
+        className="flex justify-end items-center"
+      >
         <img src={imgSrc} className="h-20 w-20 mx-6" alt={text} />
         <h3>{text}</h3>
-      </NavLink>
+      </button>
     </li>
   );
 }

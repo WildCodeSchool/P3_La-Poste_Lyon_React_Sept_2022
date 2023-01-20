@@ -6,8 +6,6 @@ import PreviousButton from "../components/PreviousButton";
 import BannerProfile from "../components/BannerProfile";
 
 function TutorialCategory() {
-  /* categories are display by the context */
-
   const { categories } = useContext(CategoryContext);
 
   return (

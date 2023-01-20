@@ -25,6 +25,14 @@ function NavigationBar({ adminView, handleAdminView }) {
     currentUser.email ? navigate("/dashboard") : navigate("/");
   };
 
+  /* */
+  const concernedElement = document.getElementById("click-menu");
+  document.addEventListener("mousedown", (event) => {
+    if (!concernedElement.contains(event.target)) {
+      setOpen(false);
+    }
+  });
+
   return (
     <nav className="navbar">
       <div className="justify-between items-center mx-autol md:items-center shadow flex h-14 relative z-10">
@@ -60,18 +68,20 @@ function NavigationBar({ adminView, handleAdminView }) {
         <div
           className={`flex-1 justify-self-center md:block md:pb-0 md:mt-0 ${
             open
-              ? "block absolute shadow-lg top-0 right-0 bg-white w-screen md:w-96 z-0"
+              ? "block absolute h-screen shadow-lg top-0 right-0 bg-white w-screen md:w-96 z-0"
               : "hidden"
           }`}
         >
+          {/* when click outside */}
           <ul
+            id="click-menu"
             className={
               open ? "flex flex-col items-end space-y-4 m-3 text-xl" : "hidden"
             }
           >
             {/* If connected as user enable user links */}
             {currentUser && currentUser.admin === 0 && (
-              <NavigationBarUser open={open} />
+              <NavigationBarUser open={open} setOpen={setOpen} />
             )}
             {/* If connected as admin enable admin links or user links */}
             {currentUser && currentUser.admin === 1 && (
@@ -86,9 +96,10 @@ function NavigationBar({ adminView, handleAdminView }) {
                   <h3 className="ml-3"> {adminView && "Utilisateur"}</h3>
                 </li>
                 {adminView ? (
-                  <NavigationBarUser />
+                  <NavigationBarUser setOpen={setOpen} open={open} />
                 ) : (
                   <NavigationBarAdmin
+                    setOpen={setOpen}
                     open={open}
                     handleAdminView={handleAdminView}
                     adminView={adminView}

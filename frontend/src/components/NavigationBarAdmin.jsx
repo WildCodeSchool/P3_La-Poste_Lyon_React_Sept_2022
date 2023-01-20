@@ -7,13 +7,15 @@ import tutoManagement from "../assets/navbarAdmin/TutoManagement.svg";
 import tutoCreation from "../assets/navbarAdmin/TutoCreation.svg";
 import usersManagement from "../assets/navbarAdmin/usersManagement.svg";
 
-function NavigationBarAdmin() {
+function NavigationBarAdmin({ open, setOpen }) {
   return (
     <>
       <NavigationBarLink
         imgSrc={profil}
         text="Tableau de bord"
         linkDestination="/dashboard"
+        setOpen={setOpen}
+        open={open}
       />
 
       {/* Tutos creation  */}
@@ -21,12 +23,16 @@ function NavigationBarAdmin() {
         imgSrc={tutoCreation}
         text="Créer un tutoriel"
         linkDestination="/creation"
+        setOpen={setOpen}
+        open={open}
       />
       {/* Tutos management */}
       <NavigationBarLink
         imgSrc={tutoManagement}
         text="Gérer les tutoriels"
         linkDestination="/tutorials-management"
+        setOpen={setOpen}
+        open={open}
       />
 
       {/* Users management  */}
@@ -34,6 +40,8 @@ function NavigationBarAdmin() {
         imgSrc={usersManagement}
         text="Gérer les utilisateurs"
         linkDestination="/users"
+        setOpen={setOpen}
+        open={open}
       />
     </>
   );

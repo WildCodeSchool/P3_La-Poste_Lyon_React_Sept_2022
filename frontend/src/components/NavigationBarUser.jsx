@@ -8,7 +8,7 @@ import recompenses from "../assets/recompenses.png";
 import parcours from "../assets/parcours.png";
 import historic from "../assets/Historique.png";
 
-function NavigationBarUser() {
+function NavigationBarUser({ setOpen, open }) {
   return (
     <>
       {/* Profil  */}
@@ -17,6 +17,8 @@ function NavigationBarUser() {
         imgSrc={profil}
         text="Mon Espace"
         linkDestination="/dashboard"
+        setOpen={setOpen}
+        open={open}
       />
 
       {/* Categories */}
@@ -24,6 +26,8 @@ function NavigationBarUser() {
         imgSrc={categories}
         text="Catégories de tutoriels"
         linkDestination="/categories"
+        setOpen={setOpen}
+        open={open}
       />
 
       {/* Games  */}
@@ -31,6 +35,8 @@ function NavigationBarUser() {
         imgSrc={jeux}
         text="Mes jeux"
         linkDestination="/games"
+        setOpen={setOpen}
+        open={open}
       />
 
       {/* Journey  */}
@@ -38,6 +44,8 @@ function NavigationBarUser() {
         imgSrc={parcours}
         text="Mon Parcours"
         linkDestination="/course"
+        setOpen={setOpen}
+        open={open}
       />
 
       {/* Rewards */}
@@ -45,6 +53,8 @@ function NavigationBarUser() {
         imgSrc={recompenses}
         text="Mes récompenses"
         linkDestination="/reward"
+        setOpen={setOpen}
+        open={open}
       />
 
       {/* Historic */}
@@ -52,6 +62,8 @@ function NavigationBarUser() {
         imgSrc={historic}
         text="Mon historique"
         linkDestination="/history"
+        setOpen={setOpen}
+        open={open}
       />
     </>
   );
