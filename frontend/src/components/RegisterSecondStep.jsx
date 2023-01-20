@@ -43,9 +43,9 @@ function RegisterSecondStep({
         className="flex justify-evenly flex-col items-center h-screen w-screen pb-60"
         id="RegisterSecondStep"
       >
-        <div className="md:shadow-2xl md:border rounded-xl md:border-grey-50 md:py-10 h-fit bg-gradient-to-b from-[#003DA5] to-[#023998]">
+        <div className="md:shadow-2xl md:border rounded-xl md:border-grey-50 md:py-10  h-fit bg-gradient-to-b from-[#003DA5] to-[#023998]">
           <div className="flex flex-col items-center justify-center">
-            <h1 className="text-white text-3xl">
+            <h1 className="text-white  text-center text-3xl">
               Choississez votre mot de passe
             </h1>
 
