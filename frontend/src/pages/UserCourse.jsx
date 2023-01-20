@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import step1 from "../assets/userCourse/Etape1.svg";
 import step2 from "../assets/userCourse/Etape2.svg";
 import step4 from "../assets/userCourse/Etape4.svg";
@@ -26,20 +27,24 @@ function UserCourse() {
         </h1>
       </div>
       <div className="flex flex-col">
-        <div className="flex justify-center">
-          <span>
-            <img src={step1} alt="Step1" />
-          </span>
-        </div>
+        <NavLink to="/">
+          <div className="flex justify-center">
+            <span>
+              <img src={step1} alt="Step1" />
+            </span>
+          </div>
+        </NavLink>
         <div>
           <div className="ml-14 md:ml-48 grayscale flex justify-center mb-8 mt-5">
             <img className="h-28 md:h-64" src={wellDone} alt="welldone" />
           </div>
-          <div className="flex justify-center grayscale">
-            <span>
-              <img src={step2} alt="Step2" />
-            </span>
-          </div>
+          <NavLink>
+            <div className="flex justify-center grayscale">
+              <span>
+                <img src={step2} alt="Step2" />
+              </span>
+            </div>
+          </NavLink>
         </div>
         <div className="flex justify-center mr-10 mb-5 md:mr-36 grayscale">
           <img className="h-28 md:h-64" src={onlineWishes} alt="onlineWishes" />
