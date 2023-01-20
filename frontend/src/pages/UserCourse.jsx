@@ -27,7 +27,7 @@ function UserCourse() {
         </h1>
       </div>
       <div className="flex flex-col">
-        <NavLink to="/">
+        <NavLink to="/dashboard">
           <div className="flex justify-center">
             <span>
               <img src={step1} alt="Step1" />
