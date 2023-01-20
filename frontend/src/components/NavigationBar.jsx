@@ -9,15 +9,16 @@ import NavigationBarAdmin from "./NavigationBarAdmin";
 import NavigationBarUser from "./NavigationBarUser";
 
 function NavigationBar({ adminView, handleAdminView }) {
-  const { currentUser } = useContext(CurrentUserContext);
+  const { setCurrentUser, currentUser } = useContext(CurrentUserContext);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   // Log Out remove localStorage and navigate to the main page with a reload
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+    setCurrentUser({});
+    setOpen(!open);
     navigate("/");
-    window.location.reload();
   };
 
   const wayFromLogo = () => {
@@ -107,6 +108,7 @@ function NavigationBar({ adminView, handleAdminView }) {
                 )}
               </>
             )}
+
             <li className="text-right pr-3 flex  w-full justify-center">
               <button
                 onClick={() => handleLogout()}

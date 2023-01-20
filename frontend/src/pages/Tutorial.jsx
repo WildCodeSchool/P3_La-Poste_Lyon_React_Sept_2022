@@ -14,7 +14,10 @@ function Tutorial() {
     const fetchTutorial = () => {
       fetch(`http://localhost:5000/api/tutos/${id}`)
         .then((response) => response.json())
-        .then((data) => setTutorial(data));
+        .then((data) => setTutorial(data))
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     };
     fetchTutorial();
   }, [id]);
@@ -25,7 +28,10 @@ function Tutorial() {
     const fetchSteppers = () => {
       fetch(`http://localhost:5000/api/steppers`)
         .then((response) => response.json())
-        .then((data) => setSteppers(data));
+        .then((data) => setSteppers(data))
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     };
     fetchSteppers();
   }, []);
