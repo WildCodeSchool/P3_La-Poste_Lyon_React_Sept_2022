@@ -19,7 +19,7 @@ export function TutorialsContextProvider({ children }) {
         });
     };
     getTutorials();
-  }, []);
+  }, [tutorials]);
 
   return (
     <TutorialsContext.Provider value={{ tutorials }}>
