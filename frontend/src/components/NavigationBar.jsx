@@ -29,6 +29,9 @@ function NavigationBar({ adminView, handleAdminView }) {
   /* */
   const concernedElement = document.getElementById("click-menu");
   document.addEventListener("mousedown", (event) => {
+    if (concernedElement === null) {
+      return;
+    }
     if (!concernedElement.contains(event.target)) {
       setOpen(false);
     }
