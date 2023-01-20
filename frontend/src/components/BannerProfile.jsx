@@ -5,7 +5,7 @@ import parametres from "../assets/parametres.svg";
 import CurrentUserContext from "../contexts/userContext";
 
 function BannerProfile() {
-  const { currentUser } = useContext(CurrentUserContext);
+  const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 
   let userLevel;
 
@@ -20,9 +20,8 @@ function BannerProfile() {
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
-
+    setCurrentUser({});
     navigate("/");
-    window.location.reload();
   };
   return (
     <div className="w-full h-full">
@@ -35,7 +34,7 @@ function BannerProfile() {
                   className="border-black border rounded-full w-20 h-20 mr-8"
                   src={
                     currentUser?.profilePicture !== null
-                      ? `http://localhost:5000/api/avatars/${currentUser?.profilePicture}`
+                      ? `http://localhost:5000/api/avatars/${currentUser.profilePicture}`
                       : `https://api.multiavatar.com/${currentUser.firstname}.svg`
                   }
                   alt="userImage"

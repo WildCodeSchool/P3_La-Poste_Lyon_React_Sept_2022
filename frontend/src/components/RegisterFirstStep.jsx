@@ -11,13 +11,10 @@ function RegisterFirstStep({
   registerInformations,
   submitRegisterInformations,
 }) {
-  /* State to make the helper modale */
   const [showModal, setShowModal] = React.useState(false);
 
-  /* Store the email */
   const [email, setEmail] = React.useState("");
 
-  /* Set email */
   const handleEmail = (event) => {
     setEmail(event.target.value);
   };

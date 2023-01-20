@@ -112,6 +112,7 @@ router.delete("/api/users/:id", userControllers.destroy);
 router.put("/api/categories/:id", categoryControllers.edit);
 router.post("/api/categories", categoryControllers.add);
 router.delete("/api/categories/:id", categoryControllers.destroy);
+router.get("/api/progressionTuto/:id", categoryControllers.progressionBar);
 
 // Tutos management
 router.put("/api/tutos/:id", tutoControllers.edit);
