@@ -29,7 +29,7 @@ function TutorialCategory() {
         setProgressionList(data);
       })
       .catch((error) => {
-        console.error("Error:", error);
+        console.warn("Error:", error);
       });
   };
 
@@ -81,9 +81,7 @@ function TutorialCategory() {
                 to={`/categories/${category?.id}/tutorials`}
               >
                 <li className="bg-white flex justify-center border rounded-2xl shadow-lg m-3 p-3 flex-col hover:scale-110 hover:duration-100 hover:bg-[#003da5] hover:text-white">
-                  <h2 className="text-lg text-center m-1">
-                    {category?.name} - {category?.progression}
-                  </h2>
+                  <h2 className="text-lg text-center m-1">{category?.name}</h2>
                   {category?.icon ? (
                     <img
                       src={category?.icon}
@@ -101,7 +99,7 @@ function TutorialCategory() {
                           ? "bg-[#48db6a]"
                           : category?.progression >= 1 &&
                             category?.progression < 100
-                          ? "bg-[#f1c40f]"
+                          ? "bg-[#ffcc24]"
                           : "bg-[#e0e0e0]"
                       }`}
                       style={{ width: `${category?.progression}%` }}

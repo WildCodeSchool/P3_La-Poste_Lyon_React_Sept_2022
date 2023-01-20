@@ -84,19 +84,7 @@ function AuthentificationPage() {
 
   return (
     <>
-      <Toaster
-        toastOptions={{
-          className: "",
-          style: {
-            padding: "60px",
-            color: "#713200",
-            fontSize: "1.5em",
-          },
-        }}
-        position="top-center"
-        reverseOrder
-      />{" "}
-      <PreviousButton />
+      <Toaster position="top-center" reverseOrder /> <PreviousButton />
       <form
         onSubmit={handleSubmit}
         className=" flex flex-col items-center justify-center"
@@ -173,7 +161,7 @@ function AuthentificationPage() {
         </div>
         <button
           type="submit"
-          className="bg-[#FFC927] text-white m-1 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#003DA5] hover:text-black mb-28"
+          className="bg-[#FFC927] text-white m-1 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#003DA5] mb-28"
         >
           Connexion
         </button>
