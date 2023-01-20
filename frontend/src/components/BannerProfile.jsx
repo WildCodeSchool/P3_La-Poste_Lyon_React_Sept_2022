@@ -34,7 +34,7 @@ function BannerProfile() {
                   className="border-black border rounded-full w-20 h-20 mr-8"
                   src={
                     currentUser?.profilePicture !== null
-                      ? `http://localhost:5000/api/avatars/${currentUser?.profilePicture}`
+                      ? `http://localhost:5000/api/avatars/${currentUser.profilePicture}`
                       : `https://api.multiavatar.com/${currentUser.firstname}.svg`
                   }
                   alt="userImage"

@@ -12,10 +12,12 @@ import highFive from "../assets/userCourse/HighFive.svg";
 import blooming from "../assets/userCourse/Blooming.svg";
 import completed from "../assets/userCourse/completed.svg";
 import awards from "../assets/userCourse/Awards.svg";
+import BannerProfile from "../components/BannerProfile";
 
 function UserCourse() {
   return (
     <div>
+      <BannerProfile />
       <div className="mt-7 mb-7 flex justify-center">
         <h1 className="flex justify-center items-center text-bold text-xl text-white rounded-3xl shadow-lg bg-[#003DA5] w-2/3 h-10 md:text-2xl text-center md:w-1/4 md:h-14 md:text-center">
           Parcours utilisateur
