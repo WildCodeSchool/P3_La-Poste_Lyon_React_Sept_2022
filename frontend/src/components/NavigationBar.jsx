@@ -22,11 +22,14 @@ function NavigationBar({ adminView, handleAdminView }) {
   };
 
   const wayFromLogo = () => {
-    // eslint-disable-next-line no-unused-expressions
-    currentUser.email ? navigate("/dashboard") : navigate("/");
+    if (currentUser.email) {
+      navigate("/dashboard");
+    } else {
+      navigate("/");
+    }
   };
 
-  /* */
+  /* Close menu when click outside */
   const concernedElement = document.getElementById("click-menu");
   document.addEventListener("mousedown", (event) => {
     if (concernedElement === null) {
