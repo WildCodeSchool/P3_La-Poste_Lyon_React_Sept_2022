@@ -13,11 +13,13 @@ import blooming from "../assets/userCourse/Blooming.svg";
 import completed from "../assets/userCourse/completed.svg";
 import awards from "../assets/userCourse/Awards.svg";
 import BannerProfile from "../components/BannerProfile";
+import PreviousButton from "../components/PreviousButton";
 
 function UserCourse() {
   return (
     <div>
       <BannerProfile />
+      <PreviousButton />
       <div className="mt-7 mb-7 flex justify-center">
         <h1 className="flex justify-center items-center text-bold text-xl text-white rounded-3xl shadow-lg bg-[#003DA5] w-2/3 h-10 md:text-2xl text-center md:w-1/4 md:h-14 md:text-center">
           Parcours utilisateur
@@ -52,7 +54,7 @@ function UserCourse() {
             <img src={step4} alt="Step4" className="rotate-45" />
           </span>
         </div>
-        <div className="ml-16 md:ml-96 grayscale">
+        <div className="ml-16 md:flex md:justify-center grayscale">
           <span>
             <img className="h-28 md:h-64" src={blooming} alt="blooming" />
           </span>
@@ -62,7 +64,7 @@ function UserCourse() {
             <img src={step4} alt="Step5" className="mt-5" />
           </span>
         </div>
-        <div className="flex justify-end mr-10 md:mr-60 grayscale">
+        <div className="flex justify-end md:justify-center mr-10 md:mr-60 grayscale">
           <span>
             <img
               className="h-28 md:h-64 justify-end my-5"
@@ -81,7 +83,7 @@ function UserCourse() {
             <img src={step6} alt="Step7" />
           </span>
         </div>
-        <div className="flex justify-end mr-10 md:mr-36 grayscale">
+        <div className="flex justify-end md:justify-center mr-10 md:mr-36 grayscale">
           <span>
             <img
               className="h-28 md:h-64 justify-end mb-8"
