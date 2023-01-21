@@ -6,19 +6,17 @@ import PreviousButton from "../components/PreviousButton";
 import { useCurrentUserContext } from "../contexts/userContext";
 
 function Settings() {
-  /* Toast */
+  /* Toast notifications */
   const notifySuccess = () => {
     toast("Image bien téléchargée !", {
       icon: "🥳",
     });
   };
-
   const notifyError = () => {
     toast("Erreur dans le téléchargement de l'image...", {
       icon: "⛔",
     });
   };
-
   const notifyForget = () => {
     toast(
       "Vous n'auriez pas oublié un truc ? Le fichier à uploader, par exemple ?.",
@@ -28,54 +26,41 @@ function Settings() {
     );
   };
 
-  const { currentUser, setCurrentUser, token } = useCurrentUserContext();
-
-  const avatarRef = useRef(null);
-
-  const navigate = useNavigate();
-
-  // const [profilePicture, setProfilePicture] = useState("");
-
-  // All states
-  const [firstname, setFirstname] = useState(currentUser.firstname);
-  const [lastname, setLastname] = useState(currentUser.lastname);
-  const [phone, setPhone] = useState(currentUser.phone);
-
   const notifyErrorProfile = () =>
     toast.error("Une erreur est survenue, veuillez vérifier vos informations");
 
-  // All state handle functions
-  const handleChangeFirstname = (e) => {
-    setFirstname(e.target.value);
-  };
-  const handleChangeLastname = (e) => {
-    setLastname(e.target.value);
-  };
-  const handleChangePhone = (e) => {
-    setPhone(e.target.value);
+  const { currentUser, setCurrentUser, token } = useCurrentUserContext();
+
+  const avatarRef = useRef(null);
+  const navigate = useNavigate();
+
+  const [userValues, setUserValues] = useState({
+    firstname: currentUser.firstname,
+    lastname: currentUser.lastname,
+    phone: currentUser.phone,
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setUserValues({
+      ...userValues,
+      [name]: value,
+    });
   };
 
-  const handleClickFirstName = () => {
-    // 👇️ clear input value
-    setFirstname("");
+  const handleOnClickValue = (e) => {
+    const { name } = e.target;
+    setUserValues({
+      ...userValues,
+      [name]: "",
+    });
   };
 
-  const handleClickLastName = () => {
-    // 👇️ clear input value
-    setLastname("");
-  };
-
-  const handleClickPhone = () => {
-    // 👇️ clear input value
-    setPhone("");
-  };
-
-  // Méthode pour fetch l'avatar uploadé
-
+  // Fetch updated avatar
   const handleSubmitAvatar = (e) => {
     e.preventDefault();
     if (avatarRef.current.files[0]) {
-      // recupération des articles.
       const myHeader = new Headers();
       myHeader.append("Authorization", `Bearer ${token}`);
 
@@ -86,12 +71,9 @@ function Settings() {
         headers: myHeader,
         body: formData,
       };
-      // on appelle le back
       fetch(`http://localhost:5000/api/avatars`, requestOptions)
         .then((response) => response.json())
         .then((results) => {
-          // maj avatar
-
           setCurrentUser({ ...currentUser, profilePicture: results.avatar });
           notifySuccess();
         })
@@ -104,16 +86,16 @@ function Settings() {
     }
   };
 
-  // Put function
+  // Submit usersInformations
   const submitSettingModify = (e) => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token}`);
     myHeaders.append("Content-Type", "application/json");
 
     const userraw = JSON.stringify({
-      firstname,
-      lastname,
-      phone,
+      firstname: userValues.firstname,
+      lastname: userValues.lastname,
+      phone: userValues.phone,
       currentUser_id: currentUser.id,
     });
 
@@ -153,15 +135,15 @@ function Settings() {
       .then(
         setCurrentUser({
           ...currentUser,
-          firstname,
-          lastname,
-          phone,
+          firstname: userValues.firstname,
+          lastname: userValues.lastname,
+          phone: userValues.phone,
         })
       );
   };
 
   return (
-    <div className=" relative flex flex-col justify-center my-6">
+    <div className=" relative flex flex-col my-6">
       <Toaster position="top-center" reverseOrder />
       <div className="pb-10">
         <Link to="/dashboard">
@@ -170,11 +152,8 @@ function Settings() {
       </div>
       <Toaster position="top-center" reverseOrder={false} />
 
-      <div className="mt-4  relative h-48 bg-main-yellow flex justify-center flex-col z-1">
-        {/*   <h1 className="flex w-full justify-center items-center font-bold text-2xl md:text-3xl text-main-blue my-3 h-10 text-center md:h-14 md:text-center ">
-          Modifier mes informations
-        </h1> */}
-        <div className="flex absolute bottom-[-4vh] inset-x-0 justify-center items-center">
+      <div className="mt-4  relative md:h-48 h-32 bg-main-yellow flex justify-center flex-col z-1">
+        <div className="flex absolute bottom-[-5vh] inset-x-0 justify-center items-center">
           <img
             src={
               currentUser?.profilePicture !== null
@@ -182,7 +161,7 @@ function Settings() {
                 : `https://api.multiavatar.com/${currentUser.firstname}.svg`
             }
             alt="userImage"
-            className="object-fit w-48  h-48 border rounded-full "
+            className="object-fit  w-36 h-36 md:w-48  md:h-48  border-black border-x border-y shadow-lg rounded-full "
           />
           <div className="mt-32">
             <label htmlFor="image-upload">
@@ -205,70 +184,81 @@ function Settings() {
         </div>
       </div>
 
-      <form onSubmit={submitSettingModify} className="p-8">
-        <ul className="flex-col  p-8 ">
-          <h1 className="flex w-full justify-left items-center font-bold text-xl md:text-2xl text-main-blue my-3 h-10 text-center md:h-14 md:text-center ">
+      <form onSubmit={submitSettingModify} className="md:p-8 py-8 md:mx-8">
+        <ul className="p-8  md:mx-[10vw] ">
+          <h1 className="flex  justify-left items-center font-bold text-xl md:text-2xl text-main-blue my-3 h-10 text-center md:h-14 md:text-center ">
             Modifier mes informations
           </h1>
-          <li className="my-3 md:m-6  border shadow-xl rounded-lg   bg-main-blue text-white">
+
+          {/* Firstname */}
+          <li className=" my-3 md:m-6  border shadow-md rounded-lg   bg-main-blue text-white">
             {" "}
             <div className="w-full flex justify-end items-center relative">
               <label
                 htmlFor="firstname"
+                name="firstname"
                 className="px-3  font-semibold w-32 border-r-gray "
               >
                 {" "}
-                Prénom{" "}
+                Prénom
               </label>
               <input
-                value={firstname}
-                placeholder={`${currentUser.firstname}`}
-                className=" border-gray-400 bg-gray-100 p-4 w-full h-10 text-gray-700"
-                onChange={handleChangeFirstname}
-                onClick={handleClickFirstName}
-                required
                 name="firstname"
+                value={userValues.firstname}
+                placeholder={`${userValues.firstname}`}
+                className=" border-gray-400 bg-gray-100 p-4 w-full h-10 text-gray-500 shadow-inner"
+                onChange={handleInputChange}
+                onClick={handleOnClickValue}
+                required
+                id="firstname"
               />
             </div>
           </li>
-          <li className="  my-3 md:m-6 border shadow-xl rounded-lg  bg-main-blue text-white">
+          {/* Lastname */}
+          <li className=" my-3 md:m-6  border shadow-md rounded-lg   bg-main-blue text-white">
             {" "}
             <div className="w-full flex justify-end items-center relative">
               <label
-                htmlFor="firstname"
-                className="px-3  font-semibold  w-32 border-r-gray "
+                htmlFor="lastname"
+                name="lastname"
+                className="px-3  font-semibold w-32 border-r-gray "
               >
                 {" "}
-                Nom{" "}
+                Nom
               </label>
               <input
-                value={lastname}
-                placeholder={`${currentUser.lastname}`}
-                className=" border-gray-400 bg-gray-100  p-4 w-full h-10 text-gray-700"
-                onChange={handleChangeLastname}
-                onClick={handleClickLastName}
+                name="lastname"
+                value={userValues.lastname}
+                placeholder={`${userValues.lastname}`}
+                className=" border-gray-400 bg-gray-100 p-4 w-full h-10 text-gray-500 shadow-inner"
+                onChange={handleInputChange}
+                onClick={handleOnClickValue}
                 required
+                id="lastname"
               />
             </div>
           </li>
-
-          <li className="my-3 md:m-6 border shadow-xl rounded-lg  bg-main-blue text-white">
+          {/* Phone */}
+          <li className=" my-3 md:m-6  border shadow-md rounded-lg   bg-main-blue text-white">
             {" "}
             <div className="w-full flex justify-end items-center relative">
               <label
-                htmlFor="firstname"
-                className="px-3 w-32 font-semibold border-r-gray "
+                htmlFor="phone"
+                name="phone"
+                className="px-3  font-semibold w-32 border-r-gray "
               >
                 {" "}
-                Téléphone{" "}
+                Tél.
               </label>
               <input
-                value={phone}
-                placeholder={`${currentUser.phone}`}
-                className=" border-gray-400 bg-gray-100  p-4 w-full h-10 text-gray-700"
-                onChange={handleChangePhone}
-                onClick={handleClickPhone}
+                name="phone"
+                value={userValues.phone}
+                placeholder={`${userValues.phone}`}
+                className=" border-gray-400 bg-gray-100 p-4 w-full h-10 text-gray-500 shadow-inner"
+                onChange={handleInputChange}
+                onClick={handleOnClickValue}
                 required
+                id="phone"
               />
             </div>
           </li>
