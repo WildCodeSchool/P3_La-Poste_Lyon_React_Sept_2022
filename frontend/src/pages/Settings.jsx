@@ -13,22 +13,12 @@ function Settings() {
       icon: "🥳",
     });
   };
+
   const notifyError = () => {
     toast("Erreur dans le téléchargement de l'image...", {
       icon: "⛔",
     });
   };
-  const notifyForget = () => {
-    toast(
-      "Vous n'auriez pas oublié un truc ? Le fichier à uploader, par exemple ?.",
-      {
-        icon: "🤭",
-      }
-    );
-  };
-
-  const notifyErrorProfile = () =>
-    toast.error("Une erreur est survenue, veuillez vérifier vos informations");
 
   const { currentUser, setCurrentUser, token } = useCurrentUserContext();
 
@@ -72,6 +62,7 @@ function Settings() {
         headers: myHeader,
         body: formData,
       };
+
       fetch(`http://localhost:5000/api/avatars`, requestOptions)
         .then((response) => response.json())
         .then((results) => {
@@ -82,8 +73,6 @@ function Settings() {
           console.error(error);
           notifyError();
         });
-    } else {
-      notifyForget();
     }
   };
 
@@ -115,9 +104,9 @@ function Settings() {
           requestOptions
         ),
         {
-          loading: "En cours",
-          success: "Profil mis à jour",
-          error: "Attention aux erreurs",
+          loading: "En cours de modification ...",
+          success: `Votre profil est mis à jour  ${userValues.firstname} 😁 `,
+          error: "Attention aux erreurs ! ",
         }
       )
       // toaster management
@@ -127,8 +116,6 @@ function Settings() {
           setTimeout(() => {
             navigate("/dashboard");
           }, 2000);
-        } else {
-          notifyErrorProfile();
         }
       })
 
