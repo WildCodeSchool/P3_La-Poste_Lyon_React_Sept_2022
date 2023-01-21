@@ -28,7 +28,7 @@ function SearchUsers() {
 
   useEffect(() => {
     fetchUsers();
-  }, [users]);
+  }, []);
 
   /* We remove admin from the user management */
   const noAdmin = users?.filter((user) => user.admin !== 1);
@@ -68,7 +68,7 @@ function SearchUsers() {
       },
     });
     setConfirmDeleteModale(!confirmDeleteModale);
-    fetchUsers();
+    setUsers(users.filter((user) => user.id !== id));
     setTimeout(() => {
       notify();
     }, 500);

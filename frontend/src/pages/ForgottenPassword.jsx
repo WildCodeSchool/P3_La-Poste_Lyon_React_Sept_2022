@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import PreviousButton from "../components/PreviousButton";
-import arobase from "../assets/arobaselogo.png";
-import forgotpass from "../assets/forgotpass.svg";
+import arobase from "../assets/connexionPage/email-logo-connexion.png";
+import forgotpass from "../assets/connexionPage/img-user-connexion.svg";
 
 function ForgottenPassword() {
   /* Toast */

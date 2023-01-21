@@ -151,6 +151,7 @@ function Settings() {
             alt="userImage"
             className="object-fit  w-36 h-36 md:w-48  md:h-48  border-black border-x border-y shadow-lg rounded-full "
           />
+
           <div className="mt-32">
             <label htmlFor="image-upload">
               <img

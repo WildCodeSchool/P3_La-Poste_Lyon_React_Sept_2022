@@ -3,9 +3,9 @@ import React from "react";
 import NavigationBarLink from "./NavigationBarLink";
 import profil from "../assets/profil.png";
 
-import tutoManagement from "../assets/navbarAdmin/TutoManagement.svg";
-import tutoCreation from "../assets/navbarAdmin/TutoCreation.svg";
-import usersManagement from "../assets/navbarAdmin/usersManagement.svg";
+import tutoManagement from "../assets/navBar/navbarAdmin/TutoManagement.svg";
+import tutoCreation from "../assets/navBar/navbarAdmin/TutoCreation.svg";
+import usersManagement from "../assets/navBar/navbarAdmin/usersManagement.svg";
 
 function NavigationBarAdmin({ open, setOpen }) {
   return (

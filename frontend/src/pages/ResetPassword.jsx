@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import PreviousButton from "../components/PreviousButton";
 import granny from "../assets/granny1.svg";
 import locker from "../assets/lockerlogo.png";
-import forgotpass from "../assets/forgotpass.svg";
+import forgotpass from "../assets/connexionPage/img-user-connexion.svg";
 
 function ForgottenPassword() {
   /* Toast */

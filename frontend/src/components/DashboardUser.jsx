@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import AccessButton from "./AccessButton";
 import Historique from "../assets/Historique.png";
 import Mestutos from "../assets/Mestutos.svg";
-import badge1 from "../assets/badge1.png";
+import badge1 from "../assets/Rewards/1.svg";
 import BannerProfile from "./BannerProfile";
 import usercourse from "../assets/parcours.png";
 

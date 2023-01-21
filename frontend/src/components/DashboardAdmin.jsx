@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import BannerProfile from "./BannerProfile";
-import tutoManagement from "../assets/navbarAdmin/TutoManagement.svg";
-import tutoCreation from "../assets/navbarAdmin/TutoCreation.svg";
-import usersManagement from "../assets/navbarAdmin/usersManagement.svg";
+import tutoManagement from "../assets/navBar/navbarAdmin/TutoManagement.svg";
+import tutoCreation from "../assets/navBar/navbarAdmin/TutoCreation.svg";
+import usersManagement from "../assets/navBar/navbarAdmin/usersManagement.svg";
 import AccessButton from "./AccessButton";
 import Mestutos from "../assets/Mestutos.svg";
 
