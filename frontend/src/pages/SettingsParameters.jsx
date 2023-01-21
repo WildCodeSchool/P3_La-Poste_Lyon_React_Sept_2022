@@ -1,33 +1,33 @@
 import React from "react";
 
 function SettingsParameters({
-  value,
-  labelText,
-  placeholderValue,
-  onChangeEvent,
-  onClickEvent,
+  textValue,
+  userVal,
+  handleInputChange,
+  handleOnClickValue,
+  text,
 }) {
   return (
     <li className=" my-3 md:m-6  border shadow-md rounded-lg   bg-main-blue text-white">
       {" "}
       <div className="w-full flex justify-end items-center relative">
         <label
-          htmlFor={labelText}
-          name={labelText}
+          htmlFor={`${textValue}`}
+          name={`${textValue}`}
           className="px-3  font-semibold w-32 border-r-gray "
         >
           {" "}
-          {labelText}{" "}
+          {text}
         </label>
         <input
-          name={labelText}
-          value={value}
-          placeholder={placeholderValue}
+          name={`${textValue}`}
+          value={`${userVal}`}
+          placeholder={`${userVal}`}
           className=" border-gray-400 bg-gray-100 p-4 w-full h-10 text-gray-500 shadow-inner"
-          onChange={onChangeEvent}
-          onClick={onClickEvent}
+          onChange={handleInputChange}
+          onClick={handleOnClickValue}
           required
-          id={labelText}
+          id={`${textValue}`}
         />
       </div>
     </li>

@@ -4,6 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 import uploadIcon from "../assets/uploadIcon.svg";
 import PreviousButton from "../components/PreviousButton";
 import { useCurrentUserContext } from "../contexts/userContext";
+import SettingsParameters from "./SettingsParameters";
 
 function Settings() {
   /* Toast notifications */
@@ -190,78 +191,29 @@ function Settings() {
             Modifier mes informations
           </h1>
 
-          {/* Firstname */}
-          <li className=" my-3 md:m-6  border shadow-md rounded-lg   bg-main-blue text-white">
-            {" "}
-            <div className="w-full flex justify-end items-center relative">
-              <label
-                htmlFor="firstname"
-                name="firstname"
-                className="px-3  font-semibold w-32 border-r-gray "
-              >
-                {" "}
-                Prénom
-              </label>
-              <input
-                name="firstname"
-                value={userValues.firstname}
-                placeholder={`${userValues.firstname}`}
-                className=" border-gray-400 bg-gray-100 p-4 w-full h-10 text-gray-500 shadow-inner"
-                onChange={handleInputChange}
-                onClick={handleOnClickValue}
-                required
-                id="firstname"
-              />
-            </div>
-          </li>
-          {/* Lastname */}
-          <li className=" my-3 md:m-6  border shadow-md rounded-lg   bg-main-blue text-white">
-            {" "}
-            <div className="w-full flex justify-end items-center relative">
-              <label
-                htmlFor="lastname"
-                name="lastname"
-                className="px-3  font-semibold w-32 border-r-gray "
-              >
-                {" "}
-                Nom
-              </label>
-              <input
-                name="lastname"
-                value={userValues.lastname}
-                placeholder={`${userValues.lastname}`}
-                className=" border-gray-400 bg-gray-100 p-4 w-full h-10 text-gray-500 shadow-inner"
-                onChange={handleInputChange}
-                onClick={handleOnClickValue}
-                required
-                id="lastname"
-              />
-            </div>
-          </li>
-          {/* Phone */}
-          <li className=" my-3 md:m-6  border shadow-md rounded-lg   bg-main-blue text-white">
-            {" "}
-            <div className="w-full flex justify-end items-center relative">
-              <label
-                htmlFor="phone"
-                name="phone"
-                className="px-3  font-semibold w-32 border-r-gray "
-              >
-                {" "}
-                Tél.
-              </label>
-              <input
-                name="phone"
-                value={userValues.phone}
-                placeholder={`${userValues.phone}`}
-                className=" border-gray-400 bg-gray-100 p-4 w-full h-10 text-gray-500 shadow-inner"
-                onChange={handleInputChange}
-                onClick={handleOnClickValue}
-                required
-                id="phone"
-              />
-            </div>
-          </li>
+          <SettingsParameters
+            text="Prénom"
+            textValue="firstname"
+            userVal={userValues.firstname}
+            handleOnClickValue={handleOnClickValue}
+            handleInputChange={handleInputChange}
+          />
+
+          <SettingsParameters
+            text="Nom"
+            textValue="lastname"
+            userVal={userValues.lastname}
+            handleOnClickValue={handleOnClickValue}
+            handleInputChange={handleInputChange}
+          />
+
+          <SettingsParameters
+            text="Tél."
+            textValue="phone"
+            userVal={userValues.phone}
+            handleOnClickValue={handleOnClickValue}
+            handleInputChange={handleInputChange}
+          />
         </ul>
         <div className="w-full flex justify-center items-center relative">
           <button
