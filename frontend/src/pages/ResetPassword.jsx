@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import PreviousButton from "../components/PreviousButton";
-import granny from "../assets/granny1.svg";
-import locker from "../assets/lockerlogo.png";
+import granny from "../assets/connexionPage/granny1.svg";
+import locker from "../assets/connexionPage/lockerlogo.png";
 import forgotpass from "../assets/connexionPage/img-user-connexion.svg";
 
 function ForgottenPassword() {

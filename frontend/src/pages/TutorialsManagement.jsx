@@ -5,7 +5,7 @@ import { CategoryContext } from "../contexts/CategoryContext";
 import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
 import DeleteModaleTutorial from "../components/DeleteModaleTutorial";
-import trash from "../assets/trash.svg";
+import trash from "../assets/items/trash.svg";
 
 function TutorialsManagement() {
   const notify = () => toast.success("Le tutoriel a bien été supprimé");

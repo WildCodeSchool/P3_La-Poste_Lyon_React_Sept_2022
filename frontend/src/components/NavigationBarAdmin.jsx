@@ -1,7 +1,7 @@
 import React from "react";
 
 import NavigationBarLink from "./NavigationBarLink";
-import profil from "../assets/profil.png";
+import profil from "../assets/navBar/navBarUser/profil.png";
 
 import tutoManagement from "../assets/navBar/navbarAdmin/TutoManagement.svg";
 import tutoCreation from "../assets/navBar/navbarAdmin/TutoCreation.svg";

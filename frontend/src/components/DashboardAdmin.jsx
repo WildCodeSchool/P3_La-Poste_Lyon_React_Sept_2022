@@ -5,7 +5,7 @@ import tutoManagement from "../assets/navBar/navbarAdmin/TutoManagement.svg";
 import tutoCreation from "../assets/navBar/navbarAdmin/TutoCreation.svg";
 import usersManagement from "../assets/navBar/navbarAdmin/usersManagement.svg";
 import AccessButton from "./AccessButton";
-import Mestutos from "../assets/Mestutos.svg";
+import Mestutos from "../assets/navBar/navBarUser/Mestutos.svg";
 
 // page component for admin only.
 function DashboardAdmin() {

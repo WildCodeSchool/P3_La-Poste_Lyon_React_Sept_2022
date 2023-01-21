@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import uploadIcon from "../assets/uploadIcon.svg";
+import uploadIcon from "../assets/items/uploadIcon.svg";
 import PreviousButton from "../components/PreviousButton";
 import { useCurrentUserContext } from "../contexts/userContext";
 import SettingsParameters from "./SettingsParameters";

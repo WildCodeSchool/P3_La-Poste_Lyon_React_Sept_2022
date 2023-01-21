@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Switch } from "@material-tailwind/react";
-import logo from "../assets/Logo.png";
-import closemenu from "../assets/closemenu.svg";
-import openmenu from "../assets/menuopen.svg";
+import logo from "../assets/navBar/Logo.png";
+import closemenu from "../assets/navBar/closemenu.svg";
+import openmenu from "../assets/navBar/menuopen.svg";
 import CurrentUserContext from "../contexts/userContext";
 import NavigationBarAdmin from "./NavigationBarAdmin";
 import NavigationBarUser from "./NavigationBarUser";

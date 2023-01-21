@@ -4,7 +4,7 @@ import DeleteModaleUser from "../components/DeleteModaleUser";
 import CurrentUserContext from "../contexts/userContext";
 import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
-import trash from "../assets/trash.svg";
+import trash from "../assets/items/trash.svg";
 
 function SearchUsers() {
   const notify = () => toast.success("L'utilisateur a bien été supprimé");

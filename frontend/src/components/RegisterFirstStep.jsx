@@ -1,7 +1,7 @@
 import React from "react";
 import { scroller } from "react-scroll";
 import firststep from "../assets/connexionPage/registerPage/idcreate.svg";
-import questionbtn from "../assets/question-circle.svg";
+import questionbtn from "../assets/items/question-circle.svg";
 import RegisterFirstStepModale from "./RegisterFirstStepModale";
 import RegisterSecondStep from "./RegisterSecondStep";
 import nextBtn from "../assets/items/nextBtn.svg";
