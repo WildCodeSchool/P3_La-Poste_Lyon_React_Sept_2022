@@ -19,6 +19,7 @@ import ForgottenPassword from "../pages/ForgottenPassword";
 import ResetPassword from "../pages/ResetPassword";
 import ForgottenEmail from "../pages/ForgottenEmail";
 import CurrentUserContext from "../contexts/userContext";
+import Help from "../pages/Help";
 
 function AllRoutes({ adminView, handleAdminView }) {
   const { currentUser } = React.useContext(CurrentUserContext);
@@ -52,6 +53,7 @@ function AllRoutes({ adminView, handleAdminView }) {
           <Route path="/categories/:id/tutorials" element={<TutorialList />} />
           <Route path="/history" element={<Historic />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/aide" element={<Help />} />
         </>
       )}
       {/* Admin */}
