@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 
 const TutorialsContext = createContext();
 export { TutorialsContext };
@@ -27,3 +27,5 @@ export function TutorialsContextProvider({ children }) {
     </TutorialsContext.Provider>
   );
 }
+
+export const useTutorialsContext = () => useContext(TutorialsContext);

@@ -1,4 +1,5 @@
 import React from "react";
+import TutoSearchbar from "../components/TutoSearchbar";
 
 function Help() {
   return (
@@ -50,6 +51,7 @@ function Help() {
             Peut-être que votre solution est déjà disponible dans nos tutoriel :
           </p>
           <p>cherchez parmi nos tutoriel :</p>
+          <TutoSearchbar />
         </div>
       </div>
     </div>
