@@ -76,7 +76,9 @@ function NavigationBar({ adminView, handleAdminView }) {
           <ul
             id="click-menu"
             className={
-              open ? "flex flex-col items-end space-y-4 m-3 text-xl" : "hidden"
+              open
+                ? "flex flex-col items-end space-y-4 m-3 text-xl"
+                : "hidden  duration-300"
             }
           >
             {/* If connected as user enable user links */}
