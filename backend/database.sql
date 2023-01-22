@@ -43,7 +43,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (firstname, lastname, email, hashedPassword, phone, profilePicture, level, admin, creationDate) VALUES  ('Chloé','Bidau','chloebidau@hotmail.fr','$argon2id$v=19$m=65536,t=5,p=1$LUUgzhG3HKC2h3WiHdA25Q$fVVEe8DVvBO3hYRD9WYc6qeLj/Kdv6dZvIdZatvYFD4','0647067609',NULL,0,1,'2023-01-04 13:28:00'),('Marion','Lalonde','marionmizulalonde@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$s96L8bP5O6Ab6f3FwKuHew$/6oWd2Ku1MAob+EMW+Zq4kYRQLaSCTICEkh2lCxEVDs','0666666666',NULL,0,1,'2023-01-04 13:29:49'),('Quentin','Ferrari','ferrari.quentinjunk@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$1R5T86AylyPprWTMB/Up+Q$O8LJzLb9fNJOfb1CpeYt9nPTaHKX7DX+1snTBZyTT9k','0666666667',NULL,0,1,'2023-01-04 13:32:15'),('Arnaud','Champetier','arnaud.champetier9@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$AXGPipQqFqCGnfvkM2IiTA$zdsuETA0LPq6woZ2LzXwfw75AfUSJj3Hjs9fXNpqrh4','0668008148',NULL,0,1,'2023-01-04 13:33:46'),('Morgan','Mezaache','mezaache.morgan@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$4cXuCobA1HmB1aoMr98bhA$RIBFYHZ1RyJreYyeQW/bmmMB8x1EB+0tnJ4Udd6DEWo','0761167419',NULL,0,1,'2023-01-04 13:36:24'),('toto','toto','toto@toto','$argon2id$v=19$m=65536,t=5,p=1$ZsWbC2zbDPLihAEr9yZkYA$vZOhroy/wQKhIcSGIdLy3mNqSYxd0LpjCVwhY9k1Qm4','1234567890',NULL,1,0,'2023-01-10 15:27:36'),
 ('Jane','Austen','janeausten@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$4cXuCobA1HmB1aoMr98bhA$RIBFYHZ1RyJreYyeQW/bmmMB8x1EB+0tnJ4Udd6DEWo','1234333390',NULL,1,0,'2023-01-10 15:27:36'),
-('Emilie','Bronte','emiliebronte@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$4cXuCobA1HmB1aoMr98bhA$RIBFYHZ1RyJreYyeQW/bmmMB8x1EB+0tnJ4Udd6DEWo','1223367890',NULL,1,0,'2023-01-10 15:27:36');
+('Emilie','Bronte','emiliebronte@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$4cXuCobA1HmB1aoMr98bhA$RIBFYHZ1RyJreYyeQW/bmmMB8x1EB+0tnJ4Udd6DEWo','1223367890',NULL,1,0,'2023-01-10 15:27:36'),
+('Tamara','Yolenda','tatayoyo@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$E+UcFfKI3b7m9QrAFVyClA$RzFb36BWFBzvRgCRj8oKBMgQOQZc+dwcjZiRbErwg5Q','0102030406',NULL,1,0,'2023-01-22 10:05:54');
 
 DROP TABLE IF EXISTS `category`;
 
@@ -65,7 +66,7 @@ CREATE TABLE `tutorialStatus` (
   FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-INSERT INTO `tutorialStatus` (tuto_id, user_id) VALUES (1, 1), (2, 1), (3, 1), (4, 1);
+INSERT INTO `tutorialStatus` VALUES (1,1,NULL),(2,1,NULL),(3,1,NULL),(4,1,NULL),(15,2,'started'),(35,2,'started'),(3,2,'started'),(3,9,'finished'),(5,9,'finished'),(29,9,'finished'),(28,9,'finished'),(30,9,'finished'),(33,9,'finished'),(13,9,'finished'),(36,9,'started'),(1,9,'finished'),(4,9,'finished'),(19,9,'finished'),(17,9,'finished'),(18,9,'finished');
 
 DROP TABLE IF EXISTS `stepper`;
 
