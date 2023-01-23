@@ -1,18 +1,17 @@
 import React from "react";
 import NavigationBarLink from "./NavigationBarLink";
 
-import profil from "../assets/profil.png";
-import categories from "../assets/categories.svg";
-import jeux from "../assets/jeux.png";
-import recompenses from "../assets/recompenses.png";
-import parcours from "../assets/parcours.png";
-import historic from "../assets/Historique.png";
+import profil from "../assets/navBar/navBarUser/profil.png";
+import categories from "../assets/navBar/navBarUser/categories.svg";
+import jeux from "../assets/navBar/navBarUser/jeux.png";
+import recompenses from "../assets/Rewards/1.svg";
+import parcours from "../assets/navBar/navBarUser/parcours.png";
+import historic from "../assets/navBar/navBarUser/Historique.png";
 
 function NavigationBarUser({ setOpen, open }) {
   return (
     <>
       {/* Profil  */}
-
       <NavigationBarLink
         imgSrc={profil}
         text="Mon Espace"

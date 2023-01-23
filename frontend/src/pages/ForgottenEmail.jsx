@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import PreviousButton from "../components/PreviousButton";
-import forgotemail from "../assets/email.svg";
-import arobase from "../assets/arobaselogo.png";
+import forgotemail from "../assets/connexionPage/email.svg";
+import arobase from "../assets/connexionPage/email-logo-connexion.png";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 

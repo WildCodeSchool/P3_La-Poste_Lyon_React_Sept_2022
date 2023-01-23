@@ -5,7 +5,7 @@ import { CategoryContext } from "../contexts/CategoryContext";
 import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
 import DeleteModaleTutorial from "../components/DeleteModaleTutorial";
-import trash from "../assets/trash.svg";
+import trash from "../assets/items/trash.svg";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 

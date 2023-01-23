@@ -5,7 +5,7 @@ import ReactQuill from "react-quill";
 import { useNavigate, useParams } from "react-router-dom";
 import CurrentUserContext from "../contexts/userContext";
 import { TutorialStatusContext } from "../contexts/TutorialStatusContext";
-import completeStep from "../assets/completeStep.svg";
+import completeStep from "../assets/items/completeStep.svg";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "react-quill/dist/quill.snow.css";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, Toaster } from "react-hot-toast";
+import { TutorialsContext } from "../contexts/TutorialsContext";
 import TutorialValidatorPreview from "./TutorialValidatorPreview";
 import { useCurrentUserContext } from "../contexts/userContext";
 
@@ -10,6 +11,7 @@ const { VITE_BACKEND_URL } = import.meta.env;
 function TutorialValidator(allStepsContent) {
   const navigate = useNavigate();
   /* Get the token from the userContext */
+  const { setTutorials, tutorials } = useContext(TutorialsContext);
   const { token } = useCurrentUserContext();
 
   /* Toast */
@@ -84,6 +86,7 @@ function TutorialValidator(allStepsContent) {
         if (response.status === 401) {
           console.warn("error");
         } else {
+          setTutorials(...tutorials, mandatory);
           notify();
           setTimeout(() => {
             navigate("/dashboard");

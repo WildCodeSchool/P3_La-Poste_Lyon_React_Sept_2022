@@ -4,7 +4,7 @@ import DeleteModaleUser from "../components/DeleteModaleUser";
 import CurrentUserContext from "../contexts/userContext";
 import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
-import trash from "../assets/trash.svg";
+import trash from "../assets/items/trash.svg";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
@@ -30,7 +30,7 @@ function SearchUsers() {
 
   useEffect(() => {
     fetchUsers();
-  }, [users]);
+  }, []);
 
   /* We remove admin from the user management */
   const noAdmin = users?.filter((user) => user.admin !== 1);
@@ -70,7 +70,7 @@ function SearchUsers() {
       },
     });
     setConfirmDeleteModale(!confirmDeleteModale);
-    fetchUsers();
+    setUsers(users.filter((user) => user.id !== id));
     setTimeout(() => {
       notify();
     }, 500);

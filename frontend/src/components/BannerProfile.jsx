@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logout from "../assets/logout.svg";
-import parametres from "../assets/parametres.svg";
+import logout from "../assets/items/logout.svg";
+import parametres from "../assets/items/parametres.svg";
 import CurrentUserContext from "../contexts/userContext";
 
 const { VITE_BACKEND_URL } = import.meta.env;
