@@ -7,6 +7,8 @@ import PreviousButton from "../components/PreviousButton";
 import DeleteModaleTutorial from "../components/DeleteModaleTutorial";
 import trash from "../assets/trash.svg";
 
+const { VITE_BACKEND_URL } = import.meta.env;
+
 function TutorialsManagement() {
   const notify = () => toast.success("Le tutoriel a bien été supprimé");
 
@@ -17,7 +19,7 @@ function TutorialsManagement() {
   const [tutorials, setTutorials] = useState([]);
 
   const fetchTutorials = () => {
-    fetch(`http://localhost:5000/api/tutos/all`)
+    fetch(`${VITE_BACKEND_URL}/api/tutos/all`)
       .then((response) => response.json())
       .then((data) => setTutorials(data));
   };
@@ -52,7 +54,7 @@ function TutorialsManagement() {
   const handleDeleteTutorial = async () => {
     /* delete all steppers */
 
-    fetch(`http://localhost:5000/api/steppers/tuto_id/${id}`, {
+    fetch(`${VITE_BACKEND_URL}/api/steppers/tuto_id/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -67,7 +69,7 @@ function TutorialsManagement() {
       });
 
     /* delete the tutorial  */
-    fetch(`http://localhost:5000/api/tutos/${id}`, {
+    fetch(`${VITE_BACKEND_URL}/api/tutos/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

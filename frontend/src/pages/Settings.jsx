@@ -5,6 +5,8 @@ import uploadIcon from "../assets/uploadIcon.svg";
 import PreviousButton from "../components/PreviousButton";
 import { useCurrentUserContext } from "../contexts/userContext";
 
+const { VITE_BACKEND_URL } = import.meta.env;
+
 function Settings() {
   /* Toast */
   const notifySuccess = () => {
@@ -87,7 +89,7 @@ function Settings() {
         body: formData,
       };
       // on appelle le back
-      fetch(`http://localhost:5000/api/avatars`, requestOptions)
+      fetch(`${VITE_BACKEND_URL}/api/avatars`, requestOptions)
         .then((response) => response.json())
         .then((results) => {
           // maj avatar
@@ -128,7 +130,7 @@ function Settings() {
     toast
       .promise(
         fetch(
-          `http://localhost:5000/api/users/${currentUser.id}`,
+          `${VITE_BACKEND_URL}/api/users/${currentUser.id}`,
           requestOptions
         ),
         {

@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import RegisterFirstStep from "../components/RegisterFirstStep";
 
+const { VITE_BACKEND_URL } = import.meta.env;
+
 function RegisterPage() {
   const navigate = useNavigate();
 
@@ -40,7 +42,7 @@ function RegisterPage() {
 
     e.preventDefault();
 
-    fetch(`http://localhost:5000/api/users/register`, requestOptions)
+    fetch(`${VITE_BACKEND_URL}/api/users/register`, requestOptions)
       .then((response) => response.text())
       .catch(console.error);
 

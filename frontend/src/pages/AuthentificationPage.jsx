@@ -8,6 +8,8 @@ import arobase from "../assets/arobaselogo.png";
 import locker from "../assets/lockerlogo.png";
 import forgotpass from "../assets/forgotpass.svg";
 
+const { VITE_BACKEND_URL } = import.meta.env;
+
 function AuthentificationPage() {
   /* Toast */
 
@@ -52,7 +54,7 @@ function AuthentificationPage() {
     });
 
     /* function push user and token in the localstorage */
-    fetch("http://localhost:5000/api/login", {
+    fetch(`${VITE_BACKEND_URL}/api/login`, {
       method: "POST",
       redirect: "follow",
       body,

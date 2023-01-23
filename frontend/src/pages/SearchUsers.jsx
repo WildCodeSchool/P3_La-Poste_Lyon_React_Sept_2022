@@ -6,6 +6,8 @@ import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
 import trash from "../assets/trash.svg";
 
+const { VITE_BACKEND_URL } = import.meta.env;
+
 function SearchUsers() {
   const notify = () => toast.success("L'utilisateur a bien été supprimé");
 
@@ -16,7 +18,7 @@ function SearchUsers() {
   const [users, setUsers] = useState([]);
 
   const fetchUsers = () => {
-    fetch(`http://localhost:5000/api/users`)
+    fetch(`${VITE_BACKEND_URL}/api/users`)
       .then((response) => response.json())
       .then((data) => {
         setUsers(data);
@@ -60,7 +62,7 @@ function SearchUsers() {
   const [id, setId] = useState();
 
   const handleDeleteUser = async () => {
-    fetch(`http://localhost:5000/api/users/${id}`, {
+    fetch(`${VITE_BACKEND_URL}/api/users/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,

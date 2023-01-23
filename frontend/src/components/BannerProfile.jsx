@@ -4,6 +4,8 @@ import logout from "../assets/logout.svg";
 import parametres from "../assets/parametres.svg";
 import CurrentUserContext from "../contexts/userContext";
 
+const { VITE_BACKEND_URL } = import.meta.env;
+
 function BannerProfile() {
   const { currentUser, setCurrentUser } = useContext(CurrentUserContext);
 
@@ -34,7 +36,7 @@ function BannerProfile() {
                   className="border-black border rounded-full w-20 h-20 mr-8"
                   src={
                     currentUser?.profilePicture !== null
-                      ? `http://localhost:5000/api/avatars/${currentUser.profilePicture}`
+                      ? `${VITE_BACKEND_URL}/api/avatars/${currentUser.profilePicture}`
                       : `https://api.multiavatar.com/${currentUser.firstname}.svg`
                   }
                   alt="userImage"

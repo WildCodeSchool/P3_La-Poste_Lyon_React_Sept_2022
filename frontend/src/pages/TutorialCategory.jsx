@@ -5,6 +5,8 @@ import CurrentUserContext from "../contexts/userContext";
 import PreviousButton from "../components/PreviousButton";
 import BannerProfile from "../components/BannerProfile";
 
+const { VITE_BACKEND_URL } = import.meta.env;
+
 function TutorialCategory() {
   const { categories } = useContext(CategoryContext);
   const { currentUser, token } = useContext(CurrentUserContext);
@@ -21,7 +23,7 @@ function TutorialCategory() {
     };
 
     fetch(
-      `http://localhost:5000/api/progressionTuto/${currentUser.id}`,
+      `${VITE_BACKEND_URL}/api/progressionTuto/${currentUser.id}`,
       requestOptions
     )
       .then((response) => response.json())

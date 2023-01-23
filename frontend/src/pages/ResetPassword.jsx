@@ -6,6 +6,8 @@ import granny from "../assets/granny1.svg";
 import locker from "../assets/lockerlogo.png";
 import forgotpass from "../assets/forgotpass.svg";
 
+const { VITE_BACKEND_URL } = import.meta.env;
+
 function ForgottenPassword() {
   /* Toast */
   const problemReleved = () => {
@@ -46,7 +48,7 @@ function ForgottenPassword() {
       });
 
       /* function push user and token in the localstorage */
-      fetch("http://localhost:5000/api/resetpassword", {
+      fetch(`${VITE_BACKEND_URL}/api/resetpassword`, {
         method: "POST",
         redirect: "follow",
         body,

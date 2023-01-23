@@ -4,6 +4,8 @@ import PreviousButton from "../components/PreviousButton";
 import forgotemail from "../assets/email.svg";
 import arobase from "../assets/arobaselogo.png";
 
+const { VITE_BACKEND_URL } = import.meta.env;
+
 function ForgottenEmail() {
   /* Toast */
 
@@ -31,7 +33,7 @@ function ForgottenEmail() {
     });
 
     /* When the user enter his email adress, we will begin all the middleware of the route /forgottenpassword */
-    fetch("http://localhost:5000/api/forgottenemail", {
+    fetch(`${VITE_BACKEND_URL}/api/forgottenemail`, {
       method: "POST",
       redirect: "follow",
       body,
