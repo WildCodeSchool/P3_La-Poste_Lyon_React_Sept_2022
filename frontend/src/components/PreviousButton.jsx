@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import previousbtn from "../assets/previousbtn.svg";
+import previousbtn from "../assets/items/previousbtn.svg";
 
 function PreviousButton() {
   const navigate = useNavigate();

@@ -3,10 +3,10 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast, Toaster } from "react-hot-toast";
 import PreviousButton from "../components/PreviousButton";
 import { useCurrentUserContext } from "../contexts/userContext";
-import granny from "../assets/granny1.svg";
-import arobase from "../assets/arobaselogo.png";
-import locker from "../assets/lockerlogo.png";
-import forgotpass from "../assets/forgotpass.svg";
+import granny from "../assets/connexionPage/granny1.svg";
+import arobase from "../assets/connexionPage/email-logo-connexion.png";
+import locker from "../assets/connexionPage/lockerlogo.png";
+import forgotpass from "../assets/connexionPage/img-user-connexion.svg";
 
 function AuthentificationPage() {
   /* Toast */

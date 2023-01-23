@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
+import homePageDesktop from "../assets/connexionPage/desktopconnexion.png";
+import homePageMobile from "../assets/connexionPage/mobileconnexion.png";
 
 export default function Home() {
   return (
@@ -11,14 +13,14 @@ export default function Home() {
             {/* switching image by hidden property */}
             <img
               className="block sm:hidden "
-              src="./src/assets/media/téléphoneprojet.png"
-              alt="téléphone"
+              src={homePageMobile}
+              alt="Home Page - Connexion for mobile"
             />
 
             <img
               className="hidden sm:block h-auto w-8/12"
-              src="./src/assets/media/ordinateurconection.png"
-              alt="ordinateur"
+              src={homePageDesktop}
+              alt="Home Page - Connexion for desktop"
             />
             <div className="flex w-5/6 justify-center items-center">
               <button

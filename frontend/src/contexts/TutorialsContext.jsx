@@ -19,10 +19,10 @@ export function TutorialsContextProvider({ children }) {
         });
     };
     getTutorials();
-  }, [tutorials]);
+  }, [tutorials.length]);
 
   return (
-    <TutorialsContext.Provider value={{ tutorials }}>
+    <TutorialsContext.Provider value={{ tutorials, setTutorials }}>
       {children}
     </TutorialsContext.Provider>
   );
