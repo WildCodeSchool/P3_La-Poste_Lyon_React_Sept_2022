@@ -28,7 +28,7 @@ function UserCourse() {
       </div>
       <div className="flex flex-col">
         <div className="flex justify-center">
-          <NavLink to="/dashboard">
+          <NavLink to="/api/tutos/2">
             <span>
               <img src={step1} alt="Step1" />
             </span>
@@ -39,7 +39,7 @@ function UserCourse() {
             <img className="h-28 md:h-64" src={wellDone} alt="welldone" />
           </div>
           <div className="flex justify-center grayscale">
-            <NavLink>
+            <NavLink to="/api/tutos/3">
               <span>
                 <img src={step2} alt="Step2" />
               </span>
@@ -50,64 +50,72 @@ function UserCourse() {
           <img className="h-28 md:h-64" src={onlineWishes} alt="onlineWishes" />
         </div>
         <div className="flex justify-center grayscale">
-          <span>
-            <img src={step4} alt="Step3" />
-          </span>
+          <NavLink to="/api/tutos/4">
+            <span>
+              <img src={step4} alt="Step3" />
+            </span>
+          </NavLink>
         </div>
         <div className="flex justify-center grayscale">
-          <span>
-            <img src={step4} alt="Step4" className="rotate-45" />
-          </span>
+          <NavLink to="/api/tutos/5">
+            <span>
+              <img src={step4} alt="Step4" className="rotate-45" />
+            </span>
+          </NavLink>
         </div>
-        <div className="ml-16 md:flex md:justify-center grayscale">
-          <span>
-            <img className="h-28 md:h-64" src={blooming} alt="blooming" />
-          </span>
-        </div>
-        <div className="flex justify-center grayscale">
-          <span>
-            <img src={step4} alt="Step5" className="mt-5" />
-          </span>
-        </div>
-        <div className="flex justify-end md:justify-center mr-10 md:mr-60 grayscale">
-          <span>
-            <img
-              className="h-28 md:h-64 justify-end my-5"
-              src={completed}
-              alt="welldone"
-            />
-          </span>
+        <div className="ml-16 md:flex md:justify-center md:mr-80 grayscale">
+          <img className="h-28 md:h-64" src={blooming} alt="blooming" />
         </div>
         <div className="flex justify-center grayscale">
-          <span>
-            <img src={step5} alt="Step6" />
-          </span>
+          <NavLink to="/api/tutos/6">
+            <span>
+              <img src={step4} alt="Step5" className="mt-5" />
+            </span>
+          </NavLink>
+        </div>
+        <div className="flex justify-end md:justify-center mr-10 md:ml-72 grayscale">
+          <img
+            className="h-28 md:h-64 justify-end my-5"
+            src={completed}
+            alt="welldone"
+          />
         </div>
         <div className="flex justify-center grayscale">
-          <span>
-            <img src={step6} alt="Step7" />
-          </span>
-        </div>
-        <div className="flex justify-end md:justify-center mr-10 md:mr-36 grayscale">
-          <span>
-            <img
-              className="h-28 md:h-64 justify-end mb-8"
-              src={highFive}
-              alt="highFive"
-            />
-          </span>
+          <NavLink to="/api/tutos/11">
+            <span>
+              <img src={step5} alt="Step6" />
+            </span>
+          </NavLink>
         </div>
         <div className="flex justify-center grayscale">
-          <span>
-            <img src={step7} alt="Step8" />
-          </span>
+          <NavLink to="/api/tutos/13">
+            <span>
+              <img src={step6} alt="Step7" />
+            </span>
+          </NavLink>
+        </div>
+        <div className="flex justify-end md:justify-center mr-10 md:ml-80 grayscale">
+          <img
+            className="h-28 md:h-64 justify-end mb-8"
+            src={highFive}
+            alt="highFive"
+          />
         </div>
         <div className="flex justify-center grayscale">
-          <span>
-            <img className="mr-32" src={step9} alt="Step9" />
-          </span>
+          <NavLink to="/api/tutos/20">
+            <span>
+              <img src={step7} alt="Step8" />
+            </span>
+          </NavLink>
         </div>
-        <div className="ml-4 md:ml-28 mb-6 grayscale">
+        <div className="flex justify-center grayscale">
+          <NavLink to="/api/tutos/35">
+            <span>
+              <img className="mr-32" src={step9} alt="Step9" />
+            </span>
+          </NavLink>
+        </div>
+        <div className="ml-4 md:flex md:justify-center md:mr-80 mb-6 grayscale">
           <span>
             <img className="h-28 md:h-64" src={awards} alt="awards" />
           </span>
