@@ -1,18 +1,5 @@
 const models = require("../models");
 
-// get all steppers
-const browse = (req, res) => {
-  models.stepper
-    .findAll()
-    .then(([rows]) => {
-      res.send(rows);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
-};
-
 // get steppers by its id - to edit to get steppers by tuto_id
 const read = (req, res) => {
   models.stepper
@@ -66,7 +53,7 @@ const add = (req, res) => {
     });
 };
 
-/* delete all steos of  the stepper associate to the tutoID  */
+/* delete all steps of  the stepper associate to the tutoID  */
 const destroy = (req, res) => {
   models.stepper
     .deleteAll(req.params.id)
@@ -84,7 +71,6 @@ const destroy = (req, res) => {
 };
 
 module.exports = {
-  browse,
   read,
   edit,
   add,

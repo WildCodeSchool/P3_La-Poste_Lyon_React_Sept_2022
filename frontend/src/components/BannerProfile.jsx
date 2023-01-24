@@ -15,7 +15,6 @@ function BannerProfile() {
     userLevel = "Intermédiaire";
   }
 
-  // Log Out remove localStorage and navigate to the main page with a reload
   const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("user");

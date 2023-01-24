@@ -94,8 +94,7 @@ function RegisterSecondStep({
                   />
 
                   <div className="flex justify-center pt-10">
-                    {/* eslint-disable react/button-has-type */}
-                    <button type="onSubmit" className="flex">
+                    <button type="submit" className="flex">
                       <img
                         src={nextBtn}
                         alt="next button"

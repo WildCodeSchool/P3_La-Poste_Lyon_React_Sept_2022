@@ -53,10 +53,9 @@ const verifyTokenPassword = (req, res, next) => {
       if (users[0] != null) {
         // eslint-disable-next-line prefer-destructuring
         req.user = users[0];
-
         next();
       } else {
-        res.sendStatus(200);
+        res.sendStatus(404);
       }
     })
     .catch((err) => {

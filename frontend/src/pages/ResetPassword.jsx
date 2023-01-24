@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
 import { useNavigate, useParams } from "react-router-dom";
 import PreviousButton from "../components/PreviousButton";
@@ -6,8 +6,15 @@ import granny from "../assets/connexionPage/granny1.svg";
 import locker from "../assets/connexionPage/lockerlogo.png";
 import forgotpass from "../assets/connexionPage/img-user-connexion.svg";
 
-function ForgottenPassword() {
+function ResetPassword() {
   /* Toast */
+  const navigate = useNavigate();
+
+  const invalidToken = () => {
+    toast("Vous n'êtes pas autorisés à renouveler votre mot de passe", {
+      icon: "🚫",
+    });
+  };
   const problemReleved = () => {
     toast("Les deux mots de passe doivent être identiques !", {
       icon: "🚫",
@@ -17,8 +24,33 @@ function ForgottenPassword() {
   /* I recup passwordToken from the URL */
   const { passwordToken } = useParams();
 
-  /* Import useNavigate to move after the login  */
-  const navigate = useNavigate();
+  const checkValidToken = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+    /* It's an object that will be sent in the body of request */
+    const body = JSON.stringify({
+      passwordToken,
+    });
+    fetch(`http://localhost:5000/api/passwordReset`, {
+      method: "POST",
+      redirect: "follow",
+      body,
+      headers: myHeaders,
+    })
+      .then((response) => {
+        console.warn("checkValidToken", response);
+        if (response.status !== 200) {
+          invalidToken();
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+  useEffect(() => {
+    checkValidToken();
+  }, []);
 
   /* set password */
   const [password, setPassword] = useState("");
@@ -102,8 +134,8 @@ function ForgottenPassword() {
               required
               value={passwordVerification}
               onChange={verifyPassword}
-              id="password"
-              name="password"
+              id="passwordCheck"
+              name="passwordCheck"
               placeholder="Confirmer votre nouveau mot de passe"
               className="bg-gray-200  text-gray-600 py-2 px-4  w-full rounded-2xl  "
             />
@@ -132,4 +164,4 @@ function ForgottenPassword() {
   );
 }
 
-export default ForgottenPassword;
+export default ResetPassword;
