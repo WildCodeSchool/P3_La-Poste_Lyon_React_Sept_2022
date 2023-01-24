@@ -1,6 +1,8 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import CurrentUserContext from "./userContext";
 
+const { VITE_BACKEND_URL } = import.meta.env;
+
 const TutorialStatusContext = createContext();
 export { TutorialStatusContext };
 
@@ -11,7 +13,7 @@ export function TutorialStatusContextProvider({ children }) {
   const { currentUser } = useContext(CurrentUserContext);
 
   const getTutorialStatus = () => {
-    fetch(`http://localhost:5000/api/tutorialStatus/${currentUser.id}`)
+    fetch(`${VITE_BACKEND_URL}/api/tutorialStatus/${currentUser.id}`)
       .then((response) => response.json())
       .then((data) => {
         setTutorialStatus(data);

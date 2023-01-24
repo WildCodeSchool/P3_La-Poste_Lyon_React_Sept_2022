@@ -1,5 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 
+const { VITE_BACKEND_URL } = import.meta.env;
+
 const CategoryContext = createContext();
 export { CategoryContext };
 
@@ -9,7 +11,7 @@ export function CategoryContextProvider({ children }) {
 
   useEffect(() => {
     const getCategories = () => {
-      fetch("http://localhost:5000/api/categories")
+      fetch(`${VITE_BACKEND_URL}/api/categories`)
         .then((response) => response.json())
         .then((data) => {
           setCategories(data);
