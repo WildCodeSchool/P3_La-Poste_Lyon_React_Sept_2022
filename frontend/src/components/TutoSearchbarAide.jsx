@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { CategoryContext } from "../contexts/CategoryContext";
 
-function TutoSearchbar() {
+function TutoSearchbar({ handleOpen }) {
   /* Fetch all the tutorials */
   const [tutorials, setTutorials] = useState([]);
 
@@ -34,24 +34,36 @@ function TutoSearchbar() {
 
   return (
     <div>
-      <input
-        type="text"
-        id="tutoriel"
-        name="tutoriels"
-        placeholder="Recherchez une catégorie de tu"
-        className=" border-gray-400 rounded-lg mb-5 p-4 w-4/6 md:w-2/6 h-10  bg-gray-200"
-        onChange={(e) => setSearch(e.target.value)}
-      />
-
       <section className="antialiased bg-gray-100 text-gray-600 w-screen px-4">
         <div className="flex flex-col justify-center bg-gray-200 py-3 w-full h-full">
           <div className="w-5/6  mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
-            <header className="px-5 py-4 border-b border-gray-100">
+            <header className="px-5 py-4 border-b border-gray-100 flex justify-between">
               <h2 className="text-2xl font-bold text-main-blue">Tutoriels</h2>
+              <input
+                type="text"
+                id="tutoriel"
+                name="tutoriels"
+                placeholder="Recherchez une catégorie de tutoriel"
+                className=" border-gray-400 rounded-lg mb-5 p-4 w-4/6 md:w-2/6 h-10  bg-gray-200"
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <button type="button" onClick={handleOpen}>
+                fermer
+              </button>
             </header>
             <div className="p-3">
               <div className="overflow-x-auto">
                 <table className="table-auto w-full">
+                  <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                    <tr>
+                      <th className="p-2 whitespace-nowrap">
+                        <div className="font-semibold text-left">Titre</div>
+                      </th>
+                      <th className="p-2 whitespace-nowrap">
+                        <div className="font-semibold text-left">Catégorie</div>
+                      </th>
+                    </tr>
+                  </thead>
                   <tbody className="text-sm divide-y divide-gray-100">
                     {tutorials.length === 0 ? (
                       <div className="mx-0 text-1xl">
