@@ -7,7 +7,7 @@ import CurrentUserContext from "../contexts/userContext";
 import { TutorialStatusContext } from "../contexts/TutorialStatusContext";
 import completeStep from "../assets/items/completeStep.svg";
 
-export default function Stepper(filteredSteppers) {
+export default function Stepper(steppers) {
   const notify = () =>
     toast.success("Bravo ! Vous avez réalisé le tutoriel ! 👋 !");
 
@@ -17,7 +17,7 @@ export default function Stepper(filteredSteppers) {
   const { currentUser, token } = useContext(CurrentUserContext);
 
   /* eslint-disable react/destructuring-assignment */
-  const steps = filteredSteppers?.filteredSteppers;
+  const steps = steppers?.steppers;
 
   const navigate = useNavigate();
 

@@ -33,13 +33,12 @@ function TutorialsManagement() {
     .replace(/[\u0300-\u036f+.]/g, "");
 
   /* Filtred tutorials precomputed */
-  const filtredTutorials = tutorials?.filter(
-    (tutorial) =>
-      tutorial.title
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .includes(normalizeSearch) || tutorial.category_name === search
+  const filtredTutorials = tutorials?.filter((tutorial) =>
+    tutorial.title
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .includes(normalizeSearch)
   );
 
   /* Match the category id to the category name */
@@ -144,7 +143,7 @@ function TutorialsManagement() {
                       </tr>
                     </thead>
                     <tbody className="text-sm divide-y divide-gray-100">
-                      {tutorials.length === 0 ? (
+                      {filtredTutorials.length === 0 ? (
                         <div className="mx-0 text-1xl">
                           Aucun tutoriel n'a été trouvé
                         </div>
