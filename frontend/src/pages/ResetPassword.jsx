@@ -10,6 +10,8 @@ function ResetPassword() {
   /* Toast */
   const navigate = useNavigate();
 
+  const { VITE_BACKEND_URL } = import.meta.env;
+
   const invalidToken = () => {
     toast("Vous n'êtes pas autorisés à renouveler votre mot de passe", {
       icon: "🚫",
@@ -31,7 +33,7 @@ function ResetPassword() {
     const body = JSON.stringify({
       passwordToken,
     });
-    fetch(`http://localhost:5000/api/passwordReset`, {
+    fetch(`${VITE_BACKEND_URL}/api/passwordReset`, {
       method: "POST",
       redirect: "follow",
       body,
@@ -78,7 +80,7 @@ function ResetPassword() {
       });
 
       /* function push user and token in the localstorage */
-      fetch("http://localhost:5000/api/resetpassword", {
+      fetch(`${VITE_BACKEND_URL}/api/resetpassword`, {
         method: "POST",
         redirect: "follow",
         body,

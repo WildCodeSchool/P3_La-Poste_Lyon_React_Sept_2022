@@ -6,13 +6,15 @@ import Stepper from "../components/Stepper";
 import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
 
+const { VITE_BACKEND_URL } = import.meta.env;
+
 function Tutorial() {
   const { id } = useParams();
 
   const [tutorial, setTutorial] = useState([]);
   useEffect(() => {
     const fetchTutorial = () => {
-      fetch(`http://localhost:5000/api/tutos/${id}`)
+      fetch(`${VITE_BACKEND_URL}/api/tutos/${id}`)
         .then((response) => response.json())
         .then((data) => setTutorial(data))
         .catch((error) => {
@@ -26,7 +28,7 @@ function Tutorial() {
   const [steppers, setSteppers] = useState([]);
   useEffect(() => {
     const fetchSteppers = () => {
-      fetch(`http://localhost:5000/api/steppers`)
+      fetch(`${VITE_BACKEND_URL}/api/steppers`)
         .then((response) => response.json())
         .then((data) => setSteppers(data))
         .catch((error) => {
