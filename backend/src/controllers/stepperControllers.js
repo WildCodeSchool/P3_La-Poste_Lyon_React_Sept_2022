@@ -1,5 +1,18 @@
 const models = require("../models");
 
+// get all steppers
+const browse = (req, res) => {
+  models.stepper
+    .findAll()
+    .then(([rows]) => {
+      res.send(rows);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 // get steppers by its id - to edit to get steppers by tuto_id
 const read = (req, res) => {
   models.stepper
@@ -71,6 +84,7 @@ const destroy = (req, res) => {
 };
 
 module.exports = {
+  browse,
   read,
   edit,
   add,
