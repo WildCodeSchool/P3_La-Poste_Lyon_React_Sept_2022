@@ -1,5 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 
+const { VITE_BACKEND_URL } = import.meta.env;
+
 const TutorialsContext = createContext();
 export { TutorialsContext };
 
@@ -9,7 +11,7 @@ export function TutorialsContextProvider({ children }) {
 
   useEffect(() => {
     const getTutorials = () => {
-      fetch("http://localhost:5000/api/tutos/all")
+      fetch(`${VITE_BACKEND_URL}/api/tutos/all`)
         .then((response) => response.json())
         .then((data) => {
           setTutorials(data);
