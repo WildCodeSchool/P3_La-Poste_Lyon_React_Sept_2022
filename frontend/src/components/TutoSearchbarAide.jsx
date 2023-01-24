@@ -33,85 +33,93 @@ function TutoSearchbar() {
   const { categories } = useContext(CategoryContext);
 
   return (
-    <div>
-      <section className="antialiased bg-gray-100 text-gray-600 w-screen px-4">
-        <div className="flex flex-col justify-center bg-gray-200 py-3 w-full h-full">
-          <div className="w-5/6  mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+    <div className="flex flex-col items-center">
+      <section className="antialiased w-4/6 bg-gray-100 text-gray-600 px-4">
+        <div className="justify-center py-3 w-full h-full">
+          <div className="md:w-2/6 mx-auto md:absolute md:top-0 md:right-20">
             <div className="flex justify-center">
               <input
                 type="text"
                 id="tutoriel"
                 name="tutoriels"
-                placeholder="Recherchez une catégorie de tutoriel"
-                className=" border-gray-400 rounded-lg mb-5 p-4 w-4/6 md:w-2/6 h-10  bg-gray-200"
+                placeholder="Recherchez un tutoriel"
+                className=" border-gray-400 rounded-lg mb-5 p-4 w-3/6 md:w-4/6 h-10 "
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>
             {search.length !== 0 ? (
-              <div>
-                <header className="px-5 py-4 border-b border-gray-100 flex justify-between">
-                  <h2 className="text-2xl font-bold text-main-blue">
-                    Tutoriels
-                  </h2>
-                </header>
+              <div className="flex justify-center">
+                <div className="w-5/6">
+                  <header className="px-5 py-4 border-b border-gray-100 flex justify-between">
+                    <h2 className="text-2xl font-bold text-main-blue">
+                      Tutoriels
+                    </h2>
+                  </header>
 
-                <div className="p-3">
-                  <div className="overflow-x-auto">
-                    <table className="table-auto w-full">
-                      <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
-                        <tr>
-                          <th className="p-2 whitespace-nowrap">
-                            <div className="font-semibold text-left">Titre</div>
-                          </th>
-                          <th className="p-2 whitespace-nowrap">
-                            <div className="font-semibold text-left">
-                              Catégorie
+                  <div className="p-3">
+                    <div className="overflow-x-auto">
+                      <table className="table-auto w-full">
+                        <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                          <tr>
+                            <th className="p-2 whitespace-nowrap">
+                              <div className="font-semibold text-left">
+                                Titre
+                              </div>
+                            </th>
+                            <th className="p-2 whitespace-nowrap">
+                              <div className="font-semibold text-left">
+                                Catégorie
+                              </div>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody className="text-sm divide-y divide-gray-100">
+                          {filtredTutorials.length === 0 ? (
+                            <div className="mx-0 text-1xl">
+                              Aucun tutoriel n'a été trouvé
                             </div>
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody className="text-sm divide-y divide-gray-100">
-                        {filtredTutorials.length === 0 ? (
-                          <div className="mx-0 text-1xl">
-                            Aucun tutoriel n'a été trouvé
-                          </div>
-                        ) : (
-                          filtredTutorials?.slice(0, 4).map((tutorial) => (
-                            <tr key={tutorial.id} className="hover:bg-gray-100">
-                              <td className="p-2 whitespace-nowrap">
-                                <div className="flex items-center">
-                                  <div className="font-medium text-gray-800">
-                                    {tutorial.title}
+                          ) : (
+                            filtredTutorials?.slice(0, 4).map((tutorial) => (
+                              <tr
+                                key={tutorial.id}
+                                className="hover:bg-gray-100"
+                              >
+                                <td className="p-2 whitespace-nowrap">
+                                  <div className="flex items-center">
+                                    <div className="font-medium text-gray-800">
+                                      {tutorial.title}
+                                    </div>
                                   </div>
-                                </div>
-                              </td>
-                              <td className="p-2 whitespace-nowrap">
-                                <div className="flex flex-col justify-center ">
-                                  <img
-                                    className="rounded-full"
-                                    src={
+                                </td>
+                                <td className="p-2 whitespace-nowrap">
+                                  <div className="flex flex-col justify-center ">
+                                    <img
+                                      className="rounded-full"
+                                      src={
+                                        categories?.find(
+                                          (category) =>
+                                            category?.id ===
+                                            tutorial?.category_id
+                                        )?.icon
+                                      }
+                                      width="40"
+                                      height="40"
+                                      alt={tutorial.title}
+                                    />{" "}
+                                    {
                                       categories?.find(
                                         (category) =>
                                           category?.id === tutorial?.category_id
-                                      )?.icon
+                                      )?.name
                                     }
-                                    width="40"
-                                    height="40"
-                                    alt={tutorial.title}
-                                  />{" "}
-                                  {
-                                    categories?.find(
-                                      (category) =>
-                                        category?.id === tutorial?.category_id
-                                    )?.name
-                                  }
-                                </div>
-                              </td>
-                            </tr>
-                          ))
-                        )}
-                      </tbody>
-                    </table>
+                                  </div>
+                                </td>
+                              </tr>
+                            ))
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>

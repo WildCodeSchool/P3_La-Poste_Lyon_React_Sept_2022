@@ -3,7 +3,7 @@ import TutoSearchbarAide from "../components/TutoSearchbarAide";
 
 function Help() {
   return (
-    <div className="Help">
+    <div className="Help relative">
       <div className="mb-24">
         <div className="mt-7 mb-7 flex flex-col items-center">
           <h1 className="flex justify-center items-center text-bold text-lg text-white rounded-3xl shadow-lg bg-[#003DA5] w-2/3 h-10 md:text-2xl text-center md:w-1/4 md:h-14 md:text-center m-3">
