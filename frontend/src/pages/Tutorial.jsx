@@ -38,10 +38,6 @@ function Tutorial() {
     fetchSteppers();
   }, []);
 
-  const filteredSteppers = steppers.filter(
-    (stepper) => stepper.tuto_id === parseInt(id, 10)
-  );
-
   return (
     <>
       <BannerProfile />
@@ -67,7 +63,7 @@ function Tutorial() {
           />
         </div>
         {/* Stepper */}
-        <Stepper filteredSteppers={filteredSteppers} />
+        <Stepper steppers={steppers} />
       </section>
     </>
   );

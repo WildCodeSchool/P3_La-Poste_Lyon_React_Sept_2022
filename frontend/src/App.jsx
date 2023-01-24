@@ -16,11 +16,11 @@ function App() {
   };
 
   return (
-    <CurrentUserProvider>
-      <CategoryContextProvider>
-        <TutorialsContextProvider>
-          <TutorialStatusContextProvider>
-            <Router>
+    <Router>
+      <CurrentUserProvider>
+        <CategoryContextProvider>
+          <TutorialsContextProvider>
+            <TutorialStatusContextProvider>
               <NavigationBar
                 handleAdminView={handleAdminView}
                 adminView={adminView}
@@ -28,12 +28,12 @@ function App() {
               <AllRoutes
                 handleAdminView={handleAdminView}
                 adminView={adminView}
-              />
-            </Router>{" "}
-          </TutorialStatusContextProvider>
-        </TutorialsContextProvider>
-      </CategoryContextProvider>
-    </CurrentUserProvider>
+              />{" "}
+            </TutorialStatusContextProvider>
+          </TutorialsContextProvider>
+        </CategoryContextProvider>
+      </CurrentUserProvider>
+    </Router>
   );
 }
 
