@@ -11,6 +11,14 @@ class RewardManager extends AbstractManager {
       [id]
     );
   }
+
+  post(reward) {
+    return this.connection.query(
+      `insert into ${this.table}  (badge_id, user_id) 
+        VALUES (?, ?)`,
+      [reward.badge_id, reward.user_id]
+    );
+  }
 }
 
 module.exports = RewardManager;
