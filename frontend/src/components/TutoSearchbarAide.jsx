@@ -45,7 +45,7 @@ function TutoSearchbar() {
                 id="tutoriel"
                 name="tutoriels"
                 placeholder="Recherchez un tutoriel"
-                className=" border-gray-400 rounded-lg mb-5 p-4 w-3/6 md:w-4/6 h-10 "
+                className="border-solid border-2 border-gray-400 rounded-lg mb-5 p-4 w-6/6 text-center md:w-4/6 h-10 "
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>

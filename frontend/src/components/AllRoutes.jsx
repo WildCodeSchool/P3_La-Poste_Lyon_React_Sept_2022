@@ -60,7 +60,7 @@ function AllRoutes({ adminView, handleAdminView }) {
           <Route path="/categories/:id/tutorials" element={<TutorialList />} />
           <Route path="/history" element={<Historic />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="/aide" element={<Help />} />
+          <Route path="/help" element={<Help />} />
         </>
       )}
       {/* Admin */}
