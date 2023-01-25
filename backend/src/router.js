@@ -136,6 +136,11 @@ router.put(
 
 router.post("/api/tutoStatus", tutorialStatusControllers.addTutoStatus);
 
+router.delete(
+  "/api/deleteStatus/:id",
+  tutorialStatusControllers.deleteStatusByUser
+);
+
 // Stepper management
 router.delete(
   "/api/steppers/tuto_id/:id",

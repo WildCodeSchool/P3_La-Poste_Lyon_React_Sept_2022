@@ -68,6 +68,13 @@ class TutoManager extends AbstractManager {
       [tutorialStatus.tuto_id, tutorialStatus.user_id]
     );
   }
+
+  deleteAllTutoByUser(id) {
+    return this.connection.query(
+      `delete from ${this.table} where user_id = ?`,
+      [id]
+    );
+  }
 }
 
 module.exports = TutoManager;
