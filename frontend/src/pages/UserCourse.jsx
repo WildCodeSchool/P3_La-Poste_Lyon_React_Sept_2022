@@ -57,7 +57,7 @@ function UserCourse() {
       <BannerProfile />
       <PreviousButton />
       <div className="mt-7 mb-7 flex justify-center">
-        <h1 className="flex justify-center items-center text-bold text-xl text-white rounded-3xl shadow-lg bg-[#003DA5] w-2/3 h-10 md:text-2xl text-center md:w-1/4 md:h-14 md:text-center">
+        <h1 className="m-3 flex justify-center items-center font-bold text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">
           Parcours utilisateur
         </h1>
       </div>
@@ -72,7 +72,7 @@ function UserCourse() {
                       /* index is the current usercourse index. Each time he maps elements, he looks at whether the modulo2 = 1 index (therefore odd) if yes, he positions the source of the image to that defined on odd.  */
                       src={index % 2 === 1 ? odd : even}
                       alt={`Step${el.id}`}
-                      className="cursor-pointer transition-transform duration-200 transform hover:scale-150 md:h-96"
+                      className="cursor-pointer transition-transform duration-200 transform hover:scale-110 md:h-96"
                     />
                   </span>
                 </NavLink>
@@ -121,7 +121,14 @@ function UserCourse() {
           )}
         </div>
       ))}
-      {/* Si tous les tutoriels presents sur la page sont en statu finished, alors j'affiche un message de félicitations, sinon rien. */}
+      {/* Si tous les tutoriels presents sur la page sont en statu finished, alors j'affiche un message de félicitations, sinon rien. 
+      Pour afficher une pop-up de félicitation lorsque tous les tutoriels ont le statut "finished", vous pouvez utiliser une fonction qui vérifie si tous les tutoriels ont ce statut, et si c'est le cas, affiche la pop-up. Par exemple, vous pouvez utiliser la fonction Array.prototype.every() pour vérifier si tous les éléments d'un tableau répondent à une condition donnée (ici, si le statut est "finished"). Vous pourriez écrire quelque chose comme ceci :
+
+Copy code
+if (tutorialStatus.every(status => status.status === 'finished')) {
+  Afficher la pop-up de félicitation ici
+}
+Cela devrait être placé après la définition de la fonction findTutorialStatus() dans votre code. */}
     </div>
   );
 }
