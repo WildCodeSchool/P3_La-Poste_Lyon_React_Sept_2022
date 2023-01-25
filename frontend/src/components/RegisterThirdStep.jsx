@@ -1,8 +1,8 @@
 import React from "react";
 import { scroller } from "react-scroll";
 import RegisterFourthStep from "./RegisterFourthStep";
-import step3 from "../assets/id3create.svg";
-import nextBtn from "../assets/nextBtn.svg";
+import step3 from "../assets/connexionPage/registerPage/id3create.svg";
+import nextBtn from "../assets/items/nextBtn.svg";
 
 function RegisterThirdStep({
   registerInformations,

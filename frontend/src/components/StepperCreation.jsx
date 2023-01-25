@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import quillConfig from "../config/quillConfig";
 import TutorialCreationTitles from "./TutorialCreationTitles";
-import addstep from "../assets/addstep.svg";
-import removestep from "../assets/removestep.svg";
+import addstep from "../assets/items/addstep.svg";
+import removestep from "../assets/items/removestep.svg";
 
 export default function StepperCreation({
   handleAllStepsContent,

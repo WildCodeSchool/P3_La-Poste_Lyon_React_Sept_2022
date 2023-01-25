@@ -5,7 +5,6 @@ import CurrentUserContext from "../contexts/userContext";
 
 function Dashboard({ adminView }) {
   const { currentUser } = useContext(CurrentUserContext);
-
   return (
     <>
       {currentUser && currentUser.admin === 0 && <DashboardUser />}

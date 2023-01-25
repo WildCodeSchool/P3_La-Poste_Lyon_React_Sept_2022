@@ -1,7 +1,7 @@
 import React from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import stepCompleted from "../assets/step-complete.svg";
+import stepCompleted from "../assets/items/step-complete.svg";
 
 function TutorialValidatorPreview({
   previewData,

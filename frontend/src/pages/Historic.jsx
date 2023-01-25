@@ -1,9 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import PreviousButton from "@components/PreviousButton";
-import BannerProfile from "@components/BannerProfile";
+import PreviousButton from "../components/PreviousButton";
+import BannerProfile from "../components/BannerProfile";
 import { useCurrentUserContext } from "../contexts/userContext";
 import { CategoryContext } from "../contexts/CategoryContext";
+
+const { VITE_BACKEND_URL } = import.meta.env;
 
 function Historic() {
   const { currentUser, token } = useCurrentUserContext();
@@ -23,7 +25,7 @@ function Historic() {
       },
     };
     fetch(
-      `http://localhost:5000/api/historical/finished/${currentUser.id}`,
+      `${VITE_BACKEND_URL}/api/historical/finished/${currentUser.id}`,
       requestOptions
     )
       .then((response) => response.json())

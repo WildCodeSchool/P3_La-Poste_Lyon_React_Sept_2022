@@ -1,10 +1,10 @@
 import React from "react";
 import { scroller } from "react-scroll";
 import RegisterThirdStep from "./RegisterThirdStep";
-import questionbtn from "../assets/question-circle.svg";
-import step2 from "../assets/id2create.svg";
+import questionbtn from "../assets/items/question-circle.svg";
+import step2 from "../assets/connexionPage/registerPage/id2create.svg";
 import RegisterSecondStepModale from "./RegisterSecondStepModale";
-import nextBtn from "../assets/nextBtn.svg";
+import nextBtn from "../assets/items/nextBtn.svg";
 
 function RegisterSecondStep({
   registerInformations,
@@ -94,8 +94,7 @@ function RegisterSecondStep({
                   />
 
                   <div className="flex justify-center pt-10">
-                    {/* eslint-disable react/button-has-type */}
-                    <button type="onSubmit" className="flex">
+                    <button type="submit" className="flex">
                       <img
                         src={nextBtn}
                         alt="next button"

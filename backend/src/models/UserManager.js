@@ -6,9 +6,10 @@ class UserManager extends AbstractManager {
   }
 
   find(id) {
-    return this.connection.query(`select * from  ${this.table} where id = ?`, [
-      id,
-    ]);
+    return this.connection.query(
+      `select firstname, lastname, email, phone, profilePicture, level, admin, creationDate from  ${this.table} where id = ?`,
+      [id]
+    );
   }
 
   findByEmailWithPassword(email) {
@@ -19,7 +20,9 @@ class UserManager extends AbstractManager {
   }
 
   findAll() {
-    return this.connection.query(`select * from  ${this.table}`);
+    return this.connection.query(
+      `select firstname, lastname, email, phone, profilePicture, level, admin, creationDate from  ${this.table}`
+    );
   }
 
   insert(user) {
@@ -59,7 +62,7 @@ class UserManager extends AbstractManager {
 
   selectToken(passwordToken) {
     return this.connection.query(
-      `select * from ${this.table} where passwordToken = ?`,
+      `select id from ${this.table} where passwordToken = ?`,
       [passwordToken]
     );
   }

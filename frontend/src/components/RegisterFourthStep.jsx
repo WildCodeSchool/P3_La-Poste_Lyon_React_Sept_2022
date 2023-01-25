@@ -1,6 +1,6 @@
 import React from "react";
-import nextBtn from "../assets/nextBtn.svg";
-import winner from "../assets/winner.svg";
+import nextBtn from "../assets/items/nextBtn.svg";
+import winner from "../assets/connexionPage/registerPage/winner.svg";
 
 function RegisterFourthStep({ submitRegisterInformations }) {
   return (

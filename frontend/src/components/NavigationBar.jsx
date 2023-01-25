@@ -1,33 +1,40 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Switch } from "@material-tailwind/react";
-import logo from "../assets/Logo.png";
-import closemenu from "../assets/closemenu.svg";
-import openmenu from "../assets/menuopen.svg";
+import logo from "../assets/navBar/Logo.png";
+import closemenu from "../assets/navBar/closemenu.svg";
+import openmenu from "../assets/navBar/menuopen.svg";
 import CurrentUserContext from "../contexts/userContext";
 import NavigationBarAdmin from "./NavigationBarAdmin";
 import NavigationBarUser from "./NavigationBarUser";
 
 function NavigationBar({ adminView, handleAdminView }) {
-  const { currentUser } = useContext(CurrentUserContext);
+  const { setCurrentUser, currentUser } = useContext(CurrentUserContext);
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   // Log Out remove localStorage and navigate to the main page with a reload
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+    setCurrentUser({});
+    setOpen(!open);
     navigate("/");
-    window.location.reload();
   };
 
   const wayFromLogo = () => {
-    // eslint-disable-next-line no-unused-expressions
-    currentUser.email ? navigate("/dashboard") : navigate("/");
+    if (currentUser.email) {
+      navigate("/dashboard");
+    } else {
+      navigate("/");
+    }
   };
 
-  /* */
+  /* Close menu when click outside */
   const concernedElement = document.getElementById("click-menu");
   document.addEventListener("mousedown", (event) => {
+    if (concernedElement === null) {
+      return;
+    }
     if (!concernedElement.contains(event.target)) {
       setOpen(false);
     }
@@ -107,6 +114,7 @@ function NavigationBar({ adminView, handleAdminView }) {
                 )}
               </>
             )}
+
             <li className="text-right pr-3 flex  w-full justify-center">
               <button
                 onClick={() => handleLogout()}

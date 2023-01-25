@@ -3,10 +3,12 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast, Toaster } from "react-hot-toast";
 import PreviousButton from "../components/PreviousButton";
 import { useCurrentUserContext } from "../contexts/userContext";
-import granny from "../assets/granny1.svg";
-import arobase from "../assets/arobaselogo.png";
-import locker from "../assets/lockerlogo.png";
-import forgotpass from "../assets/forgotpass.svg";
+import granny from "../assets/connexionPage/granny1.svg";
+import arobase from "../assets/connexionPage/email-logo-connexion.png";
+import locker from "../assets/connexionPage/lockerlogo.png";
+import forgotpass from "../assets/connexionPage/img-user-connexion.svg";
+
+const { VITE_BACKEND_URL } = import.meta.env;
 
 function AuthentificationPage() {
   /* Toast */
@@ -52,7 +54,7 @@ function AuthentificationPage() {
     });
 
     /* function push user and token in the localstorage */
-    fetch("http://localhost:5000/api/login", {
+    fetch(`${VITE_BACKEND_URL}/api/login`, {
       method: "POST",
       redirect: "follow",
       body,
@@ -74,7 +76,7 @@ function AuthentificationPage() {
           notifySuccess(result.user.firstname);
           setTimeout(() => {
             navigate("/dashboard");
-          }, 1000);
+          }, 1500);
         } else {
           notifyError();
         }
@@ -87,16 +89,16 @@ function AuthentificationPage() {
       <Toaster position="top-center" reverseOrder /> <PreviousButton />
       <form
         onSubmit={handleSubmit}
-        className=" flex flex-col items-center justify-center  "
+        className=" flex flex-col items-center justify-center"
       >
         {" "}
-        <h1 className=" items-center content-center justify-center text-3xl mb-10 mt-16">
+        <h1 className=" items-center content-center justify-center text-3xl mb-10 mt-10">
           CONNECTEZ-VOUS
           <span className="block text-sm text-center underline text-gray-500 hover:text-black">
             <Link to="/registerPage"> ou créez un compte</Link>
           </span>
         </h1>
-        <div className=" flex-col w-1/2 justify-center mb-8 ">
+        <div className=" flex-col w-5/6 md:w-1/2 justify-center mb-2">
           {/* label and input */}
           <div className="flex">
             <label htmlFor="email" name="email">
@@ -111,7 +113,7 @@ function AuthentificationPage() {
               onChange={handleChangeEmail}
               id="email"
               name="email"
-              className="bg-gray-200 w-full text-gray-600 py-2 px-4 border rounded-2xl "
+              className="bg-gray-200 md:w-full text-gray-600 py-2 px-4 border rounded-2xl w-screen"
             />
           </div>
           {/* mail */}
@@ -123,7 +125,7 @@ function AuthentificationPage() {
             </Link>
           </p>
         </div>
-        <div className="flex-col mt-8 justify-center w-1/2">
+        <div className=" flex-col w-5/6 md:w-1/2 justify-center mb-8 ">
           <div className="flex">
             <label htmlFor="password" name="password">
               <img src={locker} alt="locker" className="w-14 h-14 mr-3" />{" "}
@@ -137,7 +139,7 @@ function AuthentificationPage() {
               id="password"
               name="password"
               placeholder="Entrez votre mot de passe"
-              className="bg-gray-200  text-gray-600 py-2 px-4 w-full rounded-2xl  "
+              className="bg-gray-200 md:w-full text-gray-600 py-2 px-4 border rounded-2xl w-screen"
             />
           </div>{" "}
           <p className="italic text-gray-400 underline text-right text-sm md:text-lg">
@@ -147,21 +149,21 @@ function AuthentificationPage() {
             </Link>
           </p>
         </div>
-        <div className=" flex flex-col items-center justify-center ml-20 mr-20 md:mb-4">
+        <div className="flex flex-col items-center justify-center ml-20 mr-20 md:mb-4">
           <img
             src={granny}
-            className=" max-w-sm w-64 h-64 md:hidden mb-8"
+            className="max-w-sm w-40 h-40 md:hidden mb-8"
             alt="granny"
           />
           <img
             src={forgotpass}
-            className=" hidden w-21 h-31 mr-50 md:block mb-8 md:mb-9 md:mt-12"
+            className="hidden w-21 h-31 mr-50 md:block mb-8 md:mb-9 md:mt-4"
             alt="forgotpass"
           />
         </div>
         <button
           type="submit"
-          className="bg-[#FFC927] text-white m-1 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#003DA5] hover:text-black mb-28"
+          className="bg-[#FFC927] text-white m-1 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#003DA5] mb-28"
         >
           Connexion
         </button>

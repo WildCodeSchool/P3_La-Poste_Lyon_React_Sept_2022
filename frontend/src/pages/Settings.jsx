@@ -1,12 +1,15 @@
 import React, { useState, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import uploadIcon from "../assets/uploadIcon.svg";
+import uploadIcon from "../assets/items/uploadIcon.svg";
 import PreviousButton from "../components/PreviousButton";
 import { useCurrentUserContext } from "../contexts/userContext";
+import SettingsParameters from "./SettingsParameters";
+
+const { VITE_BACKEND_URL } = import.meta.env;
 
 function Settings() {
-  /* Toast */
+  /* Toast notifications */
   const notifySuccess = () => {
     toast("Image bien téléchargée !", {
       icon: "🥳",
@@ -19,63 +22,38 @@ function Settings() {
     });
   };
 
-  const notifyForget = () => {
-    toast(
-      "Vous n'auriez pas oublié un truc ? Le fichier à uploader, par exemple ?.",
-      {
-        icon: "🤭",
-      }
-    );
-  };
-
   const { currentUser, setCurrentUser, token } = useCurrentUserContext();
 
   const avatarRef = useRef(null);
-
   const navigate = useNavigate();
 
-  // const [profilePicture, setProfilePicture] = useState("");
+  const [userValues, setUserValues] = useState({
+    firstname: currentUser.firstname,
+    lastname: currentUser.lastname,
+    phone: currentUser.phone,
+  });
 
-  // All states
-  const [firstname, setFirstname] = useState(currentUser.firstname);
-  const [lastname, setLastname] = useState(currentUser.lastname);
-  const [phone, setPhone] = useState(currentUser.phone);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
 
-  const notifyErrorProfile = () =>
-    toast.error("Une erreur est survenue, veuillez vérifier vos informations");
-
-  // All state handle functions
-  const handleChangeFirstname = (e) => {
-    setFirstname(e.target.value);
-  };
-  const handleChangeLastname = (e) => {
-    setLastname(e.target.value);
-  };
-  const handleChangePhone = (e) => {
-    setPhone(e.target.value);
+    setUserValues({
+      ...userValues,
+      [name]: value,
+    });
   };
 
-  const handleClickFirstName = () => {
-    // 👇️ clear input value
-    setFirstname("");
+  const handleOnClickValue = (e) => {
+    const { name } = e.target;
+    setUserValues({
+      ...userValues,
+      [name]: "",
+    });
   };
 
-  const handleClickLastName = () => {
-    // 👇️ clear input value
-    setLastname("");
-  };
-
-  const handleClickPhone = () => {
-    // 👇️ clear input value
-    setPhone("");
-  };
-
-  // Méthode pour fetch l'avatar uploadé
-
+  // Fetch updated avatar
   const handleSubmitAvatar = (e) => {
     e.preventDefault();
     if (avatarRef.current.files[0]) {
-      // recupération des articles.
       const myHeader = new Headers();
       myHeader.append("Authorization", `Bearer ${token}`);
 
@@ -87,11 +65,9 @@ function Settings() {
         body: formData,
       };
       // on appelle le back
-      fetch(`http://localhost:5000/api/avatars`, requestOptions)
+      fetch(`${VITE_BACKEND_URL}/api/avatars`, requestOptions)
         .then((response) => response.json())
         .then((results) => {
-          // maj avatar
-
           setCurrentUser({ ...currentUser, profilePicture: results.avatar });
           notifySuccess();
         })
@@ -99,21 +75,19 @@ function Settings() {
           console.error(error);
           notifyError();
         });
-    } else {
-      notifyForget();
     }
   };
 
-  // Put function
+  // Submit usersInformations
   const submitSettingModify = (e) => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token}`);
     myHeaders.append("Content-Type", "application/json");
 
     const userraw = JSON.stringify({
-      firstname,
-      lastname,
-      phone,
+      firstname: userValues.firstname,
+      lastname: userValues.lastname,
+      phone: userValues.phone,
       currentUser_id: currentUser.id,
     });
 
@@ -128,13 +102,13 @@ function Settings() {
     toast
       .promise(
         fetch(
-          `http://localhost:5000/api/users/${currentUser.id}`,
+          `${VITE_BACKEND_URL}/api/users/${currentUser.id}`,
           requestOptions
         ),
         {
-          loading: "En cours",
-          success: "Profil mis à jour",
-          error: "Attention aux erreurs",
+          loading: "En cours de modification ...",
+          success: `Votre profil est mis à jour  ${userValues.firstname} 😁 `,
+          error: "Attention aux erreurs ! ",
         }
       )
       // toaster management
@@ -144,8 +118,6 @@ function Settings() {
           setTimeout(() => {
             navigate("/dashboard");
           }, 2000);
-        } else {
-          notifyErrorProfile();
         }
       })
 
@@ -153,15 +125,15 @@ function Settings() {
       .then(
         setCurrentUser({
           ...currentUser,
-          firstname,
-          lastname,
-          phone,
+          firstname: userValues.firstname,
+          lastname: userValues.lastname,
+          phone: userValues.phone,
         })
       );
   };
 
   return (
-    <div className=" flex flex-col justify-center my-6">
+    <div className=" relative flex flex-col my-6">
       <Toaster position="top-center" reverseOrder />
       <div className="pb-10">
         <Link to="/dashboard">
@@ -170,11 +142,8 @@ function Settings() {
       </div>
       <Toaster position="top-center" reverseOrder={false} />
 
-      <div className="mt-4 flex justify-center flex-col z-1">
-        <h1 className="flex w-full justify-center items-center font-bold text-2xl md:text-3xl text-main-blue my-3 h-10 text-center md:h-14 md:text-center ">
-          Modifier mes informations
-        </h1>
-        <div className="flex justify-center">
+      <div className="mt-4  relative md:h-48 h-32 bg-main-yellow flex justify-center flex-col z-1">
+        <div className="flex absolute bottom-[-5vh] inset-x-0 justify-center items-center">
           <img
             src={
               currentUser?.profilePicture !== null
@@ -182,8 +151,9 @@ function Settings() {
                 : `https://api.multiavatar.com/${currentUser.firstname}.svg`
             }
             alt="userImage"
-            className="object-fit w-36  h-36 border rounded-full"
+            className="object-fit  w-36 h-36 md:w-48  md:h-48  border-black border-x border-y shadow-lg rounded-full "
           />
+
           <div className="mt-32">
             <label htmlFor="image-upload">
               <img
@@ -204,48 +174,36 @@ function Settings() {
           </div>
         </div>
       </div>
-      <form onSubmit={submitSettingModify} className="p-8">
-        <ul className="flex-col  p-8 ">
-          <li className="my-3 md:m-6  border shadow-xl rounded-lg text-center">
-            {" "}
-            <div className="w-full flex justify-end items-center relative">
-              <input
-                value={firstname}
-                placeholder={`${currentUser.firstname}`}
-                className=" border-gray-400 bg-gray-100 rounded-bl-lg p-4 w-full h-10 text-gray-700"
-                onChange={handleChangeFirstname}
-                onClick={handleClickFirstName}
-                required
-              />
-            </div>
-          </li>
-          <li className="  my-3 md:m-6 border shadow-xl rounded-lg text-center">
-            {" "}
-            <div className="w-full flex justify-end items-center relative">
-              <input
-                value={lastname}
-                placeholder={`${currentUser.lastname}`}
-                className=" border-gray-400 bg-gray-100 rounded-bl-lg  p-4 w-full h-10 text-gray-700"
-                onChange={handleChangeLastname}
-                onClick={handleClickLastName}
-                required
-              />
-            </div>
-          </li>
 
-          <li className="my-3 md:m-6 border shadow-xl rounded-lg text-center">
-            {" "}
-            <div className="w-full flex justify-end items-center relative">
-              <input
-                value={phone}
-                placeholder={`${currentUser.phone}`}
-                className=" border-gray-400 bg-gray-100 rounded-bl-lg p-4 w-full h-10 text-gray-700"
-                onChange={handleChangePhone}
-                onClick={handleClickPhone}
-                required
-              />
-            </div>
-          </li>
+      <form onSubmit={submitSettingModify} className="md:p-8 py-8 md:mx-8">
+        <ul className="p-8  md:mx-[10vw] ">
+          <h1 className="flex  justify-left items-center font-bold text-xl md:text-2xl text-main-blue my-3 h-10 text-center md:h-14 md:text-center ">
+            Modifier mes informations
+          </h1>
+
+          <SettingsParameters
+            text="Prénom"
+            textValue="firstname"
+            userVal={userValues.firstname}
+            handleOnClickValue={handleOnClickValue}
+            handleInputChange={handleInputChange}
+          />
+
+          <SettingsParameters
+            text="Nom"
+            textValue="lastname"
+            userVal={userValues.lastname}
+            handleOnClickValue={handleOnClickValue}
+            handleInputChange={handleInputChange}
+          />
+
+          <SettingsParameters
+            text="Tél."
+            textValue="phone"
+            userVal={userValues.phone}
+            handleOnClickValue={handleOnClickValue}
+            handleInputChange={handleInputChange}
+          />
         </ul>
         <div className="w-full flex justify-center items-center relative">
           <button

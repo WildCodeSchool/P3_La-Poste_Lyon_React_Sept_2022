@@ -9,12 +9,17 @@ import PreviousButton from "../components/PreviousButton";
 function Tutorial() {
   const { id } = useParams();
 
+  const { VITE_BACKEND_URL } = import.meta.env;
+
   const [tutorial, setTutorial] = useState([]);
   useEffect(() => {
     const fetchTutorial = () => {
-      fetch(`http://localhost:5000/api/tutos/${id}`)
+      fetch(`${VITE_BACKEND_URL}/api/tutos/${id}`)
         .then((response) => response.json())
-        .then((data) => setTutorial(data));
+        .then((data) => setTutorial(data))
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     };
     fetchTutorial();
   }, [id]);
@@ -23,16 +28,15 @@ function Tutorial() {
   const [steppers, setSteppers] = useState([]);
   useEffect(() => {
     const fetchSteppers = () => {
-      fetch(`http://localhost:5000/api/steppers`)
+      fetch(`${VITE_BACKEND_URL}/api/steppers/${id}`)
         .then((response) => response.json())
-        .then((data) => setSteppers(data));
+        .then((data) => setSteppers(data))
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     };
     fetchSteppers();
   }, []);
-
-  const filteredSteppers = steppers.filter(
-    (stepper) => stepper.tuto_id === parseInt(id, 10)
-  );
 
   return (
     <>
@@ -59,7 +63,7 @@ function Tutorial() {
           />
         </div>
         {/* Stepper */}
-        <Stepper filteredSteppers={filteredSteppers} />
+        <Stepper steppers={steppers} />
       </section>
     </>
   );

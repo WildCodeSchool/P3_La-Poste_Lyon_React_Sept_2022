@@ -1,18 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import AccessButton from "./AccessButton";
-import Historique from "../assets/Historique.png";
-import Mestutos from "../assets/Mestutos.svg";
-import badge1 from "../assets/badge1.png";
+import Historique from "../assets/navBar/navBarUser/Historique.png";
+import Mestutos from "../assets/navBar/navBarUser/Mestutos.svg";
+import badge1 from "../assets/Rewards/1.svg";
 import BannerProfile from "./BannerProfile";
-import usercourse from "../assets/parcours.png";
+import usercourse from "../assets/navBar/navBarUser/parcours.png";
 
 function DashboardUser() {
   return (
     <div className="">
       <BannerProfile />
       <div className="mt-2 flex justify-center">
-        <h1 className=" m-3 flex justify-center items-center font-bold text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">
+        <h1 className="m-3 flex justify-center items-center font-bold text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">
           Mon tableau de bord
         </h1>
       </div>

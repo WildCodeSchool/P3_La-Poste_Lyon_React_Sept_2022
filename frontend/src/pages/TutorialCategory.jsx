@@ -1,12 +1,66 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { CategoryContext } from "../contexts/CategoryContext";
-
+import CurrentUserContext from "../contexts/userContext";
 import PreviousButton from "../components/PreviousButton";
 import BannerProfile from "../components/BannerProfile";
 
+const { VITE_BACKEND_URL } = import.meta.env;
+
 function TutorialCategory() {
   const { categories } = useContext(CategoryContext);
+  const { currentUser, token } = useContext(CurrentUserContext);
+
+  const [progressionList, setProgressionList] = useState([]);
+
+  const getProgressionList = () => {
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    fetch(
+      `${VITE_BACKEND_URL}/api/progressionTuto/${currentUser.id}`,
+      requestOptions
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setProgressionList(data);
+      })
+      .catch((error) => {
+        console.warn("Error:", error);
+      });
+  };
+
+  useEffect(() => {
+    getProgressionList();
+  }, []);
+
+  /* I search the progression of each category and return an object with the name and progression */
+  const allProgression = progressionList.map((categorie) => {
+    const categoryName = categorie.category;
+    const categorieResult = (
+      (categorie.tuto_completed / categorie.total_tuto) *
+      100
+    ).toFixed(0);
+    return { categoryName, categorieResult };
+  });
+
+  /* I want to pre-computed the categoryList */
+  const categoryList = categories?.map((category) => {
+    /* I get the categoryName */
+    const categoryName = category.name;
+    /* I search for each progression the corresponding category name */
+    const categoryProgression = allProgression.find(
+      (progression) => progression.categoryName === categoryName
+    );
+    /* I get the result as progression value */
+    const progression = categoryProgression?.categorieResult;
+    return { ...category, progression };
+  });
 
   return (
     categories && (
@@ -22,7 +76,7 @@ function TutorialCategory() {
 
           {/* I map the categoryList array to display every category */}
           <ul className="vw-3/5 grid grid-cols-1 md:grid-cols-4 place-content-center	">
-            {categories?.map((category) => (
+            {categoryList?.map((category) => (
               /* We make a Link using the category.id to transmit it to the params. It will be recover on the TutorialList page to fetch the good category tutorial list. */
               <Link
                 key={category?.id}
@@ -43,12 +97,14 @@ function TutorialCategory() {
                     {/* We used ternary to display the good tailwind class.This define the color of the progression bar - 3 states : start, complete, unstart by default */}
                     <div
                       className={`h-4 rounded-full  ${
-                        category?.progression === "start"
-                          ? "bg-[#FFC100] w-1/2"
-                          : category?.progression === "complete"
-                          ? "bg-[#04DDB4] w-100"
-                          : "w-100"
+                        category?.progression >= 100
+                          ? "bg-[#48db6a]"
+                          : category?.progression >= 1 &&
+                            category?.progression < 100
+                          ? "bg-[#ffcc24]"
+                          : "bg-[#e0e0e0]"
                       }`}
+                      style={{ width: `${category?.progression}%` }}
                     />
                   </div>
                 </li>{" "}
