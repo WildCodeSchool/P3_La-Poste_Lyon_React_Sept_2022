@@ -4,12 +4,12 @@ import { TutorialStatusContext } from "../contexts/TutorialStatusContext";
 import odd from "../assets/userCourse/Etape1.svg";
 import even from "../assets/userCourse/Etape2.svg";
 
-import wellDone from "../assets/userCourse/WellDone.svg";
-import onlineWishes from "../assets/userCourse/OnlineWishes.svg";
-import highFive from "../assets/userCourse/HighFive.svg";
-import blooming from "../assets/userCourse/Blooming.svg";
-import completed from "../assets/userCourse/completed.svg";
-import awards from "../assets/userCourse/Awards.svg";
+import userCourse1 from "../assets/userCourse/WellDone.svg";
+import userCourse2 from "../assets/userCourse/OnlineWishes.svg";
+import userCourse3 from "../assets/userCourse/HighFive.svg";
+import userCourse4 from "../assets/userCourse/Blooming.svg";
+import userCourse5 from "../assets/userCourse/completed.svg";
+import userCourse6 from "../assets/userCourse/Awards.svg";
 import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
 
@@ -27,12 +27,12 @@ function UserCourse() {
   ];
 
   const images = [
-    { image: wellDone, name: wellDone },
-    { image: onlineWishes, name: onlineWishes },
-    { image: highFive, name: highFive },
-    { image: blooming, name: blooming },
-    { image: completed, name: completed },
-    { image: awards, name: awards },
+    { image: userCourse1, name: userCourse1 },
+    { image: userCourse2, name: userCourse2 },
+    { image: userCourse3, name: userCourse3 },
+    { image: userCourse4, name: userCourse4 },
+    { image: userCourse5, name: userCourse5 },
+    { image: userCourse6, name: userCourse6 },
   ];
 
   const { tutorialStatus, getTutorialStatus } = useContext(
@@ -76,13 +76,22 @@ function UserCourse() {
                   </span>
                 </NavLink>
               </div>
-              <div className="flex justify-center">
-                <img
-                  src={randomObject.image}
-                  alt={randomObject.name}
-                  className="h-28"
-                />
-              </div>
+              {images.slice(0, 1).map((el, index) => (
+                <div
+                  key={index}
+                  className={
+                    index % 2 === 1
+                      ? "flex justify-center"
+                      : "flex justify-center"
+                  }
+                >
+                  <img
+                    src={randomObject.image}
+                    alt={randomObject.name}
+                    className="h-28"
+                  />
+                </div>
+              ))}
             </div>
           ) : (
             <div>
