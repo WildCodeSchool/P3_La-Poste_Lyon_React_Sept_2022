@@ -20,7 +20,6 @@ const stepperControllers = require("./controllers/stepperControllers");
 const tutorialStatusControllers = require("./controllers/tutorialStatusControllers");
 const passwordControllers = require("./controllers/passwordControllers");
 const mailControllers = require("./controllers/mailControllers");
-
 const fileControllers = require("./controllers/fileControllers");
 
 // PUBLIC ROUTES
@@ -29,6 +28,11 @@ const fileControllers = require("./controllers/fileControllers");
 router.get("/api/users", userControllers.browse);
 router.get("/api/users/:id", userControllers.read);
 router.post("/api/users", hashPassword, userControllers.add);
+router.post(
+  "/api/passwordReset",
+  passwordControllers.verifyTokenPassword,
+  (req, res) => res.sendStatus(200)
+);
 
 /* Authentification and login */
 router.post("/api/users/register", hashPassword, userControllers.add);
@@ -73,7 +77,6 @@ router.get(
 );
 
 // Stepper management
-router.get("/api/steppers", stepperControllers.browse);
 router.get("/api/steppers/:id", stepperControllers.read);
 
 // Reset password

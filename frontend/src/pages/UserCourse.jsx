@@ -57,7 +57,7 @@ function UserCourse() {
       <BannerProfile />
       <PreviousButton />
       <div className="mt-7 mb-7 flex justify-center">
-        <h1 className=" m-3 flex justify-center items-center font-bold text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">
+        <h1 className="flex justify-center items-center text-bold text-xl text-white rounded-3xl shadow-lg bg-[#003DA5] w-2/3 h-10 md:text-2xl text-center md:w-1/4 md:h-14 md:text-center">
           Parcours utilisateur
         </h1>
       </div>

@@ -1,4 +1,3 @@
-/* eslint-disable */
 require("dotenv").config();
 const nodemailer = require("nodemailer");
 
@@ -25,7 +24,7 @@ const sendForgottenPassword = (req, res) => {
       html: `<p>Pour créer un nouveau mot de passe, <a href="${FRONTEND_URL}/resetpassword/${req.user.passwordToken}">cliquez ici !</a></p>`,
     },
     (err, info) => {
-      console.log(info);
+      console.warn(info);
       if (err) {
         console.error(err);
         res.sendStatus(500);
@@ -44,7 +43,7 @@ const sendForgottenEmail = (req, res) => {
       html: `<p>L'adresse mail utilisée pour vous connecter à votre compte La Ligne Bleue est celle-ci : ${req.user.email}</a></p>`,
     },
     (err, info) => {
-      console.log(info);
+      console.warn(info);
       if (err) {
         console.error(err);
         res.sendStatus(500);

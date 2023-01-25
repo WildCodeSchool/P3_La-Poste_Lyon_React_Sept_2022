@@ -16,12 +16,12 @@ const browse = (req, res) => {
 // get steppers by its id - to edit to get steppers by tuto_id
 const read = (req, res) => {
   models.stepper
-    .find(req.params.tuto_id)
+    .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404);
       } else {
-        res.send(rows[0]);
+        res.send(rows);
       }
     })
     .catch((err) => {
@@ -66,7 +66,7 @@ const add = (req, res) => {
     });
 };
 
-/* delete all steos of  the stepper associate to the tutoID  */
+/* delete all steps of  the stepper associate to the tutoID  */
 const destroy = (req, res) => {
   models.stepper
     .deleteAll(req.params.id)
