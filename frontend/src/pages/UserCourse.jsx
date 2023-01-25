@@ -14,7 +14,7 @@ import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
 
 function UserCourse() {
-  const data = [
+  const tutos = [
     { asset: odd, id: 2 },
     { asset: even, id: 3 },
     { asset: odd, id: 4 },
@@ -51,7 +51,7 @@ function UserCourse() {
     "finished";
 
   const randomObject = () => images[Math.floor(Math.random() * images.length)];
-  /* A la fin, on affiche un message ! */
+
   return (
     <div>
       <BannerProfile />
@@ -61,9 +61,9 @@ function UserCourse() {
           Parcours utilisateur
         </h1>
       </div>
-      {data.map((el, index) => (
+      {tutos.map((el, index) => (
         <div key={index}>
-          {index === 0 || findTutorialStatus(data[index - 1].id) ? (
+          {index === 0 || findTutorialStatus(tutos[index - 1].id) ? (
             <div>
               <div className="ml-14 md:ml-48 flex justify-center mb-8 mt-5">
                 <NavLink to={`/api/tutos/${el.id}`}>
@@ -72,6 +72,7 @@ function UserCourse() {
                       /* index is the current usercourse index. Each time he maps elements, he looks at whether the modulo2 = 1 index (therefore odd) if yes, he positions the source of the image to that defined on odd.  */
                       src={index % 2 === 1 ? odd : even}
                       alt={`Step${el.id}`}
+                      className="cursor-pointer transition-transform duration-200 transform hover:scale-150 md:h-96"
                     />
                   </span>
                 </NavLink>
@@ -80,14 +81,14 @@ function UserCourse() {
                 key={index}
                 className={
                   index % 2 === 1
-                    ? "flex justify-center ml-56"
+                    ? "flex justify-center ml-56 md:ml-96 md:pl-20"
                     : "flex justify-center"
                 }
               >
                 <img
                   src={randomObject().image}
                   alt={randomObject().name}
-                  className="h-28 md:h-72 mr-12"
+                  className="h-28 md:h-72 mr-16"
                 />
               </div>
             </div>
@@ -98,6 +99,7 @@ function UserCourse() {
                   <img
                     src={index % 2 === 1 ? odd : even}
                     alt={`Step${el.id}`}
+                    className="md:h-96"
                   />
                 </span>
               </div>
@@ -105,7 +107,7 @@ function UserCourse() {
                 key={index}
                 className={
                   index % 2 === 1
-                    ? "flex justify-center ml-56"
+                    ? "flex justify-center ml-56 md:ml-96 md:pl-20"
                     : "flex justify-center"
                 }
               >
@@ -119,6 +121,7 @@ function UserCourse() {
           )}
         </div>
       ))}
+      {/* Si tous les tutoriels presents sur la page sont en statu finished, alors j'affiche un message de félicitations, sinon rien. */}
     </div>
   );
 }
