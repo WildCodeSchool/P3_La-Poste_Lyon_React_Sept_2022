@@ -50,6 +50,8 @@ function UserCourse() {
     tutorialStatus?.find((status) => status?.tuto_id === id)?.status ===
     "finished";
 
+  const randomObject = images[Math.floor(Math.random() * images.length)];
+
   return (
     <div>
       <BannerProfile />
@@ -62,37 +64,49 @@ function UserCourse() {
       {data.map((el, index) => (
         <div key={index}>
           {findTutorialStatus(el.id) ? (
-            <div className="ml-14 md:ml-48 flex justify-center mb-8 mt-5">
-              <NavLink to={`/api/tutos/${el.id}`}>
+            <div>
+              <div className="ml-14 md:ml-48 flex justify-center mb-8 mt-5">
+                <NavLink to={`/api/tutos/${el.id}`}>
+                  <span>
+                    <img
+                      /* index is the current usercourse index. Each time he maps elements, he looks at whether the modulo2 = 1 index (therefore odd) if yes, he positions the source of the image to that defined on odd.  */
+                      src={index % 2 === 1 ? odd : even}
+                      alt={`Step${el.id}`}
+                    />
+                  </span>
+                </NavLink>
+              </div>
+              <div className="flex justify-center">
+                <img
+                  src={randomObject.image}
+                  alt={randomObject.name}
+                  className="h-28"
+                />
+              </div>
+            </div>
+          ) : (
+            <div>
+              <div className="ml-14 md:ml-48 flex justify-center grayscale mb-8 mt-5">
                 <span>
                   <img
-                    /* index correspond à l'index de parcours actuel. A chaque fois qu'il map des éléments, il regarde si l'index modulo2 = 1 (donc impair) si oui, il positionne la source de l'image à celle définie sur impair.  */
                     src={index % 2 === 1 ? odd : even}
                     alt={`Step${el.id}`}
                   />
                 </span>
-              </NavLink>
-            </div>
-          ) : (
-            <div className="ml-14 md:ml-48 flex justify-center grayscale mb-8 mt-5">
-              <span>
-                <img src={index % 2 === 1 ? odd : even} alt={`Step${el.id}`} />
-              </span>
+              </div>
+              <div className="flex justify-center grayscale">
+                <img
+                  src={randomObject.image}
+                  alt={randomObject.name}
+                  className="h-28"
+                />
+              </div>
             </div>
           )}
-          <div className="flex justify-center">
-            <img
-              src={Math.random(images.image)}
-              alt={images.name}
-              className="h-28"
-            />
-          </div>
         </div>
       ))}
     </div>
   );
 }
-
-/* Faire le map des images décoration et ajouter les key. Images random ? */
 
 export default UserCourse;
