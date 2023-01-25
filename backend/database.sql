@@ -103,4 +103,7 @@ CREATE TABLE `reward` (
   FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
+INSERT INTO `reward` (badge_id, user_id) VALUES
+(6, 1), (6, 2), (6, 3), (6, 4), (6, 5), (6, 6);
+
 SET FOREIGN_KEY_CHECKS = 1;

@@ -21,6 +21,7 @@ const tutorialStatusControllers = require("./controllers/tutorialStatusControlle
 const passwordControllers = require("./controllers/passwordControllers");
 const mailControllers = require("./controllers/mailControllers");
 const fileControllers = require("./controllers/fileControllers");
+const rewardControllers = require("./controllers/rewardControllers");
 
 // PUBLIC ROUTES
 
@@ -136,11 +137,17 @@ router.put(
 router.post("/api/tutoStatus", tutorialStatusControllers.addTutoStatus);
 
 // Stepper management
-/* road to destroy all stepper of a tutorial */
-router.delete("/api/steppers/tuto_id/:id", stepperControllers.destroy);
+router.delete(
+  "/api/steppers/tuto_id/:id",
+  stepperControllers.destroy
+); /* road to destroy all stepper of a tutorial */
+
 router.put("/api/steppers/:id", stepperControllers.edit);
 router.post("/api/steppers", stepperControllers.add);
 router.delete("/api/steppers/:id", stepperControllers.destroy);
+
+// Reward routes
+router.get("/api/rewards/:id", rewardControllers.getAllBadgeByUser);
 
 // Gestion des avatars
 
