@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { CategoryContext } from "../contexts/CategoryContext";
 
 function TutoSearchbar() {
   /* Fetch all the tutorials */
   const [tutorials, setTutorials] = useState([]);
+  const navigate = useNavigate();
 
   const fetchTutorials = () => {
     fetch(`http://localhost:5000/api/tutos/all`)
@@ -34,7 +36,7 @@ function TutoSearchbar() {
 
   return (
     <div className="flex flex-col items-center">
-      <section className="antialiased w-4/6 bg-gray-100 text-gray-600 px-4">
+      <section className="antialiased w-4/6 text-gray-600 px-4">
         <div className="justify-center py-3 w-full h-full">
           <div className="md:w-2/6 mx-auto md:absolute md:top-0 md:right-20">
             <div className="flex justify-center">
@@ -81,8 +83,11 @@ function TutoSearchbar() {
                           ) : (
                             filtredTutorials?.slice(0, 4).map((tutorial) => (
                               <tr
-                                key={tutorial.id}
-                                className="hover:bg-gray-100"
+                                key={tutorial?.id}
+                                onClick={() =>
+                                  navigate(`/api/tutos/${tutorial.id}`)
+                                }
+                                className="hover:bg-gray-200"
                               >
                                 <td className="p-2 whitespace-nowrap">
                                   <div className="flex items-center">
