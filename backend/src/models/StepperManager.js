@@ -7,7 +7,6 @@ class StepperManager extends AbstractManager {
     super({ table: "stepper" });
   }
 
-  // Be careful ! The tutoId is called tuto_id in the database, maybe we will have a problem to find it.
   find(tutoId) {
     return this.connection.query(
       `select * from  ${this.table} where tuto_id = ?`,

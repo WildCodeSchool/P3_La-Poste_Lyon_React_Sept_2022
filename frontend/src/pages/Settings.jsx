@@ -6,6 +6,8 @@ import PreviousButton from "../components/PreviousButton";
 import { useCurrentUserContext } from "../contexts/userContext";
 import SettingsParameters from "./SettingsParameters";
 
+const { VITE_BACKEND_URL } = import.meta.env;
+
 function Settings() {
   /* Toast notifications */
   const notifySuccess = () => {
@@ -62,8 +64,8 @@ function Settings() {
         headers: myHeader,
         body: formData,
       };
-
-      fetch(`http://localhost:5000/api/avatars`, requestOptions)
+      // on appelle le back
+      fetch(`${VITE_BACKEND_URL}/api/avatars`, requestOptions)
         .then((response) => response.json())
         .then((results) => {
           setCurrentUser({ ...currentUser, profilePicture: results.avatar });
@@ -100,7 +102,7 @@ function Settings() {
     toast
       .promise(
         fetch(
-          `http://localhost:5000/api/users/${currentUser.id}`,
+          `${VITE_BACKEND_URL}/api/users/${currentUser.id}`,
           requestOptions
         ),
         {

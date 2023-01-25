@@ -7,9 +7,11 @@ import CurrentUserContext from "../contexts/userContext";
 import { TutorialStatusContext } from "../contexts/TutorialStatusContext";
 import completeStep from "../assets/items/completeStep.svg";
 
-export default function Stepper(filteredSteppers) {
+export default function Stepper(steppers) {
   const notify = () =>
     toast.success("Bravo ! Vous avez réalisé le tutoriel ! 👋 !");
+
+  const { VITE_BACKEND_URL } = import.meta.env;
 
   const { id } = useParams();
 
@@ -17,7 +19,7 @@ export default function Stepper(filteredSteppers) {
   const { currentUser, token } = useContext(CurrentUserContext);
 
   /* eslint-disable react/destructuring-assignment */
-  const steps = filteredSteppers?.filteredSteppers;
+  const steps = steppers?.steppers;
 
   const navigate = useNavigate();
 
@@ -71,7 +73,7 @@ export default function Stepper(filteredSteppers) {
       body,
     };
 
-    fetch("http://localhost:5000/api/tutorialStatusFinished", requestOptions)
+    fetch(`${VITE_BACKEND_URL}/api/tutorialStatusFinished`, requestOptions)
       .then((response) => response.text())
       .then(() => {
         setTutorialStatus((previousStatus) => [

@@ -7,6 +7,8 @@ import PreviousButton from "../components/PreviousButton";
 import DeleteModaleTutorial from "../components/DeleteModaleTutorial";
 import trash from "../assets/items/trash.svg";
 
+const { VITE_BACKEND_URL } = import.meta.env;
+
 function TutorialsManagement() {
   const notify = () => toast.success("Le tutoriel a bien été supprimé");
 
@@ -17,7 +19,7 @@ function TutorialsManagement() {
   const [tutorials, setTutorials] = useState([]);
 
   const fetchTutorials = () => {
-    fetch(`http://localhost:5000/api/tutos/all`)
+    fetch(`${VITE_BACKEND_URL}/api/tutos/all`)
       .then((response) => response.json())
       .then((data) => setTutorials(data));
   };
@@ -33,13 +35,12 @@ function TutorialsManagement() {
     .replace(/[\u0300-\u036f+.]/g, "");
 
   /* Filtred tutorials precomputed */
-  const filtredTutorials = tutorials?.filter(
-    (tutorial) =>
-      tutorial.title
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .includes(normalizeSearch) || tutorial.category_name === search
+  const filtredTutorials = tutorials?.filter((tutorial) =>
+    tutorial.title
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .includes(normalizeSearch)
   );
 
   /* Match the category id to the category name */
@@ -52,7 +53,7 @@ function TutorialsManagement() {
   const handleDeleteTutorial = async () => {
     /* delete all steppers */
 
-    fetch(`http://localhost:5000/api/steppers/tuto_id/${id}`, {
+    fetch(`${VITE_BACKEND_URL}/api/steppers/tuto_id/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -67,7 +68,7 @@ function TutorialsManagement() {
       });
 
     /* delete the tutorial  */
-    fetch(`http://localhost:5000/api/tutos/${id}`, {
+    fetch(`${VITE_BACKEND_URL}/api/tutos/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -144,7 +145,7 @@ function TutorialsManagement() {
                       </tr>
                     </thead>
                     <tbody className="text-sm divide-y divide-gray-100">
-                      {tutorials.length === 0 ? (
+                      {filtredTutorials.length === 0 ? (
                         <div className="mx-0 text-1xl">
                           Aucun tutoriel n'a été trouvé
                         </div>

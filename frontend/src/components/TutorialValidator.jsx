@@ -6,6 +6,8 @@ import { TutorialsContext } from "../contexts/TutorialsContext";
 import TutorialValidatorPreview from "./TutorialValidatorPreview";
 import { useCurrentUserContext } from "../contexts/userContext";
 
+const { VITE_BACKEND_URL } = import.meta.env;
+
 function TutorialValidator(allStepsContent) {
   const navigate = useNavigate();
   /* Get the token from the userContext */
@@ -72,7 +74,7 @@ function TutorialValidator(allStepsContent) {
     /* It's an object that will be sent in the body of request */
     const body = mandatory;
 
-    fetch("http://localhost:5000/api/tutos", {
+    fetch(`${VITE_BACKEND_URL}/api/tutos`, {
       method: "POST",
       redirect: "follow",
       body,
