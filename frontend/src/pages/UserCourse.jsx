@@ -39,19 +39,19 @@ function UserCourse() {
     TutorialStatusContext
   );
 
+  /* When loading the component, we will put in the context the status of the tutorials. */
   useEffect(() => {
     getTutorialStatus();
   }, []);
 
   /* In tutorialStatus, I will search for tuto status based on their id (tutorialStatus is an array).
     I want to find all the tutorials whose status corresponds to "finished".  */
-
   const findTutorialStatus = (id) =>
     tutorialStatus?.find((status) => status?.tuto_id === id)?.status ===
     "finished";
 
-  const randomObject = images[Math.floor(Math.random() * images.length)];
-
+  const randomObject = () => images[Math.floor(Math.random() * images.length)];
+  /* A la fin, on affiche un message ! */
   return (
     <div>
       <BannerProfile />
@@ -63,7 +63,7 @@ function UserCourse() {
       </div>
       {data.map((el, index) => (
         <div key={index}>
-          {findTutorialStatus(el.id) ? (
+          {index === 0 || findTutorialStatus(data[index - 1].id) ? (
             <div>
               <div className="ml-14 md:ml-48 flex justify-center mb-8 mt-5">
                 <NavLink to={`/api/tutos/${el.id}`}>
@@ -76,26 +76,24 @@ function UserCourse() {
                   </span>
                 </NavLink>
               </div>
-              {images.slice(0, 1).map((el, index) => (
-                <div
-                  key={index}
-                  className={
-                    index % 2 === 1
-                      ? "flex justify-center"
-                      : "flex justify-center"
-                  }
-                >
-                  <img
-                    src={randomObject.image}
-                    alt={randomObject.name}
-                    className="h-28"
-                  />
-                </div>
-              ))}
+              <div
+                key={index}
+                className={
+                  index % 2 === 1
+                    ? "flex justify-center ml-56"
+                    : "flex justify-center"
+                }
+              >
+                <img
+                  src={randomObject().image}
+                  alt={randomObject().name}
+                  className="h-28 md:h-72 mr-12"
+                />
+              </div>
             </div>
           ) : (
-            <div>
-              <div className="ml-14 md:ml-48 flex justify-center grayscale mb-8 mt-5">
+            <div className="grayscale">
+              <div className="ml-14 md:ml-48 flex justify-center mb-8 mt-5">
                 <span>
                   <img
                     src={index % 2 === 1 ? odd : even}
@@ -103,11 +101,18 @@ function UserCourse() {
                   />
                 </span>
               </div>
-              <div className="flex justify-center grayscale">
+              <div
+                key={index}
+                className={
+                  index % 2 === 1
+                    ? "flex justify-center ml-56"
+                    : "flex justify-center"
+                }
+              >
                 <img
-                  src={randomObject.image}
-                  alt={randomObject.name}
-                  className="h-28"
+                  src={randomObject().image}
+                  alt={randomObject().name}
+                  className="h-28 md:h-72 mr-16"
                 />
               </div>
             </div>
