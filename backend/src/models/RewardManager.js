@@ -19,6 +19,13 @@ class RewardManager extends AbstractManager {
       [reward.badge_id, reward.user_id]
     );
   }
+
+  delete(id) {
+    return this.connection.query(
+      `delete from ${this.table} where user_id = ?`,
+      [id]
+    );
+  }
 }
 
 module.exports = RewardManager;

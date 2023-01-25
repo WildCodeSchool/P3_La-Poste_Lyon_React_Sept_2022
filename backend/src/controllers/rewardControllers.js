@@ -26,4 +26,21 @@ const AddRewardToUser = (req, res) => {
     });
 };
 
-module.exports = { getAllBadgeByUser, AddRewardToUser };
+const DeleteRewardForUser = (req, res) => {
+  const userId = req.params.id;
+  models.reward
+    .delete(userId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+module.exports = { getAllBadgeByUser, AddRewardToUser, DeleteRewardForUser };

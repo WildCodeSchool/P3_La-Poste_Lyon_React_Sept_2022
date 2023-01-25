@@ -149,6 +149,7 @@ router.delete("/api/steppers/:id", stepperControllers.destroy);
 // Reward routes
 router.get("/api/rewards/:id", rewardControllers.getAllBadgeByUser);
 router.post("/api/gainReward", rewardControllers.AddRewardToUser);
+router.delete("/api/deleteReward/:id", rewardControllers.DeleteRewardForUser);
 
 // Gestion des avatars
 
