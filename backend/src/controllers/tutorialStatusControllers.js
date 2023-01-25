@@ -101,6 +101,23 @@ const addTutoStatus = (req, res) => {
     });
 };
 
+const deleteStatusByUser = (req, res) => {
+  const userId = req.params.id;
+  models.tutorialStatus
+    .deleteAllTutoByUser(userId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404);
+      } else {
+        res.sendStatus(204);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browseAllTutoByUser,
   browseUnstartedTutoByUser,
@@ -109,4 +126,5 @@ module.exports = {
   postToStart,
   updateToFinished,
   addTutoStatus,
+  deleteStatusByUser,
 };
