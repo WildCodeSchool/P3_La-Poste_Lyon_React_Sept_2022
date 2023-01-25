@@ -17,7 +17,17 @@
   },
   "plugins": ["react", "import"],
   "rules": {
+    "no-shadow": "off",
+    /* Disable index array key because of the steppers creation */
+    "react/no-array-index-key": "off",
+    /* Adding this rules to remove the problem with context passing children as a prop */
+    "react/prop-types": 0,
+    /* Adding this rules to improve ternary expression on JSX */
+    "no-nested-ternary": "off",
     "no-console": "off",
+    /* Remove prop-types  */
+    "react/prop-types": "off",
+
     "no-restricted-syntax": [
       "error",
       {
@@ -25,6 +35,7 @@
         "message": "You can only call the error() and warn() functions from the console object"
       }
     ],
+    "react/jsx-no-constructed-context-values": "off",
     "react/react-in-jsx-scope": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/no-unescaped-entities": "off",

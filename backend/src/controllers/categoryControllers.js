@@ -1,7 +1,8 @@
 const models = require("../models");
 
+// get all categories
 const browse = (req, res) => {
-  models.item
+  models.category
     .findAll()
     .then(([rows]) => {
       res.send(rows);
@@ -12,8 +13,9 @@ const browse = (req, res) => {
     });
 };
 
+// get category by its id
 const read = (req, res) => {
-  models.item
+  models.category
     .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
@@ -28,15 +30,14 @@ const read = (req, res) => {
     });
 };
 
+// edit a category
 const edit = (req, res) => {
-  const item = req.body;
+  const category = req.body;
 
-  // TODO validations (length, format...)
+  category.id = parseInt(req.params.id, 10);
 
-  item.id = parseInt(req.params.id, 10);
-
-  models.item
-    .update(item)
+  models.category
+    .update(category)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -50,15 +51,14 @@ const edit = (req, res) => {
     });
 };
 
+// add a category
 const add = (req, res) => {
-  const item = req.body;
+  const category = req.body;
 
-  // TODO validations (length, format...)
-
-  models.item
-    .insert(item)
+  models.category
+    .insert(category)
     .then(([result]) => {
-      res.location(`/items/${result.insertId}`).sendStatus(201);
+      res.location(`/categories/${result.insertId}`).sendStatus(201);
     })
     .catch((err) => {
       console.error(err);
@@ -66,8 +66,9 @@ const add = (req, res) => {
     });
 };
 
+// delete a category
 const destroy = (req, res) => {
-  models.item
+  models.category
     .delete(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
@@ -82,10 +83,27 @@ const destroy = (req, res) => {
     });
 };
 
+const progressionBar = (req, res) => {
+  models.category
+    .getProgressionTuto(req.params.id)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
 module.exports = {
   browse,
   read,
   edit,
   add,
   destroy,
+  progressionBar,
 };
