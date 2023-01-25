@@ -6,17 +6,21 @@ import { useNavigate, useParams } from "react-router-dom";
 import CurrentUserContext from "../contexts/userContext";
 import { TutorialStatusContext } from "../contexts/TutorialStatusContext";
 import completeStep from "../assets/items/completeStep.svg";
+import { RewardsContext } from "../contexts/RewardsContext";
 
 export default function Stepper(steppers) {
   const notify = () =>
     toast.success("Bravo ! Vous avez réalisé le tutoriel ! 👋 !");
 
+  const notifyBadge = () => toast.success("Et vous remportez un badge  ! 😁 ");
   const { VITE_BACKEND_URL } = import.meta.env;
 
   const { id } = useParams();
 
+  /* Get contexts */
   const { setTutorialStatus } = useContext(TutorialStatusContext);
   const { currentUser, token } = useContext(CurrentUserContext);
+  const { rewards, setRewards } = useContext(RewardsContext);
 
   /* eslint-disable react/destructuring-assignment */
   const steps = steppers?.steppers;
@@ -55,6 +59,11 @@ export default function Stepper(steppers) {
     });
   };
 
+  /* checkReward GoodWay */
+  const checkRewardGoodWay = rewards.some(
+    (reward) => reward.label === "GoodWay"
+  );
+
   /* Send validate tuto */
   const setValidateInfos = () => {
     const myHeaders = new Headers();
@@ -83,16 +92,35 @@ export default function Stepper(steppers) {
         notify();
         setTimeout(() => {
           navigate(-1);
-        }, 2000);
+        }, 1000);
       })
       .catch((error) => console.error("error", error));
 
-    /* set tutorials status context */
+    /* fetch to give the badge with id 10 if the tuto_id is "1"  */
+    if (id === "1" && !checkRewardGoodWay) {
+      fetch(`${VITE_BACKEND_URL}/api/gainReward`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          user_id: currentUser.id,
+          badge_id: 10,
+        }),
+      })
+        .then((response) => response.text())
+        .then((data) => {
+          setRewards([...rewards, data]);
+          notifyBadge();
+        })
+        .catch((error) => console.error("error", error));
+    }
   };
 
   return (
     <div className="stepper m-6">
-      <Toaster />
+      <Toaster position="top-center" reverseOrder />
       <div className="stepper-header gap-3 md:gap-0 flex flex-row items-center justify-center">
         {steps?.map((step, index) => (
           <div key={index} className="flex items-center">
@@ -132,7 +160,6 @@ export default function Stepper(steppers) {
           </div>
         ))}
       </div>
-
       {/* Content of the stepper */}
       <div className="stepper-content">
         <ReactQuill
@@ -141,7 +168,6 @@ export default function Stepper(steppers) {
           theme="bubble"
         />
       </div>
-
       {/*  /* The previous button  -  (current > lentgh 0 ) /  The next button -  (current < length -1) / The validate button (current  = length -1) */}
       <div className="stepper-footer flex justify-center">
         {currentStep > 0 && (
