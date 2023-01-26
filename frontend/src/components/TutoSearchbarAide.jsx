@@ -51,11 +51,11 @@ function TutoSearchbar() {
             </div>
             {search.length !== 0 ? (
               <div className="flex justify-center">
-                <div className="w-5/6">
+                <div className="md:w-5/6">
                   <div className="p-3">
                     <div className="overflow-x-auto">
                       <table className="table-auto w-full">
-                        <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                        <thead className="hidden md:text-xs md:font-semibold md:uppercase md:text-gray-400 md:bg-gray-50">
                           <tr>
                             <th className="p-2 whitespace-nowrap">
                               <div className="font-semibold text-left">
@@ -86,11 +86,16 @@ function TutoSearchbar() {
                                 <td className="p-2 whitespace-nowrap">
                                   <div className="flex items-center">
                                     <div className="font-medium text-gray-800">
-                                      {tutorial.title}
+                                      {/* splice title and replace all last char by ... */}
+                                      {tutorial.title
+                                        .split(" ")
+                                        .slice(0, 10)
+                                        .join(" ")
+                                        .replace(/.$/, "...")}
                                     </div>
                                   </div>
                                 </td>
-                                <td className="p-2 whitespace-nowrap">
+                                <td className="hidden md:p-2 md:whitespace-nowrap">
                                   <div className="flex flex-col justify-center ">
                                     <img
                                       className="rounded-full"

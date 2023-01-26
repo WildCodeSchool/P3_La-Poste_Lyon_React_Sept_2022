@@ -128,7 +128,7 @@ function Historic() {
           .map((tutorial, index) => (
             <li
               key={index}
-              className="mx-10 md:mx-96 md:text-center mb-10 my-3 md:m-6 border shadow-xl rounded-lg text-center flex flex-col md:flex-row justify-between items-center md:w-2/5"
+              className="mx-10 md:mx-96 md:text-center mb-10 my-3 md:m-6 border shadow-xl rounded-lg text-center flex flex-col md:flex-row justify-between items-center min-w-[90%]  md:w-2/5"
             >
               <img
                 src={

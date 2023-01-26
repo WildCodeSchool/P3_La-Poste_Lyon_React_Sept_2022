@@ -18,7 +18,7 @@ function Reward() {
         <h1 className="m-2 text-3xl font-bold text-main-blue text-center">
           Mes récompenses
         </h1>
-        <div className="grid overflow-hidden  grid-cols-3 md:grid-cols-4  grid-rows-4 md:grid-rows-3 gap-10 m-6 p-6 justify-items-center">
+        <div className="grid overflow-hidden  grid-cols-2 md:grid-cols-4  grid-rows-4 md:grid-rows-3 gap-10 m-6 p-6 justify-items-center">
           {rewards?.map((reward) => (
             <div key={reward.id} className="relative">
               <img

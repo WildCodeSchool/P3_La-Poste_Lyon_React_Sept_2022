@@ -67,10 +67,9 @@ function TutorialCategory() {
     categories && (
       <>
         <BannerProfile />
-
+        <PreviousButton />
         <section className="m-6 flex flex-col items-center">
           {/* This button will link to the Dashboard */}
-          <PreviousButton />
 
           <h1 className="m-2 text-3xl font-bold text-main-blue text-center">
             Catégories de tutoriels
@@ -106,7 +105,10 @@ function TutorialCategory() {
                           ? "bg-[#ffcc24]"
                           : "bg-[#e0e0e0]"
                       }`}
-                      style={{ width: `${category?.progression}%` }}
+                      style={{
+                        width: `${category?.progression}%`,
+                        maxWidth: "100%",
+                      }}
                     />
                   </div>
                 </li>{" "}
