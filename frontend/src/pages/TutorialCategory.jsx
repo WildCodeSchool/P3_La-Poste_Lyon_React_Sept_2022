@@ -74,7 +74,7 @@ function TutorialCategory() {
 
     if (checkCategorySecurityCompleted && !checkSecurityReward) {
       fetch(`${VITE_BACKEND_URL}/api/gainReward`, requestOptions)
-        .then((response) => response.text())
+        .then((response) => response.json())
         .then((result) => {
           setRewards([...rewards, result]);
           notifyBadge();
