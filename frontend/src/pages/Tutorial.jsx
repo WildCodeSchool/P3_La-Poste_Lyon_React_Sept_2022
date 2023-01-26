@@ -5,16 +5,25 @@ import ReactQuill from "react-quill";
 import Stepper from "../components/Stepper";
 import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
+import { useCurrentUserContext } from "../contexts/userContext";
+
+const { VITE_BACKEND_URL } = import.meta.env;
 
 function Tutorial() {
   const { id } = useParams();
-
-  const { VITE_BACKEND_URL } = import.meta.env;
+  const { token } = useCurrentUserContext();
 
   const [tutorial, setTutorial] = useState([]);
   useEffect(() => {
     const fetchTutorial = () => {
-      fetch(`${VITE_BACKEND_URL}/api/tutos/${id}`)
+      const requestOptions = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      fetch(`${VITE_BACKEND_URL}/api/tutos/${id}`, requestOptions)
         .then((response) => response.json())
         .then((data) => setTutorial(data))
         .catch((error) => {
@@ -28,7 +37,14 @@ function Tutorial() {
   const [steppers, setSteppers] = useState([]);
   useEffect(() => {
     const fetchSteppers = () => {
-      fetch(`${VITE_BACKEND_URL}/api/steppers/${id}`)
+      const requestOptions = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
+      fetch(`${VITE_BACKEND_URL}/api/steppers/${id}`, requestOptions)
         .then((response) => response.json())
         .then((data) => setSteppers(data))
         .catch((error) => {

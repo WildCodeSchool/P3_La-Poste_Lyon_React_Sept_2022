@@ -29,10 +29,25 @@ const browseAll = (req, res) => {
 // get a tuto with its id
 const read = (req, res) => {
   models.tuto
-    .find(req.params.id)
+    .findByIdAndUserId(req.params.id, req.payload.sub)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404);
+      } // on verifie si pour l'utilisateur connecté, il y a un statut pour ce tuto
+      // si ce n'est pas le cas, on le crée
+      else if (rows[0].status === null) {
+        models.tutorialStatus
+          .postToStarted({
+            tuto_id: req.params.id,
+            user_id: req.payload.sub,
+          })
+          .then(([result]) => {
+            if (result.affectedRows === 0) {
+              res.sendStatus(404);
+            } else {
+              res.send(rows[0]);
+            }
+          });
       } else {
         res.send(rows[0]);
       }

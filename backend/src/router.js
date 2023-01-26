@@ -52,7 +52,6 @@ router.get("/api/categories/:id", categoryControllers.read);
 router.get("/api/tutos/category_id/:id", tutoControllers.browse);
 /* router to browseAll */
 router.get("/api/tutos/all", tutoControllers.browseAll);
-router.get("/api/tutos/:id", tutoControllers.read);
 
 // Historical management
 router.get(
@@ -106,6 +105,8 @@ router.get("/api/avatars/:profilePicture", fileControllers.sendAvatar);
 
 // PROTECTED ROUTES
 router.use(verifyToken); // From this point, the middleware verifyToken will be used at the beginning of all functions
+
+router.get("/api/tutos/:id", tutoControllers.read);
 
 // Users management
 router.put("/api/users/:id", userControllers.edit);

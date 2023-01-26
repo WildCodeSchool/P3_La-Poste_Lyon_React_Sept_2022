@@ -11,6 +11,16 @@ class TutoManager extends AbstractManager {
     ]);
   }
 
+  /* On fait une requête pour chercher toutes les infos d'un tuto et son statut en fonction de l'id du tuto et de l'id du user */
+  findByIdAndUserId(id, userId) {
+    return this.connection.query(
+      `select ${this.table}.*, status from  ${this.table}
+      LEFT JOIN tutorialstatus ON tutorialstatus.tuto_id =tuto.id AND tutorialstatus.user_id = ?
+     where id = ? `,
+      [userId, id]
+    );
+  }
+
   findAll() {
     return this.connection.query(`select * from  ${this.table}`);
   }
