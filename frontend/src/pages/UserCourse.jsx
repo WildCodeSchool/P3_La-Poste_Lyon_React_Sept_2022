@@ -52,9 +52,6 @@ function UserCourse() {
 
   const randomObject = () => images[Math.floor(Math.random() * images.length)];
 
-  const isAllFinished = (id) =>
-    tutos.every((status) => status?.tuto_id === id)?.status === "finished";
-
   return (
     <div>
       <BannerProfile />
@@ -122,13 +119,6 @@ function UserCourse() {
           )}
         </div>
       ))}
-      {isAllFinished ? (
-        <div className="flex justify-center my-16">
-          <p className="border shadow px-6 py-2 rounded-lg text-3xl font-bold text-main-yellow">
-            Félicitations ! Vous avez terminé le parcours utilisateur !
-          </p>
-        </div>
-      ) : null}
     </div>
   );
 }
