@@ -86,7 +86,7 @@ function TutoSearchbar() {
                                 <td className="p-2 whitespace-nowrap">
                                   <div className="flex items-center">
                                     <div className="font-medium text-gray-800">
-                                      {/* splice title and replace all last char by ... */}
+                                      {/* Replace the end of the title */}
                                       {tutorial.title
                                         .split(" ")
                                         .slice(0, 10)
