@@ -38,26 +38,20 @@ function TutoSearchbar() {
     <div className="flex flex-col items-center">
       <section className="antialiased w-4/6 text-gray-600 px-4">
         <div className="justify-center py-3 w-full h-full">
-          <div className="md:w-2/6 mx-auto md:absolute md:top-0 md:right-20">
+          <div className="md:w-2/6 mx-auto">
             <div className="flex justify-center">
               <input
                 type="text"
                 id="tutoriel"
                 name="tutoriels"
                 placeholder="Recherchez un tutoriel"
-                className="border-solid border-2 border-gray-400 rounded-lg mb-5 p-4 w-6/6 text-center md:w-4/6 h-10 "
+                className="border-2 border-gray-400 rounded-lg mb-5 p-4 w-6/6 md:w-4/6 h-10 text-center"
                 onChange={(e) => setSearch(e.target.value)}
               />
             </div>
             {search.length !== 0 ? (
               <div className="flex justify-center">
                 <div className="w-5/6">
-                  <header className="px-5 py-4 border-b border-gray-100 flex justify-between">
-                    <h2 className="text-2xl font-bold text-main-blue">
-                      Tutoriels
-                    </h2>
-                  </header>
-
                   <div className="p-3">
                     <div className="overflow-x-auto">
                       <table className="table-auto w-full">
