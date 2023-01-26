@@ -1,72 +1,99 @@
 import React, { useState } from "react";
-import celebration from "../assets/connexionPage/registerPage/undraw_celebrating_rtuv.svg";
+import celebration from "../assets/connexionPage/registerPage/winner.svg";
 
-function QuizTuto1() {
+function QuizTuto2() {
   const questions = [
     {
-      question: "Quel équipement est nécessaire pour se connecter à internet ?",
+      question:
+        "Quel est l'un des avantages de l'utilisation du numérique dans la vie courante ?",
       options: [
-        { text: "Un ordinateur portable", correct: false },
-        { text: "Une carte SIM", correct: false },
-        { text: "Un modem ou un routeur", correct: true },
-        { text: "Un téléviseur", correct: false },
+        { text: "Permet de communiquer avec vos proches", correct: true },
+        { text: "Permet de voler de l'argent en ligne", correct: false },
+        { text: "Permet de voyager dans le temps", correct: false },
+        { text: "Permet de se téléporter", correct: false },
       ],
     },
     {
       question:
-        "Comment se connecter à internet à partir d'un appareil compatible ?",
+        "Comment utilise-t-on le numérique pour accéder à des informations sur n'importe quel sujet ?",
       options: [
-        { text: "En utilisant un câble HDMI", correct: false },
-        { text: "En utilisant un câble Ethernet", correct: true },
-        { text: "En utilisant un câble USB", correct: false },
-        { text: "En utilisant le Bluetooth", correct: false },
+        { text: "En utilisant un miroir magique", correct: false },
+        {
+          text: "En utilisant un moteur de recherche comme Google",
+          correct: true,
+        },
+        { text: "En demandant à un ami", correct: false },
+        { text: "En utilisant un livre de sorts", correct: false },
       ],
     },
     {
-      question: "Comment vérifier si vous êtes connecté à internet ?",
+      question:
+        "Quel est un moyen d'utiliser le numérique pour gérer son quotidien ?",
       options: [
-        { text: "En allumant le modem ou le routeur", correct: false },
         {
-          text: "En ouvrant un navigateur internet et en entrant l'adresse d'un site web",
+          text: "En utilisant un calendrier pour planifier ses rendez-vous",
           correct: true,
         },
         {
-          text: "En appelant votre fournisseur de services internet",
+          text: "En utilisant des applications de messagerie comme WhatsApp",
           correct: false,
         },
         {
-          text: "En branchant le câble Ethernet à l'ordinateur",
+          text: "En utilisant des applications de paiement mobile comme Google Pay",
           correct: false,
         },
-      ],
-    },
-    {
-      question:
-        "Quels sont les désagréments de se connecter à un hotspot wifi public ?",
-      options: [
-        { text: "La connexion est gratuite", correct: false },
-        { text: "Le temps de connexion est illimité", correct: false },
-        { text: "La connexion sans fil est rapide", correct: false },
         {
-          text: "La connexion est souvent lente et peut poser des problèmes pour l'échange de fichiers lourds, il y a des coupures et les réseaux sont rarement sécurisés.",
+          text: "En utilisant des applications de suivi de santé pour suivre son activité physique et son alimentation",
           correct: true,
         },
       ],
     },
     {
       question:
-        "Comment se connecter aux différents services publics via France Connect ?",
+        "Quel est un moyen d'utiliser le numérique pour accéder à des informations sur n'importe quel sujet ?",
       options: [
-        { text: "En téléchargeant l'application adéquate", correct: true },
-        { text: "En se rendant sur le site internet dédié", correct: true },
-        { text: "En utilisant un compte Facebook", correct: false },
         {
-          text: "En utilisant un numéro de téléphone portable",
+          text: "En utilisant un moteur de recherche comme Google",
+          correct: true,
+        },
+        {
+          text: "En utilisant des applications de messagerie comme WhatsApp",
+          correct: false,
+        },
+        {
+          text: "En utilisant des applications de paiement mobile comme Google Pay",
+          correct: false,
+        },
+        {
+          text: "En utilisant des applications de suivi de santé pour suivre son activité physique et son alimentation",
+          correct: false,
+        },
+      ],
+    },
+    {
+      question:
+        "Quel est un moyen d'utiliser le numérique pour acheter des produits et des services en ligne ?",
+      options: [
+        {
+          text: "En utilisant un moteur de recherche comme Google",
+          correct: false,
+        },
+        {
+          text: "En utilisant des sites de vente en ligne comme Amazon",
+          correct: true,
+        },
+        {
+          text: "En utilisant des applications de paiement mobile comme Google Pay",
+          correct: true,
+        },
+        {
+          text: "En utilisant des applications de suivi de santé pour suivre son activité physique et son alimentation",
           correct: false,
         },
       ],
     },
   ];
+
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -128,11 +155,11 @@ function QuizTuto1() {
 
   return (
     <div className="w-3/4 h-1/2 items-center justify-center flex flex-col mx-auto bg-white rounded-lg shadow-lg p-6 my-4">
-      <h1 className="text-3xl animate-pulse">Quiz</h1>
+      <h1 className="text-3xl animate-pulse">Quiz "Vie courante": </h1>
       <img
-        src="src/assets/tutorial-category-img/connected.svg"
+        src="src/assets/tutorial-category-img/currentlife.svg"
         alt="seconnecter"
-        className="md:w-1/4 md:h-1/4"
+        className="w-1/4 h-1/4"
       />
 
       <p className="bg-white font-bold mx-auto w-1/2 mt-4 rounded-lg flex py-4 justify-center">
@@ -174,4 +201,4 @@ function QuizTuto1() {
   );
 }
 
-export default QuizTuto1;
+export default QuizTuto2;

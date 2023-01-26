@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import celebration from "../assets/connexionPage/registerPage/undraw_celebrating_rtuv.svg";
+import celebration from "../assets/connexionPage/registerPage/winner.svg";
 
-function QuizTuto3() {
+function QuizTuto1() {
   const questions = [
     {
       question: "Quel équipement est nécessaire pour se connecter à internet ?",
@@ -13,46 +13,60 @@ function QuizTuto3() {
       ],
     },
     {
-      question: "Comment allumer son ordinateur ?",
+      question:
+        "Comment se connecter à internet à partir d'un appareil compatible ?",
       options: [
-        { text: "En appuyant sur le bouton d'alimentation", correct: true },
-        { text: "En utilisant la souris", correct: false },
-        { text: "En appuyant sur le bouton d'éjection", correct: false },
-        { text: "En utilisant le pad", correct: false },
+        { text: "En utilisant un câble HDMI", correct: false },
+        { text: "En utilisant un câble Ethernet", correct: true },
+        { text: "En utilisant un câble USB", correct: false },
+        { text: "En utilisant le Bluetooth", correct: false },
+      ],
+    },
+    {
+      question: "Comment vérifier si vous êtes connecté à internet ?",
+      options: [
+        { text: "En allumant le modem ou le routeur", correct: false },
+        {
+          text: "En ouvrant un navigateur internet et en entrant l'adresse d'un site web",
+          correct: true,
+        },
+        {
+          text: "En appelant votre fournisseur de services internet",
+          correct: false,
+        },
+        {
+          text: "En branchant le câble Ethernet à l'ordinateur",
+          correct: false,
+        },
       ],
     },
     {
       question:
-        "Quel est un moyen d'utiliser le numérique pour gérer son quotidien ?",
+        "Quels sont les désagréments de se connecter à un hotspot wifi public ?",
       options: [
-        { text: "En utilisant un ordinateur", correct: true },
-        { text: "En utilisant un téléphone portable", correct: true },
-        { text: "En utilisant une calculatrice", correct: false },
-        { text: "En utilisant un téléviseur", correct: false },
+        { text: "La connexion est gratuite", correct: false },
+        { text: "Le temps de connexion est illimité", correct: false },
+        { text: "La connexion sans fil est rapide", correct: false },
+        {
+          text: "La connexion est souvent lente et peut poser des problèmes pour l'échange de fichiers lourds, il y a des coupures et les réseaux sont rarement sécurisés.",
+          correct: true,
+        },
       ],
     },
     {
       question:
-        "Quel est l'endroit où l'ordinateur stocke les données en cours d'utilisation pour que le CPU puisse y accéder rapidement ?",
+        "Comment se connecter aux différents services publics via France Connect ?",
       options: [
-        { text: "Unité centrale de traitement (CPU)", correct: false },
-        { text: "Mémoire vive (RAM)", correct: true },
-        { text: "Stockage", correct: false },
-        { text: "Carte graphique", correct: false },
-      ],
-    },
-    {
-      question:
-        "Quel est l'endroit où l'ordinateur stocke les données à long terme, comme les programmes et les fichiers ?",
-      options: [
-        { text: "Unité centrale de traitement (CPU)", correct: false },
-        { text: "Mémoire vive (RAM)", correct: false },
-        { text: "Stockage", correct: true },
-        { text: "Carte graphique", correct: false },
+        { text: "En téléchargeant l'application adéquate", correct: true },
+        { text: "En se rendant sur le site internet dédié", correct: true },
+        { text: "En utilisant un compte Facebook", correct: false },
+        {
+          text: "En utilisant un numéro de téléphone portable",
+          correct: false,
+        },
       ],
     },
   ];
-
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -114,11 +128,11 @@ function QuizTuto3() {
 
   return (
     <div className="w-3/4 h-1/2 items-center justify-center flex flex-col mx-auto bg-white rounded-lg shadow-lg p-6 my-4">
-      <h1 className="text-3xl animate-pulse">Quiz</h1>
+      <h1 className="text-3xl animate-pulse">Quiz "Se connecter" : </h1>
       <img
-        src="src/assets/tutorial-category-img/desktop.svg"
+        src="src/assets/tutorial-category-img/connected.svg"
         alt="seconnecter"
-        className="w-1/4 h-1/4"
+        className="md:w-1/4 md:h-1/4"
       />
 
       <p className="bg-white font-bold mx-auto w-1/2 mt-4 rounded-lg flex py-4 justify-center">
@@ -160,4 +174,4 @@ function QuizTuto3() {
   );
 }
 
-export default QuizTuto3;
+export default QuizTuto1;

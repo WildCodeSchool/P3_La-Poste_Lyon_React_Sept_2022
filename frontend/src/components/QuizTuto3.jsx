@@ -1,95 +1,54 @@
 import React, { useState } from "react";
-import celebration from "../assets/connexionPage/registerPage/undraw_celebrating_rtuv.svg";
+import celebration from "../assets/connexionPage/registerPage/winner.svg";
 
-function QuizTuto2() {
+function QuizTuto3() {
   const questions = [
     {
-      question:
-        "Quel est l'un des avantages de l'utilisation du numérique dans la vie courante ?",
+      question: "Quel équipement est nécessaire pour se connecter à internet ?",
       options: [
-        { text: "Permet de communiquer avec vos proches", correct: true },
-        { text: "Permet de voler de l'argent en ligne", correct: false },
-        { text: "Permet de voyager dans le temps", correct: false },
-        { text: "Permet de se téléporter", correct: false },
+        { text: "Un ordinateur portable", correct: false },
+        { text: "Une carte SIM", correct: false },
+        { text: "Un modem ou un routeur", correct: true },
+        { text: "Un téléviseur", correct: false },
       ],
     },
     {
-      question:
-        "Comment utilise-t-on le numérique pour accéder à des informations sur n'importe quel sujet ?",
+      question: "Comment allumer son ordinateur ?",
       options: [
-        { text: "En utilisant un miroir magique", correct: false },
-        {
-          text: "En utilisant un moteur de recherche comme Google",
-          correct: true,
-        },
-        { text: "En demandant à un ami", correct: false },
-        { text: "En utilisant un livre de sorts", correct: false },
+        { text: "En appuyant sur le bouton d'alimentation", correct: true },
+        { text: "En utilisant la souris", correct: false },
+        { text: "En appuyant sur le bouton d'éjection", correct: false },
+        { text: "En utilisant le pad", correct: false },
       ],
     },
     {
       question:
         "Quel est un moyen d'utiliser le numérique pour gérer son quotidien ?",
       options: [
-        {
-          text: "En utilisant un calendrier pour planifier ses rendez-vous",
-          correct: true,
-        },
-        {
-          text: "En utilisant des applications de messagerie comme WhatsApp",
-          correct: false,
-        },
-        {
-          text: "En utilisant des applications de paiement mobile comme Google Pay",
-          correct: false,
-        },
-        {
-          text: "En utilisant des applications de suivi de santé pour suivre son activité physique et son alimentation",
-          correct: true,
-        },
+        { text: "En utilisant un ordinateur", correct: true },
+        { text: "En utilisant un téléphone portable", correct: true },
+        { text: "En utilisant une calculatrice", correct: false },
+        { text: "En utilisant un téléviseur", correct: false },
       ],
     },
     {
       question:
-        "Quel est un moyen d'utiliser le numérique pour accéder à des informations sur n'importe quel sujet ?",
+        "Quel est l'endroit où l'ordinateur stocke les données en cours d'utilisation pour que le CPU puisse y accéder rapidement ?",
       options: [
-        {
-          text: "En utilisant un moteur de recherche comme Google",
-          correct: true,
-        },
-        {
-          text: "En utilisant des applications de messagerie comme WhatsApp",
-          correct: false,
-        },
-        {
-          text: "En utilisant des applications de paiement mobile comme Google Pay",
-          correct: false,
-        },
-        {
-          text: "En utilisant des applications de suivi de santé pour suivre son activité physique et son alimentation",
-          correct: false,
-        },
+        { text: "Unité centrale de traitement (CPU)", correct: false },
+        { text: "Mémoire vive (RAM)", correct: true },
+        { text: "Stockage", correct: false },
+        { text: "Carte graphique", correct: false },
       ],
     },
     {
       question:
-        "Quel est un moyen d'utiliser le numérique pour acheter des produits et des services en ligne ?",
+        "Quel est l'endroit où l'ordinateur stocke les données à long terme, comme les programmes et les fichiers ?",
       options: [
-        {
-          text: "En utilisant un moteur de recherche comme Google",
-          correct: false,
-        },
-        {
-          text: "En utilisant des sites de vente en ligne comme Amazon",
-          correct: true,
-        },
-        {
-          text: "En utilisant des applications de paiement mobile comme Google Pay",
-          correct: true,
-        },
-        {
-          text: "En utilisant des applications de suivi de santé pour suivre son activité physique et son alimentation",
-          correct: false,
-        },
+        { text: "Unité centrale de traitement (CPU)", correct: false },
+        { text: "Mémoire vive (RAM)", correct: false },
+        { text: "Stockage", correct: true },
+        { text: "Carte graphique", correct: false },
       ],
     },
   ];
@@ -155,9 +114,9 @@ function QuizTuto2() {
 
   return (
     <div className="w-3/4 h-1/2 items-center justify-center flex flex-col mx-auto bg-white rounded-lg shadow-lg p-6 my-4">
-      <h1 className="text-3xl animate-pulse">Quiz</h1>
+      <h1 className="text-3xl animate-pulse">Quiz "Utiliser un ordinateur":</h1>
       <img
-        src="src/assets/tutorial-category-img/currentlife.svg"
+        src="src/assets/tutorial-category-img/desktop.svg"
         alt="seconnecter"
         className="w-1/4 h-1/4"
       />
@@ -201,4 +160,4 @@ function QuizTuto2() {
   );
 }
 
-export default QuizTuto2;
+export default QuizTuto3;

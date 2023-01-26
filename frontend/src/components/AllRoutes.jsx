@@ -19,10 +19,10 @@ import ForgottenPassword from "../pages/ForgottenPassword";
 import ResetPassword from "../pages/ResetPassword";
 import ForgottenEmail from "../pages/ForgottenEmail";
 import CurrentUserContext from "../contexts/userContext";
-import Quiz from "../pages/Quiz";
-import QuizTuto1 from "../pages/QuizTuto1";
-import QuizTuto2 from "../pages/QuizTuto2";
-import QuizTuto3 from "../pages/QuizTuto3";
+import QuizTuto1 from "./QuizTuto1";
+import QuizTuto2 from "./QuizTuto2";
+import QuizTuto3 from "./QuizTuto3";
+import Games from "../pages/Games";
 
 function AllRoutes({ adminView, handleAdminView }) {
   const { currentUser } = React.useContext(CurrentUserContext);
@@ -30,7 +30,6 @@ function AllRoutes({ adminView, handleAdminView }) {
   return (
     <Routes>
       {/* Without connexion */}
-      <Route path="/quiz" element={<Quiz />} />
       <Route path="/quiz1" element={<QuizTuto1 />} />
       <Route path="/quiz2" element={<QuizTuto2 />} />
       <Route path="/quiz3" element={<QuizTuto3 />} />
@@ -68,6 +67,7 @@ function AllRoutes({ adminView, handleAdminView }) {
           <Route path="/categories/:id/tutorials" element={<TutorialList />} />
           <Route path="/history" element={<Historic />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/games" element={<Games />} />
         </>
       )}
       {/* Admin */}
