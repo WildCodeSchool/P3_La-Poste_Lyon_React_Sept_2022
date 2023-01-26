@@ -1,0 +1,61 @@
+import React, { useState } from "react";
+import TutoSearchbarAide from "../components/TutoSearchbarAide";
+import HelpModale from "../components/HelpModale";
+
+function Help() {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+    setOpen(!open);
+    /* Close menu when click outside */
+    const concernedElement = document.getElementById("click-menu");
+    document.addEventListener("mousedown", (event) => {
+      if (concernedElement === null) {
+        return;
+      }
+      if (!concernedElement.contains(event.target)) {
+        setOpen(false);
+      }
+    });
+  };
+  return (
+    <div className="Help relative flex justify-center items-center w-full">
+      <div className="w-full">
+        <div className="mt-7 mb-7 flex flex-col items-center">
+          <img
+            src="./src/assets/help/undraw_questions_re_1fy7.svg"
+            alt="personnages se posant des questions"
+            className="hidden md:block lg:block h-60"
+          />
+
+          <h1 className="flex justify-center items-center text-bold text-white rounded-xl shadow-lg bg-main-yellow w-2/3 h-10 text-xl md:text-3xl text-center md:w-1/4 md:h-14 md:text-center m-3 md:mb-10">
+            Besoin d'aide?
+          </h1>
+          {open ? (
+            <div className="w-full absolute top-0">
+              <HelpModale />
+            </div>
+          ) : null}
+          <div className="mt-7 mb-7 flex flex-col items-center text-lg md:text-xl">
+            <p className="text-center mb-3">
+              Peut-être que votre solution est déjà disponible parmis nos
+              tutoriels :
+            </p>
+          </div>
+          <div className="w-full" id="click-menu">
+            <TutoSearchbarAide />
+          </div>
+          <p>Aucun tutoriel ne peux vous aider?</p>
+          <button
+            className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
+            type="button"
+            onClick={handleOpen}
+          >
+            Contactez nous!
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default Help;
