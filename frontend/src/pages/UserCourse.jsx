@@ -52,6 +52,9 @@ function UserCourse() {
 
   const randomObject = () => images[Math.floor(Math.random() * images.length)];
 
+  const isAllFinished = (id) =>
+    tutos.every((status) => status?.tuto_id === id)?.status === "finished";
+
   return (
     <div>
       <BannerProfile />
@@ -79,11 +82,9 @@ function UserCourse() {
               </div>
               <div
                 key={index}
-                className={
-                  index % 2 === 1
-                    ? "flex justify-center ml-56 md:ml-96 md:pl-20"
-                    : "flex justify-center"
-                }
+                className={`flex justify-center ${
+                  index % 2 === 1 ? "ml-56 md:ml-96 md:pl-20" : ""
+                }`}
               >
                 <img
                   src={randomObject().image}
@@ -121,14 +122,13 @@ function UserCourse() {
           )}
         </div>
       ))}
-      {/* Si tous les tutoriels presents sur la page sont en statu finished, alors j'affiche un message de félicitations, sinon rien. 
-      Pour afficher une pop-up de félicitation lorsque tous les tutoriels ont le statut "finished", vous pouvez utiliser une fonction qui vérifie si tous les tutoriels ont ce statut, et si c'est le cas, affiche la pop-up. Par exemple, vous pouvez utiliser la fonction Array.prototype.every() pour vérifier si tous les éléments d'un tableau répondent à une condition donnée (ici, si le statut est "finished"). Vous pourriez écrire quelque chose comme ceci :
-
-Copy code
-if (tutorialStatus.every(status => status.status === 'finished')) {
-  Afficher la pop-up de félicitation ici
-}
-Cela devrait être placé après la définition de la fonction findTutorialStatus() dans votre code. */}
+      {isAllFinished ? (
+        <div className="flex justify-center my-16">
+          <p className="border shadow px-6 py-2 rounded-lg text-3xl font-bold text-main-yellow">
+            Félicitations ! Vous avez terminé le parcours utilisateur !
+          </p>
+        </div>
+      ) : null}
     </div>
   );
 }

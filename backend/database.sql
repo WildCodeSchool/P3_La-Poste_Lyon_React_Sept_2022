@@ -66,7 +66,7 @@ CREATE TABLE `tutorialStatus` (
   FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
-INSERT INTO `tutorialStatus` VALUES (1,1,NULL),(2,1,NULL),(3,1,NULL),(4,1,NULL),(15,2,'started'),(35,2,'started'),(3,2,'started'),(3,9,'finished'),(5,9,'finished'),(29,9,'finished'),(28,9,'finished'),(30,9,'finished'),(33,9,'finished'),(13,9,'finished'),(36,9,'started'),(1,9,'finished'),(4,9,'finished'),(19,9,'finished'),(17,9,'finished'),(18,9,'finished');
+INSERT INTO `tutorialStatus` VALUES (15,2,'started'),(35,2,'started'),(3,2,'started'),(3,9,'finished'),(5,9,'finished'),(29,9,'finished'),(28,9,'finished'),(30,9,'finished'),(33,9,'finished'),(13,9,'finished'),(36,9,'started'),(1,9,'finished'),(4,9,'finished'),(19,9,'finished'),(17,9,'finished'),(18,9,'finished');
 
 DROP TABLE IF EXISTS `stepper`;
 
