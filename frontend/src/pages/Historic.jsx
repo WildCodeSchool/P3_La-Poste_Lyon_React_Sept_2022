@@ -79,6 +79,28 @@ function Historic() {
     getRewardTuto();
   }, []);
 
+  /* Pagination */
+  /* Get the current Page and max tutorials to define pages */
+  const [currentPage, setCurrentPage] = useState(1);
+  const tutorialsPerPage = 5;
+
+  /* Calculate the first and last index  for slice */
+  const indexOfLastTutorial = currentPage * tutorialsPerPage;
+  const indexOfFirstTutorial = indexOfLastTutorial - tutorialsPerPage;
+
+  /* HandlePage with the currentPage number */
+  const handlePageChange = (pageNumber) => setCurrentPage(pageNumber);
+
+  /* Generate a page by the length */
+  const pageNumbers = [];
+  for (
+    let i = 1;
+    i <= Math.ceil(finishedTutorials.length / tutorialsPerPage);
+    i += 1
+  ) {
+    pageNumbers.push(i);
+  }
+
   return (
     <div className="">
       <Toaster position="top-center" reverseOrder />
@@ -101,40 +123,57 @@ function Historic() {
             />
           </>
         )}
-        {finishedTutorials.map((tutorial, index) => (
-          <li
-            key={index}
-            className="mx-10 md:mx-96 md:text-center mb-10 my-3 md:m-6 border shadow-xl rounded-lg text-center flex flex-col md:flex-row justify-between items-center md:w-2/5"
-          >
-            <img
-              src={
-                categories?.find(
-                  (category) => category?.id === tutorial?.category_id
-                )?.icon
-              }
-              alt="tutorial cateogry"
-              className="h-20 w-20 hidden md:block md:p-2"
-            />
-            <p className="p-2">{tutorial.title}</p>
-            <div className="hidden md:block border-r-2 border-gray-100 h-20 w-1" />
-
-            <p className="font-semibold">
-              {" "}
-              {
-                categories?.find(
-                  (category) => category?.id === tutorial?.category_id
-                )?.name
-              }
-            </p>
-            <button
-              onClick={() => navigate(`/api/tutos/${tutorial.id}`)}
-              type="button"
-              className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-20 md:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
+        {finishedTutorials
+          .slice(indexOfFirstTutorial, indexOfLastTutorial)
+          .map((tutorial, index) => (
+            <li
+              key={index}
+              className="mx-10 md:mx-96 md:text-center mb-10 my-3 md:m-6 border shadow-xl rounded-lg text-center flex flex-col md:flex-row justify-between items-center md:w-2/5"
             >
-              Aller
+              <img
+                src={
+                  categories?.find(
+                    (category) => category?.id === tutorial?.category_id
+                  )?.icon
+                }
+                alt="tutorial cateogry"
+                className="h-20 w-20 hidden md:block md:p-2"
+              />
+              <p className="p-2">{tutorial.title}</p>
+              <div className="hidden md:block border-r-2 border-gray-100 h-20 w-1" />
+
+              <p className="font-semibold">
+                {" "}
+                {
+                  categories?.find(
+                    (category) => category?.id === tutorial?.category_id
+                  )?.name
+                }
+              </p>
+              <button
+                onClick={() => navigate(`/api/tutos/${tutorial.id}`)}
+                type="button"
+                className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-20 md:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
+              >
+                Aller
+              </button>
+            </li>
+          ))}
+        {/* Pagination */}
+        <div className="flex gap-3 mt-3 mb-6">
+          {pageNumbers.map((number) => (
+            <button
+              type="button"
+              className={` text-xl text-white w-8 h-8  rounded-lg ${
+                number === currentPage ? "bg-main-blue" : "bg-gray-300"
+              } `}
+              key={number}
+              onClick={() => handlePageChange(number)}
+            >
+              {number}
             </button>
-          </li>
-        ))}
+          ))}
+        </div>
       </ul>
     </div>
   );
