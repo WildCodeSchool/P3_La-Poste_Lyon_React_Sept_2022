@@ -136,6 +136,11 @@ router.put(
 
 router.post("/api/tutoStatus", tutorialStatusControllers.addTutoStatus);
 
+router.delete(
+  "/api/deleteStatus/:id",
+  tutorialStatusControllers.deleteStatusByUser
+);
+
 // Stepper management
 router.delete(
   "/api/steppers/tuto_id/:id",
@@ -149,6 +154,7 @@ router.delete("/api/steppers/:id", stepperControllers.destroy);
 // Reward routes
 router.get("/api/rewards/:id", rewardControllers.getAllBadgeByUser);
 router.post("/api/gainReward", rewardControllers.AddRewardToUser);
+router.delete("/api/deleteReward/:id", rewardControllers.DeleteRewardForUser);
 
 // Gestion des avatars
 
