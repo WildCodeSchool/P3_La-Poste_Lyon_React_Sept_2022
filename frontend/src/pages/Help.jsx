@@ -17,7 +17,7 @@ function Help() {
     toast.success(
       "Vous remportez un badge ! Il n'y a pas de mal à demander de l'aide 😊 !"
     );
-  /* fetch with method post the badge with id 3 when going on the page. But only if checkrewardhelped is false */
+  /* Fetch Badge if user didn't have */
   const getRewardHelped = () => {
     if (checkRewardHelped === false) {
       fetch(`${VITE_BACKEND_URL}/api/gainReward`, {
@@ -58,6 +58,7 @@ function Help() {
       }
     });
   };
+
   return (
     <div className="Help relative flex ">
       <Toaster position="top-center" reverseOrder />
