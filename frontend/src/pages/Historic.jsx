@@ -4,6 +4,7 @@ import PreviousButton from "../components/PreviousButton";
 import BannerProfile from "../components/BannerProfile";
 import { useCurrentUserContext } from "../contexts/userContext";
 import { CategoryContext } from "../contexts/CategoryContext";
+import zeroTuto from "../assets/items/zeroTuto.svg";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
@@ -50,6 +51,18 @@ function Historic() {
       </h1>
 
       <ul className=" flex flex-col justify-center items-center ">
+        {finishedTutorials.length === 0 && (
+          <>
+            <p className="text-center text-xl  p-6 m-6 font-semibold">
+              Vous n'avez pas encore réalisé de tutoriels
+            </p>
+            <img
+              src={zeroTuto}
+              alt="Aucun tutoriel réalisé"
+              className="h-96 w-96"
+            />
+          </>
+        )}
         {finishedTutorials.map((tutorial) => (
           <li className="mx-10 md:mx-96 md:text-center mb-10 my-3 md:m-6 border shadow-xl rounded-lg text-center flex flex-col md:flex-row justify-between items-center md:w-2/5">
             <img

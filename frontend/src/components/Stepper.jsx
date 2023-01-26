@@ -59,11 +59,6 @@ export default function Stepper(steppers) {
     });
   };
 
-  /* checkReward GoodWay */
-  const checkRewardGoodWay = rewards.some(
-    (reward) => reward.label === "GoodWay"
-  );
-
   /* Send validate tuto */
   const setValidateInfos = () => {
     const myHeaders = new Headers();
@@ -96,8 +91,11 @@ export default function Stepper(steppers) {
       })
       .catch((error) => console.error("error", error));
 
-    /* fetch to give the badge with id 10 if the tuto_id is "1"  */
-    if (id === "1" && !checkRewardGoodWay) {
+    /* fetch to give the badge  */
+    const checkRewardGoodWay = rewards.some(
+      (reward) => reward.label === "GoodWay"
+    );
+    if (!checkRewardGoodWay) {
       fetch(`${VITE_BACKEND_URL}/api/gainReward`, {
         method: "POST",
         headers: {

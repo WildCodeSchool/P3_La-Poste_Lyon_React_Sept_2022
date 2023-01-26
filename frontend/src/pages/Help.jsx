@@ -1,8 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
+import PreviousButton from "@components/PreviousButton";
+import { Toaster, toast } from "react-hot-toast";
+import { RewardsContext } from "../contexts/RewardsContext";
+import CurrentUserContext from "../contexts/userContext";
 import TutoSearchbarAide from "../components/TutoSearchbarAide";
 import HelpModale from "../components/HelpModale";
 
 function Help() {
+  const { VITE_BACKEND_URL } = import.meta.env;
+  const { currentUser, token } = useContext(CurrentUserContext);
+  const { rewards, setRewards } = useContext(RewardsContext);
+
+  const checkRewardHelped = rewards.some((reward) => reward.label === "Helped");
+
+  const notifyBadge = () =>
+    toast.success(
+      "Vous remportez un badge ! Il n'y a pas de mal à demander de l'aide 😊 !"
+    );
+  /* fetch with method post the badge with id 3 when going on the page. But only if checkrewardhelped is false */
+  const getRewardHelped = () => {
+    if (checkRewardHelped === false) {
+      fetch(`${VITE_BACKEND_URL}/api/gainReward`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          user_id: currentUser.id,
+          badge_id: 3,
+        }),
+      })
+        .then((response) => response.text())
+        .then((data) => {
+          setRewards([...rewards, data]);
+          notifyBadge();
+        })
+        .catch((error) => console.error("error", error));
+    }
+  };
+
+  useEffect(() => {
+    getRewardHelped();
+  }, []);
+
   const [open, setOpen] = useState(false);
   const handleOpen = () => {
     setOpen(!open);
@@ -18,7 +59,9 @@ function Help() {
     });
   };
   return (
-    <div className="Help relative flex justify-center items-center w-full">
+    <div className="Help relative flex ">
+      <Toaster position="top-center" reverseOrder />
+      <PreviousButton />
       <div className="w-full">
         <div className="mt-7 mb-7 flex flex-col items-center">
           <img

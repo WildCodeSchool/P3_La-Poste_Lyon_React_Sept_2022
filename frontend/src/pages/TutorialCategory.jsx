@@ -1,7 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { toast } from "react-hot-toast";
-import { RewardsContext } from "../contexts/RewardsContext";
 import { CategoryContext } from "../contexts/CategoryContext";
 import CurrentUserContext from "../contexts/userContext";
 import PreviousButton from "../components/PreviousButton";
@@ -12,9 +10,6 @@ const { VITE_BACKEND_URL } = import.meta.env;
 function TutorialCategory() {
   const { categories } = useContext(CategoryContext);
   const { currentUser, token } = useContext(CurrentUserContext);
-  const { rewards, setRewards } = useContext(RewardsContext);
-
-  const notifyBadge = () => toast.success("Et vous remportez un badge  ! 😁 ");
 
   /* Get progressionList */
   const [progressionList, setProgressionList] = useState([]);
@@ -44,48 +39,6 @@ function TutorialCategory() {
   useEffect(() => {
     getProgressionList();
   }, []);
-
-  /* Check the progression of category Security */
-  const checkCategorySecurityCompleted = progressionList.some(
-    (categorie) =>
-      categorie.category === "Sécurité" &&
-      categorie.tuto_completed === categorie.total_tuto
-  );
-  /* Check if user as already a reward */
-  const checkSecurityReward = rewards.some(
-    (reward) => reward.label === "Security"
-  );
-
-  /* Fetch the badge Security */
-  const fetchBadge = () => {
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${token}`);
-    myHeaders.append("Content-Type", "application/json");
-    const body = JSON.stringify({
-      user_id: currentUser.id,
-      badge_id: 2,
-    });
-    const requestOptions = {
-      method: "POST",
-      redirect: "follow",
-      headers: myHeaders,
-      body,
-    };
-
-    if (checkCategorySecurityCompleted && !checkSecurityReward) {
-      fetch(`${VITE_BACKEND_URL}/api/gainReward`, requestOptions)
-        .then((response) => response.json())
-        .then((result) => {
-          setRewards([...rewards, result]);
-          notifyBadge();
-        })
-        .catch((error) => console.error("error", error));
-    }
-  };
-
-  useEffect(() => {
-    fetchBadge();
-  }, [progressionList]);
 
   /* I search the progression of each category and return an object with the name and progression */
   const allProgression = progressionList.map((categorie) => {
