@@ -45,6 +45,7 @@ class TutoManager extends AbstractManager {
     );
   }
 
+  // CREATE A TUTO STARTED ON THE TABLE AFFILIATED TO A USER
   postToStarted(tutorialStatus) {
     return this.connection.query(
       `insert into ${this.table}  (tuto_id, user_id, status) 
@@ -53,6 +54,7 @@ class TutoManager extends AbstractManager {
     );
   }
 
+  // UPDATE A TUTO TO FINISHED ON THE TABLE AFFILIATED TO A USER
   updateToFinished(tutorialStatus) {
     return this.connection.query(
       `update ${this.table} set status = "finished" where user_id = ? and tuto_id = ?`,
@@ -64,6 +66,13 @@ class TutoManager extends AbstractManager {
     return this.connection.query(
       `insert into ${this.table} (tuto_id, user_id) values (?, ?)`,
       [tutorialStatus.tuto_id, tutorialStatus.user_id]
+    );
+  }
+
+  deleteAllTutoByUser(id) {
+    return this.connection.query(
+      `delete from ${this.table} where user_id = ?`,
+      [id]
     );
   }
 }

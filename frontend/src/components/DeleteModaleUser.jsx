@@ -40,16 +40,16 @@ function DeleteModaleUser({
                     </div>
                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                       <h3
-                        className="text-lg font-medium leading-6 text-gray-900"
+                        className="text-lg font-medium leading-6 text-gray-900 text-center"
                         id="modal-title"
                       >
                         Désactiver le compte utilisateur
                       </h3>
-                      <div className="mt-2">
+                      <div className="mt-2 text-center">
                         <p className="text-sm text-gray-500">
-                          Êtes vous certain de vouloir désactiver votre compte ?
+                          Êtes vous certain de vouloir désactiver ce compte ?
                           <br />
-                          Toutes vos données seront définitivement supprimées.
+                          Toutes les données seront définitivement supprimées.
                           <br />
                           Cette action est irréversible.
                         </p>
