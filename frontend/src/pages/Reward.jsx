@@ -1,11 +1,9 @@
 import PreviousButton from "@components/PreviousButton";
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import BannerProfile from "../components/BannerProfile";
 import { RewardsContext } from "../contexts/RewardsContext";
 
 function Reward() {
-  const [setHover] = useState(false);
-
   const { rewards, getRewards } = useContext(RewardsContext);
 
   useEffect(() => {
@@ -22,16 +20,7 @@ function Reward() {
         </h1>
         <div className="grid overflow-hidden  grid-cols-3 md:grid-cols-4  grid-rows-4 md:grid-rows-3 gap-10 m-6 p-6 justify-items-center">
           {rewards?.map((reward) => (
-            <div
-              key={reward.id}
-              className="relative"
-              onMouseEnter={() => {
-                setHover(true);
-              }}
-              onMouseLeave={() => {
-                setHover(false);
-              }}
-            >
+            <div key={reward.id} className="relative">
               <img
                 src={reward.picture}
                 alt={reward.label}
