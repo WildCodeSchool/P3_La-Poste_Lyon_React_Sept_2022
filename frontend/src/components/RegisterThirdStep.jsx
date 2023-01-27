@@ -50,13 +50,12 @@ function RegisterThirdStep({
     <>
       <form
         onSubmit={toTheLastStep}
-        id="RegisterThirdStep"
-        className="flex justify-center flex-col items-center h-screen w-screen pb-64"
+        className="flex justify-center flex-col items-center h-screen w-screen "
       >
-        <div className=" rounded-xl  md:py-10 h-fit bg-gradient-to-b from-[#003DA5] to-[#023998]">
+        <div className="p-1 w-11/12  md:w-3/6 rounded-xl  md:py-10 h-[70%] bg-gradient-to-b from-[#003DA5] to-[#023998]">
           <div className="  h-fit ">
-            <div className="flex flex-col items-center justify-center">
-              <h1 className="text-white text-3xl">
+            <div className=" m-6 flex flex-col items-center justify-center">
+              <h1 className="text-white text-3xl" id="RegisterThirdStep">
                 Renseignez vos informations
               </h1>
 
@@ -73,13 +72,13 @@ function RegisterThirdStep({
                   <div className="mb-4">
                     <label
                       className="block text-white text-sm font-bold mb-2"
-                      htmlFor="username"
+                      htmlFor="firstname"
                     >
                       Prénom
                     </label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="username"
+                      id="firstname"
                       value={firstname}
                       onChange={handleFirstname}
                       required
@@ -90,13 +89,13 @@ function RegisterThirdStep({
                   <div className="mb-4">
                     <label
                       className="block text-white text-sm font-bold mb-2"
-                      htmlFor="username"
+                      htmlFor="lastname"
                     >
                       Nom
                     </label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="username"
+                      id="lastname"
                       value={lastname}
                       required
                       onChange={handleLastname}
@@ -107,13 +106,13 @@ function RegisterThirdStep({
                   <div className="mb-4">
                     <label
                       className="block text-white text-sm font-bold mb-2"
-                      htmlFor="username"
+                      htmlFor="phone"
                     >
                       Téléphone
                     </label>
                     <input
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="username"
+                      id="phone"
                       pattern="^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$"
                       value={phone}
                       required

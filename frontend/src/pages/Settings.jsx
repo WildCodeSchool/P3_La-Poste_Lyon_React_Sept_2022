@@ -5,6 +5,7 @@ import uploadIcon from "../assets/items/uploadIcon.svg";
 import PreviousButton from "../components/PreviousButton";
 import { useCurrentUserContext } from "../contexts/userContext";
 import SettingsParameters from "./SettingsParameters";
+import { useRewardsContext } from "../contexts/RewardsContext";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
@@ -22,7 +23,10 @@ function Settings() {
     });
   };
 
+  const notifyBadge = () => toast.success("Et vous remportez un badge  ! 😁 ");
+
   const { currentUser, setCurrentUser, token } = useCurrentUserContext();
+  const { rewards, setRewards } = useRewardsContext();
 
   const avatarRef = useRef(null);
   const navigate = useNavigate();
@@ -78,6 +82,9 @@ function Settings() {
     }
   };
 
+  /* checkReward Profil */
+  const checkRewardProfil = rewards.some((reward) => reward.label === "Profil");
+
   // Submit usersInformations
   const submitSettingModify = (e) => {
     const myHeaders = new Headers();
@@ -130,6 +137,27 @@ function Settings() {
           phone: userValues.phone,
         })
       );
+
+    /* Fetch the reward */
+    if (!checkRewardProfil) {
+      fetch(`${VITE_BACKEND_URL}/api/gainReward`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          user_id: currentUser.id,
+          badge_id: 11,
+        }),
+      })
+        .then((response) => response.text())
+        .then((data) => {
+          setRewards([...rewards, data]);
+          notifyBadge();
+        })
+        .catch((error) => console.error("error", error));
+    }
   };
 
   return (

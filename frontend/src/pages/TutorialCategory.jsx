@@ -4,6 +4,8 @@ import { CategoryContext } from "../contexts/CategoryContext";
 import CurrentUserContext from "../contexts/userContext";
 import PreviousButton from "../components/PreviousButton";
 import BannerProfile from "../components/BannerProfile";
+import grid from "../assets/items/grid.svg";
+import unique from "../assets/items/unique.svg";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
@@ -11,6 +13,7 @@ function TutorialCategory() {
   const { categories } = useContext(CategoryContext);
   const { currentUser, token } = useContext(CurrentUserContext);
 
+  /* Get progressionList */
   const [progressionList, setProgressionList] = useState([]);
 
   const getProgressionList = () => {
@@ -62,33 +65,54 @@ function TutorialCategory() {
     return { ...category, progression };
   });
 
+  /* Handle Mobile View */
+  const [mobileView, setMobileView] = useState(true);
+  const handleMobileView = () => {
+    setMobileView(!mobileView);
+  };
+
   return (
     categories && (
       <>
         <BannerProfile />
+        <PreviousButton />
         <section className="m-6 flex flex-col items-center">
           {/* This button will link to the Dashboard */}
-          <PreviousButton />
 
           <h1 className="m-2 text-3xl font-bold text-main-blue text-center">
             Catégories de tutoriels
           </h1>
-
+          {/* only show on small screen to choice the view */}
+          <button
+            type="button"
+            onClick={handleMobileView}
+            className="md:hidden"
+          >
+            <img
+              src={mobileView ? grid : unique}
+              alt="grid view"
+              className="w-8 h-8"
+            />
+          </button>
           {/* I map the categoryList array to display every category */}
-          <ul className="vw-3/5 grid grid-cols-1 md:grid-cols-4 place-content-center	">
+          <ul
+            className={`grid grid-cols-${
+              mobileView ? "1" : "2"
+            } md:grid-cols-4 place-content-center	`}
+          >
             {categoryList?.map((category) => (
               /* We make a Link using the category.id to transmit it to the params. It will be recover on the TutorialList page to fetch the good category tutorial list. */
               <Link
                 key={category?.id}
                 to={`/categories/${category?.id}/tutorials`}
               >
-                <li className="bg-white flex justify-center border rounded-2xl shadow-lg m-3 p-3 flex-col hover:scale-110 hover:duration-100 hover:bg-[#003da5] hover:text-white">
+                <li className="bg-white h-40 md:h-fit flex justify-center border rounded-2xl shadow-lg m-3 p-3 flex-col hover:scale-110 hover:duration-100 hover:bg-[#003da5] hover:text-white">
                   <h2 className="text-lg text-center m-1">{category?.name}</h2>
                   {category?.icon ? (
                     <img
                       src={category?.icon}
                       alt={category?.categoryName}
-                      className="h-24"
+                      className={`${mobileView ? "h-16" : "h-10"} md:h-24`}
                     />
                   ) : (
                     ""
@@ -104,7 +128,10 @@ function TutorialCategory() {
                           ? "bg-[#ffcc24]"
                           : "bg-[#e0e0e0]"
                       }`}
-                      style={{ width: `${category?.progression}%` }}
+                      style={{
+                        width: `${category?.progression}%`,
+                        maxWidth: "100%",
+                      }}
                     />
                   </div>
                 </li>{" "}
