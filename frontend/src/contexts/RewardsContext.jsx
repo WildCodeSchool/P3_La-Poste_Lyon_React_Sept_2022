@@ -1,5 +1,6 @@
-import React, { createContext, useState, useEffect, useContext } from "react";
+import React, { createContext, useEffect, useContext } from "react";
 import CurrentUserContext from "./userContext";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
@@ -7,7 +8,7 @@ const RewardsContext = createContext();
 export { RewardsContext };
 
 export function RewardsContextProvider({ children }) {
-  const [rewards, setRewards] = useState([]);
+  const [rewards, setRewards] = useLocalStorage("rewards", []);
   const { currentUser, token } = useContext(CurrentUserContext);
 
   const getRewards = () => {
