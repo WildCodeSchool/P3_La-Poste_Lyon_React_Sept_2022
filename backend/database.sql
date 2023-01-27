@@ -1,5 +1,39 @@
 SET FOREIGN_KEY_CHECKS = 0;
 
+DROP TABLE IF EXISTS `quiz`;
+
+CREATE TABLE `quiz` (
+  `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  `title` varchar(120) NOT NULL,
+  `icon` varchar(300) NOT NULL
+);
+
+INSERT INTO `quiz` (title, icon) VALUES ("Se connecter", "src/assets/tutorial-category-img/connected.svg"), ("Utiliser un ordinateur", "src/assets/tutorial-category-img/currentlife.svg"), ("Vie courante", "src/assets/tutorial-category-img/desktop.svg");
+
+DROP TABLE IF EXISTS `question`;
+
+CREATE TABLE `question` (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `content` varchar(255) NOT NULL,
+    `quiz_id` int,
+    FOREIGN KEY (`quiz_id`) REFERENCES `quiz`(`id`)
+);
+
+INSERT INTO `question` (content, quiz_id) VALUES ("Quel équipement est nécessaire pour se connecter à internet ?", 1), ("Comment se connecter à internet à partir d'un appareil compatible ?", 1), ("Comment vérifier si vous êtes connecté à internet ?", 1), ("Quels sont les désagréments de se connecter à un hotspot wifi public ?", 1), ("Comment se connecter aux différents services publics via France Connect ?", 1), ("Quel est l'un des avantages de l'utilisation du numérique dans la vie courante ?", 2), ("Comment utilise-t-on le numérique pour accéder à des informations sur n'importe quel sujet ?", 2), ("Quel est un moyen d'utiliser le numérique pour gérer son quotidien ?", 2), ("Quel est un moyen d'utiliser le numérique pour accéder à des informations sur n'importe quel sujet ?", 2), ("Quel est un moyen d'utiliser le numérique pour acheter des produits et des services en ligne ?", 2), ("Comment allumer un ordinateur ?", 3), ("Comment déverrouiller un ordinateur ?", 3), ("Qu'est-ce que le CPU dans un ordinateur ?", 3), ("Comment éteindre un ordinateur ?", 3), ("Quelle est la fonction d'une imprimante ?", 3);
+
+DROP TABLE IF EXISTS `response`;
+
+CREATE TABLE `response` (
+    `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `content` varchar(255) NOT NULL,
+    `isCorrect` tinyint(1) NOT NULL DEFAULT 0,
+    `question_id` int,
+    FOREIGN KEY (`question_id`) REFERENCES `question`(`id`)
+);
+
+INSERT INTO `response` (content, isCorrect, question_id) VALUES ("Un ordinateur portable", 0, 1), ("Une carte SIM",0, 1), ("Un modem ou un routeur", 1, 1), ("Un téléviseur", 0, 1), ("En utilisant un câble HDMI", 0, 2), ("En utilisant un câble Ethernet", 1, 2), ("En utilisant un câble USB", 0, 2), ("En utilisant le Bluetooth", 0, 2), ("En allumant le modem ou le routeur", 0, 3), ("En ouvrant un navigateur internet et en entrant l'adresse d'un site web", 1, 3), ("En appelant votre fournisseur de services internet", 0, 3), ("En branchant le câble Ethernet à l'ordinateur", 0, 3), ("La connexion est gratuite", 0, 4), ("Le temps de connexion est illimité", 0, 4), ("La connexion sans fil est rapide", 0, 4), ("La connexion est souvent lente et peut poser des problèmes pour l'échange de fichiers lourds, il y a des coupures et les réseaux sont rarement sécurisés.", 1, 4), ("En téléchargeant l'application adéquate", 1, 5), ("En se rendant sur le site internet dédié", 1, 5), ("En utilisant un compte Facebook", 0, 5), ("En utilisant un numéro de téléphone portable", 0, 5), ("Permet de communiquer avec vos proches", 1, 6), ("Permet de voler de l'argent en ligne", 0, 6), ("Permet de voyager dans le temps", 0, 6), ("Permet de se téléporter", 0, 6), ("En utilisant un miroir magique", 0, 7), ("En utilisant un moteur de recherche comme Google", 1, 7), ("En demandant à un ami", 0, 7), ("En utilisant un livre de sorts", 0, 7), ("En utilisant un calendrier pour planifier ses rendez-vous", 1, 8), ("En utilisant des applications de messagerie comme WhatsApp", 0, 8), ("En utilisant des applications de paiement mobile comme Google Pay", 0, 8), ("En utilisant des applications de suivi de santé pour suivre son activité physique et son alimentation", 1, 8), ("En utilisant un moteur de recherche comme Google", 1, 9), ("En utilisant des applications de messagerie comme WhatsApp", 0, 9), ("En utilisant des applications de paiement mobile comme Google Pay", 0, 9), ("En utilisant des applications de suivi de santé pour suivre son activité physique et son alimentation", 0, 9), ("En se rendant dans le supermarché du coin", 0, 10), ("En utilisant des sites de vente en ligne comme Amazon", 1, 10), ("En rédigeant des messages sur un éditeur de texte type Microsoft Word", 0, 10), ("En téléchargeant une image sur mon profil Ligne Bleue", 0, 10), ("En appuyant sur le bouton d'alimentation situé généralement à l'avant de l'ordinateur", 1, 11), ("En criant très fort 'Allume toi !'", 0, 11), ("En cliquant sur le bouton 'Démarrer' sa souris", 0, 11), ("En lui donnant un bisou sur le nez", 0, 11), ("En restant appuyé sur le bouton d'alimentation", 0, 12), ("En brisant l'écran pour accéder à l'intérieur", 0, 12), ("En utilisant des logiciels malveillants pour pirater le système", 0, 12), ("En utilisant le clavier pour saisir un nom d'utilisateur et un mot de passe, et en appuyant sur 'Entrée' ou sur 'OK'", 1, 12), ("C'est le lieu où l'ordinateur range ses lunettes", 0, 13), ("C'est le bouton qui sert à éteindre l'ordinateur", 0, 13), ("C'est le 'cerveau' de l'ordinateur, il traite les données et exécute les instructions", 1, 13), ("C'est la personne qui s'occupe de nettoyer l'ordinateur", 0, 13), ("En cliquant sur le bouton 'Démarrer' en bas à gauche de l'écran, puis en sélectionnant 'Eteindre' et en confirmant en cliquant sur 'Eteindre' lorsque vous y êtes invité", 1, 14), ("En appuyant sur le bouton d'alimentation, généralement situé à l'arrière ou sur le côté de l'ordinateur
+", 0, 14), ("En disant 'Au revoir, ordinateur'", 0, 14), ("En le débranchant", 0, 14), ("C'est un périphérique utilisé pour jouer des musiques", 0, 15), ("C'est un périphérique utilisé pour regarder des films", 0, 15), ("C'est un périphérique utilisé pour faire des calculs", 0, 15), ("C'est un périphérique utilisé pour imprimer des documents ou des images", 1, 15);
+
 DROP TABLE IF EXISTS `tuto`;
 
 CREATE TABLE `tuto` (
