@@ -1,6 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import { toast, Toaster } from "react-hot-toast";
 import { TutorialStatusContext } from "../contexts/TutorialStatusContext";
+import { RewardsContext } from "../contexts/RewardsContext";
+import { useCurrentUserContext } from "../contexts/userContext";
 import odd from "../assets/userCourse/Etape1.svg";
 import even from "../assets/userCourse/Etape2.svg";
 
@@ -50,6 +53,9 @@ import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
 
 function UserCourse() {
+  const { VITE_BACKEND_URL } = import.meta.env;
+  const { currentUser, token } = useCurrentUserContext();
+
   const tutos = [
     { asset: odd, id: 2 },
     { asset: even, id: 3 },
@@ -124,9 +130,49 @@ function UserCourse() {
 
   const randomObject = () => images[Math.floor(Math.random() * images.length)];
 
+  /* Get the badge */
+  const { rewards, setRewards } = useContext(RewardsContext);
+
+  const checkRewardAdventure = rewards?.some(
+    (reward) => reward.label === "Adventure"
+  );
+
+  const notifyBadge = () =>
+    toast.success(
+      "Le chemin ne fait que commencer ! mais vous méritez bien ce badge ! "
+    );
+
+  const getRewardAdventure = async () => {
+    if (checkRewardAdventure === false) {
+      fetch(`${VITE_BACKEND_URL}/api/gainReward`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          user_id: currentUser.id,
+          badge_id: 9,
+        }),
+      })
+        .then((response) => response.text())
+        .then((data) => {
+          notifyBadge();
+          setRewards([...rewards, data]);
+        })
+        .catch((error) => console.error("error", error));
+    }
+  };
+
+  useEffect(() => {
+    getRewardAdventure();
+  }, []);
+
   return (
     <div>
+      <Toaster position="top-center" reverseOrder />
       <BannerProfile />
+
       <PreviousButton />
       <div className="mt-7 mb-7 flex justify-center">
         <h1 className="m-3 flex justify-center items-center font-bold text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">
