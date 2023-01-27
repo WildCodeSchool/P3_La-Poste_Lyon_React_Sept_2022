@@ -8,6 +8,7 @@ import { TutorialsContextProvider } from "./contexts/TutorialsContext";
 import "./App.css";
 import "./index.css";
 import { TutorialStatusContextProvider } from "./contexts/TutorialStatusContext";
+import { RewardsContextProvider } from "./contexts/RewardsContext";
 
 function App() {
   const [adminView, setAdminView] = useState(false);
@@ -21,14 +22,16 @@ function App() {
         <CategoryContextProvider>
           <TutorialsContextProvider>
             <TutorialStatusContextProvider>
-              <NavigationBar
-                handleAdminView={handleAdminView}
-                adminView={adminView}
-              />
-              <AllRoutes
-                handleAdminView={handleAdminView}
-                adminView={adminView}
-              />{" "}
+              <RewardsContextProvider>
+                <NavigationBar
+                  handleAdminView={handleAdminView}
+                  adminView={adminView}
+                />
+                <AllRoutes
+                  handleAdminView={handleAdminView}
+                  adminView={adminView}
+                />{" "}
+              </RewardsContextProvider>
             </TutorialStatusContextProvider>
           </TutorialsContextProvider>
         </CategoryContextProvider>
