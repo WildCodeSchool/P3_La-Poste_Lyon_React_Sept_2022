@@ -16,6 +16,7 @@ function NavigationBar({ adminView, handleAdminView }) {
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+    localStorage.removeItem("rewards");
     setCurrentUser({});
     setOpen(!open);
     navigate("/");
