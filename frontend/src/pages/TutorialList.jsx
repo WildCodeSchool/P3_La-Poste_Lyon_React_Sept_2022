@@ -90,7 +90,7 @@ function TutorialList() {
           </h1>
 
           {/* We display the tutorials with the filter of the cagtegory selected */}
-          <ul className="w-3/5 grid grid-cols-1 md:grid-cols-2  m-auto ">
+          <ul className="md:w-3/5  w-5/6 grid grid-cols-1 md:grid-cols-2  m-auto ">
             {filteredTutorials?.map((tutorial, index) => (
               <li
                 className=" relative my-3 md:m-6 border shadow-xl rounded-lg text-center"
