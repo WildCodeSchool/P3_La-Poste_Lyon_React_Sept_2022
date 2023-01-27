@@ -1,11 +1,9 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Toaster, toast } from "react-hot-toast";
 import PreviousButton from "../components/PreviousButton";
 import BannerProfile from "../components/BannerProfile";
 import { useCurrentUserContext } from "../contexts/userContext";
 import { CategoryContext } from "../contexts/CategoryContext";
-import { RewardsContext } from "../contexts/RewardsContext";
 import zeroTuto from "../assets/items/zeroTuto.svg";
 
 const { VITE_BACKEND_URL } = import.meta.env;
@@ -13,7 +11,6 @@ const { VITE_BACKEND_URL } = import.meta.env;
 function Historic() {
   const { currentUser, token } = useCurrentUserContext();
   const { categories } = useContext(CategoryContext);
-  const { rewards, setRewards } = useContext(RewardsContext);
 
   const navigate = useNavigate();
   /* set Finished tutorials */
@@ -45,40 +42,6 @@ function Historic() {
     fetchFinishedTutorials();
   }, []);
 
-  const checkRewardTuto = rewards?.some((reward) => reward.label === "Tuto");
-
-  const notifyBadge = () =>
-    toast.success("Vous remportez un badge ! Bel investissement ! ");
-
-  const getRewardTuto = async () => {
-    if (
-      checkRewardTuto ===
-      false /* && finishedTutorials.length > 5 async problem ? */
-    ) {
-      fetch(`${VITE_BACKEND_URL}/api/gainReward`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          user_id: currentUser.id,
-          badge_id: 7,
-        }),
-      })
-        .then((response) => response.text())
-        .then((data) => {
-          setRewards([...rewards, data]);
-          notifyBadge();
-        })
-        .catch((error) => console.error("error", error));
-    }
-  };
-
-  useEffect(() => {
-    getRewardTuto();
-  }, []);
-
   /* Pagination */
   /* Get the current Page and max tutorials to define pages */
   const [currentPage, setCurrentPage] = useState(1);
@@ -103,7 +66,6 @@ function Historic() {
 
   return (
     <div className="">
-      <Toaster position="top-center" reverseOrder />
       <BannerProfile />
       <PreviousButton />
       <h1 className="flex my-6 justify-center items-center font-bold text-[26px] text-main-blue rounded-xl h-10 text-center md:h-10 md:text-center pt-3">
