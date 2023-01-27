@@ -22,6 +22,7 @@ const passwordControllers = require("./controllers/passwordControllers");
 const mailControllers = require("./controllers/mailControllers");
 const fileControllers = require("./controllers/fileControllers");
 const rewardControllers = require("./controllers/rewardControllers");
+const quizControllers = require("./controllers/quizControllers");
 
 // PUBLIC ROUTES
 
@@ -165,5 +166,9 @@ router.put(
   fileControllers.renameAvatar,
   userControllers.updateAvatar
 );
+
+// Gestion des quiz
+
+router.get("/api/quiz", quizControllers.browseAllQuiz);
 
 module.exports = router;
