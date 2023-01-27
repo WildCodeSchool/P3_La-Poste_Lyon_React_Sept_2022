@@ -39,7 +39,7 @@ function RegisterFirstStep({
     <>
       <form
         onSubmit={toTheSecondStep}
-        className="flex justify-center items-center flex-col h-100 mt-[20%] "
+        className="flex justify-center items-center flex-col h-100 mt-[20%] mb-10 md:mt-[3%] "
       >
         <div className="p-1 w-11/12 md:w-3/6 md:shadow-2xl md:border rounded-xl md:border-grey-50 md:py-10 h-[70%] bg-gradient-to-b from-[#003DA5] to-[#023998]">
           <div className="flex m-8 flex-col items-center justify-center">

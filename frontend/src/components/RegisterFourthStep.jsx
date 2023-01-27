@@ -5,7 +5,7 @@ import winner from "../assets/connexionPage/registerPage/winner.svg";
 function RegisterFourthStep({ submitRegisterInformations }) {
   return (
     <div className="flex justify-center flex-col items-center h-screen w-screen pb-[12%]">
-      <div className="p-1 w-11/12   md:w-3/6  rounded-xl  md:py-10 h-[80%] bg-gradient-to-b from-[#003DA5] to-[#023998]">
+      <div className="p-1 w-11/12   md:w-3/6  rounded-xl  md:py-10 h-[80%] md:h-fit bg-gradient-to-b from-[#003DA5] to-[#023998]">
         <div className="  h-fit ">
           <div className="m-6 flex flex-col items-center justify-center">
             <h1 className="text-white text-3xl">Félicitations !</h1>
