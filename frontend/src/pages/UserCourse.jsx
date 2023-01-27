@@ -10,6 +10,42 @@ import userCourse3 from "../assets/userCourse/HighFive.svg";
 import userCourse4 from "../assets/userCourse/Blooming.svg";
 import userCourse5 from "../assets/userCourse/completed.svg";
 import userCourse6 from "../assets/userCourse/Awards.svg";
+import userCourse7 from "../assets/userCourse/appreciation.svg";
+import userCourse8 from "../assets/userCourse/bicycle.svg";
+import userCourse9 from "../assets/userCourse/celebration.svg";
+import userCourse10 from "../assets/userCourse/completing.svg";
+import userCourse11 from "../assets/userCourse/country.svg";
+import userCourse12 from "../assets/userCourse/creativity.svg";
+import userCourse13 from "../assets/userCourse/current_location.svg";
+import userCourse14 from "../assets/userCourse/desert.svg";
+import userCourse15 from "../assets/userCourse/destinations.svg";
+import userCourse16 from "../assets/userCourse/engineering_team.svg";
+import userCourse17 from "../assets/userCourse/exams.svg";
+import userCourse18 from "../assets/userCourse/exciting_news.svg";
+import userCourse19 from "../assets/userCourse/exploring.svg";
+import userCourse20 from "../assets/userCourse/geniuses.svg";
+import userCourse21 from "../assets/userCourse/happy_feeling.svg";
+import userCourse22 from "../assets/userCourse/happy_news.svg";
+import userCourse23 from "../assets/userCourse/ideas.svg";
+import userCourse24 from "../assets/userCourse/joyride.svg";
+import userCourse25 from "../assets/userCourse/launching.svg";
+import userCourse26 from "../assets/userCourse/location_search.svg";
+import userCourse27 from "../assets/userCourse/lost_online.svg";
+import userCourse28 from "../assets/userCourse/make_it.svg";
+import userCourse29 from "../assets/userCourse/messaging_fun.svg";
+import userCourse30 from "../assets/userCourse/messenger.svg";
+import userCourse31 from "../assets/userCourse/mindfulness.svg";
+import userCourse32 from "../assets/userCourse/partying.svg";
+import userCourse33 from "../assets/userCourse/positive_attitude.svg";
+import userCourse34 from "../assets/userCourse/powerful.svg";
+import userCourse35 from "../assets/userCourse/reading_time.svg";
+import userCourse36 from "../assets/userCourse/summer.svg";
+import userCourse37 from "../assets/userCourse/thoughts.svg";
+import userCourse38 from "../assets/userCourse/travelers.svg";
+import userCourse39 from "../assets/userCourse/winners.svg";
+import userCourse40 from "../assets/userCourse/winter_walk.svg";
+import userCourse41 from "../assets/userCourse/woman.svg";
+import userCourse42 from "../assets/userCourse/yoga.svg";
 import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
 
@@ -33,6 +69,42 @@ function UserCourse() {
     { image: userCourse4, name: userCourse4 },
     { image: userCourse5, name: userCourse5 },
     { image: userCourse6, name: userCourse6 },
+    { image: userCourse7, name: userCourse7 },
+    { image: userCourse8, name: userCourse8 },
+    { image: userCourse9, name: userCourse9 },
+    { image: userCourse10, name: userCourse10 },
+    { image: userCourse11, name: userCourse11 },
+    { image: userCourse12, name: userCourse12 },
+    { image: userCourse13, name: userCourse13 },
+    { image: userCourse14, name: userCourse14 },
+    { image: userCourse15, name: userCourse15 },
+    { image: userCourse16, name: userCourse16 },
+    { image: userCourse17, name: userCourse17 },
+    { image: userCourse18, name: userCourse18 },
+    { image: userCourse19, name: userCourse19 },
+    { image: userCourse20, name: userCourse20 },
+    { image: userCourse21, name: userCourse21 },
+    { image: userCourse22, name: userCourse22 },
+    { image: userCourse23, name: userCourse23 },
+    { image: userCourse24, name: userCourse24 },
+    { image: userCourse25, name: userCourse25 },
+    { image: userCourse26, name: userCourse26 },
+    { image: userCourse27, name: userCourse27 },
+    { image: userCourse28, name: userCourse28 },
+    { image: userCourse29, name: userCourse29 },
+    { image: userCourse30, name: userCourse30 },
+    { image: userCourse31, name: userCourse31 },
+    { image: userCourse32, name: userCourse32 },
+    { image: userCourse33, name: userCourse33 },
+    { image: userCourse34, name: userCourse34 },
+    { image: userCourse35, name: userCourse35 },
+    { image: userCourse36, name: userCourse36 },
+    { image: userCourse37, name: userCourse37 },
+    { image: userCourse38, name: userCourse38 },
+    { image: userCourse39, name: userCourse39 },
+    { image: userCourse40, name: userCourse40 },
+    { image: userCourse41, name: userCourse41 },
+    { image: userCourse42, name: userCourse42 },
   ];
 
   const { tutorialStatus, getTutorialStatus } = useContext(
@@ -86,7 +158,7 @@ function UserCourse() {
                 <img
                   src={randomObject().image}
                   alt={randomObject().name}
-                  className="h-28 md:h-72 mr-16"
+                  className="h-28 md:h-72 mr-16 mb-4"
                 />
               </div>
             </div>
