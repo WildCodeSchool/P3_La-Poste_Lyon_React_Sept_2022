@@ -170,5 +170,6 @@ router.put(
 // Gestion des quiz
 
 router.get("/api/quiz", quizControllers.browseAllQuiz);
+router.get("/api/allofquiz/:id", quizControllers.browseEverythingInQuiz);
 
 module.exports = router;

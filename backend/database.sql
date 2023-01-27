@@ -14,12 +14,12 @@ DROP TABLE IF EXISTS `question`;
 
 CREATE TABLE `question` (
     `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-    `content` varchar(255) NOT NULL,
+    `question` varchar(255) NOT NULL,
     `quiz_id` int,
     FOREIGN KEY (`quiz_id`) REFERENCES `quiz`(`id`)
 );
 
-INSERT INTO `question` (content, quiz_id) VALUES ("Quel équipement est nécessaire pour se connecter à internet ?", 1), ("Comment se connecter à internet à partir d'un appareil compatible ?", 1), ("Comment vérifier si vous êtes connecté à internet ?", 1), ("Quels sont les désagréments de se connecter à un hotspot wifi public ?", 1), ("Comment se connecter aux différents services publics via France Connect ?", 1), ("Quel est l'un des avantages de l'utilisation du numérique dans la vie courante ?", 2), ("Comment utilise-t-on le numérique pour accéder à des informations sur n'importe quel sujet ?", 2), ("Quel est un moyen d'utiliser le numérique pour gérer son quotidien ?", 2), ("Quel est un moyen d'utiliser le numérique pour accéder à des informations sur n'importe quel sujet ?", 2), ("Quel est un moyen d'utiliser le numérique pour acheter des produits et des services en ligne ?", 2), ("Comment allumer un ordinateur ?", 3), ("Comment déverrouiller un ordinateur ?", 3), ("Qu'est-ce que le CPU dans un ordinateur ?", 3), ("Comment éteindre un ordinateur ?", 3), ("Quelle est la fonction d'une imprimante ?", 3);
+INSERT INTO `question` (question, quiz_id) VALUES ("Quel équipement est nécessaire pour se connecter à internet ?", 1), ("Comment se connecter à internet à partir d'un appareil compatible ?", 1), ("Comment vérifier si vous êtes connecté à internet ?", 1), ("Quels sont les désagréments de se connecter à un hotspot wifi public ?", 1), ("Comment se connecter aux différents services publics via France Connect ?", 1), ("Quel est l'un des avantages de l'utilisation du numérique dans la vie courante ?", 2), ("Comment utilise-t-on le numérique pour accéder à des informations sur n'importe quel sujet ?", 2), ("Quel est un moyen d'utiliser le numérique pour gérer son quotidien ?", 2), ("Quel est un moyen d'utiliser le numérique pour accéder à des informations sur n'importe quel sujet ?", 2), ("Quel est un moyen d'utiliser le numérique pour acheter des produits et des services en ligne ?", 2), ("Comment allumer un ordinateur ?", 3), ("Comment déverrouiller un ordinateur ?", 3), ("Qu'est-ce que le CPU dans un ordinateur ?", 3), ("Comment éteindre un ordinateur ?", 3), ("Quelle est la fonction d'une imprimante ?", 3);
 
 DROP TABLE IF EXISTS `response`;
 

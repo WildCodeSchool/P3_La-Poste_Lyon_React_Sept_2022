@@ -17,8 +17,11 @@ const browseEverythingInQuiz = (req, res) => {
   models.quiz
     .getAllFromQuiz(quizId)
     .then(([rows]) => {
-      res.send(rows);
-      res.sendStatus(200);
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows);
+      }
     })
     .catch((err) => {
       console.error(err);
