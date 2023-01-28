@@ -66,7 +66,7 @@ function TutorialCategory() {
   });
 
   /* Handle Mobile View */
-  const [mobileView, setMobileView] = useState(true);
+  const [mobileView, setMobileView] = useState(false);
   const handleMobileView = () => {
     setMobileView(!mobileView);
   };
