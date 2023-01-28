@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import { toast, Toaster } from "react-hot-toast";
+import CurrentUserContext from "../contexts/userContext";
+import { RewardsContext } from "../contexts/RewardsContext";
+
 import AccessButton from "./AccessButton";
 import Historique from "../assets/navBar/navBarUser/Historique.png";
 import Mestutos from "../assets/navBar/navBarUser/Mestutos.svg";
@@ -8,8 +12,49 @@ import BannerProfile from "./BannerProfile";
 import usercourse from "../assets/navBar/navBarUser/parcours.png";
 
 function DashboardUser() {
+  const { VITE_BACKEND_URL } = import.meta.env;
+
+  const { currentUser, token } = useContext(CurrentUserContext);
+  const { rewards, setRewards } = useContext(RewardsContext);
+
+  const checkRewardWelcome = rewards?.some(
+    (reward) => reward.label === "Welcome"
+  );
+
+  const notifyBadge = () =>
+    toast.success(
+      "Bienvenue sur la plateforme ! Voici un badge bien mérité ! "
+    );
+
+  const getRewardWelcome = async () => {
+    if (checkRewardWelcome === false) {
+      fetch(`${VITE_BACKEND_URL}/api/gainReward`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          user_id: currentUser.id,
+          badge_id: 6,
+        }),
+      })
+        .then((response) => response.text())
+        .then((data) => {
+          notifyBadge();
+          setRewards([...rewards, data]);
+        })
+        .catch((error) => console.error("error", error));
+    }
+  };
+
+  useEffect(() => {
+    getRewardWelcome();
+  }, []);
+
   return (
     <div className="">
+      <Toaster position="top-center" reverseOrder />
       <BannerProfile />
       <div className="mt-2 flex justify-center">
         <h1 className="m-3 flex justify-center items-center font-bold text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">

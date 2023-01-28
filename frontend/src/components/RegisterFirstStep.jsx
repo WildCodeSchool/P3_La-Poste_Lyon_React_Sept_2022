@@ -36,13 +36,13 @@ function RegisterFirstStep({
   };
 
   return (
-    <div className="">
+    <>
       <form
         onSubmit={toTheSecondStep}
-        className="flex justify-center items-center flex-col h-screen  pb-36"
+        className="flex justify-center items-center flex-col h-100 mt-[20%] "
       >
-        <div className="md:shadow-2xl md:border rounded-xl md:border-grey-50 md:py-10 h-fit bg-gradient-to-b from-[#003DA5] to-[#023998]">
-          <div className="flex flex-col items-center justify-center">
+        <div className="p-1 w-11/12 md:w-3/6 md:shadow-2xl md:border rounded-xl md:border-grey-50 md:py-10 h-[70%] bg-gradient-to-b from-[#003DA5] to-[#023998]">
+          <div className="flex m-8 flex-col items-center justify-center">
             {/*             <div className="relative flex items-center justify-start flex-col font-bold text-3xl text-center bg-[#FFC928] rounded-xl w-4/5 h-4/5 py-14">
              */}{" "}
             <h1 className="text-white text-3xl">Créez votre identifiant</h1>
@@ -112,7 +112,7 @@ function RegisterFirstStep({
         registerInformations={registerInformations}
         submitRegisterInformations={submitRegisterInformations}
       />
-    </div>
+    </>
   );
 }
 

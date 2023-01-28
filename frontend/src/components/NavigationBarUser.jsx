@@ -7,6 +7,7 @@ import jeux from "../assets/navBar/navBarUser/jeux.png";
 import recompenses from "../assets/Rewards/1.svg";
 import parcours from "../assets/navBar/navBarUser/parcours.png";
 import historic from "../assets/navBar/navBarUser/Historique.png";
+import help from "../assets/navBar/navBarUser/aide.svg";
 
 function NavigationBarUser({ setOpen, open }) {
   return (
@@ -61,6 +62,15 @@ function NavigationBarUser({ setOpen, open }) {
         imgSrc={historic}
         text="Mon historique"
         linkDestination="/history"
+        setOpen={setOpen}
+        open={open}
+      />
+
+      {/* Help */}
+      <NavigationBarLink
+        imgSrc={help}
+        text="Besoin d'aide?"
+        linkDestination="/help"
         setOpen={setOpen}
         open={open}
       />

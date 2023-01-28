@@ -105,11 +105,12 @@ function SearchUsers() {
     <section>
       <Toaster />
       <BannerProfile />
+
       <PreviousButton />
-      <h2 className="m-6 text-xl text-center md:text-3xl">
-        {" "}
-        Gestion des utilisateurs{" "}
-      </h2>
+
+      <h1 className="m-6 p-3 text-3xl font-bold text-main-blue text-center">
+        Gestion des utilisateurs
+      </h1>
       <form className="w-full flex flex-col justify-center items-center ">
         <input
           type="text"

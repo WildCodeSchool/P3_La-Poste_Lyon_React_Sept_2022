@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
@@ -29,3 +29,5 @@ export function TutorialsContextProvider({ children }) {
     </TutorialsContext.Provider>
   );
 }
+
+export const useTutorialsContext = () => useContext(TutorialsContext);

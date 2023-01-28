@@ -16,6 +16,7 @@ function NavigationBar({ adminView, handleAdminView }) {
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+    localStorage.removeItem("rewards");
     setCurrentUser({});
     setOpen(!open);
     navigate("/");
@@ -35,7 +36,12 @@ function NavigationBar({ adminView, handleAdminView }) {
     if (concernedElement === null) {
       return;
     }
-    if (!concernedElement.contains(event.target)) {
+    if (
+      !concernedElement.contains(event.target) &&
+      event.target.id !== "menu-burger" &&
+      event.target.id !== "menu-burger1" &&
+      event.target.id !== "menu-burger2"
+    ) {
       setOpen(false);
     }
   });
@@ -56,14 +62,25 @@ function NavigationBar({ adminView, handleAdminView }) {
           <div className="block">
             {/* Menu burger toggle icon */}
             <button
+              id="menu-burger"
               type="button"
               className="p-2 text-black rounded-md outline-none"
               onClick={() => setOpen(!open)}
             >
               {open ? (
-                <img src={closemenu} className="h-12 w-12" alt="Open menu" />
+                <img
+                  id="menu-burger1"
+                  src={closemenu}
+                  className="h-12 w-12"
+                  alt="Open menu"
+                />
               ) : (
-                <img src={openmenu} className="h-12 w-12" alt="Close menu" />
+                <img
+                  id="menu-burger2"
+                  src={openmenu}
+                  className="h-12 w-12"
+                  alt="Close menu"
+                />
               )}
             </button>
           </div>

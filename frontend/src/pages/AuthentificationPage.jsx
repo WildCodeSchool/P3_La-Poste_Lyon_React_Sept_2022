@@ -163,7 +163,7 @@ function AuthentificationPage() {
         </div>
         <button
           type="submit"
-          className="bg-[#FFC927] text-white m-1 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#003DA5] mb-28"
+          className="bg-main-yellow text-white m-1 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-main-blue mb-28"
         >
           Connexion
         </button>

@@ -19,6 +19,7 @@ import ForgottenPassword from "../pages/ForgottenPassword";
 import ResetPassword from "../pages/ResetPassword";
 import ForgottenEmail from "../pages/ForgottenEmail";
 import CurrentUserContext from "../contexts/userContext";
+import Help from "../pages/Help";
 import QuizTuto1 from "./QuizTuto1";
 import QuizTuto2 from "./QuizTuto2";
 import QuizTuto3 from "./QuizTuto3";
@@ -70,6 +71,7 @@ function AllRoutes({ adminView, handleAdminView }) {
           <Route path="/categories/:id/tutorials" element={<TutorialList />} />
           <Route path="/history" element={<Historic />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/help" element={<Help />} />
           <Route path="/games" element={<Games />} />
         </>
       )}

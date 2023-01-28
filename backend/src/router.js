@@ -22,6 +22,7 @@ const passwordControllers = require("./controllers/passwordControllers");
 const mailControllers = require("./controllers/mailControllers");
 const fileControllers = require("./controllers/fileControllers");
 const rewardControllers = require("./controllers/rewardControllers");
+const quizControllers = require("./controllers/quizControllers");
 
 // PUBLIC ROUTES
 
@@ -52,7 +53,6 @@ router.get("/api/categories/:id", categoryControllers.read);
 router.get("/api/tutos/category_id/:id", tutoControllers.browse);
 /* router to browseAll */
 router.get("/api/tutos/all", tutoControllers.browseAll);
-router.get("/api/tutos/:id", tutoControllers.read);
 
 // Historical management
 router.get(
@@ -106,6 +106,8 @@ router.get("/api/avatars/:profilePicture", fileControllers.sendAvatar);
 
 // PROTECTED ROUTES
 router.use(verifyToken); // From this point, the middleware verifyToken will be used at the beginning of all functions
+
+router.get("/api/tutos/:id", tutoControllers.read);
 
 // Users management
 router.put("/api/users/:id", userControllers.edit);
@@ -164,5 +166,10 @@ router.put(
   fileControllers.renameAvatar,
   userControllers.updateAvatar
 );
+
+// Gestion des quiz
+
+router.get("/api/quiz", quizControllers.browseAllQuiz);
+router.get("/api/allofquiz/:id", quizControllers.browseEverythingInQuiz);
 
 module.exports = router;
