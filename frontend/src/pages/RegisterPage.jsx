@@ -6,6 +6,8 @@ import completeStep from "@assets/items/step-complete.svg";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PreviousButton from "@components/PreviousButton";
+import Footer from "@components/Footer";
+import { toast, Toaster } from "react-hot-toast";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
@@ -20,6 +22,21 @@ function RegisterPage() {
     lastname: "",
     phone: "",
   });
+
+  const notifySuccess = (firstname) => {
+    toast(`Félicitations votre compte est créé ${firstname}!`, {
+      icon: "🎉",
+    });
+  };
+
+  const notifyError = () => {
+    toast(
+      "Les informations transmises ne vous permettent pas de créer un compte",
+      {
+        icon: "🚫",
+      }
+    );
+  };
 
   /* the register informations will be submit to the back  */
   const submitRegisterInformations = (e) => {
@@ -48,14 +65,23 @@ function RegisterPage() {
     e.preventDefault();
 
     fetch(`${VITE_BACKEND_URL}/api/users/register`, requestOptions)
-      .then((response) => response.text())
-      .catch(console.error);
+      .then((response) => {
+        if (response.status !== 201) {
+          notifyError();
+        }
+        response.text();
+      })
+      .then((response) => {
+        console.warn(response);
+        notifySuccess(registerInformations.firstname);
 
-    navigate("/authentification");
+        setTimeout(() => {
+          navigate("/authentification");
+        }, 1500);
+      })
+      .catch(console.error);
   };
 
-  /* STEPPERS */
-  /* STEPPERS */
   /* State to set up the current step */
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -147,15 +173,16 @@ function RegisterPage() {
 
   return (
     <>
+      <Toaster position="top-center" reverseOrder />
       <PreviousButton />
-      <h1 className="flex my-6 justify-center items-center font-bold text-2xl text-main-blue rounded-xl h-10 text-center md:h-10 md:text-center pt-3">
-        Création de votre compte utilisateur
+      <h1 className="flex my-6 justify-center items-center font-bold text-2xl md:text-3xl text-main-blue rounded-xl h-10 text-center md:h-10 md:text-center pt-3">
+        Création de compte
       </h1>
-      <div className="stepper-header md:gap-0 flex flex-row items-center justify-center">
+      <div className=" md:gap-0 flex flex-row items-center justify-center w-full">
         {steps?.map((step, index) => (
           <div key={index} className="flex items-center my-6">
             <div
-              key={step.positionStep}
+              key={step.position}
               className=" md:inline-block h-1  w-3 md:w-20 border-t-4 border-dark-500 "
             />
 
@@ -186,8 +213,11 @@ function RegisterPage() {
           </div>
         ))}
       </div>
-      {steps[currentStep].component}
-      <div className="stepper-content">{/* {component} */}</div>
+
+      <div className="flex justify-center w-full">
+        {steps[currentStep].component}
+      </div>
+      <Footer />
       {/*  /* The previous button  -  (current > lentgh 0 ) /  The next button -  (current < length -1) / The validate button (current  = length -1) */}
     </>
   );
