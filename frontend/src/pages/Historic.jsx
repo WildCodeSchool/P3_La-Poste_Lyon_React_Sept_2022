@@ -90,7 +90,7 @@ function Historic() {
           .map((tutorial, index) => (
             <li
               key={index}
-              className="mx-10 md:mx-96 md:text-center mb-10 my-3 md:m-6 border shadow-xl rounded-lg text-center flex flex-col md:flex-row justify-between items-center min-w-[90%]  md:w-2/5"
+              className="mx-10 md:mx-96 md:text-center md:mb-5 my-3 md:m-6 border shadow-xl rounded-lg text-center flex md:flex-row justify-between items-center min-w-[90%]  md:w-2/5"
             >
               <img
                 src={
@@ -100,11 +100,10 @@ function Historic() {
                 }
                 alt="tutorial cateogry"
                 className="h-20 w-20 hidden md:block md:p-2"
-              />
+              />{" "}
               <p className="p-2">{tutorial.title}</p>
               <div className="hidden md:block border-r-2 border-gray-100 h-20 w-1" />
-
-              <p className="font-semibold">
+              <p className="hidden md:block font-semibold">
                 {" "}
                 {
                   categories?.find(
