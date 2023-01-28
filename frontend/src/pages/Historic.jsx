@@ -68,7 +68,7 @@ function Historic() {
     <div className="">
       <BannerProfile />
       <PreviousButton />
-      <h1 className="flex my-6 justify-center items-center font-bold text-[26px] text-main-blue rounded-xl h-10 text-center md:h-10 md:text-center pt-3">
+      <h1 className="flex my-6 justify-center items-center font-bold text-xl md:text-3xl  text-main-blue rounded-xl h-10 text-center md:h-10 md:text-center pt-3">
         Liste des tutoriels réalisés
       </h1>
 

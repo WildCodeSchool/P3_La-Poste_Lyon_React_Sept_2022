@@ -82,64 +82,62 @@ function TutorialList() {
     filteredTutorials && (
       <>
         <BannerProfile />
-        <section className="m-6">
-          <PreviousButton />
 
-          <h1 className="flex justify-center items-center font-bold text-[26px] text-main-blue rounded-xl h-10 text-center md:h-10 md:text-center pt-3">
-            {categoryName}
-          </h1>
+        <PreviousButton />
 
-          {/* We display the tutorials with the filter of the cagtegory selected */}
-          <ul className="w-3/5 grid grid-cols-1 md:grid-cols-2  m-auto ">
-            {filteredTutorials?.map((tutorial, index) => (
-              <li
-                className=" relative my-3 md:m-6 border shadow-xl rounded-lg text-center"
-                key={index}
+        <h1 className="flex justify-center  items-center font-bold text-xl md:text-3xl text-main-blue rounded-xl h-10 text-center md:h-10 md:text-center pt-3">
+          {categoryName}
+        </h1>
+
+        {/* We display the tutorials with the filter of the cagtegory selected */}
+        <ul className="w-3/5 grid grid-cols-1 md:grid-cols-2  m-auto ">
+          {filteredTutorials?.map((tutorial, index) => (
+            <li
+              className=" relative my-3 md:m-6 border shadow-xl rounded-lg text-center"
+              key={index}
+            >
+              {/* Icon when status is finished */}
+              {tutorialStatus?.find((status) => status?.tuto_id === tutorial.id)
+                ?.status === "finished" && (
+                <div className="absolute top-[-10px] right-[-10px] rounded-full  flex justify-center items-center">
+                  <img
+                    src={statusFInished}
+                    alt="finished"
+                    className="h-10 w-10"
+                  />
+                </div>
+              )}
+              <h2 className="text-lg md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
+                {tutorial.title}
+              </h2>
+              <hr />
+              <p className="p-3 text-base flex justify-center items-center h-24">
+                {tutorial.short_description.replace(/(<([^>]+)>)/gi, "")}
+              </p>{" "}
+              {/* make a button to go to the tutorial */}
+              {/* Update status -> started  */}
+              <button
+                type="button"
+                onClick={() => tutorialStarted(tutorial)}
+                className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
               >
-                {/* Icon when status is finished */}
+                {/* Match tutorialsStatus id with the id of the tutorial */}
+
                 {tutorialStatus?.find(
                   (status) => status?.tuto_id === tutorial.id
-                )?.status === "finished" && (
-                  <div className="absolute top-[-10px] right-[-10px] rounded-full  flex justify-center items-center">
-                    <img
-                      src={statusFInished}
-                      alt="finished"
-                      className="h-10 w-10"
-                    />
-                  </div>
-                )}
-                <h2 className="text-lg md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
-                  {tutorial.title}
-                </h2>
-                <hr />
-                <p className="p-3 text-base flex justify-center items-center h-24">
-                  {tutorial.short_description.replace(/(<([^>]+)>)/gi, "")}
-                </p>{" "}
-                {/* make a button to go to the tutorial */}
-                {/* Update status -> started  */}
-                <button
-                  type="button"
-                  onClick={() => tutorialStarted(tutorial)}
-                  className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
-                >
-                  {/* Match tutorialsStatus id with the id of the tutorial */}
+                )?.status === "finished" && "Revoir"}
 
-                  {tutorialStatus?.find(
-                    (status) => status?.tuto_id === tutorial.id
-                  )?.status === "finished" && "Revoir"}
-
-                  {tutorialStatus?.find(
-                    (status) => status?.tuto_id === tutorial.id
-                  )?.status === "started" && "Reprendre"}
-                  {/* If default value */}
-                  {tutorialStatus?.find(
-                    (status) => status?.tuto_id === tutorial.id
-                  )?.status === undefined && "Commencer"}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </section>
+                {tutorialStatus?.find(
+                  (status) => status?.tuto_id === tutorial.id
+                )?.status === "started" && "Reprendre"}
+                {/* If default value */}
+                {tutorialStatus?.find(
+                  (status) => status?.tuto_id === tutorial.id
+                )?.status === undefined && "Commencer"}
+              </button>
+            </li>
+          ))}
+        </ul>
       </>
     )
   );
