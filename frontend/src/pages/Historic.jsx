@@ -101,9 +101,9 @@ function Historic() {
                 alt="tutorial cateogry"
                 className="h-20 w-20 hidden md:block md:p-2"
               />{" "}
-              <p className="p-2">{tutorial.title}</p>
+              <p className="p-2 w-72 text-left">{tutorial.title}</p>
               <div className="hidden md:block border-r-2 border-gray-100 h-20 w-1" />
-              <p className="hidden md:block font-semibold">
+              <p className="hidden md:block md:w-28 md:min-w-28 font-semibold">
                 {" "}
                 {
                   categories?.find(
