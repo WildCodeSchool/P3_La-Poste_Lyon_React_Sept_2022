@@ -22,6 +22,8 @@ import CurrentUserContext from "../contexts/userContext";
 import QuizTuto1 from "./QuizTuto1";
 import QuizTuto2 from "./QuizTuto2";
 import QuizTuto3 from "./QuizTuto3";
+import QuizTuto4 from "./QuizTuto4";
+
 import Games from "../pages/Games";
 
 function AllRoutes({ adminView, handleAdminView }) {
@@ -33,6 +35,7 @@ function AllRoutes({ adminView, handleAdminView }) {
       <Route path="/quiz1" element={<QuizTuto1 />} />
       <Route path="/quiz2" element={<QuizTuto2 />} />
       <Route path="/quiz3" element={<QuizTuto3 />} />
+      <Route path="/quiz4" element={<QuizTuto4 />} />
 
       <Route path="/" element={<Home />} />
       <Route path="/authentification" element={<AuthentificationPage />} />

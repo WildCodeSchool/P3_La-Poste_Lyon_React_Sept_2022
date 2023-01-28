@@ -70,7 +70,6 @@ function Games() {
             </Link>
           </div>
         </li>
-        {/* Should send the user on the badges page */}
       </ul>
     </div>
   );
