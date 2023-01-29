@@ -57,11 +57,11 @@ function Tutorial() {
   return (
     <>
       <BannerProfile />
-      <div className="p-6 md:p-2">
-        {/* This button will link to the Dashboard */}
-        <PreviousButton />
-      </div>
-      <section className="md:m-[10vh] m-1 flex flex-col bg-white shadow-lg  border rounded-lg">
+
+      {/* This button will link to the Dashboard */}
+      <PreviousButton />
+
+      <section className="md:m-[10vh] py-6 flex flex-col bg-white shadow-lg  border rounded-lg">
         {/* Tutoriel Name */}
         <h1
           key={tutorial?.id}

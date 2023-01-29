@@ -175,7 +175,7 @@ function UserCourse() {
 
       <PreviousButton />
       <div className="mt-7 mb-7 flex justify-center">
-        <h1 className="m-3 flex justify-center items-center font-bold text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">
+        <h1 className="m-3 flex justify-center items-center font-bold text-xl md:text-3xl  text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">
           Parcours utilisateur
         </h1>
       </div>

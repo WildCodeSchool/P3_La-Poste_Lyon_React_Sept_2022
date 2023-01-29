@@ -12,6 +12,7 @@ function QuizTuto1() {
         { text: "Un téléviseur", correct: false },
       ],
     },
+
     {
       question:
         "Comment se connecter à internet à partir d'un appareil compatible ?",
@@ -22,6 +23,7 @@ function QuizTuto1() {
         { text: "En utilisant le Bluetooth", correct: false },
       ],
     },
+
     {
       question: "Comment vérifier si vous êtes connecté à internet ?",
       options: [
@@ -40,6 +42,7 @@ function QuizTuto1() {
         },
       ],
     },
+
     {
       question:
         "Quels sont les désagréments de se connecter à un hotspot wifi public ?",
@@ -53,6 +56,7 @@ function QuizTuto1() {
         },
       ],
     },
+
     {
       question:
         "Comment se connecter aux différents services publics via France Connect ?",
