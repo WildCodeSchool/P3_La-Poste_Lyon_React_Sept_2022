@@ -1,13 +1,11 @@
 import React from "react";
-import { scroller } from "react-scroll";
-import RegisterFourthStep from "./RegisterFourthStep";
-import step3 from "../assets/connexionPage/registerPage/id3create.svg";
-import nextBtn from "../assets/items/nextBtn.svg";
 
 function RegisterThirdStep({
-  registerInformations,
+  handlePreviousStep,
+  currentStep,
+  handleNextStep,
   setRegisterInformations,
-  submitRegisterInformations,
+  registerInformations,
 }) {
   const [firstname, setFirstname] = React.useState("");
   const [lastname, setLastname] = React.useState("");
@@ -28,121 +26,105 @@ function RegisterThirdStep({
     setPhone(event.target.value);
   };
 
-  /* upload all values to of the registerInformations object and scroll to the last step */
-  const toTheLastStep = (e) => {
-    e.preventDefault();
+  const handleUserInfos = () => {
     setRegisterInformations({
       ...registerInformations,
       firstname,
       lastname,
       phone,
     });
-
-    scroller.scrollTo("RegisterFourthStep", {
-      duration: 800,
-      delay: 0,
-      smooth: "easeInOutQuart",
-      offset: -100,
-    });
+    handleNextStep();
   };
 
   return (
-    <>
-      <form
-        onSubmit={toTheLastStep}
-        className="flex justify-center flex-col items-center h-screen w-screen "
-      >
-        <div className="p-1 w-11/12  md:w-3/6 rounded-xl  md:py-10 h-[70%] bg-gradient-to-b from-[#003DA5] to-[#023998]">
-          <div className="  h-fit ">
-            <div className=" m-6 flex flex-col items-center justify-center">
-              <h1 className="text-white text-3xl" id="RegisterThirdStep">
-                Renseignez vos informations
-              </h1>
+    <form
+      onSubmit={handleUserInfos}
+      className="mx-3 border rounded-xl shadow-lg bg-main-blue flex flex-col items-center w-10/12 md:w-6/12 h-[50vh] "
+    >
+      <h1 className="text-white text-center text-2xl border-b-2 pt-6 pb-3 h-20 border-b-[#01378e] shadow-md w-full ">
+        Renseignez vos informations
+      </h1>
+      <div className="md:px-6 w-full">
+        <div className=" mt-3 w-full px-6 ">
+          <p className="italic text-gray-50 opacity-80  text-center text-sm md:text-lg">
+            Tous les champs sont obligatoires
+          </p>
 
-              <div>
-                <img src={step3} alt="third step" />
-              </div>
-            </div>
-            <div className="flex justify-center items-center">
-              <div className="w-screen max-w-md">
-                <div className=" rounded px-8 pb-8 mb-4">
-                  <p className="text-gray-300 font-light italic">
-                    Tous les champs sont obligatoires
-                  </p>
-                  <div className="mb-4">
-                    <label
-                      className="block text-white text-sm font-bold mb-2"
-                      htmlFor="firstname"
-                    >
-                      Prénom
-                    </label>
-                    <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="firstname"
-                      value={firstname}
-                      onChange={handleFirstname}
-                      required
-                      type="text"
-                      placeholder="Entrez votre prénom"
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label
-                      className="block text-white text-sm font-bold mb-2"
-                      htmlFor="lastname"
-                    >
-                      Nom
-                    </label>
-                    <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="lastname"
-                      value={lastname}
-                      required
-                      onChange={handleLastname}
-                      type="text"
-                      placeholder="Entrez votre nom"
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label
-                      className="block text-white text-sm font-bold mb-2"
-                      htmlFor="phone"
-                    >
-                      Téléphone
-                    </label>
-                    <input
-                      className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                      id="phone"
-                      pattern="^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$"
-                      value={phone}
-                      required
-                      onChange={handlePhone}
-                      type="tel"
-                      placeholder="Entrez votre numéro de téléphone"
-                    />
-                  </div>
-                  <div className="mt-8">
-                    <div className="flex justify-center">
-                      {/* eslint-disable react/button-has-type */}
-                      <button type="onSubmit" className="flex">
-                        <img
-                          src={nextBtn}
-                          alt="next button"
-                          className="mx-3 w-10 h-10"
-                        />
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <label
+            htmlFor="firstname"
+            className="flex text-white mt-3 text-lg items-center"
+          >
+            Prénom
+          </label>
+          <input
+            id="firstname"
+            value={firstname}
+            onChange={handleFirstname}
+            required
+            type="text"
+            placeholder="Entrez votre prénom"
+            className="p-2 rounded-md w-full"
+          />
+
+          <div>
+            <label
+              htmlFor="lastname"
+              className="flex text-white mt-1 text-lg items-center"
+            >
+              Nom
+            </label>
+            <input
+              id="lastname"
+              value={lastname}
+              required
+              onChange={handleLastname}
+              type="text"
+              placeholder="Entrez votre nom"
+              className="p-2 rounded-md w-full"
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="phone"
+              className="flex text-white mt-1 text-lg items-center"
+            >
+              Téléphone
+            </label>
+            <input
+              id="phone"
+              pattern="^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$"
+              value={phone}
+              required
+              onChange={handlePhone}
+              type="tel"
+              placeholder="Entrez votre numéro de téléphone"
+              className="p-2 rounded-md w-full"
+            />
           </div>
         </div>
-      </form>
-      <RegisterFourthStep
-        submitRegisterInformations={submitRegisterInformations}
-      />
-    </>
+      </div>
+      <div className="flex gap-6 ">
+        {currentStep === 2 && (
+          <button
+            type="button"
+            className="bg-[#003DA5] border  items-center flex justify-center text-white mt-8 py-2 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+            onClick={handlePreviousStep}
+          >
+            Précédent
+          </button>
+        )}
+        {currentStep === 2 && (
+          <button
+            type="submit"
+            className="bg-[#003DA5] border  items-center flex justify-center text-white mt-8 py-2 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+
+            /* We will need to create an onClick event which send the complete status of the tutorial to the backend. Maybe later we can link this button to the quizz */
+          >
+            Valider
+          </button>
+        )}
+      </div>
+    </form>
   );
 }
 

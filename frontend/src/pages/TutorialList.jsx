@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import statusFInished from "../assets/tutorials-status/status-finished.svg";
@@ -8,6 +8,7 @@ import { TutorialStatusContext } from "../contexts/TutorialStatusContext";
 import CurrentUserContext from "../contexts/userContext";
 import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
+import filterIcon from "../assets/items/filter.svg";
 
 function TutorialList() {
   const navigate = useNavigate();
@@ -21,12 +22,17 @@ function TutorialList() {
     getTutorialStatus();
   }, []);
 
+  const status = [
+    { step: "Commencé", tutorialStatus: "started" },
+    { step: "Terminé", tutorialStatus: "finished" },
+    { step: "À faire", tutorialStatus: "todo" },
+  ];
   const { tutorialStatus } = useContext(TutorialStatusContext);
+
   /* Using params to recover the tutorial category ID - It will be used to fetch the associate tutorial list */
   const { id } = useParams();
 
   const { tutorials } = useContext(TutorialsContext);
-
   /* Filtred tutorial by the good category corresponding to the id  */
   const filteredTutorials = tutorials?.filter(
     (tutorial) => tutorial?.category_id === parseInt(id, 10)
@@ -78,20 +84,67 @@ function TutorialList() {
     }
   };
 
+  /* Filter for tutorials */
+  const [filter, setFilter] = useState("");
+  const handleFilter = (e) => setFilter(e.target.value);
+
   return (
     filteredTutorials && (
       <>
         <BannerProfile />
-        <section className="m-6">
-          <PreviousButton />
 
-          <h1 className="flex justify-center items-center font-bold text-[26px] text-main-blue rounded-xl h-10 text-center md:h-10 md:text-center pt-3">
-            {categoryName}
-          </h1>
+        <PreviousButton />
 
-          {/* We display the tutorials with the filter of the cagtegory selected */}
-          <ul className="w-3/5 grid grid-cols-1 md:grid-cols-2  m-auto ">
-            {filteredTutorials?.map((tutorial, index) => (
+        <h1 className="flex justify-center  items-center font-bold text-xl md:text-3xl text-main-blue rounded-xl h-10 text-center md:h-10 md:text-center pt-3">
+          {categoryName}
+        </h1>
+
+        {/* Filters */}
+        <div className="w-full  flex justify-end md:pr-[10%]">
+          <label className="flex mr-3 cursor-pointer">
+            <img
+              src={filterIcon}
+              alt="Filtrer ses tutoriels"
+              className="w-6 h-6"
+            />
+            <select onChange={handleFilter} className="cursor-pointer w-3">
+              <option value="">Tous</option>
+              {status.map((status, index) => (
+                <option key={index} value={status.tutorialStatus}>
+                  {status.step}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        {/* We display the tutorials with the filter of the cagtegory selected */}
+        <ul className="w-4/5 md:w-2/5 grid grid-cols-1   md:grid-cols-2 m-auto ">
+          {/* We will filter with the select value and match with the status values */}
+          {filteredTutorials
+            .filter((tutorial) => {
+              if (filter === "") {
+                return tutorial;
+              }
+              if (filter === "started") {
+                return (
+                  tutorialStatus?.find(
+                    (status) => status?.tuto_id === tutorial.id
+                  )?.status === "started"
+                );
+              }
+              if (filter === "finished") {
+                return (
+                  tutorialStatus?.find(
+                    (status) => status?.tuto_id === tutorial.id
+                  )?.status === "finished"
+                );
+              }
+              return !tutorialStatus?.find(
+                (status) => status?.tuto_id === tutorial.id
+              );
+            })
+            .map((tutorial, index) => (
               <li
                 className=" relative my-3 md:m-6 border shadow-xl rounded-lg text-center"
                 key={index}
@@ -138,8 +191,7 @@ function TutorialList() {
                 </button>
               </li>
             ))}
-          </ul>
-        </section>
+        </ul>
       </>
     )
   );

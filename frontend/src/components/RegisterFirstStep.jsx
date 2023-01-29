@@ -1,15 +1,14 @@
 import React from "react";
-import { scroller } from "react-scroll";
-import firststep from "../assets/connexionPage/registerPage/idcreate.svg";
+import nextBtn from "@assets/items/nextBtn.svg";
+
 import questionbtn from "../assets/items/question-circle.svg";
 import RegisterFirstStepModale from "./RegisterFirstStepModale";
-import RegisterSecondStep from "./RegisterSecondStep";
-import nextBtn from "../assets/items/nextBtn.svg";
 
 function RegisterFirstStep({
+  handleNextStep,
+  currentStep,
   setRegisterInformations,
   registerInformations,
-  submitRegisterInformations,
 }) {
   const [showModal, setShowModal] = React.useState(false);
 
@@ -19,100 +18,64 @@ function RegisterFirstStep({
     setEmail(event.target.value);
   };
 
-  /* Update the registerInformations object  */
-  const toTheSecondStep = (e) => {
-    e.preventDefault();
+  const submitEmail = () => {
     setRegisterInformations({
       ...registerInformations,
       email,
     });
-
-    scroller.scrollTo("RegisterSecondStep", {
-      duration: 800,
-      delay: 0,
-      smooth: "easeInOutQuart",
-      offset: -100,
-    });
+    handleNextStep();
   };
 
   return (
-    <>
-      <form
-        onSubmit={toTheSecondStep}
-        className="flex justify-center items-center flex-col h-100 mt-[20%] "
-      >
-        <div className="p-1 w-11/12 md:w-3/6 md:shadow-2xl md:border rounded-xl md:border-grey-50 md:py-10 h-[70%] bg-gradient-to-b from-[#003DA5] to-[#023998]">
-          <div className="flex m-8 flex-col items-center justify-center">
-            {/*             <div className="relative flex items-center justify-start flex-col font-bold text-3xl text-center bg-[#FFC928] rounded-xl w-4/5 h-4/5 py-14">
-             */}{" "}
-            <h1 className="text-white text-3xl">Créez votre identifiant</h1>
-            {/*   </div> */}
-            <div>
-              <img src={firststep} alt="first step" />
-            </div>
-          </div>
-          <div className="flex justify-center items-center ">
-            <div className="w-screen max-w-md h-content max-h-xl">
-              <div className="rounded px-8 pt-6 pb-8">
-                <div className="mb-4">
-                  <p className="text-gray-300 font-light italic">
-                    Tous les champs sont obligatoires
-                  </p>
-                  <label
-                    className="flex flex-ro items-center text-white text-sm font-bold mb-2 pb-3"
-                    htmlFor="username"
-                  >
-                    Adresse e-mail{" "}
-                    <button
-                      className="flex"
-                      type="button"
-                      onClick={() => setShowModal(true)}
-                    >
-                      <img
-                        src={questionbtn}
-                        alt="helper modale"
-                        className="mx-3"
-                      />
-                    </button>
-                    {showModal ? (
-                      <RegisterFirstStepModale setShowModal={setShowModal} />
-                    ) : null}
-                  </label>
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                    id="username"
-                    type="email"
-                    pattern="/^([a-z0-9.])+\@gmail.com+$/"
-                    required
-                    value={email}
-                    onChange={handleEmail}
-                    placeholder="Entrez votre adresse mail"
-                  />
-                </div>
-                {/*  */}
-                <div className="mb-6">
-                  <div className="flex justify-center pt-5">
-                    {/* eslint-disable react/button-has-type */}
-                    <button type="onSubmit" className="flex">
-                      <img
-                        src={nextBtn}
-                        alt="next button"
-                        className="mx-3 w-10 h-10"
-                      />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    <form
+      onSubmit={submitEmail}
+      className="mx-3 border rounded-xl shadow-lg bg-main-blue flex flex-col items-center w-10/12 md:w-6/12 h-[50vh] "
+    >
+      <h1 className="text-white text-center text-2xl border-b-2 pt-6 pb-3 h-20 border-b-[#01378e] shadow-md w-full ">
+        Créez votre identifiant
+      </h1>
+      <div className="md:px-6 w-full">
+        <div className="my-8 w-full px-6 ">
+          <p className="italic text-gray-50 opacity-80  text-center text-sm md:text-lg">
+            * Tous les champs sont obligatoires
+          </p>
+          <label
+            htmlFor="username"
+            className="flex text-white mt-6 text-lg items-center"
+          >
+            Adresse e-mail{" "}
+            <button
+              className="flex px-3"
+              type="button"
+              onClick={() => setShowModal(true)}
+            >
+              <img src={questionbtn} alt="Modale d'aide" />
+            </button>
+            {showModal ? (
+              <RegisterFirstStepModale setShowModal={setShowModal} />
+            ) : null}
+          </label>
+          <input
+            id="username"
+            type="email"
+            pattern="/^([a-z0-9.])+\@gmail.com+$/"
+            required
+            value={email}
+            onChange={handleEmail}
+            placeholder="Entrez votre adresse mail"
+            className="p-2 rounded-md w-full"
+          />
         </div>
-      </form>
-      <RegisterSecondStep
-        setRegisterInformations={setRegisterInformations}
-        registerInformations={registerInformations}
-        submitRegisterInformations={submitRegisterInformations}
-      />
-    </>
+      </div>
+      {currentStep < 1 && (
+        <button
+          type="submit"
+          className="bg-[#003DA5] border  flex justify-center text-white mt-8 py-2 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+        >
+          <img src={nextBtn} alt="next button" className="mx-3 w-10 h-10" />
+        </button>
+      )}
+    </form>
   );
 }
 

@@ -66,7 +66,7 @@ function TutorialCategory() {
   });
 
   /* Handle Mobile View */
-  const [mobileView, setMobileView] = useState(true);
+  const [mobileView, setMobileView] = useState(false);
   const handleMobileView = () => {
     setMobileView(!mobileView);
   };
@@ -79,21 +79,23 @@ function TutorialCategory() {
         <section className="m-6 flex flex-col items-center">
           {/* This button will link to the Dashboard */}
 
-          <h1 className="m-2 text-3xl font-bold text-main-blue text-center">
+          <h1 className="m-2 text-xl md:text-3xl font-bold text-main-blue text-center">
             Catégories de tutoriels
           </h1>
           {/* only show on small screen to choice the view */}
-          <button
-            type="button"
-            onClick={handleMobileView}
-            className="md:hidden"
-          >
-            <img
-              src={mobileView ? grid : unique}
-              alt="grid view"
-              className="w-8 h-8"
-            />
-          </button>
+          <div className="w-full  flex justify-end">
+            <button
+              type="button"
+              onClick={handleMobileView}
+              className="md:hidden"
+            >
+              <img
+                src={mobileView ? grid : unique}
+                alt="grid view"
+                className="w-8 h-8"
+              />
+            </button>
+          </div>
           {/* I map the categoryList array to display every category */}
           <ul
             className={`grid grid-cols-${
