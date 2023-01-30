@@ -1,76 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import celebration from "../assets/connexionPage/registerPage/winner.svg";
+import { useCurrentUserContext } from "../contexts/userContext";
+import jeux from "../assets/navBar/navBarUser/jeux.png";
+import PreviousButton from "./PreviousButton";
+import BannerProfile from "./BannerProfile";
+
+const { VITE_BACKEND_URL } = import.meta.env;
 
 function QuizTuto1() {
-  const questions = [
-    {
-      question: "Quel équipement est nécessaire pour se connecter à internet ?",
-      options: [
-        { text: "Un ordinateur portable", correct: false },
-        { text: "Une carte SIM", correct: false },
-        { text: "Un modem ou un routeur", correct: true },
-        { text: "Un téléviseur", correct: false },
-      ],
-    },
+  const { token } = useCurrentUserContext();
+  const { id } = useParams(); // pour récupérer l'id dans l'URL
 
-    {
-      question:
-        "Comment se connecter à internet à partir d'un appareil compatible ?",
-      options: [
-        { text: "En utilisant un câble HDMI", correct: false },
-        { text: "En utilisant un câble Ethernet", correct: true },
-        { text: "En utilisant un câble USB", correct: false },
-        { text: "En utilisant le Bluetooth", correct: false },
-      ],
-    },
+  /* Get quizData */
+  const [quizData, setQuizData] = useState([]);
 
-    {
-      question: "Comment vérifier si vous êtes connecté à internet ?",
-      options: [
-        { text: "En allumant le modem ou le routeur", correct: false },
-        {
-          text: "En ouvrant un navigateur internet et en entrant l'adresse d'un site web",
-          correct: true,
+  useEffect(() => {
+    const getQuizData = () => {
+      const requestOptions = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
-        {
-          text: "En appelant votre fournisseur de services internet",
-          correct: false,
-        },
-        {
-          text: "En branchant le câble Ethernet à l'ordinateur",
-          correct: false,
-        },
-      ],
-    },
+      };
 
-    {
-      question:
-        "Quels sont les désagréments de se connecter à un hotspot wifi public ?",
-      options: [
-        { text: "La connexion est gratuite", correct: false },
-        { text: "Le temps de connexion est illimité", correct: false },
-        { text: "La connexion sans fil est rapide", correct: false },
-        {
-          text: "La connexion est souvent lente et peut poser des problèmes pour l'échange de fichiers lourds, il y a des coupures et les réseaux sont rarement sécurisés.",
-          correct: true,
-        },
-      ],
-    },
+      fetch(`${VITE_BACKEND_URL}/api/quiz/${id}`, requestOptions)
+        .then((response) => response.json())
+        .then((data) => {
+          console.warn(`data`, data);
+          setQuizData(data);
+        })
+        .catch((error) => {
+          console.warn("Error:", error);
+        });
+    };
+    getQuizData();
+  }, []);
 
-    {
-      question:
-        "Comment se connecter aux différents services publics via France Connect ?",
-      options: [
-        { text: "En téléchargeant l'application adéquate", correct: true },
-        { text: "En se rendant sur le site internet dédié", correct: true },
-        { text: "En utilisant un compte Facebook", correct: false },
-        {
-          text: "En utilisant un numéro de téléphone portable",
-          correct: false,
-        },
-      ],
-    },
-  ];
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
@@ -82,6 +49,7 @@ function QuizTuto1() {
     setCurrentQuestion(currentQuestion + 1);
     setAnswered(false);
   };
+  const navigate = useNavigate();
 
   const handleNext = (answer) => {
     setShowAnswer(false);
@@ -91,7 +59,7 @@ function QuizTuto1() {
       setScore(score + 1);
     }
 
-    if (currentQuestion + 1 === questions.length) {
+    if (currentQuestion + 1 === 5) {
       setQuizEnd(true);
     } else {
       setCurrentQuestion(currentQuestion + 1);
@@ -109,71 +77,130 @@ function QuizTuto1() {
   if (quizEnd) {
     return (
       <div>
-        <h2 className="bg-white text-3xl font-bold mx-auto w-full mt-4 rounded-lg flex py-4 justify-center">
+        <BannerProfile />
+        <PreviousButton />
+
+        <h2 className="bg-white text-3xl font-bold mx-auto w-full mt-12 rounded-lg flex py-4 justify-center">
           Vous avez terminé le quiz !
         </h2>
-        <p className="text-center mt-12 text-semibold text-xl">
-          Votre score : {score}/{questions.length}
+        <p className="text-center mt-12 font-bold text-xl">
+          Votre score : {score}/5
         </p>
-        <img src={celebration} alt="youpi" className="w-1/5 h-1/5 mx-auto" />
-
-        <button
-          className=" flex items-center bg-gray-900 mx-auto  rounded-lg p-4 font-bold text-white animate-pulse hover:bg-main-blue  my-8"
-          type="button"
-          onClick={handleReset}
-        >
-          Recommencer
-        </button>
+        <img
+          src={celebration}
+          alt="youpi"
+          className="w-full h-full md:w-1/4 md:h-1/4 mx-auto"
+        />
+        <div className="flex justify-center">
+          <button
+            className=" flex items-center bg-main-blue mx-4  rounded-lg p-4 font-bold text-white hover:bg-main-yellow  my-8"
+            type="button"
+            onClick={handleReset}
+          >
+            Recommencer
+          </button>
+          <button
+            className=" flex items-center bg-main-blue mx-4 rounded-lg p-4 font-bold text-white hover:bg-main-yellow  my-8"
+            type="button"
+            onClick={() => navigate(-1)}
+          >
+            Retour à mes quiz
+          </button>
+        </div>
       </div>
     );
   }
 
-  const currentQ = questions[currentQuestion];
+  // const currentQ = questions[currentQuestion];
 
   return (
-    <div className="w-3/4 h-1/2 items-center justify-center flex flex-col mx-auto bg-white rounded-lg shadow-lg p-6 my-4">
-      <h1 className="text-3xl animate-pulse">Quiz "Se connecter" : </h1>
-      <img
-        src="src/assets/tutorial-category-img/connected.svg"
-        alt="seconnecter"
-        className="md:w-1/4 md:h-1/4"
-      />
+    <div>
+      <BannerProfile />
+      <PreviousButton />
+      <div className="w-full md:w-1/2 h-full items-center justify-center flex flex-col mx-auto bg-white rounded-lg md:shadow-lg p-6 my-4 ">
+        {quizData?.title && (
+          <div>
+            <h1 className="text-3xl">{quizData.title}</h1>
+            <img src={jeux} alt={quizData.title} className="w-full h-full " />
+          </div>
+        )}
+        {quizData.questions && quizData.questions.length > 0 ? (
+          <>
+            <p className="bg-white font-bold mx-auto w-1/2 mt-4 rounded-lg flex py-4 justify-center">
+              {currentQuestion + 1}.{" "}
+              {quizData.questions[currentQuestion]?.question}
+            </p>
+            {quizData?.questions[currentQuestion]?.responses?.map(
+              (response, responseIndex) => (
+                <button
+                  type="button"
+                  key={response.id}
+                  className={`ml-4 text-base cursor-pointer flex md:ml-96 rounded-lg p-4 font-bold text-white  md:mr-96 bg-main-yellow hover:bg-main-blue my-4 md:w-1/3 w-full ${
+                    answered && response.isCorrect ? "font-bold" : ""
+                  }`}
+                  onClick={() => {
+                    setAnswered(true);
+                    setShowAnswer(true);
+                    setDisabled(true);
+                    // eslint-disable-next-line no-unused-expressions
+                    response.isCorrect
+                      ? (handleNext(response), setScore(score + 1))
+                      : handleNext(response);
+                  }}
+                >
+                  {responseIndex + 1}. {response.content}
+                  {showAnswer && (
+                    <span
+                      className={`ml-4 ${
+                        response.isCorrect ? "text-green-500" : "text-red-500"
+                      }`}
+                    >
+                      {response.isCorrect ? "Correct" : "Incorrect"}
+                    </span>
+                  )}
+                </button>
+              )
+            )}
+            {showAnswer && !quizEnd && (
+              <button
+                className="flex items-center bg-main-blue mx-auto rounded-lg p-4 font-bold text-white mt-8 hover:bg-gray-900"
+                type="button"
+                onClick={handleNextQuestion}
+                disabled={disabled}
+              >
+                Question suivante
+              </button>
+            )}
+          </>
+        ) : (
+          <p>Aucune question disponible</p>
+        )}
+        {quizEnd && (
+          <div>
+            <BannerProfile />
 
-      <p className="bg-white font-bold mx-auto w-1/2 mt-4 rounded-lg flex py-4 justify-center">
-        {currentQ.question}
-      </p>
-      <div className="flex-col mx-auto justify-center items-center">
-        {currentQ.options.map((option, index) => (
-          <button
-            className=" flex md:ml-56 rounded-lg p-4 font-bold text-white  md:mr-96 bg-main-yellow hover:bg-main-blue my-4 md:w-1/3 w-full"
-            type="button"
-            key={index}
-            disabled={disabled}
-            onClick={() => {
-              setShowAnswer(true);
-              setDisabled(true);
-              handleNext(option);
-            }}
-          >
-            {option.text}
-          </button>
-        ))}
+            <h2 className="bg-white text-3xl font-bold mx-auto w-full mt-4 rounded-lg flex flex-col py-4 justify-center">
+              Vous avez terminé le quiz !
+            </h2>
+            <p className="text-center mt-12 text-semibold text-xl">
+              Votre score : {score}/{quizData.length}
+            </p>
+            <img
+              src={celebration}
+              alt="youpi"
+              className="w-1/5 h-1/5 mx-auto"
+            />
+
+            <button
+              className=" flex items-center bg-gray-900 mx-auto  rounded-lg p-4 font-bold text-white hover:bg-main-blue  my-8"
+              type="button"
+              onClick={handleReset}
+            >
+              Recommencer
+            </button>
+          </div>
+        )}
       </div>
-      {showAnswer && (
-        <p>
-          {currentQ.options.find((option) => option.correct).text} était la
-          réponse correcte.
-        </p>
-      )}
-      {answered ? (
-        <button
-          className=" flex items-center bg-gray-900 md:mx-auto  rounded-lg p-4 font-bold text-white animate-pulse hover:bg-main-blue  my-4"
-          type="button"
-          onClick={handleNextQuestion}
-        >
-          Question suivante
-        </button>
-      ) : null}
     </div>
   );
 }
