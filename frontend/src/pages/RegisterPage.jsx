@@ -100,16 +100,6 @@ function RegisterPage() {
   const handlePreviousStep = () => {
     setCurrentStep(currentStep - 1);
   };
-  /* onClick event on stepper's label  */
-  const handleStepClick = (index) => {
-    setCurrentStep(index);
-    /* eslint no-use-before-define: ["error", { "variables": false }] */
-    setStepsCompleted((prevStepsCompleted) => {
-      return prevStepsCompleted.map((completed, i) =>
-        i === index ? true : completed
-      );
-    });
-  };
 
   const steps = [
     {
@@ -198,7 +188,6 @@ function RegisterPage() {
                   ? "bg-[#FFC927] text-dark"
                   : "bg-gray-100 text-dark"
               }`}
-              onClick={() => handleStepClick(index)}
             >
               {index === currentStep ? (
                 `${step.position}`

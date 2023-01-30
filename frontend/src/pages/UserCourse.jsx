@@ -206,7 +206,7 @@ function UserCourse() {
                     <img
                       src={randomObject().image}
                       alt={randomObject().name}
-                      className="h-28 md:h-40 mr-16 mb-4"
+                      className="h-28 md:h-40 mr-16"
                     />
                   </div>
                 </div>
