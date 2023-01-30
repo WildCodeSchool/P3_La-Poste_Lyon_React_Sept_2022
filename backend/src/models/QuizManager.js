@@ -29,7 +29,7 @@ class QuizManager extends AbstractManager {
 
   getAllFromQuiz(id) {
     return this.connection.query(
-      `select ${this.table}.id, ${this.table}.title, ${this.table}.icon, question.id, question.question, response.content, response.isCorrect from ${this.table} join question on ${this.table}.id = question.quiz_id join response on question.id = response.question_id where ${this.table}.id = ?`,
+      `select ${this.table}.id, ${this.table}.title, ${this.table}.icon, question.id as question_id, question.question, response.content, response.isCorrect from ${this.table} join question on ${this.table}.id = question.quiz_id join response on question.id = response.question_id where ${this.table}.id = ?`,
       [id]
     );
   }

@@ -21,9 +21,6 @@ import ForgottenEmail from "../pages/ForgottenEmail";
 import CurrentUserContext from "../contexts/userContext";
 import Help from "../pages/Help";
 import QuizTuto1 from "./QuizTuto1";
-import QuizTuto2 from "./QuizTuto2";
-import QuizTuto3 from "./QuizTuto3";
-import QuizTuto4 from "./QuizTuto4";
 
 import Games from "../pages/Games";
 
@@ -33,10 +30,7 @@ function AllRoutes({ adminView, handleAdminView }) {
   return (
     <Routes>
       {/* Without connexion */}
-      <Route path="/quiz1" element={<QuizTuto1 />} />
-      <Route path="/quiz2" element={<QuizTuto2 />} />
-      <Route path="/quiz3" element={<QuizTuto3 />} />
-      <Route path="/quiz4" element={<QuizTuto4 />} />
+      <Route path="/quiz/:id" element={<QuizTuto1 />} />
 
       <Route path="/" element={<Home />} />
       <Route path="/authentification" element={<AuthentificationPage />} />
