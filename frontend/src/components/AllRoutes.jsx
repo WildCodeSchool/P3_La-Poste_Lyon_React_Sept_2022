@@ -35,16 +35,10 @@ function AllRoutes({ adminView, handleAdminView }) {
       <Route path="/" element={<Home />} />
       <Route path="/authentification" element={<AuthentificationPage />} />
       <Route path="/forgotten-password" element={<ForgottenPassword />} />
-
+      <Route path="/resetpassword/:passwordToken" element={<ResetPassword />} />
       <Route path="/forgotten-email" element={<ForgottenEmail />} />
-      <Route path="/registerPage" element={<RegisterPage />} />
 
-      {currentUser.passwordToken && (
-        <Route
-          path="/resetpassword/:passwordToken"
-          element={<ResetPassword />}
-        />
-      )}
+      <Route path="/registerPage" element={<RegisterPage />} />
 
       {currentUser && (
         <>

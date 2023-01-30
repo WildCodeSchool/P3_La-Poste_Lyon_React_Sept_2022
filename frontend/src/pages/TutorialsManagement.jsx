@@ -98,7 +98,7 @@ function TutorialsManagement() {
       <div className="pb-2">
         <PreviousButton />
       </div>
-      <h2 className="m-6 font-bold text-main-blue text-3xl text-center md:text-3xl">
+      <h2 className="m-6 font-bold text-main-blue text-xl md:text-3xl  text-center ">
         {" "}
         Gestion des tutoriels
       </h2>
