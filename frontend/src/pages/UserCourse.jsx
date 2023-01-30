@@ -175,7 +175,7 @@ function UserCourse() {
 
       <PreviousButton />
       <div className="flex flex-col items-center justify-center">
-        <div className="md:border-1 md:shadow-xl w-3/5">
+        <div className="md:border-1 md:shadow-xl md:w-3/5">
           <div className="mt-7 mb-7 flex justify-center">
             <h1 className="m-3 flex justify-center items-center font-bold text-xl md:text-3xl  text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">
               Parcours utilisateur
