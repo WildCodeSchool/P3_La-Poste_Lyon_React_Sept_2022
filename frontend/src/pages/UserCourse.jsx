@@ -174,69 +174,73 @@ function UserCourse() {
       <BannerProfile />
 
       <PreviousButton />
-      <div className="mt-7 mb-7 flex justify-center">
-        <h1 className="m-3 flex justify-center items-center font-bold text-xl md:text-3xl  text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">
-          Parcours utilisateur
-        </h1>
-      </div>
-      {tutos.map((el, index) => (
-        <div key={index}>
-          {index === 0 || findTutorialStatus(tutos[index - 1].id) ? (
-            <div>
-              <div className="ml-14 md:ml-48 flex justify-center mb-8 mt-5">
-                <NavLink to={`/api/tutos/${el.id}`}>
-                  <span>
+      <div className="flex flex-col items-center justify-center">
+        <div className="md:border-1 md:shadow-xl w-3/5">
+          <div className="mt-7 mb-7 flex justify-center">
+            <h1 className="m-3 flex justify-center items-center font-bold text-xl md:text-3xl  text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">
+              Parcours utilisateur
+            </h1>
+          </div>
+          {tutos.map((el, index) => (
+            <div key={index}>
+              {index === 0 || findTutorialStatus(tutos[index - 1].id) ? (
+                <div>
+                  <div className="ml-14 md:ml-48 flex justify-center mb-8 mt-5">
+                    <NavLink to={`/api/tutos/${el.id}`}>
+                      <span>
+                        <img
+                          /* index is the current usercourse index. Each time he maps elements, he looks at whether the modulo2 = 1 index (therefore odd) if yes, he positions the source of the image to that defined on odd.  */
+                          src={index % 2 === 1 ? odd : even}
+                          alt={`Step${el.id}`}
+                          className="cursor-pointer transition-transform duration-200 transform hover:scale-110 md:h-56"
+                        />
+                      </span>
+                    </NavLink>
+                  </div>
+                  <div
+                    key={index}
+                    className={`flex justify-center ${
+                      index % 2 === 1 ? "ml-56 md:ml-96 md:pl-20" : ""
+                    }`}
+                  >
                     <img
-                      /* index is the current usercourse index. Each time he maps elements, he looks at whether the modulo2 = 1 index (therefore odd) if yes, he positions the source of the image to that defined on odd.  */
-                      src={index % 2 === 1 ? odd : even}
-                      alt={`Step${el.id}`}
-                      className="cursor-pointer transition-transform duration-200 transform hover:scale-110 md:h-96"
+                      src={randomObject().image}
+                      alt={randomObject().name}
+                      className="h-28 md:h-40 mr-16 mb-4"
                     />
-                  </span>
-                </NavLink>
-              </div>
-              <div
-                key={index}
-                className={`flex justify-center ${
-                  index % 2 === 1 ? "ml-56 md:ml-96 md:pl-20" : ""
-                }`}
-              >
-                <img
-                  src={randomObject().image}
-                  alt={randomObject().name}
-                  className="h-28 md:h-72 mr-16 mb-4"
-                />
-              </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="grayscale">
+                  <div className="ml-14 md:ml-48 flex justify-center mb-8 mt-5">
+                    <span>
+                      <img
+                        src={index % 2 === 1 ? odd : even}
+                        alt={`Step${el.id}`}
+                        className="md:h-56"
+                      />
+                    </span>
+                  </div>
+                  <div
+                    key={index}
+                    className={
+                      index % 2 === 1
+                        ? "flex justify-center ml-56 md:ml-96 md:pl-20"
+                        : "flex justify-center"
+                    }
+                  >
+                    <img
+                      src={randomObject().image}
+                      alt={randomObject().name}
+                      className="h-28 md:h-40 mr-16"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
-          ) : (
-            <div className="grayscale">
-              <div className="ml-14 md:ml-48 flex justify-center mb-8 mt-5">
-                <span>
-                  <img
-                    src={index % 2 === 1 ? odd : even}
-                    alt={`Step${el.id}`}
-                    className="md:h-96"
-                  />
-                </span>
-              </div>
-              <div
-                key={index}
-                className={
-                  index % 2 === 1
-                    ? "flex justify-center ml-56 md:ml-96 md:pl-20"
-                    : "flex justify-center"
-                }
-              >
-                <img
-                  src={randomObject().image}
-                  alt={randomObject().name}
-                  className="h-28 md:h-72 mr-16"
-                />
-              </div>
-            </div>
-          )}
+          ))}
         </div>
-      ))}
+      </div>
     </div>
   );
 }
