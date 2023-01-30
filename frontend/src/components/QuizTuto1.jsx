@@ -12,7 +12,6 @@ function QuizTuto1() {
 
   /* Get quizData */
   const [quizData, setQuizData] = useState([]);
-  console.warn(`quizData`, quizData.id, quizData.response);
 
   useEffect(() => {
     const getQuizData = () => {
@@ -36,7 +35,6 @@ function QuizTuto1() {
     };
     getQuizData();
   }, []);
-  console.warn(quizData.icon);
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
@@ -58,7 +56,7 @@ function QuizTuto1() {
       setScore(score + 1);
     }
 
-    if (currentQuestion + 1 === quizData.length) {
+    if (currentQuestion + 1 === 5) {
       setQuizEnd(true);
     } else {
       setCurrentQuestion(currentQuestion + 1);
@@ -79,13 +77,17 @@ function QuizTuto1() {
         <h2 className="bg-white text-3xl font-bold mx-auto w-full mt-4 rounded-lg flex py-4 justify-center">
           Vous avez terminé le quiz !
         </h2>
-        <p className="text-center mt-12 text-semibold text-xl">
-          Votre score : {score}/{quizData.length}
+        <p className="text-center mt-12 font-bold text-xl">
+          Votre score : {score}/5
         </p>
-        <img src={celebration} alt="youpi" className="w-1/5 h-1/5 mx-auto" />
+        <img
+          src={celebration}
+          alt="youpi"
+          className="w-full h-full md:w-1/3 md:h-1/3 mx-auto"
+        />
 
         <button
-          className=" flex items-center bg-gray-900 mx-auto  rounded-lg p-4 font-bold text-white animate-pulse hover:bg-main-blue  my-8"
+          className=" flex items-center bg-gray-900 mx-auto  rounded-lg p-4 font-bold text-white hover:bg-main-blue  my-8"
           type="button"
           onClick={handleReset}
         >
@@ -109,9 +111,9 @@ function QuizTuto1() {
         <>
           <p className="bg-white font-bold mx-auto w-1/2 mt-4 rounded-lg flex py-4 justify-center">
             {currentQuestion + 1}.{" "}
-            {quizData.questions[currentQuestion].question}
+            {quizData.questions[currentQuestion]?.question}
           </p>
-          {quizData.questions[currentQuestion].responses.map(
+          {quizData?.questions[currentQuestion]?.responses?.map(
             (response, responseIndex) => (
               <button
                 type="button"
@@ -167,7 +169,7 @@ function QuizTuto1() {
           <img src={celebration} alt="youpi" className="w-1/5 h-1/5 mx-auto" />
 
           <button
-            className=" flex items-center bg-gray-900 mx-auto  rounded-lg p-4 font-bold text-white animate-pulse hover:bg-main-blue  my-8"
+            className=" flex items-center bg-gray-900 mx-auto  rounded-lg p-4 font-bold text-white hover:bg-main-blue  my-8"
             type="button"
             onClick={handleReset}
           >
