@@ -92,7 +92,7 @@ function NavigationBar({ adminView, handleAdminView }) {
         <div
           className={`flex-1 justify-self-center md:block md:pb-0 md:mt-0 ${
             open
-              ? "block absolute h-screen shadow-lg top-0 right-0 bg-white w-screen md:w-96 z-0"
+              ? "block absolute h-[94vh] shadow-lg top-0 right-0 bg-white w-screen md:w-96 z-0"
               : "hidden"
           }`}
         >
