@@ -61,6 +61,10 @@ function RegisterThirdStep({
             value={firstname}
             onChange={handleFirstname}
             required
+            pattern="[a-zA-Z-]+"
+            minLength="3"
+            maxLength="35"
+            title='Le prénom doit contenir au moins 3 caractères et ne doit pas contenir de chiffres ou de caractères spéciaux hormis "-"'
             type="text"
             placeholder="Entrez votre prénom"
             className="p-2 rounded-md w-full"
@@ -77,6 +81,10 @@ function RegisterThirdStep({
               id="lastname"
               value={lastname}
               required
+              pattern="[a-zA-Z-]+"
+              minLength="3"
+              maxLength="35"
+              title='Le nom doit contenir au moins 3 caractères et ne doit pas contenir de chiffres ou de caractères spéciaux hormis "-"'
               onChange={handleLastname}
               type="text"
               placeholder="Entrez votre nom"
@@ -95,6 +103,8 @@ function RegisterThirdStep({
               pattern="^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$"
               value={phone}
               required
+              maxLength={10}
+              title="Le numéro de téléphone doit être au format 0XXXXXXXXX"
               onChange={handlePhone}
               type="tel"
               placeholder="Entrez votre numéro de téléphone"

@@ -31,7 +31,7 @@ function RegisterPage() {
 
   const notifyError = () => {
     toast(
-      "Les informations transmises ne vous permettent pas de créer un compte",
+      "Les informations transmises ne vous permettent pas de créer un compte, merci de vérifier vos informations",
       {
         icon: "🚫",
       }
@@ -68,16 +68,13 @@ function RegisterPage() {
       .then((response) => {
         if (response.status !== 201) {
           notifyError();
-        }
-        response.text();
-      })
-      .then((response) => {
-        console.warn(response);
-        notifySuccess(registerInformations.firstname);
+        } else {
+          notifySuccess(registerInformations.firstname);
 
-        setTimeout(() => {
-          navigate("/authentification");
-        }, 1500);
+          setTimeout(() => {
+            navigate("/authentification");
+          }, 1500);
+        }
       })
       .catch(console.error);
   };
@@ -144,6 +141,8 @@ function RegisterPage() {
           setRegisterInformations={setRegisterInformations}
           submitRegisterInformations={submitRegisterInformations}
           registerInformations={registerInformations}
+          handlePreviousStep={handlePreviousStep}
+          currentStep={currentStep}
         />
       ),
     },
@@ -157,9 +156,6 @@ function RegisterPage() {
   useEffect(() => {
     setStepsCompleted(Array(steps.length).fill("")); // This will always use latest value of count
   }, []);
-
-  /* STEPPERS */
-  /* STEPPERS */
 
   return (
     <>
