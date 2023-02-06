@@ -113,7 +113,7 @@ function SearchUsers() {
       </h1>
       <form className="w-full flex flex-col justify-center items-center ">
         <input
-          type="text"
+          type="search"
           id="users"
           name="users"
           onChange={(e) => setSearch(e.target.value)}

@@ -196,7 +196,7 @@ function Settings() {
               ref={avatarRef}
               type="file"
               id="image-upload"
-              accept="image/*"
+              accept="image/gif, image/jpeg, image/png, image/jpg"
               onChange={handleSubmitAvatar}
               className="hidden"
             />
@@ -213,6 +213,9 @@ function Settings() {
           <SettingsParameters
             text="Prénom"
             textValue="firstname"
+            lengthmin="3"
+            lengthmax="35"
+            patterntext="^[a-zA-ZÀ-ÿ\u00f1\u00d1 ]+$"
             userVal={userValues.firstname}
             handleOnClickValue={handleOnClickValue}
             handleInputChange={handleInputChange}
@@ -221,6 +224,9 @@ function Settings() {
           <SettingsParameters
             text="Nom"
             textValue="lastname"
+            lengthmin="3"
+            lengthmax="35"
+            patterntext="^[a-zA-ZÀ-ÿ\u00f1\u00d1 ]+$"
             userVal={userValues.lastname}
             handleOnClickValue={handleOnClickValue}
             handleInputChange={handleInputChange}
@@ -229,6 +235,7 @@ function Settings() {
           <SettingsParameters
             text="Tél."
             textValue="phone"
+            patterntext="^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$"
             userVal={userValues.phone}
             handleOnClickValue={handleOnClickValue}
             handleInputChange={handleInputChange}
