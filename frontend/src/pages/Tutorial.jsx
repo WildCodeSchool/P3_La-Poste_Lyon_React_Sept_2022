@@ -29,7 +29,7 @@ function Tutorial() {
       fetch(`${VITE_BACKEND_URL}/api/tutos/${id}`, requestOptions)
         .then((response) => response.json())
         .then((data) => setTutorial(data))
-        .catch(notifyProblem());
+        .catch((err) => notifyProblem(err));
     };
     fetchTutorial();
   }, [id]);
