@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
+import { toast, Toaster } from "react-hot-toast";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
@@ -6,6 +7,8 @@ const TutorialsContext = createContext();
 export { TutorialsContext };
 
 export function TutorialsContextProvider({ children }) {
+  const notifyProblem = () =>
+    toast("There was a problem fetching the rewards. Please try again later.");
   /* fetch tutorials from localhost */
   const [tutorials, setTutorials] = useState([]);
 
@@ -16,8 +19,8 @@ export function TutorialsContextProvider({ children }) {
         .then((data) => {
           setTutorials(data);
         })
-        .catch((error) => {
-          console.error("Error:", error);
+        .catch(() => {
+          notifyProblem();
         });
     };
     getTutorials();
@@ -25,6 +28,7 @@ export function TutorialsContextProvider({ children }) {
 
   return (
     <TutorialsContext.Provider value={{ tutorials, setTutorials }}>
+      <Toaster position="top-center" reverseOrder />
       {children}
     </TutorialsContext.Provider>
   );
