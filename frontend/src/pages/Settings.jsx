@@ -195,7 +195,7 @@ function Settings() {
               ref={avatarRef}
               type="file"
               id="image-upload"
-              accept="image/*"
+              accept="image/gif, image/jpeg, image/png, image/jpg"
               onChange={handleSubmitAvatar}
               className="hidden"
             />
