@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast, Toaster } from "react-hot-toast";
 import DeleteModaleUser from "../components/DeleteModaleUser";
 import CurrentUserContext from "../contexts/userContext";
@@ -9,6 +10,8 @@ import trash from "../assets/items/trash.svg";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function SearchUsers() {
+  const navigate = useNavigate();
+
   const notify = () => toast.success("L'utilisateur a bien été supprimé");
 
   /* Get bearer token from userContext to get permission about delete user */
@@ -23,9 +26,7 @@ function SearchUsers() {
       .then((data) => {
         setUsers(data);
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+      .catch(navigate("*"));
   };
 
   useEffect(() => {

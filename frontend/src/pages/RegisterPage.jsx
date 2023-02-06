@@ -1,13 +1,13 @@
-import RegisterFirstStep from "@components/RegisterFirstStep";
-import RegisterFourthStep from "@components/RegisterFourthStep";
-import RegisterSecondStep from "@components/RegisterSecondStep";
-import RegisterThirdStep from "@components/RegisterThirdStep";
-import completeStep from "@assets/items/step-complete.svg";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import PreviousButton from "@components/PreviousButton";
-import Footer from "@components/Footer";
 import { toast, Toaster } from "react-hot-toast";
+import RegisterFirstStep from "../components/RegisterFirstStep";
+import RegisterFourthStep from "../components/RegisterFourthStep";
+import RegisterSecondStep from "../components/RegisterSecondStep";
+import RegisterThirdStep from "../components/RegisterThirdStep";
+import completeStep from "../assets/items/step-complete.svg";
+import PreviousButton from "../components/PreviousButton";
+import Footer from "../components/Footer";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
@@ -71,15 +71,14 @@ function RegisterPage() {
         }
         response.text();
       })
-      .then((response) => {
-        console.warn(response);
+      .then(() => {
         notifySuccess(registerInformations.firstname);
 
         setTimeout(() => {
           navigate("/authentification");
         }, 1500);
       })
-      .catch(console.error);
+      .catch(navigate("*"));
   };
 
   /* State to set up the current step */

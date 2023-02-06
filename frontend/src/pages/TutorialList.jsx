@@ -73,7 +73,7 @@ function TutorialList() {
       fetch("http://localhost:5000/api/tutorialStatusStarted", requestOptions)
         .then((response) => response.text())
         .then(() => {})
-        .catch((error) => console.error("error", error));
+        .catch(navigate("*"));
 
       /* update TutorialStatus  */
       setTutorialStatus((previousStatus) => [

@@ -9,10 +9,11 @@ import zeroTuto from "../assets/items/zeroTuto.svg";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function Historic() {
+  const navigate = useNavigate();
+
   const { currentUser, token } = useCurrentUserContext();
   const { categories } = useContext(CategoryContext);
 
-  const navigate = useNavigate();
   /* set Finished tutorials */
   const [finishedTutorials, setFinishedTutorials] = useState([]);
 
@@ -33,9 +34,7 @@ function Historic() {
       .then((data) => {
         setFinishedTutorials(data);
       })
-      .catch((error) => {
-        console.warn(error);
-      });
+      .catch(navigate("*"));
   };
 
   useEffect(() => {

@@ -9,6 +9,8 @@ import BannerProfile from "./BannerProfile";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function QuizTuto1() {
+  const navigate = useNavigate();
+
   const { token } = useCurrentUserContext();
   const { id } = useParams(); // pour récupérer l'id dans l'URL
 
@@ -28,12 +30,9 @@ function QuizTuto1() {
       fetch(`${VITE_BACKEND_URL}/api/quiz/${id}`, requestOptions)
         .then((response) => response.json())
         .then((data) => {
-          console.warn(`data`, data);
           setQuizData(data);
         })
-        .catch((error) => {
-          console.warn("Error:", error);
-        });
+        .catch(navigate("*"));
     };
     getQuizData();
   }, []);
@@ -49,7 +48,6 @@ function QuizTuto1() {
     setCurrentQuestion(currentQuestion + 1);
     setAnswered(false);
   };
-  const navigate = useNavigate();
 
   const handleNext = (answer) => {
     setShowAnswer(false);

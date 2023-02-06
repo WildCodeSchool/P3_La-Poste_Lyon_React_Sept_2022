@@ -80,11 +80,10 @@ function TutorialValidator(allStepsContent) {
       body,
       headers: myHeaders,
     })
-      /* then I get the response to json. If response == 401 console log error else .then result */
       /* eslint-disable  consistent-return */
       .then((response) => {
         if (response.status === 401) {
-          console.warn("error");
+          navigate("*");
         } else {
           setTutorials(...tutorials, mandatory);
           notify();
@@ -94,7 +93,7 @@ function TutorialValidator(allStepsContent) {
           return response.text();
         }
       })
-      .catch((error) => console.warn("error", error));
+      .catch(navigate("*"));
   };
 
   return (

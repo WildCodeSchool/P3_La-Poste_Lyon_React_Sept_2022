@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 
 import QuizTuto2 from "../components/QuizTuto2";
 import QuizTuto3 from "../components/QuizTuto3"; */
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AccessButton from "../components/AccessButton";
 import BannerProfile from "../components/BannerProfile";
 import { useCurrentUserContext } from "../contexts/userContext";
@@ -11,6 +11,8 @@ import { useCurrentUserContext } from "../contexts/userContext";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function Games() {
+  const navigate = useNavigate();
+
   const { token } = useCurrentUserContext();
 
   /* Get quizList */
@@ -24,16 +26,13 @@ function Games() {
         Authorization: `Bearer ${token}`,
       },
     };
-    console.warn(quizList);
 
     fetch(`${VITE_BACKEND_URL}/api/quiz`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         setQuizList(data);
       })
-      .catch((error) => {
-        console.warn("Error:", error);
-      });
+      .catch(navigate("*"));
   };
 
   useEffect(() => {

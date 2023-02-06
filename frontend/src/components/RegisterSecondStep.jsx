@@ -1,5 +1,5 @@
 import React from "react";
-import nextBtn from "@assets/items/nextBtn.svg";
+import nextBtn from "../assets/items/nextBtn.svg";
 import questionbtn from "../assets/items/question-circle.svg";
 import RegisterSecondStepModale from "./RegisterSecondStepModale";
 

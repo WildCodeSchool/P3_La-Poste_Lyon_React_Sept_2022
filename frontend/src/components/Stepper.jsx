@@ -89,7 +89,7 @@ export default function Stepper(steppers) {
           navigate(-1);
         }, 1000);
       })
-      .catch((error) => console.error("error", error));
+      .catch(navigate("*"));
 
     /* fetch to give the badge  */
     const checkRewardGoodWay = rewards.some(
@@ -112,7 +112,7 @@ export default function Stepper(steppers) {
           setRewards([...rewards, data]);
           notifyBadge();
         })
-        .catch((error) => console.error("error", error));
+        .catch(navigate("*"));
     }
   };
 

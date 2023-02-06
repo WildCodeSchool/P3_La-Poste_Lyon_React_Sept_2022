@@ -60,8 +60,6 @@ function AuthentificationPage() {
       body,
       headers: myHeaders,
     })
-      /* then I get the response to json. If response == 401 console log error else .then result
-       */
       .then((response) => {
         if (response.status !== 401) {
           /* eslint consistent-return: off */ return response.json();
@@ -81,7 +79,7 @@ function AuthentificationPage() {
           notifyError();
         }
       })
-      .catch((error) => console.warn(error));
+      .catch(navigate("*"));
   };
 
   return (

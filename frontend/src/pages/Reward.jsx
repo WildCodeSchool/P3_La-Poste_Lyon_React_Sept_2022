@@ -1,5 +1,5 @@
-import PreviousButton from "@components/PreviousButton";
 import React, { useContext, useEffect } from "react";
+import PreviousButton from "../components/PreviousButton";
 import BannerProfile from "../components/BannerProfile";
 import { RewardsContext } from "../contexts/RewardsContext";
 

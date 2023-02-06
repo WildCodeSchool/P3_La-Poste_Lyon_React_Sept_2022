@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CategoryContext } from "../contexts/CategoryContext";
 import CurrentUserContext from "../contexts/userContext";
 import PreviousButton from "../components/PreviousButton";
@@ -10,6 +10,8 @@ import unique from "../assets/items/unique.svg";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function TutorialCategory() {
+  const navigate = useNavigate();
+
   const { categories } = useContext(CategoryContext);
   const { currentUser, token } = useContext(CurrentUserContext);
 
@@ -33,9 +35,7 @@ function TutorialCategory() {
       .then((data) => {
         setProgressionList(data);
       })
-      .catch((error) => {
-        console.warn("Error:", error);
-      });
+      .catch(navigate("*"));
   };
 
   useEffect(() => {

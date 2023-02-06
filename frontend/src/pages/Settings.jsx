@@ -75,8 +75,7 @@ function Settings() {
           setCurrentUser({ ...currentUser, profilePicture: results.avatar });
           notifySuccess();
         })
-        .catch((error) => {
-          console.error(error);
+        .catch(() => {
           notifyError();
         });
     }
@@ -156,7 +155,7 @@ function Settings() {
           setRewards([...rewards, data]);
           notifyBadge();
         })
-        .catch((error) => console.error("error", error));
+        .catch(navigate("*"));
     }
   };
 

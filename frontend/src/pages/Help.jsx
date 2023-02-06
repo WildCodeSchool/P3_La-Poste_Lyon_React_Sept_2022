@@ -1,12 +1,15 @@
 import React, { useState, useContext, useEffect } from "react";
-import PreviousButton from "@components/PreviousButton";
+import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
+import PreviousButton from "../components/PreviousButton";
 import { RewardsContext } from "../contexts/RewardsContext";
 import CurrentUserContext from "../contexts/userContext";
 import TutoSearchbarAide from "../components/TutoSearchbarAide";
 import HelpModale from "../components/HelpModale";
 
 function Help() {
+  const navigate = useNavigate();
+
   const { VITE_BACKEND_URL } = import.meta.env;
   const { currentUser, token } = useContext(CurrentUserContext);
   const { rewards, setRewards } = useContext(RewardsContext);
@@ -36,7 +39,7 @@ function Help() {
           setRewards([...rewards, data]);
           notifyBadge();
         })
-        .catch((error) => console.error("error", error));
+        .catch(navigate("*"));
     }
   };
 
