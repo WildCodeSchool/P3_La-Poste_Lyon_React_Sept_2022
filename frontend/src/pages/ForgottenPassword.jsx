@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { toast, Toaster } from "react-hot-toast";
 import PreviousButton from "../components/PreviousButton";
 import arobase from "../assets/connexionPage/email-logo-connexion.png";
@@ -8,7 +7,7 @@ import forgotpass from "../assets/connexionPage/img-user-connexion.svg";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function ForgottenPassword() {
-  const navigate = useNavigate();
+  const notifyProblem = () => toast("Chargement...");
 
   /* Toast */
 
@@ -45,7 +44,7 @@ function ForgottenPassword() {
       .then(() => {
         notifySuccess();
       })
-      .catch(navigate("*"));
+      .catch((err) => notifyProblem(err));
   };
 
   return (

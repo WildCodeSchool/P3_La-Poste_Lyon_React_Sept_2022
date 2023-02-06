@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { toast, Toaster } from "react-hot-toast";
 import { TutorialStatusContext } from "../contexts/TutorialStatusContext";
 import { RewardsContext } from "../contexts/RewardsContext";
@@ -53,7 +53,7 @@ import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
 
 function UserCourse() {
-  const navigate = useNavigate();
+  const notifyProblem = () => toast("Chargement...");
 
   const { VITE_BACKEND_URL } = import.meta.env;
   const { currentUser, token } = useCurrentUserContext();
@@ -162,7 +162,7 @@ function UserCourse() {
           notifyBadge();
           setRewards([...rewards, data]);
         })
-        .catch(navigate("*"));
+        .catch((err) => notifyProblem(err));
     }
   };
 

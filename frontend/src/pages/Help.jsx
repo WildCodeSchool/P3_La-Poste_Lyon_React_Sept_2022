@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { Toaster, toast } from "react-hot-toast";
 import PreviousButton from "../components/PreviousButton";
 import { RewardsContext } from "../contexts/RewardsContext";
@@ -8,7 +7,7 @@ import TutoSearchbarAide from "../components/TutoSearchbarAide";
 import HelpModale from "../components/HelpModale";
 
 function Help() {
-  const navigate = useNavigate();
+  const notifyProblem = () => toast("Chargement...");
 
   const { VITE_BACKEND_URL } = import.meta.env;
   const { currentUser, token } = useContext(CurrentUserContext);
@@ -39,7 +38,7 @@ function Help() {
           setRewards([...rewards, data]);
           notifyBadge();
         })
-        .catch(navigate("*"));
+        .catch((err) => notifyProblem(err));
     }
   };
 

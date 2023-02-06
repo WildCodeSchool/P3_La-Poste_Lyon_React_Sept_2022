@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast, Toaster } from "react-hot-toast";
 import celebration from "../assets/connexionPage/registerPage/winner.svg";
 import { useCurrentUserContext } from "../contexts/userContext";
 import jeux from "../assets/navBar/navBarUser/jeux.png";
@@ -9,6 +10,7 @@ import BannerProfile from "./BannerProfile";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function QuizTuto1() {
+  const notifyProblem = () => toast("Chargement...");
   const navigate = useNavigate();
 
   const { token } = useCurrentUserContext();
@@ -32,7 +34,7 @@ function QuizTuto1() {
         .then((data) => {
           setQuizData(data);
         })
-        .catch(navigate("*"));
+        .catch((err) => notifyProblem(err));
     };
     getQuizData();
   }, []);
@@ -75,6 +77,8 @@ function QuizTuto1() {
   if (quizEnd) {
     return (
       <div>
+        <Toaster position="top-center" reverseOrder />
+
         <BannerProfile />
         <PreviousButton />
 

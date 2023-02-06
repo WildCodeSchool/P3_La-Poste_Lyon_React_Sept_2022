@@ -12,6 +12,8 @@ import Footer from "../components/Footer";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function RegisterPage() {
+  const notifyProblem = () => toast("Chargement...");
+
   const navigate = useNavigate();
 
   /* registerInformations will save all the data of the user  */
@@ -78,7 +80,7 @@ function RegisterPage() {
           navigate("/authentification");
         }, 1500);
       })
-      .catch(navigate("*"));
+      .catch((err) => notifyProblem(err));
   };
 
   /* State to set up the current step */

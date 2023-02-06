@@ -7,6 +7,8 @@ import locker from "../assets/connexionPage/lockerlogo.png";
 import forgotpass from "../assets/connexionPage/img-user-connexion.svg";
 
 function ResetPassword() {
+  const notifyProblem = () => toast("Chargement...");
+
   const navigate = useNavigate();
 
   const { VITE_BACKEND_URL } = import.meta.env;
@@ -46,7 +48,7 @@ function ResetPassword() {
           navigate("/");
         }
       })
-      .catch(navigate("*"));
+      .catch((err) => notifyProblem(err));
   };
   useEffect(() => {
     checkValidToken();
@@ -87,7 +89,7 @@ function ResetPassword() {
         .then(() => {
           navigate("/authentification");
         })
-        .catch(navigate("*"));
+        .catch((err) => notifyProblem(err));
     }
   };
 

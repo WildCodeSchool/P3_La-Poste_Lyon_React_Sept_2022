@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { toast, Toaster } from "react-hot-toast";
 /* import QuizTuto1 from "../components/QuizTuto1";
 
 import QuizTuto2 from "../components/QuizTuto2";
 import QuizTuto3 from "../components/QuizTuto3"; */
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AccessButton from "../components/AccessButton";
 import BannerProfile from "../components/BannerProfile";
 import { useCurrentUserContext } from "../contexts/userContext";
@@ -11,7 +12,7 @@ import { useCurrentUserContext } from "../contexts/userContext";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function Games() {
-  const navigate = useNavigate();
+  const notifyProblem = () => toast("Chargement...");
 
   const { token } = useCurrentUserContext();
 
@@ -32,7 +33,7 @@ function Games() {
       .then((data) => {
         setQuizList(data);
       })
-      .catch(navigate("*"));
+      .catch((err) => notifyProblem(err));
   };
 
   useEffect(() => {
@@ -41,6 +42,7 @@ function Games() {
 
   return (
     <div className="">
+      <Toaster position="top-center" reverseOrder />
       <BannerProfile />
       <div className="mt-2 flex justify-center">
         <h1 className="m-3 flex justify-center items-center font-bold text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">

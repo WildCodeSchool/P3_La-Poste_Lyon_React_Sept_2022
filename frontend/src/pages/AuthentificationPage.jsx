@@ -11,6 +11,7 @@ import forgotpass from "../assets/connexionPage/img-user-connexion.svg";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function AuthentificationPage() {
+  const notifyProblem = () => toast("Chargement...");
   /* Toast */
 
   const notifyError = () => {
@@ -79,7 +80,7 @@ function AuthentificationPage() {
           notifyError();
         }
       })
-      .catch(navigate("*"));
+      .catch((err) => notifyProblem(err));
   };
 
   return (

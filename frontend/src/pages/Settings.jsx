@@ -10,6 +10,8 @@ import { useRewardsContext } from "../contexts/RewardsContext";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function Settings() {
+  const notifyProblem = () => toast("Chargement...");
+
   /* Toast notifications */
   const notifySuccess = () => {
     toast("Image bien téléchargée !", {
@@ -75,8 +77,8 @@ function Settings() {
           setCurrentUser({ ...currentUser, profilePicture: results.avatar });
           notifySuccess();
         })
-        .catch(() => {
-          notifyError();
+        .catch((err) => {
+          notifyError(err);
         });
     }
   };
@@ -155,7 +157,7 @@ function Settings() {
           setRewards([...rewards, data]);
           notifyBadge();
         })
-        .catch(navigate("*"));
+        .catch(notifyProblem());
     }
   };
 

@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { useParams, useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import statusFInished from "../assets/tutorials-status/status-finished.svg";
@@ -11,6 +12,8 @@ import PreviousButton from "../components/PreviousButton";
 import filterIcon from "../assets/items/filter.svg";
 
 function TutorialList() {
+  const notifyProblem = () => toast("Chargement...");
+
   const navigate = useNavigate();
 
   const { currentUser, token } = useContext(CurrentUserContext);
@@ -73,7 +76,7 @@ function TutorialList() {
       fetch("http://localhost:5000/api/tutorialStatusStarted", requestOptions)
         .then((response) => response.text())
         .then(() => {})
-        .catch(navigate("*"));
+        .catch((err) => notifyProblem(err));
 
       /* update TutorialStatus  */
       setTutorialStatus((previousStatus) => [
@@ -91,6 +94,8 @@ function TutorialList() {
   return (
     filteredTutorials && (
       <>
+        <Toaster position="top-center" reverseOrder />
+
         <BannerProfile />
 
         <PreviousButton />

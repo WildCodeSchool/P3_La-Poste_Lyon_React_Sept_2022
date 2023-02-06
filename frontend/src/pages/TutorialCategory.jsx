@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import { Link } from "react-router-dom";
 import { CategoryContext } from "../contexts/CategoryContext";
 import CurrentUserContext from "../contexts/userContext";
 import PreviousButton from "../components/PreviousButton";
@@ -10,7 +11,7 @@ import unique from "../assets/items/unique.svg";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function TutorialCategory() {
-  const navigate = useNavigate();
+  const notifyProblem = () => toast("Chargement...");
 
   const { categories } = useContext(CategoryContext);
   const { currentUser, token } = useContext(CurrentUserContext);
@@ -35,7 +36,7 @@ function TutorialCategory() {
       .then((data) => {
         setProgressionList(data);
       })
-      .catch(navigate("*"));
+      .catch((err) => notifyProblem(err));
   };
 
   useEffect(() => {
@@ -74,6 +75,8 @@ function TutorialCategory() {
   return (
     categories && (
       <>
+        <Toaster position="top-center" reverseOrder />
+
         <BannerProfile />
         <PreviousButton />
         <section className="m-6 flex flex-col items-center">
@@ -120,6 +123,8 @@ function TutorialCategory() {
                     ""
                   )}
                   <div className="mt-6 w-full h-4 bg-gray-200 rounded-full dark:bg-gray-700">
+                    <Toaster position="top-center" reverseOrder />
+
                     {/* We used ternary to display the good tailwind class.This define the color of the progression bar - 3 states : start, complete, unstart by default */}
                     <div
                       className={`h-4 rounded-full  ${

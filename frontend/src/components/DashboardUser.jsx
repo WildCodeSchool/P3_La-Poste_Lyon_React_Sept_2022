@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast, Toaster } from "react-hot-toast";
 import CurrentUserContext from "../contexts/userContext";
 import { RewardsContext } from "../contexts/RewardsContext";
@@ -14,7 +14,7 @@ import grid from "../assets/items/grid.svg";
 import unique from "../assets/items/unique.svg";
 
 function DashboardUser() {
-  const navigate = useNavigate();
+  const notifyProblem = () => toast("Chargement...");
 
   const { VITE_BACKEND_URL } = import.meta.env;
 
@@ -48,7 +48,7 @@ function DashboardUser() {
           notifyBadge();
           setRewards([...rewards, data]);
         })
-        .catch(navigate("*"));
+        .catch((err) => notifyProblem(err));
     }
   };
 
