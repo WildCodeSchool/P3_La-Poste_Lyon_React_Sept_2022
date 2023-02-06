@@ -30,7 +30,6 @@ function AllRoutes({ adminView, handleAdminView }) {
   return (
     <Routes>
       {/* Without connexion */}
-      <Route path="/quiz/:id" element={<QuizTuto1 />} />
 
       <Route path="/" element={<Home />} />
       <Route path="/authentification" element={<AuthentificationPage />} />
@@ -61,6 +60,7 @@ function AllRoutes({ adminView, handleAdminView }) {
           <Route path="/settings" element={<Settings />} />
           <Route path="/help" element={<Help />} />
           <Route path="/games" element={<Games />} />
+          <Route path="/quiz/:id" element={<QuizTuto1 />} />
         </>
       )}
       {/* Admin */}

@@ -24,7 +24,7 @@ export function TutorialStatusContextProvider({ children }) {
   };
 
   useEffect(() => {
-    getTutorialStatus();
+    currentUser.email && getTutorialStatus();
   }, [tutorialStatus.length]);
 
   return (

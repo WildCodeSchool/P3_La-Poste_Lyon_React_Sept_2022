@@ -30,7 +30,7 @@ export function RewardsContextProvider({ children }) {
   };
 
   useEffect(() => {
-    getRewards();
+    currentUser.email && getRewards();
   }, [rewards.length]);
 
   return (
