@@ -215,7 +215,7 @@ function Settings() {
             textValue="firstname"
             lengthmin="3"
             lengthmax="35"
-            patterntext="^[a-zA-ZÀ-ÿ\u00f1\u00d1 ]+$"
+            patterntext="[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ?-]+"
             userVal={userValues.firstname}
             handleOnClickValue={handleOnClickValue}
             handleInputChange={handleInputChange}
@@ -226,7 +226,7 @@ function Settings() {
             textValue="lastname"
             lengthmin="3"
             lengthmax="35"
-            patterntext="^[a-zA-ZÀ-ÿ\u00f1\u00d1 ]+$"
+            patterntext="[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ?-]+"
             userVal={userValues.lastname}
             handleOnClickValue={handleOnClickValue}
             handleInputChange={handleInputChange}
