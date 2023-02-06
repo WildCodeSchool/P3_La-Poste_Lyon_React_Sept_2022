@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast, Toaster } from "react-hot-toast";
 import celebration from "../assets/connexionPage/registerPage/winner.svg";
 import { useCurrentUserContext } from "../contexts/userContext";
 import jeux from "../assets/navBar/navBarUser/jeux.png";
@@ -9,6 +10,9 @@ import BannerProfile from "./BannerProfile";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function QuizTuto1() {
+  const notifyProblem = () => toast("Chargement...");
+  const navigate = useNavigate();
+
   const { token } = useCurrentUserContext();
   const { id } = useParams(); // pour récupérer l'id dans l'URL
 
@@ -28,12 +32,9 @@ function QuizTuto1() {
       fetch(`${VITE_BACKEND_URL}/api/quiz/${id}`, requestOptions)
         .then((response) => response.json())
         .then((data) => {
-          console.warn(`data`, data);
           setQuizData(data);
         })
-        .catch((error) => {
-          console.warn("Error:", error);
-        });
+        .catch((err) => notifyProblem(err));
     };
     getQuizData();
   }, []);
@@ -49,7 +50,6 @@ function QuizTuto1() {
     setCurrentQuestion(currentQuestion + 1);
     setAnswered(false);
   };
-  const navigate = useNavigate();
 
   const handleNext = (answer) => {
     setShowAnswer(false);
@@ -77,6 +77,8 @@ function QuizTuto1() {
   if (quizEnd) {
     return (
       <div>
+        <Toaster position="top-center" reverseOrder />
+
         <BannerProfile />
         <PreviousButton />
 

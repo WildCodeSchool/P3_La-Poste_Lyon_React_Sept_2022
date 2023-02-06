@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { useParams, useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import statusFInished from "../assets/tutorials-status/status-finished.svg";
@@ -11,6 +12,8 @@ import PreviousButton from "../components/PreviousButton";
 import filterIcon from "../assets/items/filter.svg";
 
 function TutorialList() {
+  const notifyProblem = () => toast("Chargement...");
+
   const navigate = useNavigate();
 
   const { currentUser, token } = useContext(CurrentUserContext);
@@ -73,7 +76,7 @@ function TutorialList() {
       fetch("http://localhost:5000/api/tutorialStatusStarted", requestOptions)
         .then((response) => response.text())
         .then(() => {})
-        .catch((error) => console.error("error", error));
+        .catch((err) => notifyProblem(err));
 
       /* update TutorialStatus  */
       setTutorialStatus((previousStatus) => [
@@ -91,6 +94,8 @@ function TutorialList() {
   return (
     filteredTutorials && (
       <>
+        <Toaster position="top-center" reverseOrder />
+
         <BannerProfile />
 
         <PreviousButton />
@@ -146,7 +151,7 @@ function TutorialList() {
             })
             .map((tutorial, index) => (
               <li
-                className=" relative my-3 md:m-6 border shadow-xl rounded-lg text-center"
+                className=" h-72 relative my-3 md:m-6 border shadow-xl rounded-lg text-center"
                 key={index}
               >
                 {/* Icon when status is finished */}
@@ -173,7 +178,7 @@ function TutorialList() {
                 <button
                   type="button"
                   onClick={() => tutorialStarted(tutorial)}
-                  className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
+                  className=" bottom-0 bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
                 >
                   {/* Match tutorialsStatus id with the id of the tutorial */}
 

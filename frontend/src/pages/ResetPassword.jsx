@@ -7,10 +7,13 @@ import locker from "../assets/connexionPage/lockerlogo.png";
 import forgotpass from "../assets/connexionPage/img-user-connexion.svg";
 
 function ResetPassword() {
-  /* Toast */
+  const notifyProblem = () => toast("Chargement...");
+
   const navigate = useNavigate();
 
   const { VITE_BACKEND_URL } = import.meta.env;
+
+  /* Toast */
 
   const invalidToken = () => {
     toast("Vous n'êtes pas autorisés à renouveler votre mot de passe", {
@@ -40,15 +43,12 @@ function ResetPassword() {
       headers: myHeaders,
     })
       .then((response) => {
-        console.warn("checkValidToken", response);
         if (response.status !== 200) {
           invalidToken();
           navigate("/");
         }
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+      .catch((err) => notifyProblem(err));
   };
   useEffect(() => {
     checkValidToken();
@@ -89,7 +89,7 @@ function ResetPassword() {
         .then(() => {
           navigate("/authentification");
         })
-        .catch((error) => console.warn(error));
+        .catch((err) => notifyProblem(err));
     }
   };
 

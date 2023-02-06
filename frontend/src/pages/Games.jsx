@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { toast, Toaster } from "react-hot-toast";
 /* import QuizTuto1 from "../components/QuizTuto1";
 
 import QuizTuto2 from "../components/QuizTuto2";
@@ -11,6 +12,8 @@ import { useCurrentUserContext } from "../contexts/userContext";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function Games() {
+  const notifyProblem = () => toast("Chargement...");
+
   const { token } = useCurrentUserContext();
 
   /* Get quizList */
@@ -24,16 +27,13 @@ function Games() {
         Authorization: `Bearer ${token}`,
       },
     };
-    console.warn(quizList);
 
     fetch(`${VITE_BACKEND_URL}/api/quiz`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         setQuizList(data);
       })
-      .catch((error) => {
-        console.warn("Error:", error);
-      });
+      .catch((err) => notifyProblem(err));
   };
 
   useEffect(() => {
@@ -42,6 +42,7 @@ function Games() {
 
   return (
     <div className="">
+      <Toaster position="top-center" reverseOrder />
       <BannerProfile />
       <div className="mt-2 flex justify-center">
         <h1 className="m-3 flex justify-center items-center font-bold text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">

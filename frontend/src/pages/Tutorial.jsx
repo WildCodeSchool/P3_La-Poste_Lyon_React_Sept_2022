@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { useParams } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
@@ -10,6 +11,8 @@ import { useCurrentUserContext } from "../contexts/userContext";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function Tutorial() {
+  const notifyProblem = () => toast("Chargement...");
+
   const { id } = useParams();
   const { token } = useCurrentUserContext();
 
@@ -26,9 +29,7 @@ function Tutorial() {
       fetch(`${VITE_BACKEND_URL}/api/tutos/${id}`, requestOptions)
         .then((response) => response.json())
         .then((data) => setTutorial(data))
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+        .catch((err) => notifyProblem(err));
     };
     fetchTutorial();
   }, [id]);
@@ -47,15 +48,15 @@ function Tutorial() {
       fetch(`${VITE_BACKEND_URL}/api/steppers/${id}`, requestOptions)
         .then((response) => response.json())
         .then((data) => setSteppers(data))
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+        .catch((err) => notifyProblem(err));
     };
     fetchSteppers();
   }, []);
 
   return (
     <>
+      <Toaster position="top-center" reverseOrder />
+
       <BannerProfile />
 
       {/* This button will link to the Dashboard */}

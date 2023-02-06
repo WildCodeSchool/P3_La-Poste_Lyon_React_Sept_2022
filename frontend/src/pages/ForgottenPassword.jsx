@@ -7,6 +7,8 @@ import forgotpass from "../assets/connexionPage/img-user-connexion.svg";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function ForgottenPassword() {
+  const notifyProblem = () => toast("Chargement...");
+
   /* Toast */
 
   const notifySuccess = () => {
@@ -42,7 +44,7 @@ function ForgottenPassword() {
       .then(() => {
         notifySuccess();
       })
-      .catch((error) => console.warn(error));
+      .catch((err) => notifyProblem(err));
   };
 
   return (

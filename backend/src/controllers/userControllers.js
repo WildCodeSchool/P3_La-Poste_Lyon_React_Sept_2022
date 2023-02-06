@@ -7,8 +7,7 @@ const browse = (req, res) => {
     .then(([rows]) => {
       res.send(rows);
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
       res.sendStatus(500);
     });
 };
@@ -24,8 +23,7 @@ const read = (req, res) => {
         res.send(rows[0]);
       }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
       res.sendStatus(500);
     });
 };
@@ -41,8 +39,7 @@ const add = (req, res) => {
     .then(([result]) => {
       res.location(`/api/users/${result.insertId}`).sendStatus(201);
     })
-    .catch((error) => {
-      console.error(error);
+    .catch(() => {
       res.sendStatus(500);
     });
 };
@@ -62,8 +59,7 @@ const edit = (req, res) => {
         res.sendStatus(204);
       }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
       res.sendStatus(500);
     });
 };
@@ -79,8 +75,7 @@ const destroy = (req, res) => {
         res.sendStatus(204);
       }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
       res.sendStatus(500);
     });
 };
@@ -95,8 +90,7 @@ const updateAvatar = (req, res) => {
       if (result.affectedRows === 0) res.sendStatus(404);
       else res.status(202).send({ avatar });
     })
-    .catch((error) => {
-      console.error(error);
+    .catch(() => {
       res.sendStatus(500);
     });
 };

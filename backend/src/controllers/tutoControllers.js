@@ -7,8 +7,7 @@ const browse = (req, res) => {
     .then(([rows]) => {
       res.send(rows);
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
       res.sendStatus(500);
     });
 };
@@ -20,8 +19,7 @@ const browseAll = (req, res) => {
     .then(([rows]) => {
       res.send(rows);
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
       res.sendStatus(500);
     });
 };
@@ -52,8 +50,7 @@ const read = (req, res) => {
         res.send(rows[0]);
       }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
       res.sendStatus(500);
     });
 };
@@ -73,8 +70,7 @@ const edit = (req, res) => {
         res.sendStatus(204);
       }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
       res.sendStatus(500);
     });
 };
@@ -92,14 +88,12 @@ const add = (req, res) => {
         models.stepper
           .insertAll(tuto.steps, result.insertId) // last insertId = id of just created tuto
           .then(res.location(`/tutos/${result.insertId}`).sendStatus(201))
-          .catch((err) => {
-            console.error(err);
+          .catch(() => {
             res.sendStatus(500);
           });
       } else res.location(`/tutos/${result.insertId}`).sendStatus(201);
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
       res.sendStatus(500);
     });
 };
@@ -115,8 +109,7 @@ const destroy = (req, res) => {
         res.sendStatus(204);
       }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
       res.sendStatus(500);
     });
 };

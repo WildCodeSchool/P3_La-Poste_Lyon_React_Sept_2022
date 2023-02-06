@@ -11,6 +11,7 @@ import forgotpass from "../assets/connexionPage/img-user-connexion.svg";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function AuthentificationPage() {
+  const notifyProblem = () => toast("Chargement...");
   /* Toast */
 
   const notifyError = () => {
@@ -60,8 +61,6 @@ function AuthentificationPage() {
       body,
       headers: myHeaders,
     })
-      /* then I get the response to json. If response == 401 console log error else .then result
-       */
       .then((response) => {
         if (response.status !== 401) {
           /* eslint consistent-return: off */ return response.json();
@@ -81,7 +80,7 @@ function AuthentificationPage() {
           notifyError();
         }
       })
-      .catch((error) => console.warn(error));
+      .catch((err) => notifyProblem(err));
   };
 
   return (
@@ -106,9 +105,12 @@ function AuthentificationPage() {
             </label>
             <input
               type="email"
-              pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
-              placeholder="Entrez votre addresse email"
+              pattern="(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm"
               required
+              title='Veuillez entrer une adresse mail valide. Exemple: "exemple@mail.fr'
+              minLength={6}
+              maxLength={320}
+              placeholder="Entrez votre addresse email"
               value={email}
               onChange={handleChangeEmail}
               id="email"
@@ -136,6 +138,9 @@ function AuthentificationPage() {
               required
               value={password}
               onChange={handleChangePassword}
+              minLength="8"
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+              title="Votre mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial"
               id="password"
               name="password"
               placeholder="Entrez votre mot de passe"

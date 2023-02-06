@@ -23,10 +23,8 @@ const sendForgottenPassword = (req, res) => {
       text: "Pour créer un nouveau mot de passe, cliquez ici !",
       html: `<p>Pour créer un nouveau mot de passe, <a href="${FRONTEND_URL}/resetpassword/${req.user.passwordToken}">cliquez ici !</a></p>`,
     },
-    (err, info) => {
-      console.warn(info);
+    (err) => {
       if (err) {
-        console.error(err);
         res.sendStatus(500);
       } else res.sendStatus(200);
     }
@@ -42,10 +40,8 @@ const sendForgottenEmail = (req, res) => {
       text: "Si vous recevez ce mail, c'est qu'il s'agit de la bonne adresse mail !",
       html: `<p>L'adresse mail utilisée pour vous connecter à votre compte La Ligne Bleue est celle-ci : ${req.user.email}</a></p>`,
     },
-    (err, info) => {
-      console.warn(info);
+    (err) => {
       if (err) {
-        console.error(err);
         res.sendStatus(500);
       } else res.sendStatus(200);
     }

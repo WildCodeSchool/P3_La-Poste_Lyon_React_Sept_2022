@@ -1,17 +1,19 @@
-import RegisterFirstStep from "@components/RegisterFirstStep";
-import RegisterFourthStep from "@components/RegisterFourthStep";
-import RegisterSecondStep from "@components/RegisterSecondStep";
-import RegisterThirdStep from "@components/RegisterThirdStep";
-import completeStep from "@assets/items/step-complete.svg";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import PreviousButton from "@components/PreviousButton";
-import Footer from "@components/Footer";
 import { toast, Toaster } from "react-hot-toast";
+import RegisterFirstStep from "../components/RegisterFirstStep";
+import RegisterFourthStep from "../components/RegisterFourthStep";
+import RegisterSecondStep from "../components/RegisterSecondStep";
+import RegisterThirdStep from "../components/RegisterThirdStep";
+import completeStep from "../assets/items/step-complete.svg";
+import PreviousButton from "../components/PreviousButton";
+import Footer from "../components/Footer";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function RegisterPage() {
+  const notifyProblem = () => toast("Chargement...");
+
   const navigate = useNavigate();
 
   /* registerInformations will save all the data of the user  */
@@ -31,7 +33,7 @@ function RegisterPage() {
 
   const notifyError = () => {
     toast(
-      "Les informations transmises ne vous permettent pas de créer un compte",
+      "Les informations transmises ne vous permettent pas de créer un compte, merci de vérifier vos informations",
       {
         icon: "🚫",
       }
@@ -68,18 +70,15 @@ function RegisterPage() {
       .then((response) => {
         if (response.status !== 201) {
           notifyError();
-        }
-        response.text();
-      })
-      .then((response) => {
-        console.warn(response);
-        notifySuccess(registerInformations.firstname);
+        } else {
+          notifySuccess(registerInformations.firstname);
 
-        setTimeout(() => {
-          navigate("/authentification");
-        }, 1500);
+          setTimeout(() => {
+            navigate("/authentification");
+          }, 1500);
+        }
       })
-      .catch(console.error);
+      .catch((err) => notifyProblem(err));
   };
 
   /* State to set up the current step */
@@ -144,6 +143,8 @@ function RegisterPage() {
           setRegisterInformations={setRegisterInformations}
           submitRegisterInformations={submitRegisterInformations}
           registerInformations={registerInformations}
+          handlePreviousStep={handlePreviousStep}
+          currentStep={currentStep}
         />
       ),
     },
@@ -157,9 +158,6 @@ function RegisterPage() {
   useEffect(() => {
     setStepsCompleted(Array(steps.length).fill("")); // This will always use latest value of count
   }, []);
-
-  /* STEPPERS */
-  /* STEPPERS */
 
   return (
     <>

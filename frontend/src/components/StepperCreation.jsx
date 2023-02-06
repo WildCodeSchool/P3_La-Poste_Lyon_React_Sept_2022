@@ -13,14 +13,15 @@ export default function StepperCreation({
   mandatoryInformations,
 }) {
   /* State for the inputs array */
-  const [inputs, setInputs] = useState([{ positionStep: "", content: "" }]);
+  const [inputs, setInputs] = useState([{ positionStep: 1, content: "" }]);
 
   /* State for the data of all inputs */
   const [data, setData] = useState([]);
-
-  /* Add a new input */
+  /* Add a new input  and make the positionStep equal to the length of the input. Auto increment */
   const handleAddInput = () => {
-    setInputs([...inputs, { positionStep: "", content: "" }]);
+    const newInputs = [...inputs];
+    newInputs.push({ positionStep: inputs.length + 1, content: "" });
+    setInputs(newInputs);
   };
 
   /* It will take the last index and remove it with splice. The value will be spliced or poped if the data is already submit */
@@ -47,27 +48,13 @@ export default function StepperCreation({
     setData(newData);
   };
 
-  /* Get the position change and make the value as a number type */
-  const handlePositionChange = (index, event) => {
-    const newInputs = [...inputs];
-    newInputs[index].positionStep = Number(event.target.value);
-    setInputs(newInputs);
-
-    const newData = [...data];
-    newData[index] = {
-      ...newData[index],
-      positionStep: Number(event.target.value),
-    };
-    setData(newData);
-  };
-
   /* Submit the entire steps array */
   const handleSubmit = (event) => {
     event.preventDefault();
-    setData([...data, { ...data }]);
+    setData([...inputs, { ...inputs }]);
 
     /* I want to add all the data in handleAllStepsContent */
-    handleAllStepsContent(mandatoryInformations, data);
+    handleAllStepsContent(mandatoryInformations, inputs);
 
     /* Go to nextStep */
     setCurrentStep(currentStep + 1);
@@ -101,7 +88,6 @@ export default function StepperCreation({
                     required
                     name="position"
                     value={input.positionStep}
-                    onChange={(event) => handlePositionChange(index, event)}
                   />
                 </section>
 

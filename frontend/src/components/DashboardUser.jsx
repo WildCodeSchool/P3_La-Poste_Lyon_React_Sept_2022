@@ -14,6 +14,8 @@ import grid from "../assets/items/grid.svg";
 import unique from "../assets/items/unique.svg";
 
 function DashboardUser() {
+  const notifyProblem = () => toast("Chargement...");
+
   const { VITE_BACKEND_URL } = import.meta.env;
 
   const { currentUser, token } = useContext(CurrentUserContext);
@@ -46,7 +48,7 @@ function DashboardUser() {
           notifyBadge();
           setRewards([...rewards, data]);
         })
-        .catch((error) => console.error("error", error));
+        .catch((err) => notifyProblem(err));
     }
   };
 

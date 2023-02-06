@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { Toaster, toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import PreviousButton from "../components/PreviousButton";
 import BannerProfile from "../components/BannerProfile";
@@ -9,10 +10,13 @@ import zeroTuto from "../assets/items/zeroTuto.svg";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function Historic() {
+  const notifyProblem = () => toast("Chargement...");
+
+  const navigate = useNavigate();
+
   const { currentUser, token } = useCurrentUserContext();
   const { categories } = useContext(CategoryContext);
 
-  const navigate = useNavigate();
   /* set Finished tutorials */
   const [finishedTutorials, setFinishedTutorials] = useState([]);
 
@@ -33,9 +37,7 @@ function Historic() {
       .then((data) => {
         setFinishedTutorials(data);
       })
-      .catch((error) => {
-        console.warn(error);
-      });
+      .catch((err) => notifyProblem(err));
   };
 
   useEffect(() => {
@@ -66,6 +68,8 @@ function Historic() {
 
   return (
     <div className="">
+      <Toaster position="top-center" reverseOrder />
+
       <BannerProfile />
       <PreviousButton />
       <h1 className="flex my-6 justify-center items-center font-bold text-xl md:text-3xl  text-main-blue rounded-xl h-10 text-center md:h-10 md:text-center pt-3">

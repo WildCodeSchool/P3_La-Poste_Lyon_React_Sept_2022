@@ -15,9 +15,6 @@ export function CategoryContextProvider({ children }) {
         .then((response) => response.json())
         .then((data) => {
           setCategories(data);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
         });
     };
     getCategories();

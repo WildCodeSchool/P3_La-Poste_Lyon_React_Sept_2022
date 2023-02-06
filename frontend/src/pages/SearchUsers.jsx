@@ -9,6 +9,8 @@ import trash from "../assets/items/trash.svg";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function SearchUsers() {
+  const notifyProblem = () => toast("Chargement...");
+
   const notify = () => toast.success("L'utilisateur a bien été supprimé");
 
   /* Get bearer token from userContext to get permission about delete user */
@@ -23,9 +25,7 @@ function SearchUsers() {
       .then((data) => {
         setUsers(data);
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+      .catch((err) => notifyProblem(err));
   };
 
   useEffect(() => {
@@ -113,7 +113,7 @@ function SearchUsers() {
       </h1>
       <form className="w-full flex flex-col justify-center items-center ">
         <input
-          type="text"
+          type="search"
           id="users"
           name="users"
           onChange={(e) => setSearch(e.target.value)}
