@@ -109,7 +109,7 @@ function AuthentificationPage() {
               pattern="(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm"
               required
               title='Veuillez entrer une adresse mail valide. Exemple: "exemple@mail.fr'
-              minLength={10}
+              minLength={6}
               maxLength={320}
               placeholder="Entrez votre addresse email"
               value={email}

@@ -146,7 +146,7 @@ function TutorialList() {
             })
             .map((tutorial, index) => (
               <li
-                className=" relative my-3 md:m-6 border shadow-xl rounded-lg text-center"
+                className=" h-72 relative my-3 md:m-6 border shadow-xl rounded-lg text-center"
                 key={index}
               >
                 {/* Icon when status is finished */}
@@ -173,7 +173,7 @@ function TutorialList() {
                 <button
                   type="button"
                   onClick={() => tutorialStarted(tutorial)}
-                  className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
+                  className=" bottom-0 bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
                 >
                   {/* Match tutorialsStatus id with the id of the tutorial */}
 

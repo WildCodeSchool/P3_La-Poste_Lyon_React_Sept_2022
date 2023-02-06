@@ -88,11 +88,11 @@ function NavigationBar({ adminView, handleAdminView }) {
           ""
         )}
       </div>
-      <div className="relative z-10">
+      <div className="relative  z-10">
         <div
-          className={`flex-1 justify-self-center md:block md:pb-0 md:mt-0 ${
+          className={` flex-1 justify-self-center md:block md:pb-0 md:mt-0 ${
             open
-              ? "block absolute  shadow-lg top-0 right-0 bg-white w-screen md:w-96 z-0"
+              ? "h-[95vh] block absolute  shadow-lg top-0 right-0 bg-white w-screen md:w-96 z-0"
               : "hidden"
           }`}
         >

@@ -104,7 +104,7 @@ function TutorialsManagement() {
       </h2>
       <form className="w-full flex flex-col justify-center items-center ">
         <input
-          type="text"
+          type="search"
           id="tutoriels"
           name="tutoriels"
           onChange={(e) => setSearch(e.target.value)}
