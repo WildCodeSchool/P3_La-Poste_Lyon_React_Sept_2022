@@ -8,7 +8,9 @@ export { TutorialsContext };
 
 export function TutorialsContextProvider({ children }) {
   const notifyProblem = () =>
-    toast("There was a problem fetching the rewards. Please try again later.");
+    toast(
+      "There was a problem fetching the tutorials. Please try again later."
+    );
   /* fetch tutorials from localhost */
   const [tutorials, setTutorials] = useState([]);
 
@@ -19,8 +21,8 @@ export function TutorialsContextProvider({ children }) {
         .then((data) => {
           setTutorials(data);
         })
-        .catch(() => {
-          notifyProblem();
+        .catch((err) => {
+          notifyProblem(err);
         });
     };
     getTutorials();

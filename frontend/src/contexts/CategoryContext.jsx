@@ -22,8 +22,8 @@ export function CategoryContextProvider({ children }) {
         .then((data) => {
           setCategories(data);
         })
-        .catch(() => {
-          notifyProblem();
+        .catch((err) => {
+          notifyProblem(err);
         });
     };
     getCategories();

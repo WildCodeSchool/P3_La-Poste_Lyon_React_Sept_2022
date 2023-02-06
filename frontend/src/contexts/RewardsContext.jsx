@@ -27,8 +27,8 @@ export function RewardsContextProvider({ children }) {
       .then((data) => {
         setRewards(data);
       })
-      .catch(() => {
-        notifyProblem();
+      .catch((err) => {
+        notifyProblem(err);
       });
   };
 
