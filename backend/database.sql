@@ -39,7 +39,7 @@ DROP TABLE IF EXISTS `tuto`;
 CREATE TABLE `tuto` (
   `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `title` varchar(120) NOT NULL,
-  `short_description` varchar(255) NOT NULL,
+  `short_description` varchar(200) NOT NULL,
   `introduction_text` varchar(800) NOT NULL,
   `category_id` int NOT NULL,
   `creationDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -63,7 +63,7 @@ CREATE TABLE `user` (
   `id` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL UNIQUE,
+  `email` varchar(320) NOT NULL UNIQUE,
   `hashedPassword` varchar(255) NOT NULL,
   `phone` varchar(16) DEFAULT NULL UNIQUE,
   `profilePicture` varchar(255) DEFAULT NULL,
@@ -73,7 +73,7 @@ CREATE TABLE `user` (
   `passwordToken` varchar(200)
 );
 
-INSERT INTO `user` (firstname, lastname, email, hashedPassword, phone, profilePicture, level, admin, creationDate) VALUES  ('Chloé','Bidau','chloebidau@hotmail.fr','$argon2id$v=19$m=65536,t=5,p=1$c9nEUckPTRfIAd9tfAWwTg$3rfqURze4JhAYoQxcpO9Mx/YVfAaZvNDIXjJ6U3Tva4','0647067609',NULL,0,1,'2023-01-04 13:28:00'),('Human','Admin','admintest@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$q5gJTvesLF85t9ptsDBktA$zAxHigEtBIQsDbbq/qT6bu1sqLLlSUGHpWD/rdLq610','0666666666',NULL,0,1,'2023-01-04 13:29:49'),('Quentin','Ferrari','ferrari.quentinjunk@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$1R5T86AylyPprWTMB/Up+Q$O8LJzLb9fNJOfb1CpeYt9nPTaHKX7DX+1snTBZyTT9k','0666666667',NULL,0,1,'2023-01-04 13:32:15'),('Arnaud','Champetier','arnaud.champetier9@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$AXGPipQqFqCGnfvkM2IiTA$zdsuETA0LPq6woZ2LzXwfw75AfUSJj3Hjs9fXNpqrh4','0668008148',NULL,0,1,'2023-01-04 13:33:46'),('Morgan','Mezaache','mezaache.morgan@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$4cXuCobA1HmB1aoMr98bhA$RIBFYHZ1RyJreYyeQW/bmmMB8x1EB+0tnJ4Udd6DEWo','0761167419',NULL,0,1,'2023-01-04 13:36:24'),('toto','toto','toto@toto','$argon2id$v=19$m=65536,t=5,p=1$ZsWbC2zbDPLihAEr9yZkYA$vZOhroy/wQKhIcSGIdLy3mNqSYxd0LpjCVwhY9k1Qm4','1234567890',NULL,1,0,'2023-01-10 15:27:36'),
+INSERT INTO `user` (firstname, lastname, email, hashedPassword, phone, profilePicture, level, admin, creationDate) VALUES  ('Chloé','Bidau','chloebidau@hotmail.fr','$argon2id$v=19$m=65536,t=5,p=1$c9nEUckPTRfIAd9tfAWwTg$3rfqURze4JhAYoQxcpO9Mx/YVfAaZvNDIXjJ6U3Tva4','0647067609',NULL,0,1,'2023-01-04 13:28:00'),('Human','Admin','admintest@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$q5gJTvesLF85t9ptsDBktA$zAxHigEtBIQsDbbq/qT6bu1sqLLlSUGHpWD/rdLq610','0666666666',NULL,0,1,'2023-01-04 13:29:49'),('Quentin','Ferrari','ferrari.quentinjunk@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$1R5T86AylyPprWTMB/Up+Q$O8LJzLb9fNJOfb1CpeYt9nPTaHKX7DX+1snTBZyTT9k','0666666667',NULL,0,1,'2023-01-04 13:32:15'),('Arnaud','Champetier','arnaud.champetier9@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$AXGPipQqFqCGnfvkM2IiTA$zdsuETA0LPq6woZ2LzXwfw75AfUSJj3Hjs9fXNpqrh4','0668008148',NULL,0,1,'2023-01-04 13:33:46'),('Morgan','Mezaache','mezaache.morgan@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$EzVhL/jKp/GctDjjMiA/ag$ja6ESf6uu80qdvYusfwt9TQb13JjBtoE0fRxGd5xGmo','0761167419',NULL,0,1,'2023-01-04 13:36:24'),('toto','toto','toto@toto','$argon2id$v=19$m=65536,t=5,p=1$ZsWbC2zbDPLihAEr9yZkYA$vZOhroy/wQKhIcSGIdLy3mNqSYxd0LpjCVwhY9k1Qm4','1234567890',NULL,1,0,'2023-01-10 15:27:36'),
 ('Jane','Austen','janeausten@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$4cXuCobA1HmB1aoMr98bhA$RIBFYHZ1RyJreYyeQW/bmmMB8x1EB+0tnJ4Udd6DEWo','1234333390',NULL,1,0,'2023-01-10 15:27:36'),
 ('Emilie','Bronte','emiliebronte@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$4cXuCobA1HmB1aoMr98bhA$RIBFYHZ1RyJreYyeQW/bmmMB8x1EB+0tnJ4Udd6DEWo','1223367890',NULL,1,0,'2023-01-10 15:27:36'),
 ('Tamara','Yolenda','tatayoyo@gmail.com','$argon2id$v=19$m=65536,t=5,p=1$E+UcFfKI3b7m9QrAFVyClA$RzFb36BWFBzvRgCRj8oKBMgQOQZc+dwcjZiRbErwg5Q','0102030406',NULL,1,0,'2023-01-22 10:05:54');
