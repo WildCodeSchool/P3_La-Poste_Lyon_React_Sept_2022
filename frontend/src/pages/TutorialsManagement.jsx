@@ -126,12 +126,12 @@ function TutorialsManagement() {
                         <th className="p-2 whitespace-nowrap">
                           <div className="font-semibold text-left">Titre</div>
                         </th>
-                        <th className="p-2 whitespace-nowrap">
+                        <th className="hidden lg:block p-2 whitespace-nowrap">
                           <div className="font-semibold text-left">
                             Catégorie
                           </div>
                         </th>
-                        <th className="p-2 whitespace-nowrap">
+                        <th className=" p-2 whitespace-nowrap">
                           <div className="font-semibold text-left">
                             Créé le :{" "}
                           </div>
@@ -146,9 +146,9 @@ function TutorialsManagement() {
                     </thead>
                     <tbody className="text-sm divide-y divide-gray-100">
                       {filtredTutorials.length === 0 ? (
-                        <div className="mx-0 text-1xl">
-                          Aucun tutoriel n'a été trouvé
-                        </div>
+                        <tr className="mx-0 text-1xl">
+                          <td>Aucun tutoriel n'a été trouvé</td>
+                        </tr>
                       ) : (
                         filtredTutorials?.map((tutorial) => (
                           <tr key={tutorial.id} className="hover:bg-gray-100">
@@ -159,7 +159,7 @@ function TutorialsManagement() {
                                 </div>
                               </div>
                             </td>
-                            <td className="p-2 whitespace-nowrap">
+                            <td className="hidden lg:block p-2 whitespace-nowrap">
                               <div className="flex flex-col justify-center ">
                                 <img
                                   className="rounded-full"
@@ -181,7 +181,7 @@ function TutorialsManagement() {
                                 }
                               </div>
                             </td>
-                            <td className="p-2 whitespace-nowrap">
+                            <td className=" p-2 whitespace-nowrap">
                               <div className="text-left ">
                                 {tutorial.creationDate
                                   .slice(0, 10)
