@@ -48,18 +48,6 @@ function Help() {
   }, []);
 
   const [open, setOpen] = useState(false);
-  console.warn(open);
-
-  /* Close menu when click outside */
-  /* const concernedElement = document.getElementById("click-menu");
-    document.addEventListener("mousedown", (event) => {
-      if (concernedElement === null) {
-        return;
-      }
-      if (!concernedElement.contains(event.target)) {
-        setOpen(false);
-      }
-    }); */
 
   return (
     <div className="Help relative flex ">
