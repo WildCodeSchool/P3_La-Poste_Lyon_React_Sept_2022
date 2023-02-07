@@ -53,6 +53,8 @@ import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
 
 function UserCourse() {
+  const notifyProblem = () => toast("Chargement...");
+
   const { VITE_BACKEND_URL } = import.meta.env;
   const { currentUser, token } = useCurrentUserContext();
 
@@ -160,7 +162,7 @@ function UserCourse() {
           notifyBadge();
           setRewards([...rewards, data]);
         })
-        .catch((error) => console.error("error", error));
+        .catch((err) => notifyProblem(err));
     }
   };
 

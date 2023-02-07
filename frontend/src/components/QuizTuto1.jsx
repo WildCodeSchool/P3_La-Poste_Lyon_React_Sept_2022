@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast, Toaster } from "react-hot-toast";
 import celebration from "../assets/connexionPage/registerPage/winner.svg";
 import { useCurrentUserContext } from "../contexts/userContext";
 import jeux from "../assets/navBar/navBarUser/jeux.png";
@@ -9,6 +10,9 @@ import BannerProfile from "./BannerProfile";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function QuizTuto1() {
+  const notifyProblem = () => toast("Chargement...");
+  const navigate = useNavigate();
+
   const { token } = useCurrentUserContext();
   const { id } = useParams(); // pour récupérer l'id dans l'URL
 
@@ -28,12 +32,9 @@ function QuizTuto1() {
       fetch(`${VITE_BACKEND_URL}/api/quiz/${id}`, requestOptions)
         .then((response) => response.json())
         .then((data) => {
-          console.warn(`data`, data);
           setQuizData(data);
         })
-        .catch((error) => {
-          console.warn("Error:", error);
-        });
+        .catch((err) => notifyProblem(err));
     };
     getQuizData();
   }, []);
@@ -49,7 +50,6 @@ function QuizTuto1() {
     setCurrentQuestion(currentQuestion + 1);
     setAnswered(false);
   };
-  const navigate = useNavigate();
 
   const handleNext = (answer) => {
     setShowAnswer(false);
@@ -77,6 +77,8 @@ function QuizTuto1() {
   if (quizEnd) {
     return (
       <div>
+        <Toaster position="top-center" reverseOrder />
+
         <BannerProfile />
         <PreviousButton />
 
@@ -89,7 +91,7 @@ function QuizTuto1() {
         <img
           src={celebration}
           alt="youpi"
-          className="w-full h-full md:w-1/4 md:h-1/4 mx-auto"
+          className="w-full h-full lg:w-1/12 lg:h-1/4 mx-auto"
         />
         <div className="flex justify-center">
           <button
@@ -117,16 +119,20 @@ function QuizTuto1() {
     <div>
       <BannerProfile />
       <PreviousButton />
-      <div className="w-full md:w-1/2 h-full items-center justify-center flex flex-col mx-auto bg-white rounded-lg md:shadow-lg p-6 my-4 ">
+      <div className="w-full lg:w-1/2 h-full items-center justify-center flex flex-col mx-auto bg-white rounded-lg lg:shadow-lg p-6 my-4 ">
         {quizData?.title && (
-          <div>
+          <div className="flex flex-col justify-center items-center">
             <h1 className="text-3xl">{quizData.title}</h1>
-            <img src={jeux} alt={quizData.title} className="w-full h-full " />
+            <img
+              src={jeux}
+              alt={quizData.title}
+              className="w-full h-full lg:w-7/12 lg:h-7/12 "
+            />
           </div>
         )}
         {quizData.questions && quizData.questions.length > 0 ? (
           <>
-            <p className="bg-white font-bold mx-auto w-1/2 mt-4 rounded-lg flex py-4 justify-center">
+            <p className="bg-white font-bold mx-auto  text-center lg:w-11/12 mt-4 rounded-lg flex py-4 justify-center">
               {currentQuestion + 1}.{" "}
               {quizData.questions[currentQuestion]?.question}
             </p>
@@ -135,7 +141,7 @@ function QuizTuto1() {
                 <button
                   type="button"
                   key={response.id}
-                  className={`ml-4 text-base cursor-pointer flex md:ml-96 rounded-lg p-4 font-bold text-white  md:mr-96 bg-main-yellow hover:bg-main-blue my-4 md:w-1/3 w-full ${
+                  className={`ml-4 text-base cursor-pointer flex lg:ml-96 rounded-lg p-4 font-bold text-white  lg:mr-96 bg-main-yellow hover:bg-main-blue my-4 md:w-1/3 w-full ${
                     answered && response.isCorrect ? "font-bold" : ""
                   }`}
                   onClick={() => {

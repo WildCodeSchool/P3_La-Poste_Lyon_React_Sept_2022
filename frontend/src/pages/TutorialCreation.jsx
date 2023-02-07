@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "react-quill/dist/quill.snow.css";
-import StepperCreation from "@components/StepperCreation";
+import StepperCreation from "../components/StepperCreation";
 import PreviousButton from "../components/PreviousButton";
 /* Mandatory Informations components is for the first step */
 import MandatoryInformations from "../components/MandatoryInformations";

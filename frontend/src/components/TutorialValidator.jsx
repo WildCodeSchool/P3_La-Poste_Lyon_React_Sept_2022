@@ -9,6 +9,7 @@ import { useCurrentUserContext } from "../contexts/userContext";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function TutorialValidator(allStepsContent) {
+  const notifyProblem = () => toast("Chargement...");
   const navigate = useNavigate();
   /* Get the token from the userContext */
   const { setTutorials, tutorials } = useContext(TutorialsContext);
@@ -80,11 +81,10 @@ function TutorialValidator(allStepsContent) {
       body,
       headers: myHeaders,
     })
-      /* then I get the response to json. If response == 401 console log error else .then result */
       /* eslint-disable  consistent-return */
       .then((response) => {
         if (response.status === 401) {
-          console.warn("error");
+          notifyProblem();
         } else {
           setTutorials(...tutorials, mandatory);
           notify();
@@ -94,7 +94,7 @@ function TutorialValidator(allStepsContent) {
           return response.text();
         }
       })
-      .catch((error) => console.warn("error", error));
+      .catch((err) => notifyProblem(err));
   };
 
   return (

@@ -18,8 +18,7 @@ const verifyEmail = (req, res, next) => {
         res.sendStatus(200);
       }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
       res.status(500).send("Error retrieving data from database");
     });
 };
@@ -36,8 +35,7 @@ const generatePasswordToken = (req, res, next) => {
     .then(() => {
       next();
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
       res.sendStatus(500);
     });
 };
@@ -49,7 +47,6 @@ const verifyTokenPassword = (req, res, next) => {
   models.user
     .selectToken(passwordToken)
     .then(([users]) => {
-      console.warn(users);
       if (users[0] != null) {
         // eslint-disable-next-line prefer-destructuring
         req.user = users[0];
@@ -58,8 +55,7 @@ const verifyTokenPassword = (req, res, next) => {
         res.sendStatus(404);
       }
     })
-    .catch((err) => {
-      console.warn(err);
+    .catch(() => {
       res.sendStatus(501);
     });
 };
@@ -78,8 +74,7 @@ const resetPassword = (req, res) => {
         res.status(202);
       }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
       res.sendStatus(500);
     });
 };

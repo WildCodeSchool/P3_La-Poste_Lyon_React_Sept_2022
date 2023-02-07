@@ -6,8 +6,7 @@ const browseAllQuiz = (req, res) => {
     .then(([rows]) => {
       res.send(rows);
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
       res.sendStatus(500);
     });
 };
@@ -53,8 +52,7 @@ const browseEverythingInQuiz = (req, res) => {
         res.send(quiz);
       }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
       res.sendStatus(500);
     });
 };

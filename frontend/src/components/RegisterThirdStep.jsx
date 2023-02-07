@@ -39,14 +39,14 @@ function RegisterThirdStep({
   return (
     <form
       onSubmit={handleUserInfos}
-      className="mx-3 border rounded-xl shadow-lg bg-main-blue flex flex-col items-center w-10/12 md:w-6/12 h-[50vh] "
+      className="mx-3 border rounded-xl shadow-lg bg-main-blue flex flex-col items-center w-10/12 lg:w-6/12 h-[50vh] "
     >
       <h1 className="text-white text-center text-2xl border-b-2 pt-6 pb-3 h-20 border-b-[#01378e] shadow-md w-full ">
         Renseignez vos informations
       </h1>
-      <div className="md:px-6 w-full">
+      <div className="lg:px-6 w-full">
         <div className=" mt-3 w-full px-6 ">
-          <p className="italic text-gray-50 opacity-80  text-center text-sm md:text-lg">
+          <p className="italic text-gray-50 opacity-80  text-center text-sm lg:text-lg">
             Tous les champs sont obligatoires
           </p>
 
@@ -61,6 +61,10 @@ function RegisterThirdStep({
             value={firstname}
             onChange={handleFirstname}
             required
+            pattern="[a-zA-Z-]+"
+            minLength="3"
+            maxLength="35"
+            title='Le prénom doit contenir au moins 3 caractères et ne doit pas contenir de chiffres ou de caractères spéciaux hormis "-"'
             type="text"
             placeholder="Entrez votre prénom"
             className="p-2 rounded-md w-full"
@@ -77,6 +81,10 @@ function RegisterThirdStep({
               id="lastname"
               value={lastname}
               required
+              pattern="[a-zA-Z-]+"
+              minLength="3"
+              maxLength="35"
+              title='Le nom doit contenir au moins 3 caractères et ne doit pas contenir de chiffres ou de caractères spéciaux hormis "-"'
               onChange={handleLastname}
               type="text"
               placeholder="Entrez votre nom"
@@ -95,6 +103,8 @@ function RegisterThirdStep({
               pattern="^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$"
               value={phone}
               required
+              maxLength={10}
+              title="Le numéro de téléphone doit être au format 0XXXXXXXXX"
               onChange={handlePhone}
               type="tel"
               placeholder="Entrez votre numéro de téléphone"
@@ -107,7 +117,7 @@ function RegisterThirdStep({
         {currentStep === 2 && (
           <button
             type="button"
-            className="bg-[#003DA5] border  items-center flex justify-center text-white mt-8 py-2 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+            className="bg-[#003DA5] border  items-center flex justify-center text-white mt-8 lg:mt-2 py-2 px-4 rounded-lg shadow-lg lg:h-14 lg:w-44 lg:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
             onClick={handlePreviousStep}
           >
             Précédent
@@ -116,7 +126,7 @@ function RegisterThirdStep({
         {currentStep === 2 && (
           <button
             type="submit"
-            className="bg-[#003DA5] border  items-center flex justify-center text-white mt-8 py-2 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+            className="bg-[#003DA5] border  items-center flex justify-center text-white mt-8 lg:mt-2 py-2 px-4 rounded-lg shadow-lg lg:h-14 lg:w-44 lg:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
 
             /* We will need to create an onClick event which send the complete status of the tutorial to the backend. Maybe later we can link this button to the quizz */
           >
