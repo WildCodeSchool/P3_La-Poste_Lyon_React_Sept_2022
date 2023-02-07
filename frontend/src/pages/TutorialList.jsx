@@ -100,12 +100,12 @@ function TutorialList() {
 
         <PreviousButton />
 
-        <h1 className="flex justify-center  items-center font-bold text-xl md:text-3xl text-main-blue rounded-xl h-10 text-center md:h-10 md:text-center pt-3">
+        <h1 className="flex justify-center  items-center font-bold text-xl lg:text-3xl text-main-blue rounded-xl h-10 text-center lg:h-10 lg:text-center pt-3">
           {categoryName}
         </h1>
 
         {/* Filters */}
-        <div className="w-full  flex justify-end md:pr-[10%]">
+        <div className="w-full  flex justify-end lg:pr-[10%]">
           <label className="flex mr-3 cursor-pointer">
             <img
               src={filterIcon}
@@ -124,7 +124,7 @@ function TutorialList() {
         </div>
 
         {/* We display the tutorials with the filter of the cagtegory selected */}
-        <ul className="w-4/5 md:w-2/5 grid grid-cols-1   md:grid-cols-2 m-auto ">
+        <ul className="w-4/5 lg:w-3/5 grid grid-cols-1   lg:grid-cols-2 m-auto ">
           {/* We will filter with the select value and match with the status values */}
           {filteredTutorials
             .filter((tutorial) => {
@@ -151,7 +151,7 @@ function TutorialList() {
             })
             .map((tutorial, index) => (
               <li
-                className=" h-72 relative my-3 md:m-6 border shadow-xl rounded-lg text-center"
+                className=" h-72 relative my-3 lg:m-6 border shadow-xl rounded-lg text-center"
                 key={index}
               >
                 {/* Icon when status is finished */}
@@ -166,7 +166,7 @@ function TutorialList() {
                     />
                   </div>
                 )}
-                <h2 className="text-lg md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
+                <h2 className="text-lg lg:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
                   {tutorial.title}
                 </h2>
                 <hr />
@@ -178,7 +178,7 @@ function TutorialList() {
                 <button
                   type="button"
                   onClick={() => tutorialStarted(tutorial)}
-                  className=" bottom-0 bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
+                  className=" bottom-0 bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow lg:h-10 lg:w-44 lg:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
                 >
                   {/* Match tutorialsStatus id with the id of the tutorial */}
 

@@ -88,7 +88,7 @@ export default function Stepper(steppers) {
         notify();
         setTimeout(() => {
           navigate(-1);
-        }, 1000);
+        }, 2000);
       })
       .catch((err) => notifyProblem(err));
 

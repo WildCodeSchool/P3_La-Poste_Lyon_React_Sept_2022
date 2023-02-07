@@ -159,9 +159,9 @@ function SearchUsers() {
                     </thead>
                     <tbody className="text-sm divide-y divide-gray-100">
                       {filtredUser.length === 0 ? (
-                        <div className="mx-0 text-1xl">
-                          Aucun utilisateur n'a été trouvé
-                        </div>
+                        <tr className="mx-0 text-1xl">
+                          <td>Aucun utilisateur n'a été trouvé</td>
+                        </tr>
                       ) : (
                         filtredUser?.map((user) => (
                           <tr key={user.id} className="hover:bg-gray-100">
