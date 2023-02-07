@@ -10,8 +10,6 @@ import { RewardsContext } from "../contexts/RewardsContext";
 
 export default function Stepper(steppers) {
   const notifyProblem = () => toast("Chargement...");
-  const notify = () =>
-    toast.success("Bravo ! Vous avez réalisé le tutoriel ! 👋 !");
 
   const notifyBadge = () => toast.success("Et vous remportez un badge  ! 😁 ");
   const { VITE_BACKEND_URL } = import.meta.env;
@@ -85,10 +83,10 @@ export default function Stepper(steppers) {
           ...previousStatus,
           { tuto_id: id, user_id: currentUser.id },
         ]);
-        notify();
         setTimeout(() => {
+          toast.success("Bravo ! Vous avez réalisé le tutoriel ! 👋 !");
           navigate(-1);
-        }, 2000);
+        }, 300);
       })
       .catch((err) => notifyProblem(err));
 
@@ -111,7 +109,9 @@ export default function Stepper(steppers) {
         .then((response) => response.text())
         .then((data) => {
           setRewards([...rewards, data]);
-          notifyBadge();
+          if (!checkRewardGoodWay) {
+            notifyBadge();
+          }
         })
         .catch((err) => notifyProblem(err));
     }
