@@ -72,10 +72,10 @@ function AuthentificationPage() {
         if (result.token) {
           setCurrentUser(result.user);
           setToken(result.token);
-          notifySuccess(result.user.firstname);
           setTimeout(() => {
             navigate("/dashboard");
-          }, 1500);
+            notifySuccess(result.user.firstname);
+          }, 300);
         } else {
           notifyError();
         }
@@ -139,7 +139,7 @@ function AuthentificationPage() {
               value={password}
               onChange={handleChangePassword}
               minLength="8"
-              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-])[A-Za-z\d@$!%*-?&]{8,}$"
               title="Votre mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial"
               id="password"
               name="password"

@@ -10,8 +10,6 @@ import { useRewardsContext } from "../contexts/RewardsContext";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function Settings() {
-  const notifyProblem = () => toast("Chargement...");
-
   /* Toast notifications */
   const notifySuccess = () => {
     toast("Image bien téléchargée !", {
@@ -156,8 +154,7 @@ function Settings() {
         .then((data) => {
           setRewards([...rewards, data]);
           notifyBadge();
-        })
-        .catch(notifyProblem());
+        });
     }
   };
 
