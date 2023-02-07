@@ -98,6 +98,7 @@ This is our latest project as part of our training at the Wild Code School in Ly
 <li> You must have to an account for <a href='https://fr.sendinblue.com/' rel="noreferrer" target='_blank' >SendingBlue</a> if you want to try the reset password functionnality</li>
 </ul>
 
+<i>✉️ To try Admin Role, you can log with : admintest@gmail.com  || Human76!  ✉️</i>
 <br/>
 <ul>
   <h3>
