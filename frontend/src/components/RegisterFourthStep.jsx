@@ -9,7 +9,7 @@ function RegisterFourthStep({
   return (
     <form
       onSubmit={submitRegisterInformations}
-      className="mx-3 border rounded-xl shadow-lg bg-main-blue flex flex-col items-center w-10/12 md:w-6/12 h-[50vh] "
+      className="mx-3 border rounded-xl shadow-lg bg-main-blue flex flex-col items-center w-10/12 lg:w-6/12 h-[50vh] "
     >
       <h1 className="text-white text-center text-2xl border-b-2 pt-6 pb-3 h-20 border-b-[#01378e] shadow-md w-full ">
         Félicitations !
@@ -31,7 +31,7 @@ function RegisterFourthStep({
         {currentStep === 3 && (
           <button
             type="button"
-            className="bg-[#003DA5] border  items-center flex justify-center text-white mt-8 py-2 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+            className="bg-[#003DA5] border  items-center flex justify-center text-white mt-8 py-2 px-4 rounded-lg shadow-lg lg:h-14 lg:w-44 lg:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
             onClick={handlePreviousStep}
           >
             Précédent
@@ -39,7 +39,7 @@ function RegisterFourthStep({
         )}
         <button
           type="submit"
-          className="bg-[#003DA5] border items-center flex justify-center text-white mt-8 py-2 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+          className="bg-[#003DA5] border items-center flex justify-center text-white mt-8 py-2 px-4 rounded-lg shadow-lg lg:h-14 lg:w-44 lg:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
         >
           Valider
         </button>

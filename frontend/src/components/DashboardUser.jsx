@@ -68,12 +68,12 @@ function DashboardUser() {
       <BannerProfile />
 
       <div className="mt-2 flex justify-center">
-        <h1 className="m-3 flex justify-center items-center font-bold text-xl md:text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">
+        <h1 className="m-3 flex justify-center items-center font-bold text-xl lg:text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center lg:w-1/4 lg:h-10 lg:text-center">
           Mon tableau de bord
         </h1>
       </div>
       <div className="w-full  flex justify-end">
-        <button type="button" onClick={handleMobileView} className="md:hidden">
+        <button type="button" onClick={handleMobileView} className="lg:hidden">
           <img
             src={mobileView ? grid : unique}
             alt="grid view"
@@ -82,26 +82,26 @@ function DashboardUser() {
         </button>
       </div>
       <ul
-        className={`grid  py-[1vh] md:mx-[12vw] mx-3 overflow-hidden md:gap-5 ${
+        className={`grid  py-[1vh] lg:mx-[12vw] mx-3 overflow-hidden lg:gap-5 ${
           mobileView ? "grid-cols-1 grid-rows-4" : " grid-cols-2 grid-rows-2 "
-        } grid-cols-1 grid-rows-4 gap-2 md:grid-cols-2 md:grid-rows-2  `}
+        } grid-cols-1 grid-rows-4 gap-2 lg:grid-cols-2 lg:grid-rows-2  `}
       >
         {/* <li> elements are contained in <Link> to redirect the user to the corresponding page */}
         <li
-          className="bg-white box row-start-1 row-span-1 col-start-1 col-span-1 my-3 md:m-6 border 
-        shadow-lg md:shadow-xl rounded-xl text-center h-65 md:box md:row-start-1 md:row-span-1 md:col-start-1 md:col-span-1"
+          className="bg-white box row-start-1 row-span-1 col-start-1 col-span-1 my-3 lg:m-6 border 
+        shadow-lg lg:shadow-xl rounded-xl text-center h-65 lg:box lg:row-start-1 lg:row-span-1 lg:col-start-1 lg:col-span-1"
         >
           <h2
             className={`h-17 ${
               mobileView ? "text-xl h-17" : "text-lg h-14"
-            } md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg  flex justify-center items-center`}
+            } lg:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg  flex justify-center items-center`}
           >
             Mes tutoriels
           </h2>
           <hr />
           <div className="flex justify-center my-5">
             <img
-              className={`md:h-24 ${mobileView ? "h-20" : "h-16 w-18"}`}
+              className={`lg:h-24 ${mobileView ? "h-20" : "h-16 w-18"}`}
               src={Mestutos}
               alt="historique"
             />
@@ -111,18 +111,18 @@ function DashboardUser() {
           </Link>
         </li>
         {/* Should send the user on the page of all the tutorials he already did */}
-        <li className="bg-white box row-start-2 row-span-1 col-start-1 col-span-1 my-3 md:m-6 border shadow-lg md:shadow-xl rounded-lg text-center h-65 md:box md:row-start-2 md:row-span-1 md:col-start-1 md:col-span-1">
+        <li className="bg-white box row-start-2 row-span-1 col-start-1 col-span-1 my-3 lg:m-6 border shadow-lg lg:shadow-xl rounded-lg text-center h-65 lg:box lg:row-start-2 lg:row-span-1 lg:col-start-1 lg:col-span-1">
           <h2
             className={`h-17 ${
               mobileView ? "text-xl h-17" : "text-lg h-14"
-            } md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg flex justify-center items-center`}
+            } lg:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg flex justify-center items-center`}
           >
             Mon historique{" "}
           </h2>
           <hr />
           <div className="flex justify-center my-5">
             <img
-              className={`md:h-24 ${mobileView ? "h-20" : "h-16 w-18"}`}
+              className={`lg:h-24 ${mobileView ? "h-20" : "h-16 w-18"}`}
               src={Historique}
               alt="mestutos"
             />
@@ -137,12 +137,12 @@ function DashboardUser() {
             mobileView
               ? "h-65 row-start-3 row-span-1 col-start-1 col-span-2"
               : " h-fit row-start-1 row-span-1 col-start-2 col-span-2"
-          }  my-3 md:m-6 border shadow-lg md:shadow-xlrounded-lg text-center  md:box md:row-start-1 md:row-span-1 md:col-start-2 md:col-span-2`}
+          }  my-3 lg:m-6 border shadow-lg lg:shadow-xl  rounded-lg text-center  lg:box lg:row-start-1 lg:row-span-1 lg:col-start-2 lg:col-span-2`}
         >
           <h2
             className={`h-17 ${
               mobileView ? "text-xl h-17 " : "text-lg h-14"
-            } md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg  flex justify-center items-center`}
+            } lg:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg  flex justify-center items-center`}
           >
             Mon parcours utilisateur
           </h2>
@@ -150,7 +150,7 @@ function DashboardUser() {
           <div className="flex flex-col justify-center h-max">
             <div className="flex justify-center my-5">
               <img
-                className={`md:h-24 ${mobileView ? "h-20" : "h-16 w-18"}`}
+                className={`lg:h-24 ${mobileView ? "h-20" : "h-16 w-18"}`}
                 src={usercourse}
                 alt="mestutos"
               />
@@ -166,19 +166,19 @@ function DashboardUser() {
             mobileView
               ? " h-65 row-start-4 row-span-1 col-start-1 col-span-2"
               : "h-fit row-start-2 row-span-1 col-start-2 col-span-2"
-          } bg-white box  my-3 md:m-6 border shadow-lg md:shadow-xl rounded-lg text-center  md:box md:row-start-2 md:row-span-1 md:col-start-2 md:col-span-2`}
+          } bg-white box  my-3 lg:m-6 border shadow-lg lg:shadow-xl rounded-lg text-center  lg:box lg:row-start-2 lg:row-span-1 lg:col-start-2 lg:col-span-2`}
         >
           <h2
             className={` h-17 ${
               mobileView ? "text-xl h-17" : "text-lg h-14"
-            } md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center`}
+            } lg:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center`}
           >
             Badges obtenus
           </h2>
           <hr />
           <div className="flex flex-wrap justify-around my-5">
             <img
-              className={`md:h-24 ${mobileView ? "h-20" : "h-16 w-18"}`}
+              className={`lg:h-24 ${mobileView ? "h-20" : "h-16 w-18"}`}
               src={badge1}
               alt="badge1"
             />

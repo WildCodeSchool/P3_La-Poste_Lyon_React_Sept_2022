@@ -45,20 +45,20 @@ function Games() {
       <Toaster position="top-center" reverseOrder />
       <BannerProfile />
       <div className="mt-2 flex justify-center">
-        <h1 className="m-3 flex justify-center items-center font-bold text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">
+        <h1 className="m-3 flex justify-center items-center font-bold text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center lg:w-1/4 lg:h-10 lg:text-center">
           Mes Quiz
         </h1>
       </div>
-      <ul className="grid grid-cols-1 md:grid-cols-2  overflow-hidden py-[1vh] mx-[12vw]">
+      <ul className="grid grid-cols-1 lg:grid-cols-2 gap-6 overflow-hidden py-[1vh] mx-[12vw]">
         {/* <li> elements are contained in <Link> to redirect the user to the corresponding page */}
 
         {quizList.length > 0 &&
           quizList.map((quiz) => (
             <li
               key={quiz.id}
-              className="bg-white box  md:m-6 border shadow-xl rounded-xl text-center h-65 md:box "
+              className="bg-white box  lg:m-6 border shadow-md rounded-xl text-center h-65 lg:box "
             >
-              <h2 className="text-xl md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
+              <h2 className="text-xl lg:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
                 {quiz.title}
               </h2>
               <hr />

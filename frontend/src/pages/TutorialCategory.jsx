@@ -82,7 +82,7 @@ function TutorialCategory() {
         <section className="m-6 flex flex-col items-center">
           {/* This button will link to the Dashboard */}
 
-          <h1 className="m-2 text-xl md:text-3xl font-bold text-main-blue text-center">
+          <h1 className="m-2 text-xl lg:text-3xl font-bold text-main-blue text-center">
             Catégories de tutoriels
           </h1>
           {/* only show on small screen to choice the view */}
@@ -90,7 +90,7 @@ function TutorialCategory() {
             <button
               type="button"
               onClick={handleMobileView}
-              className="md:hidden"
+              className="lg:hidden"
             >
               <img
                 src={mobileView ? grid : unique}
@@ -103,7 +103,7 @@ function TutorialCategory() {
           <ul
             className={`grid grid-cols-${
               mobileView ? "1" : "2"
-            } md:grid-cols-4 place-content-center	`}
+            } lg:grid-cols-4 place-content-center	`}
           >
             {categoryList?.map((category) => (
               /* We make a Link using the category.id to transmit it to the params. It will be recover on the TutorialList page to fetch the good category tutorial list. */
@@ -111,13 +111,13 @@ function TutorialCategory() {
                 key={category?.id}
                 to={`/categories/${category?.id}/tutorials`}
               >
-                <li className="bg-white h-40 md:h-fit flex justify-center border rounded-2xl shadow-lg m-3 p-3 flex-col hover:scale-110 hover:duration-100 hover:bg-[#003da5] hover:text-white">
+                <li className="bg-white h-40 lg:h-fit flex justify-center border rounded-2xl shadow-lg m-3 p-3 flex-col hover:scale-110 hover:duration-100 hover:bg-[#003da5] hover:text-white">
                   <h2 className="text-lg text-center m-1">{category?.name}</h2>
                   {category?.icon ? (
                     <img
                       src={category?.icon}
                       alt={category?.categoryName}
-                      className={`${mobileView ? "h-16" : "h-10"} md:h-24`}
+                      className={`${mobileView ? "h-16" : "h-10"} lg:h-24`}
                     />
                   ) : (
                     ""
