@@ -100,7 +100,7 @@ function TutorialValidator(allStepsContent) {
   return (
     <div className="m-O p-0">
       <Toaster />
-      <div className=" my-6 p-6  border w-[45vw] rounded-xl shadow-xl flex-col justify-end items-center relative">
+      <div className=" my-6 p-6  border w-full md:w-[45vw] rounded-xl shadow-xl flex-col justify-end items-center relative">
         <h1 className="text-3xl font-semibold text-center m-6 text-main-blue">
           Validation
         </h1>
@@ -126,7 +126,7 @@ function TutorialValidator(allStepsContent) {
           <button
             type="button"
             onClick={() => setShowModal(true)}
-            className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow hover:bg-main-blue hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
+            className="hidden md:block bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow hover:bg-main-blue hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
           >
             Prévisualisation
           </button>
