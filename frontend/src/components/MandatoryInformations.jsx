@@ -90,12 +90,12 @@ export default function MandatoryInformations({
             id="title"
             name="title"
             minLength={6}
-            maxLength={50}
+            maxLength={120}
             required
             pattern="^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ?;, -]+$"
             title="(6-50 caractères) Sont autorisés les lettres et caractères spéciaux : ? ; - "
             onChange={handleTitleChange}
-            placeholder="Insérez un titre"
+            placeholder="Insérez un titre (6-120 caractères max)"
             className=" border-gray-400  mb-5 p-4 w-full h-10 rounded-bl-lg rounded-br-lg bg-gray-200"
           />
         </div>
@@ -135,21 +135,24 @@ export default function MandatoryInformations({
           lenghtmax="200"
           lenghtmin="20"
           placeholder="Insérez un texte de description - (20 caractères minimum)"
-          style={{ height: "10vh", maxWidth: "680px" }}
+          style={{ height: "10vh", width: "41vw", minWidth: "100%" }}
         />
 
         {/* Introduction Text  */}
-
+        <div className="lg:hidden h-20" />
         <TutorialCreationTitles
           someText=" Texte d'introduction du tutoriel"
           linked="tutorial-category"
         />
 
         {/* Problem with z-index cannot use component */}
-        <article className=" w-100 relative " style={{ height: "15vh" }}>
+        <article
+          className=" lg:w-full   lg:relative "
+          style={{ height: "15vh" }}
+        >
           <ReactQuill
             htmlFor="short-description"
-            className=""
+            className="w-[80vw] md:w-[41vw]"
             theme="snow"
             maxLength="200"
             minLength="20"
@@ -158,7 +161,7 @@ export default function MandatoryInformations({
             onChange={handleIntroductionText}
             modules={quillConfig.modules}
             formats={quillConfig.formats}
-            style={{ height: "10vh", maxWidth: "680px" }}
+            style={{ height: "10vh" }}
           />
           <input
             value={introductionText}
@@ -166,10 +169,10 @@ export default function MandatoryInformations({
             maxLength="200"
             minLength="20"
             required
-            className="absolute top-0 z-[-10] text-transparent  p-6 h-full w-full"
+            className="lg:absolute lg:top-0 z-[-10] text-transparent  lg:p-6 lg:h-full lg:w-full"
           />
         </article>
-
+        <div className="lg:hidden h-20" />
         <section className=" m-2 flex justify-center">
           {currentStep === 0 && (
             <button

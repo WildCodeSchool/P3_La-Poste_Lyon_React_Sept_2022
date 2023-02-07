@@ -2,7 +2,7 @@ import React from "react";
 
 function HelpModale() {
   return (
-    <div className="bg-gray-100">
+    <div className="bg-white">
       <p className="text-center text-lg md:text-xl">
         Le plus simple reste de nous contacter !
       </p>
