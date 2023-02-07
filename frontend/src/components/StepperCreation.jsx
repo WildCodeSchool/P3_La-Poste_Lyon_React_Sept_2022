@@ -64,11 +64,11 @@ export default function StepperCreation({
     <div className="relative m-0 p-0 ">
       <form
         onSubmit={handleSubmit}
-        className="my-6 p-6  border w-[45vw] rounded-xl shadow-xl flex-col justify-end items-center relative"
+        className="my-6 p-6  border w-full lg:w-[45vw] rounded-xl shadow-xl flex-col justify-end items-center relative"
       >
-        <div className="h-fit">
+        <div className="h-full lg:h-fit">
           {inputs.map((input, index) => (
-            <div key={index} className="h-100 md:h-[45vh]">
+            <div key={index} className="h-100 md:h-[45vh] md:mb-0  mb-80">
               <div key={index} className="flex flex-col   h-full w-full">
                 {/* Position  */}
                 <section className="flex  w-36">
