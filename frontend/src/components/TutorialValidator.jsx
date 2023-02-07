@@ -87,10 +87,10 @@ function TutorialValidator(allStepsContent) {
           notifyProblem();
         } else {
           setTutorials(...tutorials, mandatory);
-          notify();
           setTimeout(() => {
             navigate("/dashboard");
-          }, 2000);
+            notify();
+          }, 300);
           return response.text();
         }
       })

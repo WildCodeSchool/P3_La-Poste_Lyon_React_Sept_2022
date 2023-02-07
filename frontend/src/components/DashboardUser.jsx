@@ -30,7 +30,7 @@ function DashboardUser() {
       "Bienvenue sur la plateforme ! Voici un badge bien mérité ! "
     );
 
-  const getRewardWelcome = async () => {
+  const getRewardWelcome = () => {
     if (checkRewardWelcome === false) {
       fetch(`${VITE_BACKEND_URL}/api/gainReward`, {
         method: "POST",

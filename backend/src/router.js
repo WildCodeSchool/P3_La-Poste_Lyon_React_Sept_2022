@@ -12,6 +12,15 @@ const upload = multer({ dest: "public/uploads/" });
 
 const { hashPassword, verifyPassword, verifyToken } = require("./views/auth");
 
+const {
+  validateUser,
+  validateAvatar,
+  validateUpdateUser,
+  validateLogin,
+} = require("./middlewares/UserValidators");
+
+const { validateTutorial } = require("./middlewares/TutorialValidators");
+
 const userControllers = require("./controllers/userControllers");
 const authentificationControllers = require("./controllers/authentificatorControllers");
 const categoryControllers = require("./controllers/categoryControllers");
@@ -29,17 +38,22 @@ const quizControllers = require("./controllers/quizControllers");
 // Users management
 router.get("/api/users", userControllers.browse);
 router.get("/api/users/:id", userControllers.read);
-router.post("/api/users", hashPassword, userControllers.add);
 router.post(
   "/api/passwordReset",
   passwordControllers.verifyTokenPassword,
-  (req, res) => res.sendStatus(200)
+  (res) => res.sendStatus(200)
 );
 
 /* Authentification and login */
-router.post("/api/users/register", hashPassword, userControllers.add);
+router.post(
+  "/api/users/register",
+  validateUser,
+  hashPassword,
+  userControllers.add
+);
 router.post(
   "/api/login",
+  validateLogin,
   authentificationControllers.getUserByEmailWithPasswordAndPassToNext,
   verifyPassword
 );
@@ -110,7 +124,7 @@ router.use(verifyToken); // From this point, the middleware verifyToken will be 
 router.get("/api/tutos/:id", tutoControllers.read);
 
 // Users management
-router.put("/api/users/:id", userControllers.edit);
+router.put("/api/users/:id", validateUpdateUser, userControllers.edit);
 
 router.delete("/api/users/:id", userControllers.destroy);
 
@@ -122,7 +136,7 @@ router.get("/api/progressionTuto/:id", categoryControllers.progressionBar);
 
 // Tutos management
 router.put("/api/tutos/:id", tutoControllers.edit);
-router.post("/api/tutos", tutoControllers.add);
+router.post("/api/tutos", validateTutorial, tutoControllers.add);
 router.delete("/api/tutos/:id", tutoControllers.destroy);
 
 // TutorialStatus management
@@ -162,6 +176,7 @@ router.delete("/api/deleteReward/:id", rewardControllers.DeleteRewardForUser);
 
 router.put(
   "/api/avatars",
+  validateAvatar,
   upload.single("profilePicture"),
   fileControllers.renameAvatar,
   userControllers.updateAvatar
