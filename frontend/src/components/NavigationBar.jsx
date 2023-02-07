@@ -72,14 +72,14 @@ function NavigationBar({ adminView, handleAdminView }) {
                   id="menu-burger1"
                   src={closemenu}
                   className="h-12 w-12"
-                  alt="Open menu"
+                  alt="Close menu"
                 />
               ) : (
                 <img
                   id="menu-burger2"
                   src={openmenu}
                   className="h-12 w-12"
-                  alt="Close menu"
+                  alt="Open menu"
                 />
               )}
             </button>
