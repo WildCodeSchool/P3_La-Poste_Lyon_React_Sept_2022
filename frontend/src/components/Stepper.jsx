@@ -9,6 +9,7 @@ import completeStep from "../assets/items/completeStep.svg";
 import { RewardsContext } from "../contexts/RewardsContext";
 
 export default function Stepper(steppers) {
+  const notifyProblem = () => toast("Chargement...");
   const notify = () =>
     toast.success("Bravo ! Vous avez réalisé le tutoriel ! 👋 !");
 
@@ -87,9 +88,9 @@ export default function Stepper(steppers) {
         notify();
         setTimeout(() => {
           navigate(-1);
-        }, 1000);
+        }, 2000);
       })
-      .catch((error) => console.error("error", error));
+      .catch((err) => notifyProblem(err));
 
     /* fetch to give the badge  */
     const checkRewardGoodWay = rewards.some(
@@ -112,7 +113,7 @@ export default function Stepper(steppers) {
           setRewards([...rewards, data]);
           notifyBadge();
         })
-        .catch((error) => console.error("error", error));
+        .catch((err) => notifyProblem(err));
     }
   };
 

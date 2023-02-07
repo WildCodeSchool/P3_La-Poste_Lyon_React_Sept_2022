@@ -1,5 +1,5 @@
 import React from "react";
-import nextBtn from "@assets/items/nextBtn.svg";
+import nextBtn from "../assets/items/nextBtn.svg";
 
 import questionbtn from "../assets/items/question-circle.svg";
 import RegisterFirstStepModale from "./RegisterFirstStepModale";
@@ -58,8 +58,11 @@ function RegisterFirstStep({
           <input
             id="username"
             type="email"
-            pattern="/^([a-z0-9.])+\@gmail.com+$/"
+            pattern="(/^[A-Za-z0-9_!#$%&'*+/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm"
             required
+            title='Veuillez entrer une adresse mail valide. Exemple: "exemple@mail.fr'
+            minLength={10}
+            maxLength={320}
             value={email}
             onChange={handleEmail}
             placeholder="Entrez votre adresse mail"

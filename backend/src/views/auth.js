@@ -25,9 +25,7 @@ const hashPassword = (req, res, next) => {
       next();
     })
 
-    .catch((err) => {
-      console.error(err);
-
+    .catch(() => {
       res.sendStatus(500);
     });
 };
@@ -50,8 +48,7 @@ const verifyPassword = (req, res) => {
         res.sendStatus(401);
       }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
       res.sendStatus(500);
     });
 };
@@ -75,7 +72,6 @@ const verifyToken = (req, res, next) => {
 
     next();
   } catch (err) {
-    console.error(err);
     res.sendStatus(401);
   }
 };

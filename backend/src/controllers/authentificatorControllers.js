@@ -15,8 +15,7 @@ const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
         res.sendStatus(401);
       }
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
       res.status(500).send("Error retrieving data from database");
     });
 };

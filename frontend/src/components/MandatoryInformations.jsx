@@ -3,7 +3,6 @@ import ReactQuill from "react-quill";
 import quillConfig from "../config/quillConfig";
 import { CategoryContext } from "../contexts/CategoryContext";
 import TutorialCreationTitles from "./TutorialCreationTitles";
-import SubmitButton from "./SubmitButton";
 import TutorialCreationQuillArea from "./TutorialCreationQuillArea";
 
 export default function MandatoryInformations({
@@ -75,7 +74,7 @@ export default function MandatoryInformations({
     };
 
   return (
-    <div className="relative m-0 p-0 ">
+    <div className="relative w-full m-0 p-0 ">
       <form
         onSubmit={handleMandatoryInformations}
         className=" my-6 p-6 border  w-full rounded-xl shadow-xl flex-col justify-end items-center relative"
@@ -90,7 +89,11 @@ export default function MandatoryInformations({
             type="text"
             id="title"
             name="title"
+            minLength={6}
+            maxLength={50}
             required
+            pattern="^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ?;, -]+$"
+            title="(6-50 caractères) Sont autorisés les lettres et caractères spéciaux : ? ; - "
             onChange={handleTitleChange}
             placeholder="Insérez un titre"
             className=" border-gray-400  mb-5 p-4 w-full h-10 rounded-bl-lg rounded-br-lg bg-gray-200"
@@ -129,7 +132,10 @@ export default function MandatoryInformations({
         <TutorialCreationQuillArea
           value={shortDescription}
           onChangeValue={handleShortDescriptionChange}
-          style={{ height: "10vh" }}
+          lenghtmax="200"
+          lenghtmin="20"
+          placeholder="Insérez un texte de description - (20 caractères minimum)"
+          style={{ height: "10vh", maxWidth: "680px" }}
         />
 
         {/* Introduction Text  */}
@@ -140,27 +146,43 @@ export default function MandatoryInformations({
         />
 
         {/* Problem with z-index cannot use component */}
-        <article className=" w-full relative " style={{ height: "15vh" }}>
+        <article className=" w-100 relative " style={{ height: "15vh" }}>
           <ReactQuill
             htmlFor="short-description"
             className=""
             theme="snow"
+            maxLength="200"
+            minLength="20"
+            placeholder="Insérez un texte d'introduction - (20 caractères minimum)"
             value={introductionText}
             onChange={handleIntroductionText}
             modules={quillConfig.modules}
             formats={quillConfig.formats}
-            style={{ height: "10vh" }}
+            style={{ height: "10vh", maxWidth: "680px" }}
           />
           <input
             value={introductionText}
             onChange={handleIntroductionText}
+            maxLength="200"
+            minLength="20"
             required
             className="absolute top-0 z-[-10] text-transparent  p-6 h-full w-full"
           />
         </article>
 
         <section className=" m-2 flex justify-center">
-          {currentStep === 0 && <SubmitButton stepText="Suivant" />}
+          {currentStep === 0 && (
+            <button
+              type="submit"
+              className={` ${
+                introductionText.length > 50 && shortDescription.length > 50
+                  ? "bg-gradient-to-r hover:bg-main-blue hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue from-main-yellow to-second-yellow hover:text-white "
+                  : "pointer-events-none  bg-gradient-to-r bg-gray-500"
+              }  text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow `}
+            >
+              Suivant
+            </button>
+          )}
         </section>
       </form>
     </div>

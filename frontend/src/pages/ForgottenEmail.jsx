@@ -7,6 +7,8 @@ import arobase from "../assets/connexionPage/email-logo-connexion.png";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function ForgottenEmail() {
+  const notifyProblem = () => toast("Chargement...");
+
   /* Toast */
 
   const notifySuccess = () => {
@@ -42,7 +44,7 @@ function ForgottenEmail() {
       .then(() => {
         notifySuccess();
       })
-      .catch((error) => console.warn(error));
+      .catch((err) => notifyProblem(err));
   };
 
   return (

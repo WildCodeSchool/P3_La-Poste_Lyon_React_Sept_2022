@@ -6,6 +6,9 @@ function SettingsParameters({
   handleInputChange,
   handleOnClickValue,
   text,
+  lengthmin,
+  lengthmax,
+  patterntext,
 }) {
   return (
     <li className=" my-3 md:m-6  border shadow-md rounded-lg   bg-main-blue text-white">
@@ -23,6 +26,9 @@ function SettingsParameters({
           name={`${textValue}`}
           value={`${userVal}`}
           placeholder={`${userVal}`}
+          minLength={lengthmin}
+          maxLength={lengthmax}
+          pattern={patterntext}
           className=" border-gray-400 bg-gray-100 p-4 w-full h-10 text-gray-500 shadow-inner"
           onChange={handleInputChange}
           onClick={handleOnClickValue}

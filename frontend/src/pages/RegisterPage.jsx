@@ -1,17 +1,19 @@
-import RegisterFirstStep from "@components/RegisterFirstStep";
-import RegisterFourthStep from "@components/RegisterFourthStep";
-import RegisterSecondStep from "@components/RegisterSecondStep";
-import RegisterThirdStep from "@components/RegisterThirdStep";
-import completeStep from "@assets/items/step-complete.svg";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import PreviousButton from "@components/PreviousButton";
-import Footer from "@components/Footer";
 import { toast, Toaster } from "react-hot-toast";
+import RegisterFirstStep from "../components/RegisterFirstStep";
+import RegisterFourthStep from "../components/RegisterFourthStep";
+import RegisterSecondStep from "../components/RegisterSecondStep";
+import RegisterThirdStep from "../components/RegisterThirdStep";
+import completeStep from "../assets/items/step-complete.svg";
+import PreviousButton from "../components/PreviousButton";
+import Footer from "../components/Footer";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function RegisterPage() {
+  const notifyProblem = () => toast("Chargement...");
+
   const navigate = useNavigate();
 
   /* registerInformations will save all the data of the user  */
@@ -31,7 +33,7 @@ function RegisterPage() {
 
   const notifyError = () => {
     toast(
-      "Les informations transmises ne vous permettent pas de créer un compte",
+      "Les informations transmises ne vous permettent pas de créer un compte, merci de vérifier vos informations",
       {
         icon: "🚫",
       }
@@ -68,18 +70,15 @@ function RegisterPage() {
       .then((response) => {
         if (response.status !== 201) {
           notifyError();
-        }
-        response.text();
-      })
-      .then((response) => {
-        console.warn(response);
-        notifySuccess(registerInformations.firstname);
+        } else {
+          notifySuccess(registerInformations.firstname);
 
-        setTimeout(() => {
-          navigate("/authentification");
-        }, 1500);
+          setTimeout(() => {
+            navigate("/authentification");
+          }, 1500);
+        }
       })
-      .catch(console.error);
+      .catch((err) => notifyProblem(err));
   };
 
   /* State to set up the current step */
@@ -99,16 +98,6 @@ function RegisterPage() {
 
   const handlePreviousStep = () => {
     setCurrentStep(currentStep - 1);
-  };
-  /* onClick event on stepper's label  */
-  const handleStepClick = (index) => {
-    setCurrentStep(index);
-    /* eslint no-use-before-define: ["error", { "variables": false }] */
-    setStepsCompleted((prevStepsCompleted) => {
-      return prevStepsCompleted.map((completed, i) =>
-        i === index ? true : completed
-      );
-    });
   };
 
   const steps = [
@@ -154,6 +143,8 @@ function RegisterPage() {
           setRegisterInformations={setRegisterInformations}
           submitRegisterInformations={submitRegisterInformations}
           registerInformations={registerInformations}
+          handlePreviousStep={handlePreviousStep}
+          currentStep={currentStep}
         />
       ),
     },
@@ -168,22 +159,19 @@ function RegisterPage() {
     setStepsCompleted(Array(steps.length).fill("")); // This will always use latest value of count
   }, []);
 
-  /* STEPPERS */
-  /* STEPPERS */
-
   return (
     <>
       <Toaster position="top-center" reverseOrder />
       <PreviousButton />
-      <h1 className="flex my-6 justify-center items-center font-bold text-2xl md:text-3xl text-main-blue rounded-xl h-10 text-center md:h-10 md:text-center pt-3">
+      <h1 className="flex my-6 justify-center items-center font-bold text-2xl lg:text-3xl text-main-blue rounded-xl h-10 text-center lg:h-10 lg:text-center pt-3">
         Création de compte
       </h1>
-      <div className=" md:gap-0 flex flex-row items-center justify-center w-full">
+      <div className=" lg:gap-0 flex flex-row items-center justify-center w-full">
         {steps?.map((step, index) => (
           <div key={index} className="flex items-center my-6">
             <div
               key={step.position}
-              className=" md:inline-block h-1  w-3 md:w-20 border-t-4 border-dark-500 "
+              className=" lg:inline-block h-1  w-3 lg:w-20 border-t-4 border-dark-500 "
             />
 
             {/* The stepper button will take the stepper label and get a ternary condition to change his look :
@@ -198,7 +186,6 @@ function RegisterPage() {
                   ? "bg-[#FFC927] text-dark"
                   : "bg-gray-100 text-dark"
               }`}
-              onClick={() => handleStepClick(index)}
             >
               {index === currentStep ? (
                 `${step.position}`
@@ -209,7 +196,7 @@ function RegisterPage() {
               )}
             </button>
 
-            <div className="md:inline-block h-1 w-3 md:w-20 border-t-4 border-dark-500" />
+            <div className="lg:inline-block h-1 w-3 lg:w-20 border-t-4 border-dark-500" />
           </div>
         ))}
       </div>
