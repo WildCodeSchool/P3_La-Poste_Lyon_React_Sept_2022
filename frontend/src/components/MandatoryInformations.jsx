@@ -90,12 +90,12 @@ export default function MandatoryInformations({
             id="title"
             name="title"
             minLength={6}
-            maxLength={50}
+            maxLength={120}
             required
             pattern="^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ?;, -]+$"
             title="(6-50 caractères) Sont autorisés les lettres et caractères spéciaux : ? ; - "
             onChange={handleTitleChange}
-            placeholder="Insérez un titre"
+            placeholder="Insérez un titre (6-120 caractères max)"
             className=" border-gray-400  mb-5 p-4 w-full h-10 rounded-bl-lg rounded-br-lg bg-gray-200"
           />
         </div>
@@ -135,7 +135,7 @@ export default function MandatoryInformations({
           lenghtmax="200"
           lenghtmin="20"
           placeholder="Insérez un texte de description - (20 caractères minimum)"
-          style={{ height: "10vh", maxWidth: "100%" }}
+          style={{ height: "10vh", width: "41vw", minWidth: "100%" }}
         />
 
         {/* Introduction Text  */}
@@ -152,7 +152,7 @@ export default function MandatoryInformations({
         >
           <ReactQuill
             htmlFor="short-description"
-            className="lg:max-w-[610px] w-[71vw] "
+            className="w-[80vw] md:w-[41vw]"
             theme="snow"
             maxLength="200"
             minLength="20"

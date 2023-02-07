@@ -73,7 +73,7 @@ export default function StepperCreation({
                 {/* Position  */}
                 <section className="flex  w-36">
                   <label
-                    className="text-main-black font-semibold text-lg "
+                    className="text-main-black font-semibold text-md md:text-lg "
                     htmlFor={`position-${index}`}
                   >
                     Étape n°
