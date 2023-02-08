@@ -70,10 +70,9 @@ function RegisterPage() {
           notifyError();
         } else {
           notifySuccess(registerInformations.firstname);
-
           setTimeout(() => {
             navigate("/authentification");
-          }, 1500);
+          }, 2500);
         }
       }
     );
@@ -162,7 +161,7 @@ function RegisterPage() {
       <Toaster
         position="top-center"
         reverseOrder
-        toastOptions={{ duration: 800 }}
+        toastOptions={{ duration: 1000 }}
       />
 
       <PreviousButton />
