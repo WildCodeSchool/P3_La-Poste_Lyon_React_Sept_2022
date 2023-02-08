@@ -73,7 +73,7 @@ function RegisterPage() {
 
           setTimeout(() => {
             navigate("/authentification");
-          }, 3000);
+          }, 1500);
         }
       }
     );
@@ -159,7 +159,12 @@ function RegisterPage() {
 
   return (
     <>
-      <Toaster position="top-center" reverseOrder />
+      <Toaster
+        position="top-center"
+        reverseOrder
+        toastOptions={{ duration: 800 }}
+      />
+
       <PreviousButton />
       <h1 className="flex my-6 justify-center items-center font-bold text-2xl lg:text-3xl text-main-blue rounded-xl h-10 text-center lg:h-10 lg:text-center pt-3">
         Création de compte

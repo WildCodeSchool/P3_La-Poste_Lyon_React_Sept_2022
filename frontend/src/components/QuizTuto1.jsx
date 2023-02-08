@@ -77,7 +77,11 @@ function QuizTuto1() {
   if (quizEnd) {
     return (
       <div>
-        <Toaster position="top-center" reverseOrder />
+        <Toaster
+          position="top-center"
+          reverseOrder
+          toastOptions={{ duration: 1000 }}
+        />
 
         <BannerProfile />
         <PreviousButton />
@@ -142,7 +146,7 @@ function QuizTuto1() {
                   <button
                     type="button"
                     key={response.id}
-                    className={` lg:box ml-4 text-base cursor-pointer  rounded-lg p-4 font-bold text-white flex justify-center items-center w-full   bg-main-yellow hover:bg-main-blue my-4 lg:w-3/4 ${
+                    className={` lg:box text-base cursor-pointer  rounded-lg p-4 font-bold text-white flex justify-center items-center w-full   bg-main-yellow hover:bg-main-blue my-4 lg:w-3/4 ${
                       answered && response.isCorrect ? "font-bold" : ""
                     }`}
                     onClick={() => {

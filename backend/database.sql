@@ -94,8 +94,8 @@ CREATE TABLE `tutorialStatus` (
   `tuto_id` int NOT NULL,
   `user_id` int NOT NULL,
   `status` nvarchar(50),
-  FOREIGN KEY (tuto_id) REFERENCES tuto(id),
-  FOREIGN KEY (user_id) REFERENCES user(id)
+  FOREIGN KEY (tuto_id) REFERENCES tuto(id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
 
 INSERT INTO `tutorialStatus` VALUES (15,2,'started'),(35,2,'started'),(3,2,'started'),(3,9,'finished'),(5,9,'finished'),(29,9,'finished'),(28,9,'finished'),(30,9,'finished'),(33,9,'finished'),(13,9,'finished'),(36,9,'started'),(1,9,'finished'),(4,9,'finished'),(19,9,'finished'),(17,9,'finished'),(18,9,'finished');
@@ -107,7 +107,7 @@ CREATE TABLE `stepper` (
   `positionStep` int NOT NULL,
   `content` varchar(10000) NOT NULL,
   `tuto_id` int,
-  FOREIGN KEY (tuto_id) REFERENCES tuto(id)
+  FOREIGN KEY (tuto_id) REFERENCES tuto(id) ON DELETE CASCADE
 );
 
 INSERT INTO `stepper` (positionStep, content, tuto_id) VALUES 
@@ -134,7 +134,7 @@ CREATE TABLE `reward` (
   `user_id` int,
   `obtentionDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (badge_id) REFERENCES badge(id),
-  FOREIGN KEY (user_id) REFERENCES user(id)
+  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
 
 INSERT INTO `reward` (badge_id, user_id) VALUES

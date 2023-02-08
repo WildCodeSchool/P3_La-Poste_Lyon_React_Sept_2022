@@ -126,7 +126,11 @@ function Settings() {
 
   return (
     <div className=" relative flex flex-col my-6">
-      <Toaster position="top-center" reverseOrder />
+      <Toaster
+        position="top-center"
+        reverseOrder
+        toastOptions={{ duration: 1000 }}
+      />
       <div className="pb-10">
         <Link to="/dashboard">
           <PreviousButton />

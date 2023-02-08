@@ -61,25 +61,6 @@ function SearchUsers() {
   const [confirmDeleteModale, setConfirmDeleteModale] = useState(false);
   const [id, setId] = useState();
 
-  const deleteStatus = () => {
-    fetch(`${VITE_BACKEND_URL}/api/deleteStatus/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
-  };
-  const deleteReward = () => {
-    fetch(`${VITE_BACKEND_URL}/api/deleteReward/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    });
-  };
-
   const deleteUser = () => {
     fetch(`${VITE_BACKEND_URL}/api/users/${id}`, {
       method: "DELETE",
@@ -96,8 +77,6 @@ function SearchUsers() {
   };
 
   const handleDeleteUser = async () => {
-    deleteStatus();
-    deleteReward();
     deleteUser();
   };
 

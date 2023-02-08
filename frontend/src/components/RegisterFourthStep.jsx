@@ -31,7 +31,7 @@ function RegisterFourthStep({
         {currentStep === 3 && (
           <button
             type="button"
-            className="bg-[#003DA5] border  items-center flex justify-center text-white mt-8 py-2 px-4 rounded-lg shadow-lg lg:h-14 lg:w-44 lg:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+            className="bg-[#003DA5] border  items-center flex justify-center text-white mt-4 py-2 px-4 rounded-lg shadow-lg lg:h-14 lg:w-44 lg:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
             onClick={handlePreviousStep}
           >
             Précédent
@@ -39,7 +39,7 @@ function RegisterFourthStep({
         )}
         <button
           type="submit"
-          className="bg-[#003DA5] border items-center flex justify-center text-white mt-8 py-2 px-4 rounded-lg shadow-lg lg:h-14 lg:w-44 lg:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+          className="bg-[#003DA5] border items-center flex justify-center text-white mt-4 py-2 px-4 rounded-lg shadow-lg lg:h-14 lg:w-44 lg:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
         >
           Valider
         </button>

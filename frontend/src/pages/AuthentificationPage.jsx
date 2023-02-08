@@ -74,7 +74,7 @@ function AuthentificationPage() {
           notifySuccess(result.user.firstname);
           setTimeout(() => {
             navigate("/dashboard");
-          }, 2500);
+          }, 2000);
         } else {
           notifyError();
         }
@@ -83,7 +83,12 @@ function AuthentificationPage() {
 
   return (
     <>
-      <Toaster position="top-center" reverseOrder /> <PreviousButton />
+      <Toaster
+        position="top-center"
+        reverseOrder
+        toastOptions={{ duration: 800 }}
+      />{" "}
+      <PreviousButton />
       <form
         onSubmit={handleSubmit}
         className=" flex flex-col items-center justify-center"

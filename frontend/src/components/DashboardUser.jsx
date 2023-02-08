@@ -30,7 +30,7 @@ function DashboardUser() {
       "Bienvenue sur la plateforme ! Voici un badge bien mérité ! "
     );
 
-  const getRewardWelcome = () => {
+  const getRewardWelcome = async () => {
     if (checkRewardWelcome === false) {
       fetch(`${VITE_BACKEND_URL}/api/gainReward`, {
         method: "POST",
@@ -64,7 +64,11 @@ function DashboardUser() {
 
   return (
     <div>
-      <Toaster position="top-center" reverseOrder />
+      <Toaster
+        position="top-center"
+        reverseOrder
+        toastOptions={{ duration: 800 }}
+      />
       <BannerProfile />
 
       <div className="mt-2 flex justify-center">
