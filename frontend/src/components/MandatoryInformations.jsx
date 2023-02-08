@@ -89,8 +89,8 @@ export default function MandatoryInformations({
             type="text"
             id="title"
             name="title"
-            minLength={6}
-            maxLength={120}
+            minLength={1}
+            maxLength={500}
             required
             pattern="^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ?;, -]+$"
             title="(6-50 caractères) Sont autorisés les lettres et caractères spéciaux : ? ; - "
@@ -132,8 +132,7 @@ export default function MandatoryInformations({
         <TutorialCreationQuillArea
           value={shortDescription}
           onChangeValue={handleShortDescriptionChange}
-          lenghtmax="200"
-          lenghtmin="20"
+          lenghtmin="10"
           placeholder="Insérez un texte de description - (20 caractères minimum)"
           style={{ height: "10vh", width: "41vw", minWidth: "100%" }}
         />
@@ -154,8 +153,7 @@ export default function MandatoryInformations({
             htmlFor="short-description"
             className="w-[80vw] md:w-[41vw]"
             theme="snow"
-            maxLength="200"
-            minLength="20"
+            minLength="10"
             placeholder="Insérez un texte d'introduction - (20 caractères minimum)"
             value={introductionText}
             onChange={handleIntroductionText}
@@ -166,7 +164,6 @@ export default function MandatoryInformations({
           <input
             value={introductionText}
             onChange={handleIntroductionText}
-            maxLength="200"
             minLength="20"
             required
             className="lg:absolute lg:top-0 z-[-10] text-transparent  lg:p-6 lg:h-full lg:w-full"

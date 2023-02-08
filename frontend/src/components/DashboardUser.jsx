@@ -22,7 +22,7 @@ function DashboardUser() {
   const { rewards, setRewards } = useContext(RewardsContext);
 
   const checkRewardWelcome = rewards?.some(
-    (reward) => reward.label === "Welcome"
+    (reward) => reward?.label === "Welcome"
   );
 
   const notifyBadge = () =>
@@ -30,30 +30,30 @@ function DashboardUser() {
       "Bienvenue sur la plateforme ! Voici un badge bien mérité ! "
     );
 
-  const getRewardWelcome = async () => {
-    if (checkRewardWelcome === false) {
-      fetch(`${VITE_BACKEND_URL}/api/gainReward`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          user_id: currentUser.id,
-          badge_id: 6,
-        }),
+  const getRewardWelcome = () => {
+    fetch(`${VITE_BACKEND_URL}/api/gainReward`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        user_id: currentUser.id,
+        badge_id: 6,
+      }),
+    })
+      .then((response) => response.text())
+      .then((data) => {
+        setRewards([...rewards, data]);
       })
-        .then((response) => response.text())
-        .then((data) => {
-          notifyBadge();
-          setRewards([...rewards, data]);
-        })
-        .catch((err) => notifyProblem(err));
-    }
+      .catch((err) => notifyProblem(err));
   };
 
   useEffect(() => {
-    getRewardWelcome();
+    if (checkRewardWelcome === false) {
+      getRewardWelcome();
+      notifyBadge();
+    }
   }, []);
 
   /* Handle Mobile View */
@@ -67,7 +67,7 @@ function DashboardUser() {
       <Toaster
         position="top-center"
         reverseOrder
-        toastOptions={{ duration: 800 }}
+        toastOptions={{ duration: 1000 }}
       />
       <BannerProfile />
 
