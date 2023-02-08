@@ -88,6 +88,7 @@ export default function StepperCreation({
                     required
                     name="position"
                     value={input.positionStep}
+                    onChange={(event) => handleInputChange(index, event)}
                   />
                 </section>
 
