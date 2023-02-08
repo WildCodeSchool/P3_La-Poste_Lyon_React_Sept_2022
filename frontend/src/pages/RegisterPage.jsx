@@ -12,8 +12,6 @@ import Footer from "../components/Footer";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function RegisterPage() {
-  const notifyProblem = () => toast("Chargement...");
-
   const navigate = useNavigate();
 
   /* registerInformations will save all the data of the user  */
@@ -66,18 +64,19 @@ function RegisterPage() {
 
     e.preventDefault();
 
-    fetch(`${VITE_BACKEND_URL}/api/users/register`, requestOptions)
-      .then((response) => {
+    fetch(`${VITE_BACKEND_URL}/api/users/register`, requestOptions).then(
+      (response) => {
         if (response.status !== 201) {
           notifyError();
         } else {
+          notifySuccess(registerInformations.firstname);
+
           setTimeout(() => {
             navigate("/authentification");
-            notifySuccess(registerInformations.firstname);
           }, 1500);
         }
-      })
-      .catch((err) => notifyProblem(err));
+      }
+    );
   };
 
   /* State to set up the current step */
@@ -160,7 +159,12 @@ function RegisterPage() {
 
   return (
     <>
-      <Toaster position="top-center" reverseOrder />
+      <Toaster
+        position="top-center"
+        reverseOrder
+        toastOptions={{ duration: 800 }}
+      />
+
       <PreviousButton />
       <h1 className="flex my-6 justify-center items-center font-bold text-2xl lg:text-3xl text-main-blue rounded-xl h-10 text-center lg:h-10 lg:text-center pt-3">
         Création de compte

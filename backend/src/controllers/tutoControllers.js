@@ -109,7 +109,8 @@ const destroy = (req, res) => {
         res.sendStatus(204);
       }
     })
-    .catch(() => {
+    .catch((err) => {
+      console.error(err);
       res.sendStatus(500);
     });
 };

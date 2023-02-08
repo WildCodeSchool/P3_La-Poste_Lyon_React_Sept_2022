@@ -11,7 +11,6 @@ import forgotpass from "../assets/connexionPage/img-user-connexion.svg";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function AuthentificationPage() {
-  const notifyProblem = () => toast("Chargement...");
   /* Toast */
 
   const notifyError = () => {
@@ -72,20 +71,24 @@ function AuthentificationPage() {
         if (result.token) {
           setCurrentUser(result.user);
           setToken(result.token);
+          notifySuccess(result.user.firstname);
           setTimeout(() => {
             navigate("/dashboard");
-            notifySuccess(result.user.firstname);
-          }, 300);
+          }, 2000);
         } else {
           notifyError();
         }
-      })
-      .catch((err) => notifyProblem(err));
+      });
   };
 
   return (
     <>
-      <Toaster position="top-center" reverseOrder /> <PreviousButton />
+      <Toaster
+        position="top-center"
+        reverseOrder
+        toastOptions={{ duration: 800 }}
+      />{" "}
+      <PreviousButton />
       <form
         onSubmit={handleSubmit}
         className=" flex flex-col items-center justify-center"

@@ -77,7 +77,11 @@ function QuizTuto1() {
   if (quizEnd) {
     return (
       <div>
-        <Toaster position="top-center" reverseOrder />
+        <Toaster
+          position="top-center"
+          reverseOrder
+          toastOptions={{ duration: 1000 }}
+        />
 
         <BannerProfile />
         <PreviousButton />
@@ -136,37 +140,39 @@ function QuizTuto1() {
               {currentQuestion + 1}.{" "}
               {quizData.questions[currentQuestion]?.question}
             </p>
-            {quizData?.questions[currentQuestion]?.responses?.map(
-              (response, responseIndex) => (
-                <button
-                  type="button"
-                  key={response.id}
-                  className={`ml-4 text-base cursor-pointer flex lg:ml-96 rounded-lg p-4 font-bold text-white  lg:mr-96 bg-main-yellow hover:bg-main-blue my-4 md:w-1/3 w-full ${
-                    answered && response.isCorrect ? "font-bold" : ""
-                  }`}
-                  onClick={() => {
-                    setAnswered(true);
-                    setShowAnswer(true);
-                    setDisabled(true);
-                    // eslint-disable-next-line no-unused-expressions
-                    response.isCorrect
-                      ? (handleNext(response), setScore(score + 1))
-                      : handleNext(response);
-                  }}
-                >
-                  {responseIndex + 1}. {response.content}
-                  {showAnswer && (
-                    <span
-                      className={`ml-4 ${
-                        response.isCorrect ? "text-green-500" : "text-red-500"
-                      }`}
-                    >
-                      {response.isCorrect ? "Correct" : "Incorrect"}
-                    </span>
-                  )}
-                </button>
-              )
-            )}
+            <ul className="lg:grid lg:grid-cols-2 lg:grid-rows-2  justify-items-center mx-auto">
+              {quizData?.questions[currentQuestion]?.responses?.map(
+                (response, responseIndex) => (
+                  <button
+                    type="button"
+                    key={response.id}
+                    className={` lg:box text-base cursor-pointer  rounded-lg p-4 font-bold text-white flex justify-center items-center w-full   bg-main-yellow hover:bg-main-blue my-4 lg:w-3/4 ${
+                      answered && response.isCorrect ? "font-bold" : ""
+                    }`}
+                    onClick={() => {
+                      setAnswered(true);
+                      setShowAnswer(true);
+                      setDisabled(true);
+                      // eslint-disable-next-line no-unused-expressions
+                      response.isCorrect
+                        ? (handleNext(response), setScore(score + 1))
+                        : handleNext(response);
+                    }}
+                  >
+                    {responseIndex + 1}. {response.content}
+                    {showAnswer && (
+                      <span
+                        className={`ml-4 ${
+                          response.isCorrect ? "text-green-500" : "text-red-500"
+                        }`}
+                      >
+                        {response.isCorrect ? "Correct" : "Incorrect"}
+                      </span>
+                    )}
+                  </button>
+                )
+              )}
+            </ul>
             {showAnswer && !quizEnd && (
               <button
                 className="flex items-center bg-main-blue mx-auto rounded-lg p-4 font-bold text-white mt-8 hover:bg-gray-900"

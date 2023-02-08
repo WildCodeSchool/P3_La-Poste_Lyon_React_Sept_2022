@@ -35,7 +35,7 @@ function TutorialList() {
   /* Using params to recover the tutorial category ID - It will be used to fetch the associate tutorial list */
   const { id } = useParams();
 
-  const { tutorials } = useContext(TutorialsContext);
+  const { tutorials, getTutorials } = useContext(TutorialsContext);
   /* Filtred tutorial by the good category corresponding to the id  */
   const filteredTutorials = tutorials?.filter(
     (tutorial) => tutorial?.category_id === parseInt(id, 10)
@@ -46,6 +46,10 @@ function TutorialList() {
   const categoryName = categories?.find(
     (category) => category?.id === parseInt(id, 10)
   )?.name;
+
+  useEffect(() => {
+    getTutorials();
+  }, []);
 
   const tutorialStarted = (tutorial) => {
     /* Check if the tutorialStatus match with the tutorial id */
