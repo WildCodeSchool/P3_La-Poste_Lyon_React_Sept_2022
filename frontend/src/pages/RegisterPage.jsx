@@ -69,10 +69,11 @@ function RegisterPage() {
         if (response.status !== 201) {
           notifyError();
         } else {
+          notifySuccess(registerInformations.firstname);
+
           setTimeout(() => {
             navigate("/authentification");
-            notifySuccess(registerInformations.firstname);
-          }, 200);
+          }, 3000);
         }
       }
     );

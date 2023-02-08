@@ -11,7 +11,6 @@ import forgotpass from "../assets/connexionPage/img-user-connexion.svg";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function AuthentificationPage() {
-  const notifyProblem = () => toast("Chargement...");
   /* Toast */
 
   const notifyError = () => {
@@ -72,15 +71,14 @@ function AuthentificationPage() {
         if (result.token) {
           setCurrentUser(result.user);
           setToken(result.token);
+          notifySuccess(result.user.firstname);
           setTimeout(() => {
             navigate("/dashboard");
-            notifySuccess(result.user.firstname);
-          }, 300);
+          }, 2500);
         } else {
           notifyError();
         }
-      })
-      .catch((err) => notifyProblem(err));
+      });
   };
 
   return (

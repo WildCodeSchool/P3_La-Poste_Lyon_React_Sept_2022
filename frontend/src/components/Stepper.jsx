@@ -85,6 +85,7 @@ export default function Stepper(steppers) {
         ]);
         setTimeout(() => {
           toast.success("Bravo ! Vous avez réalisé le tutoriel ! 👋 !");
+
           navigate(-1);
         }, 300);
       })
@@ -112,8 +113,7 @@ export default function Stepper(steppers) {
           if (!checkRewardGoodWay) {
             notifyBadge();
           }
-        })
-        .catch((err) => notifyProblem(err));
+        });
     }
   };
 
