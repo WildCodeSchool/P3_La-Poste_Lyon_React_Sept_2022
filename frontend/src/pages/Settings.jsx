@@ -112,9 +112,7 @@ function Settings() {
           requestOptions
         ),
         {
-          loading: "En cours de modification ...",
           success: `Votre profil est mis à jour  ${userValues.firstname} 😁 `,
-          error: "Attention aux erreurs ! ",
         }
       )
       // toaster management

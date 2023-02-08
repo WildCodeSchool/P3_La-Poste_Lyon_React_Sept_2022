@@ -12,8 +12,6 @@ import Footer from "../components/Footer";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function RegisterPage() {
-  const notifyProblem = () => toast("Chargement...");
-
   const navigate = useNavigate();
 
   /* registerInformations will save all the data of the user  */
@@ -66,18 +64,18 @@ function RegisterPage() {
 
     e.preventDefault();
 
-    fetch(`${VITE_BACKEND_URL}/api/users/register`, requestOptions)
-      .then((response) => {
+    fetch(`${VITE_BACKEND_URL}/api/users/register`, requestOptions).then(
+      (response) => {
         if (response.status !== 201) {
           notifyError();
         } else {
           setTimeout(() => {
             navigate("/authentification");
             notifySuccess(registerInformations.firstname);
-          }, 1500);
+          }, 200);
         }
-      })
-      .catch((err) => notifyProblem(err));
+      }
+    );
   };
 
   /* State to set up the current step */
