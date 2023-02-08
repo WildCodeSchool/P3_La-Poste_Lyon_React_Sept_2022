@@ -139,7 +139,7 @@ export default function MandatoryInformations({
         />
 
         {/* Introduction Text  */}
-        <div className="lg:hidden h-20" />
+        <div className="lg:hidden h-24" />
         <TutorialCreationTitles
           someText=" Texte d'introduction du tutoriel"
           linked="tutorial-category"
@@ -172,7 +172,7 @@ export default function MandatoryInformations({
             className="lg:absolute lg:top-0 z-[-10] text-transparent  lg:p-6 lg:h-full lg:w-full"
           />
         </article>
-        <div className="lg:hidden h-20" />
+        <div className="lg:hidden h-24" />
         <section className=" m-2 flex justify-center">
           {currentStep === 0 && (
             <button
