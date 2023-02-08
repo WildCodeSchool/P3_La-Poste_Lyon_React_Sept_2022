@@ -1,5 +1,4 @@
 import React, { createContext, useEffect, useContext } from "react";
-import { toast, Toaster } from "react-hot-toast";
 import CurrentUserContext from "./userContext";
 import useLocalStorage from "../hooks/useLocalStorage";
 
@@ -9,8 +8,6 @@ const RewardsContext = createContext();
 export { RewardsContext };
 
 export function RewardsContextProvider({ children }) {
-  const notifyProblem = () =>
-    toast("There was a problem fetching the rewards. Please try again later.");
   const [rewards, setRewards] = useLocalStorage("rewards", []);
   const { currentUser, token } = useContext(CurrentUserContext);
 
@@ -26,9 +23,6 @@ export function RewardsContextProvider({ children }) {
       .then((response) => response.json())
       .then((data) => {
         setRewards(data);
-      })
-      .catch((err) => {
-        notifyProblem(err);
       });
   };
 
@@ -38,7 +32,6 @@ export function RewardsContextProvider({ children }) {
 
   return (
     <RewardsContext.Provider value={{ rewards, setRewards, getRewards }}>
-      <Toaster position="top-center" reverseOrder />
       {children}
     </RewardsContext.Provider>
   );

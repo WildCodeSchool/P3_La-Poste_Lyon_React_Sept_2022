@@ -30,7 +30,7 @@ function DashboardUser() {
       "Bienvenue sur la plateforme ! Voici un badge bien mérité ! "
     );
 
-  const getRewardWelcome = () => {
+  const getRewardWelcome = async () => {
     if (checkRewardWelcome === false) {
       fetch(`${VITE_BACKEND_URL}/api/gainReward`, {
         method: "POST",
@@ -64,7 +64,11 @@ function DashboardUser() {
 
   return (
     <div>
-      <Toaster position="top-center" reverseOrder />
+      <Toaster
+        position="top-center"
+        reverseOrder
+        toastOptions={{ duration: 800 }}
+      />
       <BannerProfile />
 
       <div className="mt-2 flex justify-center">
@@ -82,7 +86,7 @@ function DashboardUser() {
         </button>
       </div>
       <ul
-        className={`grid  py-[1vh] lg:mx-[12vw] mx-3 overflow-hidden lg:gap-5 ${
+        className={`grid  py-[1vh] lg:py-0 lg:mx-[12vw] mx-3 overflow-hidden ${
           mobileView ? "grid-cols-1 grid-rows-4" : " grid-cols-2 grid-rows-2 "
         } grid-cols-1 grid-rows-4 gap-2 lg:grid-cols-2 lg:grid-rows-2  `}
       >

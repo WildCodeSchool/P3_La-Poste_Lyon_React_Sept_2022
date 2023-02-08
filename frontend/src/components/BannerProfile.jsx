@@ -29,10 +29,10 @@ function BannerProfile() {
       <div className="flex bg-gradient-to-r from-main-yellow to-second-yellow w-full justify-between shadow">
         <div className="flex justify-around flex-wrap md:mx-10">
           <div className="flex flex-wrap ">
-            <div className="rounded-full w-100 h-10 my-2 ">
+            <div className="rounded-full w-100 h-10 my-2  inset-x-0">
               <Link to="/settings">
                 <img
-                  className="border-black border rounded-full w-16 h-18 mr-8"
+                  className="border-black border rounded-full w-16 h-16 mr-8 object-fit"
                   src={
                     currentUser?.profilePicture !== null
                       ? `${VITE_BACKEND_URL}/api/avatars/${currentUser.profilePicture}`

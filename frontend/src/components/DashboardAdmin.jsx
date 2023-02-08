@@ -17,7 +17,7 @@ function DashboardAdmin() {
           Mon tableau de bord
         </h1>
       </div>
-      <ul className="grid   overflow-hidden grid-cols-1 grid-rows-4 gap-5 lg:grid lg:overflow-hidden lg:grid-cols-2 lg:grid-rows-2 lg:gap-5 py-[1vh] mx-[12vw]">
+      <ul className="grid   overflow-hidden grid-cols-1 grid-rows-4 gap-5 lg:grid lg:overflow-hidden lg:grid-cols-2 lg:grid-rows-2 lg:gap-O py-[1vh] lg:py-0 mx-[12vw]">
         {/* <li> elements are contained in <Link> to redirect the user to the corresponding page */}
         <li className="bg-white box row-start-1 row-span-1 col-start-1 col-span-1 my-3 lg:m-6 border shadow-xl rounded-xl text-center h-65 lg:box lg:row-start-1 lg:row-span-1 lg:col-start-1 lg:col-span-1">
           <h2 className="text-xl lg:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">

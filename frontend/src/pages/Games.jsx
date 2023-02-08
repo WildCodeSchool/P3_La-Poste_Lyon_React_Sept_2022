@@ -49,7 +49,7 @@ function Games() {
           Mes Quiz
         </h1>
       </div>
-      <ul className="grid grid-cols-1 lg:grid-cols-2 gap-6 overflow-hidden py-[1vh] mx-[12vw]">
+      <ul className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-0 overflow-hidden py-[1vh] lg:py-0 mx-[12vw]">
         {/* <li> elements are contained in <Link> to redirect the user to the corresponding page */}
 
         {quizList.length > 0 &&

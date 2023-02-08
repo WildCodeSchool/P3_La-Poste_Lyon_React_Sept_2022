@@ -51,22 +51,6 @@ function TutorialsManagement() {
   const [id, setId] = useState();
 
   const handleDeleteTutorial = async () => {
-    /* delete all steppers */
-
-    fetch(`${VITE_BACKEND_URL}/api/steppers/tuto_id/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.text())
-      .then((data) => {
-        if (data.error) {
-          toast.error(data.error);
-        }
-      });
-
     /* delete the tutorial  */
     fetch(`${VITE_BACKEND_URL}/api/tutos/${id}`, {
       method: "DELETE",
@@ -78,14 +62,14 @@ function TutorialsManagement() {
       .then((response) => response.text())
       .then((data) => {
         if (data.error) {
-          toast.error(data.error);
+          console.error(data.error);
         } else {
           setTutorials(tutorials.filter((tutorial) => tutorial.id !== id));
         }
       });
 
     setConfirmDeleteModale(false);
-    await fetchTutorials();
+    fetchTutorials();
     setTimeout(() => {
       notify();
     }, 500);

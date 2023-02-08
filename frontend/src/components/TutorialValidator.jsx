@@ -9,7 +9,6 @@ import { useCurrentUserContext } from "../contexts/userContext";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function TutorialValidator(allStepsContent) {
-  const notifyProblem = () => toast("Chargement...");
   const navigate = useNavigate();
   /* Get the token from the userContext */
   const { setTutorials, tutorials } = useContext(TutorialsContext);
@@ -84,22 +83,21 @@ function TutorialValidator(allStepsContent) {
       /* eslint-disable  consistent-return */
       .then((response) => {
         if (response.status === 401) {
-          notifyProblem();
+          console.error("Vous n'êtes pas autorisé à publier un tutoriel");
         } else {
           setTutorials(...tutorials, mandatory);
+          notify();
           setTimeout(() => {
             navigate("/dashboard");
-            notify();
-          }, 300);
-          return response.text();
+          }, 2000);
         }
       })
-      .catch((err) => notifyProblem(err));
+      .catch((err) => console.error(err));
   };
 
   return (
     <div className="m-O p-0">
-      <Toaster />
+      <Toaster toastOptions={{ duration: 1000 }} />
       <div className=" my-6 p-6  border w-full md:w-[45vw] rounded-xl shadow-xl flex-col justify-end items-center relative">
         <h1 className="text-3xl font-semibold text-center m-6 text-main-blue">
           Validation
