@@ -141,7 +141,7 @@ function QuizTuto1() {
                 <button
                   type="button"
                   key={response.id}
-                  className={`ml-4 text-base cursor-pointer flex lg:ml-96 rounded-lg p-4 font-bold text-white  lg:mr-96 bg-main-yellow hover:bg-main-blue my-4 md:w-1/3 w-full ${
+                  className={`ml-4 text-base cursor-pointer flex lg:ml-96 rounded-lg p-4 font-bold text-white  lg:mr-96 bg-main-yellow lg:hover:bg-main-blue my-4 md:w-1/3 w-full ${
                     answered && response.isCorrect ? "font-bold" : ""
                   }`}
                   onClick={() => {
