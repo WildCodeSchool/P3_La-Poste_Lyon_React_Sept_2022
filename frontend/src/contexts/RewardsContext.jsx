@@ -10,7 +10,7 @@ export { RewardsContext };
 
 export function RewardsContextProvider({ children }) {
   const notifyProblem = () =>
-    toast("There was a problem fetching the rewards. Please try again later.");
+    toast("Il y a un problème avec le fetch des récompenses.");
   const [rewards, setRewards] = useLocalStorage("rewards", []);
   const { currentUser, token } = useContext(CurrentUserContext);
 

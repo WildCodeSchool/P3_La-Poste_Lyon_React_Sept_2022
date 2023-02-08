@@ -8,9 +8,7 @@ export { TutorialsContext };
 
 export function TutorialsContextProvider({ children }) {
   const notifyProblem = () =>
-    toast(
-      "There was a problem fetching the tutorials. Please try again later."
-    );
+    toast("Il y a un problème avec le fetch des tutoriels.");
   /* fetch tutorials from localhost */
   const [tutorials, setTutorials] = useState([]);
 

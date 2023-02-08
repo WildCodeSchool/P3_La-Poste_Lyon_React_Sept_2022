@@ -9,9 +9,7 @@ export { TutorialStatusContext };
 
 export function TutorialStatusContextProvider({ children }) {
   const notifyProblem = () =>
-    toast(
-      "There was a problem fetching the tutos statut. Please try again later."
-    );
+    toast("Il y a un problème avec le fetch des status.");
   /* fetch tutorialStatus by id from localhost */
   const [tutorialStatus, setTutorialStatus] = useState([]);
 
