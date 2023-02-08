@@ -9,6 +9,8 @@ import trash from "../assets/items/trash.svg";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function SearchUsers() {
+  const notifyProblem = () => toast("Chargement...");
+
   const notify = () => toast.success("L'utilisateur a bien été supprimé");
 
   /* Get bearer token from userContext to get permission about delete user */
@@ -23,9 +25,7 @@ function SearchUsers() {
       .then((data) => {
         setUsers(data);
       })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+      .catch((err) => notifyProblem(err));
   };
 
   useEffect(() => {
@@ -61,7 +61,26 @@ function SearchUsers() {
   const [confirmDeleteModale, setConfirmDeleteModale] = useState(false);
   const [id, setId] = useState();
 
-  const handleDeleteUser = async () => {
+  const deleteStatus = () => {
+    fetch(`${VITE_BACKEND_URL}/api/deleteStatus/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+  };
+  const deleteReward = () => {
+    fetch(`${VITE_BACKEND_URL}/api/deleteReward/${id}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+  };
+
+  const deleteUser = () => {
     fetch(`${VITE_BACKEND_URL}/api/users/${id}`, {
       method: "DELETE",
       headers: {
@@ -76,18 +95,25 @@ function SearchUsers() {
     }, 500);
   };
 
+  const handleDeleteUser = async () => {
+    deleteStatus();
+    deleteReward();
+    deleteUser();
+  };
+
   return (
     <section>
       <Toaster />
       <BannerProfile />
+
       <PreviousButton />
-      <h2 className="m-6 text-xl text-center md:text-3xl">
-        {" "}
-        Gestion des utilisateurs{" "}
-      </h2>
+
+      <h1 className="m-6 p-3 text-3xl font-bold text-main-blue text-center">
+        Gestion des utilisateurs
+      </h1>
       <form className="w-full flex flex-col justify-center items-center ">
         <input
-          type="text"
+          type="search"
           id="users"
           name="users"
           onChange={(e) => setSearch(e.target.value)}
@@ -133,9 +159,9 @@ function SearchUsers() {
                     </thead>
                     <tbody className="text-sm divide-y divide-gray-100">
                       {filtredUser.length === 0 ? (
-                        <div className="mx-0 text-1xl">
-                          Aucun utilisateur n'a été trouvé
-                        </div>
+                        <tr className="mx-0 text-1xl">
+                          <td>Aucun utilisateur n'a été trouvé</td>
+                        </tr>
                       ) : (
                         filtredUser?.map((user) => (
                           <tr key={user.id} className="hover:bg-gray-100">

@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { useParams, useNavigate } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 import statusFInished from "../assets/tutorials-status/status-finished.svg";
@@ -8,8 +9,11 @@ import { TutorialStatusContext } from "../contexts/TutorialStatusContext";
 import CurrentUserContext from "../contexts/userContext";
 import BannerProfile from "../components/BannerProfile";
 import PreviousButton from "../components/PreviousButton";
+import filterIcon from "../assets/items/filter.svg";
 
 function TutorialList() {
+  const notifyProblem = () => toast("Chargement...");
+
   const navigate = useNavigate();
 
   const { currentUser, token } = useContext(CurrentUserContext);
@@ -21,12 +25,17 @@ function TutorialList() {
     getTutorialStatus();
   }, []);
 
+  const status = [
+    { step: "Commencé", tutorialStatus: "started" },
+    { step: "Terminé", tutorialStatus: "finished" },
+    { step: "À faire", tutorialStatus: "todo" },
+  ];
   const { tutorialStatus } = useContext(TutorialStatusContext);
+
   /* Using params to recover the tutorial category ID - It will be used to fetch the associate tutorial list */
   const { id } = useParams();
 
   const { tutorials } = useContext(TutorialsContext);
-
   /* Filtred tutorial by the good category corresponding to the id  */
   const filteredTutorials = tutorials?.filter(
     (tutorial) => tutorial?.category_id === parseInt(id, 10)
@@ -67,7 +76,7 @@ function TutorialList() {
       fetch("http://localhost:5000/api/tutorialStatusStarted", requestOptions)
         .then((response) => response.text())
         .then(() => {})
-        .catch((error) => console.error("error", error));
+        .catch((err) => notifyProblem(err));
 
       /* update TutorialStatus  */
       setTutorialStatus((previousStatus) => [
@@ -78,22 +87,71 @@ function TutorialList() {
     }
   };
 
+  /* Filter for tutorials */
+  const [filter, setFilter] = useState("");
+  const handleFilter = (e) => setFilter(e.target.value);
+
   return (
     filteredTutorials && (
       <>
+        <Toaster position="top-center" reverseOrder />
+
         <BannerProfile />
-        <section className="m-6">
-          <PreviousButton />
 
-          <h1 className="flex justify-center items-center font-bold text-[26px] text-main-blue rounded-xl h-10 text-center md:h-10 md:text-center pt-3">
-            {categoryName}
-          </h1>
+        <PreviousButton />
 
-          {/* We display the tutorials with the filter of the cagtegory selected */}
-          <ul className="w-3/5 grid grid-cols-1 md:grid-cols-2  m-auto ">
-            {filteredTutorials?.map((tutorial, index) => (
+        <h1 className="flex justify-center  items-center font-bold text-xl lg:text-3xl text-main-blue rounded-xl h-10 text-center lg:h-10 lg:text-center pt-3">
+          {categoryName}
+        </h1>
+
+        {/* Filters */}
+        <div className="w-full  flex justify-end lg:pr-[10%]">
+          <label className="flex mr-3 cursor-pointer">
+            <img
+              src={filterIcon}
+              alt="Filtrer ses tutoriels"
+              className="w-6 h-6"
+            />
+            <select onChange={handleFilter} className="cursor-pointer w-3">
+              <option value="">Tous</option>
+              {status.map((status, index) => (
+                <option key={index} value={status.tutorialStatus}>
+                  {status.step}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
+
+        {/* We display the tutorials with the filter of the cagtegory selected */}
+        <ul className="w-4/5 lg:w-3/5 grid grid-cols-1   lg:grid-cols-2 m-auto ">
+          {/* We will filter with the select value and match with the status values */}
+          {filteredTutorials
+            .filter((tutorial) => {
+              if (filter === "") {
+                return tutorial;
+              }
+              if (filter === "started") {
+                return (
+                  tutorialStatus?.find(
+                    (status) => status?.tuto_id === tutorial.id
+                  )?.status === "started"
+                );
+              }
+              if (filter === "finished") {
+                return (
+                  tutorialStatus?.find(
+                    (status) => status?.tuto_id === tutorial.id
+                  )?.status === "finished"
+                );
+              }
+              return !tutorialStatus?.find(
+                (status) => status?.tuto_id === tutorial.id
+              );
+            })
+            .map((tutorial, index) => (
               <li
-                className=" relative my-3 md:m-6 border shadow-xl rounded-lg text-center"
+                className=" h-72 relative my-3 lg:m-6 border shadow-xl rounded-lg text-center"
                 key={index}
               >
                 {/* Icon when status is finished */}
@@ -108,7 +166,7 @@ function TutorialList() {
                     />
                   </div>
                 )}
-                <h2 className="text-lg md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
+                <h2 className="text-lg lg:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
                   {tutorial.title}
                 </h2>
                 <hr />
@@ -120,7 +178,7 @@ function TutorialList() {
                 <button
                   type="button"
                   onClick={() => tutorialStarted(tutorial)}
-                  className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
+                  className=" bottom-0 bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow lg:h-10 lg:w-44 lg:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
                 >
                   {/* Match tutorialsStatus id with the id of the tutorial */}
 
@@ -138,8 +196,7 @@ function TutorialList() {
                 </button>
               </li>
             ))}
-          </ul>
-        </section>
+        </ul>
       </>
     )
   );

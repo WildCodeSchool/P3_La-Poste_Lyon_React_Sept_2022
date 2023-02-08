@@ -9,6 +9,7 @@ import { useCurrentUserContext } from "../contexts/userContext";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function TutorialValidator(allStepsContent) {
+  const notifyProblem = () => toast("Chargement...");
   const navigate = useNavigate();
   /* Get the token from the userContext */
   const { setTutorials, tutorials } = useContext(TutorialsContext);
@@ -80,27 +81,26 @@ function TutorialValidator(allStepsContent) {
       body,
       headers: myHeaders,
     })
-      /* then I get the response to json. If response == 401 console log error else .then result */
       /* eslint-disable  consistent-return */
       .then((response) => {
         if (response.status === 401) {
-          console.warn("error");
+          notifyProblem();
         } else {
           setTutorials(...tutorials, mandatory);
-          notify();
           setTimeout(() => {
             navigate("/dashboard");
-          }, 2000);
+            notify();
+          }, 300);
           return response.text();
         }
       })
-      .catch((error) => console.warn("error", error));
+      .catch((err) => notifyProblem(err));
   };
 
   return (
     <div className="m-O p-0">
       <Toaster />
-      <div className=" my-6 p-6  border w-[45vw] rounded-xl shadow-xl flex-col justify-end items-center relative">
+      <div className=" my-6 p-6  border w-full md:w-[45vw] rounded-xl shadow-xl flex-col justify-end items-center relative">
         <h1 className="text-3xl font-semibold text-center m-6 text-main-blue">
           Validation
         </h1>
@@ -126,7 +126,7 @@ function TutorialValidator(allStepsContent) {
           <button
             type="button"
             onClick={() => setShowModal(true)}
-            className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow hover:bg-main-blue hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
+            className="hidden md:block bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow hover:bg-main-blue hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
           >
             Prévisualisation
           </button>

@@ -1,15 +1,14 @@
 import React from "react";
-import { scroller } from "react-scroll";
-import RegisterThirdStep from "./RegisterThirdStep";
-import questionbtn from "../assets/items/question-circle.svg";
-import step2 from "../assets/connexionPage/registerPage/id2create.svg";
-import RegisterSecondStepModale from "./RegisterSecondStepModale";
 import nextBtn from "../assets/items/nextBtn.svg";
+import questionbtn from "../assets/items/question-circle.svg";
+import RegisterSecondStepModale from "./RegisterSecondStepModale";
 
 function RegisterSecondStep({
-  registerInformations,
+  handleNextStep,
+  handlePreviousStep,
+  currentStep,
   setRegisterInformations,
-  submitRegisterInformations,
+  registerInformations,
 }) {
   /* State to make the helper modale */
   const [showModal, setShowModal] = React.useState(false);
@@ -20,100 +19,81 @@ function RegisterSecondStep({
     setPassword(event.target.value);
   };
 
-  /* We upload the registerInformations object with the password and we scroll to the third step */
-  const toTheThirdStep = (e) => {
-    e.preventDefault();
+  const submitPassword = () => {
     setRegisterInformations({
       ...registerInformations,
       password,
     });
 
-    scroller.scrollTo("RegisterThirdStep", {
-      duration: 800,
-      delay: 0,
-      smooth: "easeInOutQuart",
-      offset: -100,
-    });
+    handleNextStep();
   };
 
   return (
-    <>
-      <form
-        onSubmit={toTheThirdStep}
-        className="flex justify-evenly flex-col items-center h-screen w-screen pb-60"
-        id="RegisterSecondStep"
-      >
-        <div className="md:shadow-2xl md:border rounded-xl md:border-grey-50 md:py-10  h-fit bg-gradient-to-b from-[#003DA5] to-[#023998]">
-          <div className="flex flex-col items-center justify-center">
-            <h1 className="text-white  text-center text-3xl">
-              Choississez votre mot de passe
-            </h1>
+    <form
+      onSubmit={submitPassword}
+      className="mx-3 border rounded-xl shadow-lg bg-main-blue flex flex-col items-center w-10/12 lg:w-6/12 h-[50vh] "
+    >
+      <h1 className="text-white text-center text-xl lg:text-2xl border-b-2 pt-6 pb-3 h-20 border-b-[#01378e] shadow-md w-full ">
+        Choississez votre mot de passe
+      </h1>
+      <div className="lg:px-6 w-full">
+        <div className="my-8 w-full px-6 ">
+          <p className="italic text-gray-50 opacity-80  text-center text-sm lg:text-lg">
+            * Tous les champs sont obligatoires
+          </p>
+          <label
+            htmlFor="password"
+            className="flex text-white mt-6 text-lg items-center"
+          >
+            Mot de passe
+            <button
+              className="flex px-3"
+              type="button"
+              onClick={() => setShowModal(true)}
+            >
+              <img src={questionbtn} alt="helper modale" />
+            </button>
+            {/* Modale */}
+            {showModal ? (
+              <RegisterSecondStepModale setShowModal={setShowModal} />
+            ) : null}
+            {/* End of the modale */}
+          </label>
 
-            <div>
-              <img src={step2} alt="second step" />
-            </div>
-          </div>
-          <div className="flex justify-center items-center pt-10">
-            <div className="w-screen max-w-md">
-              <div className=" rounded px-8 pt-6 ">
-                <div className="mb-6">
-                  <p className="text-gray-300 font-light italic">
-                    Tous les champs sont obligatoires
-                  </p>
-                  <label
-                    className="flex flex-ro items-center text-white text-sm font-bold mb-2 pb-3"
-                    htmlFor="password"
-                  >
-                    Mot de passe
-                    <button
-                      className="flex"
-                      type="button"
-                      onClick={() => setShowModal(true)}
-                    >
-                      <img
-                        src={questionbtn}
-                        alt="helper modale"
-                        className="mx-3"
-                      />
-                    </button>
-                    {/* Modale */}
-                    {showModal ? (
-                      <RegisterSecondStepModale setShowModal={setShowModal} />
-                    ) : null}
-                    {/* End of the modale */}
-                  </label>
-
-                  <input
-                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                    id="password"
-                    value={password}
-                    required
-                    onChange={handlePassword}
-                    type="password"
-                    placeholder="Entrez un mot de passe"
-                  />
-
-                  <div className="flex justify-center pt-10">
-                    <button type="submit" className="flex">
-                      <img
-                        src={nextBtn}
-                        alt="next button"
-                        className="mx-3 w-10 h-10"
-                      />
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <input
+            id="password"
+            value={password}
+            required
+            onChange={handlePassword}
+            type="password"
+            minLength="8"
+            pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-])[A-Za-z\d@$!%*-?&]{8,}$"
+            title="Votre mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial"
+            placeholder="Entrez un mot de passe"
+            className="p-2 rounded-md w-full"
+          />
         </div>
-      </form>
-      <RegisterThirdStep
-        setRegisterInformations={setRegisterInformations}
-        submitRegisterInformations={submitRegisterInformations}
-        registerInformations={registerInformations}
-      />
-    </>
+      </div>
+      <div className="flex gap-6 ">
+        {currentStep === 1 && (
+          <button
+            type="button"
+            className="bg-[#003DA5] border  items-center flex justify-center text-white mt-8 py-2 px-4 rounded-lg shadow-lg lg:h-14 lg:w-44 lg:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+            onClick={handlePreviousStep}
+          >
+            Précédent
+          </button>
+        )}
+        {currentStep === 1 && (
+          <button
+            type="submit"
+            className="bg-[#003DA5] border  flex justify-center text-white mt-8 py-2 px-4 rounded-lg shadow-lg lg:h-14 lg:w-44 lg:text-lg hover:shadow hover:bg-[#FFC927] hover:text-black"
+          >
+            <img src={nextBtn} alt="next button" className="mx-3 w-10 h-10" />
+          </button>
+        )}
+      </div>
+    </form>
   );
 }
 

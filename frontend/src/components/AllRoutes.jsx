@@ -19,6 +19,10 @@ import ForgottenPassword from "../pages/ForgottenPassword";
 import ResetPassword from "../pages/ResetPassword";
 import ForgottenEmail from "../pages/ForgottenEmail";
 import CurrentUserContext from "../contexts/userContext";
+import Help from "../pages/Help";
+import QuizTuto1 from "./QuizTuto1";
+
+import Games from "../pages/Games";
 
 function AllRoutes({ adminView, handleAdminView }) {
   const { currentUser } = React.useContext(CurrentUserContext);
@@ -26,19 +30,14 @@ function AllRoutes({ adminView, handleAdminView }) {
   return (
     <Routes>
       {/* Without connexion */}
+
       <Route path="/" element={<Home />} />
       <Route path="/authentification" element={<AuthentificationPage />} />
       <Route path="/forgotten-password" element={<ForgottenPassword />} />
-
+      <Route path="/resetpassword/:passwordToken" element={<ResetPassword />} />
       <Route path="/forgotten-email" element={<ForgottenEmail />} />
-      <Route path="/registerPage" element={<RegisterPage />} />
 
-      {currentUser.passwordToken && (
-        <Route
-          path="/resetpassword/:passwordToken"
-          element={<ResetPassword />}
-        />
-      )}
+      <Route path="/registerPage" element={<RegisterPage />} />
 
       {currentUser && (
         <>
@@ -59,6 +58,9 @@ function AllRoutes({ adminView, handleAdminView }) {
           <Route path="/categories/:id/tutorials" element={<TutorialList />} />
           <Route path="/history" element={<Historic />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/help" element={<Help />} />
+          <Route path="/games" element={<Games />} />
+          <Route path="/quiz/:id" element={<QuizTuto1 />} />
         </>
       )}
       {/* Admin */}

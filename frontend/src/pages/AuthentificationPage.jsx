@@ -11,6 +11,7 @@ import forgotpass from "../assets/connexionPage/img-user-connexion.svg";
 const { VITE_BACKEND_URL } = import.meta.env;
 
 function AuthentificationPage() {
+  const notifyProblem = () => toast("Chargement...");
   /* Toast */
 
   const notifyError = () => {
@@ -60,8 +61,6 @@ function AuthentificationPage() {
       body,
       headers: myHeaders,
     })
-      /* then I get the response to json. If response == 401 console log error else .then result
-       */
       .then((response) => {
         if (response.status !== 401) {
           /* eslint consistent-return: off */ return response.json();
@@ -73,15 +72,15 @@ function AuthentificationPage() {
         if (result.token) {
           setCurrentUser(result.user);
           setToken(result.token);
-          notifySuccess(result.user.firstname);
           setTimeout(() => {
             navigate("/dashboard");
-          }, 1500);
+            notifySuccess(result.user.firstname);
+          }, 300);
         } else {
           notifyError();
         }
       })
-      .catch((error) => console.warn(error));
+      .catch((err) => notifyProblem(err));
   };
 
   return (
@@ -98,7 +97,7 @@ function AuthentificationPage() {
             <Link to="/registerPage"> ou créez un compte</Link>
           </span>
         </h1>
-        <div className=" flex-col w-5/6 md:w-1/2 justify-center mb-2">
+        <div className=" flex-col w-5/6 lg:w-1/2 justify-center mb-2">
           {/* label and input */}
           <div className="flex">
             <label htmlFor="email" name="email">
@@ -106,26 +105,29 @@ function AuthentificationPage() {
             </label>
             <input
               type="email"
-              pattern="^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$"
-              placeholder="Entrez votre addresse email"
+              pattern="(/^[A-Za-z0-9_!#$%&'*+\/=?`{|}~^.-]+@[A-Za-z0-9.-]+$/gm"
               required
+              title='Veuillez entrer une adresse mail valide. Exemple: "exemple@mail.fr'
+              minLength={6}
+              maxLength={320}
+              placeholder="Entrez votre addresse email"
               value={email}
               onChange={handleChangeEmail}
               id="email"
               name="email"
-              className="bg-gray-200 md:w-full text-gray-600 py-2 px-4 border rounded-2xl w-screen"
+              className="bg-gray-200 lg:w-full text-gray-600 py-2 px-4 border rounded-2xl w-screen"
             />
           </div>
           {/* mail */}
 
-          <p className="italic text-gray-400 underline text-right text-sm md:text-lg">
+          <p className="italic text-gray-400 underline text-right text-sm lg:text-lg">
             <Link to="/forgotten-email" className="hover:text-black">
               {" "}
               adresse e-mail oubliée?
             </Link>
           </p>
         </div>
-        <div className=" flex-col w-5/6 md:w-1/2 justify-center mb-8 ">
+        <div className=" flex-col w-5/6 lg:w-1/2 justify-center mb-8 ">
           <div className="flex">
             <label htmlFor="password" name="password">
               <img src={locker} alt="locker" className="w-14 h-14 mr-3" />{" "}
@@ -136,34 +138,37 @@ function AuthentificationPage() {
               required
               value={password}
               onChange={handleChangePassword}
+              minLength="8"
+              pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-])[A-Za-z\d@$!%*-?&]{8,}$"
+              title="Votre mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial"
               id="password"
               name="password"
               placeholder="Entrez votre mot de passe"
-              className="bg-gray-200 md:w-full text-gray-600 py-2 px-4 border rounded-2xl w-screen"
+              className="bg-gray-200 lg:w-full text-gray-600 py-2 px-4 border rounded-2xl w-screen"
             />
           </div>{" "}
-          <p className="italic text-gray-400 underline text-right text-sm md:text-lg">
+          <p className="italic text-gray-400 underline text-right text-sm lg:text-lg">
             <Link to="/forgotten-password" className="hover:text-black">
               {" "}
               mot de passe oublié ?{" "}
             </Link>
           </p>
         </div>
-        <div className="flex flex-col items-center justify-center ml-20 mr-20 md:mb-4">
+        <div className="flex flex-col items-center justify-center ml-20 mr-20 lg:mb-4">
           <img
             src={granny}
-            className="max-w-sm w-40 h-40 md:hidden mb-8"
+            className="max-w-sm w-40 h-40 lg:hidden mb-8"
             alt="granny"
           />
           <img
             src={forgotpass}
-            className="hidden w-21 h-31 mr-50 md:block mb-8 md:mb-9 md:mt-4"
+            className="hidden w-21 h-31 mr-50 lg:block mb-8 lg:mb-9 lg:mt-4"
             alt="forgotpass"
           />
         </div>
         <button
           type="submit"
-          className="bg-[#FFC927] text-white m-1 py-1 px-4 rounded-lg shadow-lg md:h-14 md:w-44 md:text-lg hover:shadow hover:bg-[#003DA5] mb-28"
+          className="bg-main-yellow text-white m-1 py-1 px-4 rounded-lg shadow-lg lg:h-14 lg:w-44 lg:text-lg hover:shadow hover:bg-main-blue mb-28"
         >
           Connexion
         </button>

@@ -13,14 +13,14 @@ function DashboardAdmin() {
     <>
       <BannerProfile />
       <div className="mt-2 flex justify-center">
-        <h1 className="m-3 flex justify-center items-center font-bold text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center md:w-1/4 md:h-10 md:text-center">
+        <h1 className="m-3 flex justify-center items-center font-bold text-xl lg:text-3xl text-main-blue rounded-xl w-2/3 h-10 text-center lg:w-1/4 lg:h-10 lg:text-center">
           Mon tableau de bord
         </h1>
       </div>
-      <ul className="grid   overflow-hidden grid-cols-1 grid-rows-4 gap-5 md:grid md:overflow-hidden md:grid-cols-2 md:grid-rows-2 md:gap-5 py-[1vh] mx-[12vw]">
+      <ul className="grid   overflow-hidden grid-cols-1 grid-rows-4 gap-5 lg:grid lg:overflow-hidden lg:grid-cols-2 lg:grid-rows-2 lg:gap-5 py-[1vh] mx-[12vw]">
         {/* <li> elements are contained in <Link> to redirect the user to the corresponding page */}
-        <li className="bg-white box row-start-1 row-span-1 col-start-1 col-span-1 my-3 md:m-6 border shadow-xl rounded-xl text-center h-65 md:box md:row-start-1 md:row-span-1 md:col-start-1 md:col-span-1">
-          <h2 className="text-xl md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
+        <li className="bg-white box row-start-1 row-span-1 col-start-1 col-span-1 my-3 lg:m-6 border shadow-xl rounded-xl text-center h-65 lg:box lg:row-start-1 lg:row-span-1 lg:col-start-1 lg:col-span-1">
+          <h2 className="text-xl lg:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
             Gérer les utilisateurs
           </h2>
           <hr />
@@ -35,8 +35,8 @@ function DashboardAdmin() {
             <AccessButton />
           </Link>
         </li>
-        <li className="bg-white box row-start-2 row-span-1 col-start-1 col-span-1 my-3 md:m-6 border shadow-xl rounded-lg text-center h-65 md:box md:row-start-2 md:row-span-1 md:col-start-1 md:col-span-1">
-          <h2 className="text-xl md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
+        <li className="bg-white box row-start-2 row-span-1 col-start-1 col-span-1 my-3 lg:m-6 border shadow-xl rounded-lg text-center h-65 lg:box lg:row-start-2 lg:row-span-1 lg:col-start-1 lg:col-span-1">
+          <h2 className="text-xl lg:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
             Gérer les tutoriels existants
           </h2>
           <hr />
@@ -48,8 +48,8 @@ function DashboardAdmin() {
           </Link>
         </li>
         {/* Should send the user on the page of HIS tutorials that he already began and not all the tutorials */}
-        <li className="bg-white box row-start-3 row-span-1 col-start-1 col-span-2 my-3 md:m-6 border shadow-xl rounded-lg text-center h-65 md:box md:row-start-1 md:row-span-1 md:col-start-2 md:col-span-2">
-          <h2 className="text-xl md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
+        <li className="bg-white box row-start-3 row-span-1 col-start-1 col-span-2 my-3 lg:m-6 border shadow-xl rounded-lg text-center h-65 lg:box lg:row-start-1 lg:row-span-1 lg:col-start-2 lg:col-span-2">
+          <h2 className="text-xl lg:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
             Créer un tutoriel
           </h2>
           <hr />
@@ -63,8 +63,8 @@ function DashboardAdmin() {
           </div>
         </li>
         {/* */}
-        <li className="bg-white box row-start-4 row-span-1 col-start-1 col-span-2 my-3 md:m-6 border shadow-xl rounded-lg text-center h-65 md:box md:row-start-2 md:row-span-1 md:col-start-2 md:col-span-2">
-          <h2 className="text-xl md:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
+        <li className="bg-white box row-start-4 row-span-1 col-start-1 col-span-2 my-3 lg:m-6 border shadow-xl rounded-lg text-center h-65 lg:box lg:row-start-2 lg:row-span-1 lg:col-start-2 lg:col-span-2">
+          <h2 className="text-xl lg:text-2xl text-main-black  font-bold py-4 bg-white  rounded-tl-lg rounded-tr-lg h-17 flex justify-center items-center">
             Tous les tutoriels
           </h2>
           <hr />

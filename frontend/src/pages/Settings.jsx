@@ -5,6 +5,7 @@ import uploadIcon from "../assets/items/uploadIcon.svg";
 import PreviousButton from "../components/PreviousButton";
 import { useCurrentUserContext } from "../contexts/userContext";
 import SettingsParameters from "./SettingsParameters";
+import { useRewardsContext } from "../contexts/RewardsContext";
 
 const { VITE_BACKEND_URL } = import.meta.env;
 
@@ -22,7 +23,10 @@ function Settings() {
     });
   };
 
+  const notifyBadge = () => toast.success("Et vous remportez un badge  ! 😁 ");
+
   const { currentUser, setCurrentUser, token } = useCurrentUserContext();
+  const { rewards, setRewards } = useRewardsContext();
 
   const avatarRef = useRef(null);
   const navigate = useNavigate();
@@ -71,12 +75,14 @@ function Settings() {
           setCurrentUser({ ...currentUser, profilePicture: results.avatar });
           notifySuccess();
         })
-        .catch((error) => {
-          console.error(error);
-          notifyError();
+        .catch((err) => {
+          notifyError(err);
         });
     }
   };
+
+  /* checkReward Profil */
+  const checkRewardProfil = rewards.some((reward) => reward.label === "Profil");
 
   // Submit usersInformations
   const submitSettingModify = (e) => {
@@ -130,6 +136,26 @@ function Settings() {
           phone: userValues.phone,
         })
       );
+
+    /* Fetch the reward */
+    if (!checkRewardProfil) {
+      fetch(`${VITE_BACKEND_URL}/api/gainReward`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          user_id: currentUser.id,
+          badge_id: 11,
+        }),
+      })
+        .then((response) => response.text())
+        .then((data) => {
+          setRewards([...rewards, data]);
+          notifyBadge();
+        });
+    }
   };
 
   return (
@@ -142,8 +168,8 @@ function Settings() {
       </div>
       <Toaster position="top-center" reverseOrder={false} />
 
-      <div className="mt-4  relative md:h-48 h-32 bg-main-yellow flex justify-center flex-col z-1">
-        <div className="flex absolute bottom-[-5vh] inset-x-0 justify-center items-center">
+      <div className="mt-4  relative lg:h-48 h-32 bg-main-yellow flex justify-center flex-col z-1">
+        <div className="flex absolute bottom-[-5vh] inset-x-0 justify-center items-center ">
           <img
             src={
               currentUser?.profilePicture !== null
@@ -151,7 +177,7 @@ function Settings() {
                 : `https://api.multiavatar.com/${currentUser.firstname}.svg`
             }
             alt="userImage"
-            className="object-fit  w-36 h-36 md:w-48  md:h-48  border-black border-x border-y shadow-lg rounded-full "
+            className="object-fit  bg-[#eee] w-36 h-36 lg:w-48  lg:h-48  border-black border-x border-y shadow-lg rounded-full "
           />
 
           <div className="mt-32">
@@ -167,7 +193,7 @@ function Settings() {
               ref={avatarRef}
               type="file"
               id="image-upload"
-              accept="image/*"
+              accept="image/gif, image/jpeg, image/png, image/jpg"
               onChange={handleSubmitAvatar}
               className="hidden"
             />
@@ -175,15 +201,18 @@ function Settings() {
         </div>
       </div>
 
-      <form onSubmit={submitSettingModify} className="md:p-8 py-8 md:mx-8">
-        <ul className="p-8  md:mx-[10vw] ">
-          <h1 className="flex  justify-left items-center font-bold text-xl md:text-2xl text-main-blue my-3 h-10 text-center md:h-14 md:text-center ">
+      <form onSubmit={submitSettingModify} className="lg:p-8 py-8 lg:mx-8">
+        <ul className="p-8  lg:mx-[10vw] ">
+          <h1 className="flex  justify-left items-center font-bold text-xl lg:text-2xl text-main-blue my-3 h-10 text-center lg:h-14 lg:text-center ">
             Modifier mes informations
           </h1>
 
           <SettingsParameters
             text="Prénom"
             textValue="firstname"
+            lengthmin="3"
+            lengthmax="35"
+            patterntext="[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ?-]+"
             userVal={userValues.firstname}
             handleOnClickValue={handleOnClickValue}
             handleInputChange={handleInputChange}
@@ -192,6 +221,9 @@ function Settings() {
           <SettingsParameters
             text="Nom"
             textValue="lastname"
+            lengthmin="3"
+            lengthmax="35"
+            patterntext="[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ?-]+"
             userVal={userValues.lastname}
             handleOnClickValue={handleOnClickValue}
             handleInputChange={handleInputChange}
@@ -200,6 +232,7 @@ function Settings() {
           <SettingsParameters
             text="Tél."
             textValue="phone"
+            patterntext="^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$"
             userVal={userValues.phone}
             handleOnClickValue={handleOnClickValue}
             handleInputChange={handleInputChange}
@@ -208,7 +241,7 @@ function Settings() {
         <div className="w-full flex justify-center items-center relative">
           <button
             type="submit"
-            className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow md:h-10 md:w-44 md:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
+            className="bg-gradient-to-r from-main-yellow to-second-yellow text-white font-semibold m-3 py-1 px-4 rounded-lg shadow lg:h-10 lg:w-44 lg:text-lg hover:shadow  hover:bg-gradient-to-r hover:from-blue-900 hover:to-main-blue hover:text-white"
           >
             Valider
           </button>

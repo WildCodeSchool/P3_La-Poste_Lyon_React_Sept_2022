@@ -16,6 +16,7 @@ function NavigationBar({ adminView, handleAdminView }) {
   const handleLogout = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
+    localStorage.removeItem("rewards");
     setCurrentUser({});
     setOpen(!open);
     navigate("/");
@@ -35,7 +36,12 @@ function NavigationBar({ adminView, handleAdminView }) {
     if (concernedElement === null) {
       return;
     }
-    if (!concernedElement.contains(event.target)) {
+    if (
+      !concernedElement.contains(event.target) &&
+      event.target.id !== "menu-burger" &&
+      event.target.id !== "menu-burger1" &&
+      event.target.id !== "menu-burger2"
+    ) {
       setOpen(false);
     }
   });
@@ -56,14 +62,25 @@ function NavigationBar({ adminView, handleAdminView }) {
           <div className="block">
             {/* Menu burger toggle icon */}
             <button
+              id="menu-burger"
               type="button"
               className="p-2 text-black rounded-md outline-none"
               onClick={() => setOpen(!open)}
             >
               {open ? (
-                <img src={closemenu} className="h-12 w-12" alt="Open menu" />
+                <img
+                  id="menu-burger1"
+                  src={closemenu}
+                  className="h-12 w-12"
+                  alt="Close menu"
+                />
               ) : (
-                <img src={openmenu} className="h-12 w-12" alt="Close menu" />
+                <img
+                  id="menu-burger2"
+                  src={openmenu}
+                  className="h-12 w-12"
+                  alt="Open menu"
+                />
               )}
             </button>
           </div>
@@ -71,11 +88,11 @@ function NavigationBar({ adminView, handleAdminView }) {
           ""
         )}
       </div>
-      <div className="relative z-10">
+      <div className="relative  z-10">
         <div
-          className={`flex-1 justify-self-center md:block md:pb-0 md:mt-0 ${
+          className={` flex-1 justify-self-center md:block md:pb-0 md:mt-0 ${
             open
-              ? "block absolute h-screen shadow-lg top-0 right-0 bg-white w-screen md:w-96 z-0"
+              ? "h-[95vh] block absolute  shadow-lg top-0 right-0 bg-white w-screen md:w-96 z-0"
               : "hidden"
           }`}
         >
@@ -83,7 +100,7 @@ function NavigationBar({ adminView, handleAdminView }) {
           <ul
             id="click-menu"
             className={
-              open ? "flex flex-col items-end space-y-4 m-3 text-xl" : "hidden"
+              open ? "flex flex-col items-end space-y-2 m-3 text-xl" : "hidden"
             }
           >
             {/* If connected as user enable user links */}
