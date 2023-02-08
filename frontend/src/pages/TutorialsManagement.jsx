@@ -85,7 +85,7 @@ function TutorialsManagement() {
       });
 
     setConfirmDeleteModale(false);
-    fetchTutorials();
+    await fetchTutorials();
     setTimeout(() => {
       notify();
     }, 500);
