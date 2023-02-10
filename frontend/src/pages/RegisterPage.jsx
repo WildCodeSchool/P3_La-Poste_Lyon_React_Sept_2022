@@ -161,7 +161,7 @@ function RegisterPage() {
       <Toaster
         position="top-center"
         reverseOrder
-        toastOptions={{ duration: 1000 }}
+        toastOptions={{ duration: 2000 }}
       />
 
       <PreviousButton />

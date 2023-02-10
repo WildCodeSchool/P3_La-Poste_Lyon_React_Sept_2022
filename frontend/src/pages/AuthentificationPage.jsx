@@ -86,7 +86,7 @@ function AuthentificationPage() {
       <Toaster
         position="top-center"
         reverseOrder
-        toastOptions={{ duration: 800 }}
+        toastOptions={{ duration: 1500 }}
       />{" "}
       <PreviousButton />
       <form

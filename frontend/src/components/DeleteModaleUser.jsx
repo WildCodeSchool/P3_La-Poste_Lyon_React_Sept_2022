@@ -43,11 +43,11 @@ function DeleteModaleUser({
                         className="text-lg font-medium leading-6 text-gray-900 text-center"
                         id="modal-title"
                       >
-                        Désactiver le compte utilisateur
+                        Supprimer le compte utilisateur
                       </h3>
                       <div className="mt-2 text-center">
                         <p className="text-sm text-gray-500">
-                          Êtes vous certain de vouloir désactiver ce compte ?
+                          Êtes vous certain de vouloir supprimer ce compte ?
                           <br />
                           Toutes les données seront définitivement supprimées.
                           <br />
@@ -63,7 +63,7 @@ function DeleteModaleUser({
                     type="button"
                     className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto sm:text-sm"
                   >
-                    Désactiver
+                    Supprimer
                   </button>
                   <button
                     onClick={() => setConfirmDeleteModale(!confirmDeleteModale)}
